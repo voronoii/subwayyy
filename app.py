@@ -11,9 +11,9 @@ visit_log = []
 def robots_txt():
     return send_from_directory(app.static_folder, 'robots.txt')
 
-# @app.route('/sitemap.xml')
-# def sitemap_xml():
-#     return send_from_directory(app.static_folder, 'sitemap.xml')
+@app.route('/sitemap.xml')
+def sitemap_xml():
+    return send_from_directory(app.static_folder, 'sitemap.xml')
 
 @app.route('/ads.txt')
 def ads_txt():
