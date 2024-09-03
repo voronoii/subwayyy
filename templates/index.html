@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3Q4RZMM44P"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-3Q4RZMM44P');
+</script>
+<meta name="google-adsense-account" content="ca-pub-1825078358159503">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1825078358159503"
+     crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+    <title>서브웨이 영양성분 계산기</title>
+    <meta name="description" content="서브웨이 칼로리를 계산해보세요. 샌드위치, 샐러드, 쿠키 등 ">
+    <meta name="keywords" content="서브웨이, 칼로리, 영양성분, 서브웨이 다이어트, 서브웨이 쿠키, 서브웨이 수프">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1200px;
+            width: 100%;
+            padding: 20px;
+        }
+        .selection, .nutrition-info {
+            flex: 1;
+            min-width: 300px;
+            box-sizing: border-box;
+        }
+        h1, h3 {
+            text-align: center;
+        }
+        #nutrition_table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            font-size: 14px;
+            text-align: left;
+        }
+        th, td {
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+        .selected-items ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .selected-items ul li {
+            margin: 0;
+        }
+        .selection select, .selection button {
+            display: block;
+            width: 30%;
+            margin: 10px auto;
+        }
+        .nutrition-info table {
+            margin: 20px 0;
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .selection, .selected-items, .nutrition-info {
+                min-width: 100%;
+            }
+        }
+        .logo {
+            max-width: 100%;
+            height: auto;
+        }
+        #selected_table {
+            width: 100%;
+            border-collapse: separate;
+            margin: 20px auto;
+            font-size: 14px;
+            text-align: left;
+            
+        }
+        #selected_table tr td {
+            text-align: left;
+        }
+    </style>
+
+    
+    <script>
+        
+        function addItem(selectId, listId) {
+            var select = document.getElementById(selectId);
+            var selectedItem = select.options[select.selectedIndex].value;
+            if (!document.getElementById(selectedItem)) {
+                var list = document.getElementById(listId);
+                var listItem = document.createElement("li");
+                
+                listItem.id = selectedItem;
+                
+                listItem.innerHTML = selectedItem + ' <button onclick="removeItem(\'' + selectedItem + '\')"> 삭제 </button>';
+                list.appendChild(listItem);
+            }
+        }
+
+        function removeItem(itemId) {
+            var listItem = document.getElementById(itemId);
+            listItem.parentNode.removeChild(listItem);
+        }
+
+        function calculateNutrition() {
+            var selectedSandwiches = getSelectedItems("selected-sandwiches");
+            var selectedBreads = getSelectedItems("selected-breads");
+            var selectedCheeses = getSelectedItems("selected-cheeses");
+            var selectedSauces = getSelectedItems("selected-sauces");
+            var selectedSides = getSelectedItems("selected-sides");
+
+            fetch('/calculate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    selected_sandwiches: selectedSandwiches,
+                    selected_breads: selectedBreads,
+                    selected_cheeses: selectedCheeses,
+                    selected_sauces: selectedSauces,
+                    selected_sides: selectedSides
+                })
+            }).then(response => response.json())
+              .then(data => {
+                  document.getElementById("weight").innerText = parseFloat(data["weight(g)"]).toFixed(2) + "g";
+                  document.getElementById("calories").innerText = parseFloat(data["calories(kcal)"]).toFixed(2) + "kcal";
+                  document.getElementById("protein").innerText = parseFloat(data["protein(g)"]).toFixed(2) + "g";
+                  document.getElementById("saturated-fat").innerText = parseFloat(data["saturated fat(g)"]).toFixed(2) + "g";
+                  document.getElementById("sugars").innerText = parseFloat(data["sugars(g)"]).toFixed(2) + "g";
+                  document.getElementById("sodium").innerText = parseFloat(data["sodium(mg)"]).toFixed(2) + "mg";
+              });
+        }
+
+        function getSelectedItems(listId) {
+            var selectedItems = [];
+            var list = document.getElementById(listId).children;
+            for (var i = 0; i < list.length; i++) {
+                selectedItems.push(list[i].id);
+            }
+            return selectedItems;
+        }
+    </script>
+</head>
+<body>
+    <img src="{{ url_for('static', filename='images/subway.png') }}" alt="SUBWAY" class="logo" width="30%">
+    
+    <div class="container">
+        <div class="selection">
+            <h3>🥪 Select your sandwiches (토핑만 반영됨)🥪</h3>
+            <select id="sandwich-select">
+                {% for sandwich in sandwiches %}
+                    <option value="{{ sandwich }}">{{ sandwich }}</option>
+                {% endfor %}
+            </select>
+            <button onclick="addItem('sandwich-select', 'selected-sandwiches')">Add Sandwich</button>
+            <h3>🍞 Select your bread 🍞</h3>
+            <select id="bread-select">
+                {% for bread in breads %}
+                    <option value="{{ bread }}">{{ bread }}</option>
+                {% endfor %}
+            </select>
+            <button onclick="addItem('bread-select', 'selected-breads')">Add Bread</button>
+            <h3>🧀 Select your cheese 🧀</h3>
+            <select id="cheese-select">
+                {% for cheese in cheeses %}
+                    <option value="{{ cheese }}">{{ cheese }}</option>
+                {% endfor %}
+            </select>
+            <button onclick="addItem('cheese-select', 'selected-cheeses')">Add Cheese</button>
+            <h3>🧂 Select your sauce 🧂</h3>
+            <select id="sauce-select">
+                {% for sauce in sauces %}
+                    <option value="{{ sauce }}">{{ sauce }}</option>
+                {% endfor %}
+            </select>
+            <button onclick="addItem('sauce-select', 'selected-sauces')">Add Sauce</button>
+
+            <h3>🍟 Select your sides 🍟</h3>
+            <select id="sides-select">
+                {% for side in sides %}
+                    <option value="{{ side }}">{{ side }}</option>
+                {% endfor %}
+            </select>
+            <button onclick="addItem('sides-select', 'selected-sides')">Add Sides</button>
+        </div>
+    </div>
+
+    <div class="selected-items">
+        <h3>🍕 Selected Items 🍕</h3>
+        <table id="selected_table">
+            <tbody>
+                <tr>
+                    <td><h3>Sandwiches:</h3></td>
+                    <td><ul id="selected-sandwiches"></ul></td>
+                </tr>
+                <tr>
+                    <td><h3>Breads:</h3></td>
+                    <td><ul id="selected-breads"></ul></td>
+                </tr>
+                <tr>
+                    <td><h3>Cheeses:</h3></td>
+                    <td><ul id="selected-cheeses"></ul></td>
+                </tr>
+                <tr>
+                    <td><h3>Sauces:</h3></td>
+                    <td><ul id="selected-sauces"></ul></td>
+                </tr>
+                <tr>
+                    <td><h3>Sides:</h3></td>
+                    <td><ul id="selected-sides"></ul></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <button onclick="calculateNutrition()">Calculate</button>
+    <div class="nutrition-info">
+        <h3>⭐Total Nutrition Information⭐</h3>
+        <table id="nutrition_table">
+            <tr>
+                <th>Nutrient</th>
+                <th>Amount</th>
+            </tr>
+            <tr>
+                <td>중량</td>
+                <td id="weight">0g</td>
+            </tr>
+            <tr>
+                <td>칼로리</td>
+                <td id="calories">0kcal</td>
+            </tr>
+            <tr>
+                <td>단백질</td>
+                <td id="protein">0g</td>
+            </tr>
+            <tr>
+                <td>포화지방</td>
+                <td id="saturated-fat">0g</td>
+            </tr>
+            <tr>
+                <td>당류</td>
+                <td id="sugars">0g</td>
+            </tr>
+            <tr>
+                <td>나트륨</td>
+                <td id="sodium">0mg</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
