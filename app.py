@@ -11,7 +11,7 @@ def robots_txt():
     return send_from_directory(app.static_folder, 'robots.txt')
 
 @app.route('/sitemap.xml')
-def robots_txt():
+def sitemap_xml():
     return send_from_directory(app.static_folder, 'sitemap.xml')
 
 def round_nutrition(nutrition):
