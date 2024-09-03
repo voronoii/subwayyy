@@ -2,9 +2,7 @@ from flask import Flask, request, render_template, jsonify, send_from_directory
 from api.nutrition_data import sandwich_nutrition, bread_nutrition, cheese_nutrition, sauce_nutrition
 from api.nutrition_data import sides_nutrition
 from datetime import date, datetime, timezone, timedelta
-import { inject } from '@vercel/analytics';
- 
-inject();
+
 
 app = Flask(__name__)
 visit_log = []
