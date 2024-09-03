@@ -14,6 +14,10 @@ def robots_txt():
 def sitemap_xml():
     return send_from_directory(app.static_folder, 'sitemap.xml')
 
+@app.route('/ads.txt')
+def ads_txt():
+    return send_from_directory(app.static_folder, 'ads.txt')
+
 def round_nutrition(nutrition):
     return {key: round(value, 2) for key, value in nutrition.items()}
 
