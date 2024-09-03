@@ -10,6 +10,10 @@ visit_log = []
 def robots_txt():
     return send_from_directory(app.static_folder, 'robots.txt')
 
+@app.route('/sitemap.xml')
+def robots_txt():
+    return send_from_directory(app.static_folder, 'sitemap.xml')
+
 def round_nutrition(nutrition):
     return {key: round(value, 2) for key, value in nutrition.items()}
 
