@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, jsonify, send_from_directory
-from nutrition_data import sandwich_nutrition, bread_nutrition, cheese_nutrition, sauce_nutrition
-from nutrition_data import sides_nutrition
+from api.nutrition_data import sandwich_nutrition, bread_nutrition, cheese_nutrition, sauce_nutrition
+from api.nutrition_data import sides_nutrition
 from datetime import date, datetime, timezone, timedelta
 
 app = Flask(__name__)
