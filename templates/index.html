@@ -163,6 +163,17 @@
             return selectedItems;
         }
     </script>
+
+<script>
+    (function() {
+      var analytics = document.createElement('script');
+      analytics.src = 'https://cdn.vercel-insights.com/v1/script.tag';
+      analytics.async = true;
+      analytics.defer = true;
+      document.head.appendChild(analytics);
+    })();
+  </script>
+  
 </head>
 <body>
     <img src="{{ url_for('static', filename='images/subway.png') }}" alt="SUBWAY" class="logo" width="30%">
