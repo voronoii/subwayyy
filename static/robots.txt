@@ -20,7 +20,7 @@ Disallow: /test
 Disallow: /user
 
 # Host
-Host: https://subwayyy-tau.vercel.app/
+Host: https://subwayyy.kr
 
 User-agent: *
 Disallow: /
