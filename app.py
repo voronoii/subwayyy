@@ -6,6 +6,7 @@ import requests
 
 app = Flask(__name__)
 SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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'
+
 visit_log = []
 
 @app.route('/robots.txt')
