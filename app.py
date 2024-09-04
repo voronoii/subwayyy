@@ -74,7 +74,7 @@ def calculate():
     total_nutrition = round_nutrition(total_nutrition)
 
     visitor_ip = request.remote_addr
-    send_slack_notification(visitor_ip, jsonify(total_nutrition))
+    # send_slack_notification(visitor_ip, jsonify(total_nutrition))
     return jsonify(total_nutrition)
 
 
