@@ -10,10 +10,7 @@ SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/T07KLQXUXSA/B07KTBJSS7M/Li
 
 visit_log = []
 
-def send_slack_notification(visitor_ip, result):
-    message = f"New visitor with IP: {visitor_ip}"
-    payload = {'text': message, 'result': result}
-    requests.post(SLACK_WEBHOOK_URL, json=payload)
+
 
 @app.route('/robots.txt')
 def robots_txt():
@@ -37,6 +34,12 @@ def index():
 
 @app.route('/calculate', methods=['POST'])
 def calculate():
+
+    def send_slack_notification(visitor_ip):
+        message = f"New visitor with IP: {visitor_ip}"
+        payload = {'text': message}
+        requests.post(SLACK_WEBHOOK_URL, json=payload)
+
     selected_sandwiches = request.json.get('selected_sandwiches', [])
     selected_breads = request.json.get('selected_breads', [])
     selected_cheeses = request.json.get('selected_cheeses', [])
@@ -74,12 +77,15 @@ def calculate():
     total_nutrition = round_nutrition(total_nutrition)
 
     visitor_ip = request.remote_addr
-    # send_slack_notification(visitor_ip, jsonify(total_nutrition))
+    send_slack_notification(visitor_ip)
     return jsonify(total_nutrition)
 
 
 @app.before_request
 def log_visitor():
+
+    
+
     # 방문자 정보 기록
     visitor_ip = request.remote_addr
     KST = timezone(timedelta(hours=9))
