@@ -64,6 +64,7 @@ def calculate():
             total_nutrition[key] += nutrition[key]
 
     total_nutrition = round_nutrition(total_nutrition)
+    print(f"{request.remote_addr} : {jsonify(total_nutrition)}")
     return jsonify(total_nutrition)
 
 
