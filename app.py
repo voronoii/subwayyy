@@ -77,14 +77,12 @@ def calculate():
     total_nutrition = round_nutrition(total_nutrition)
 
     visitor_ip = request.remote_addr
-    send_slack_notification(visitor_ip)
+    print(visitor_ip)
     return jsonify(total_nutrition)
 
 
 @app.before_request
-def log_visitor():
-
-    
+def log_visitor():    
 
     # 방문자 정보 기록
     visitor_ip = request.remote_addr
