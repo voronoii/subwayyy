@@ -29,9 +29,9 @@ def index():
                            cheeses=cheese_nutrition, sauces=sauce_nutrition, sides=sides_nutrition)
 
 
-def send_slack_notification(visitor_ip):
+def send_slack_notification(visitor_ip, result):
     message = f"New visitor with IP: {visitor_ip}"
-    payload = {'text': message}
+    payload = {'text': message, 'result':result}
     requests.post(SLACK_WEBHOOK_URL, json=payload)
 
 
@@ -72,7 +72,7 @@ def calculate():
             total_nutrition[key] += nutrition[key]
 
     total_nutrition = round_nutrition(total_nutrition)
-    print(f"{request.remote_addr} : {total_nutrition}")
+    send_slack_notification(request.remote_addr, total_nutrition)
     return jsonify(total_nutrition)
 
 
