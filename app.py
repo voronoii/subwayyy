@@ -5,7 +5,7 @@ from datetime import date, datetime, timezone, timedelta
 import requests
 
 app = Flask(__name__)
-SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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'
+SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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'
 visit_log = []
 
 @app.route('/robots.txt')
