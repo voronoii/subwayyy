@@ -2,10 +2,18 @@ from flask import Flask, request, render_template, jsonify, send_from_directory
 from api.nutrition_data import sandwich_nutrition, bread_nutrition, cheese_nutrition, sauce_nutrition
 from api.nutrition_data import sides_nutrition
 from datetime import date, datetime, timezone, timedelta
-
+import requests
 
 app = Flask(__name__)
+
+SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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'
+
 visit_log = []
+
+def send_slack_notification(visitor_ip, result):
+    message = f"New visitor with IP: {visitor_ip}"
+    payload = {'text': message, 'result': result}
+    requests.post(SLACK_WEBHOOK_URL, json=payload)
 
 @app.route('/robots.txt')
 def robots_txt():
@@ -64,6 +72,9 @@ def calculate():
             total_nutrition[key] += nutrition[key]
 
     total_nutrition = round_nutrition(total_nutrition)
+
+    visitor_ip = request.remote_addr
+    send_slack_notification(visitor_ip, jsonify(total_nutrition))
     return jsonify(total_nutrition)
 
 
