@@ -42,7 +42,15 @@ sandwich_nutrition = {
     '참치': {'weight(g)': 160, 'calories(kcal)': 124, 'protein(g)': 18.5, 'saturated fat(g)': 0.9, 'sugars(g)': 2.6, 'sodium(mg)': 278},
     '햄': {'weight(g)': 142, 'calories(kcal)': 70, 'protein(g)': 10.6, 'saturated fat(g)': 0.5, 'sugars(g)': 3.4, 'sodium(mg)': 423},
     '에그마요': {'weight(g)': 160, 'calories(kcal)': 224, 'protein(g)': 8.0, 'saturated fat(g)': 4.3, 'sugars(g)': 2.7, 'sodium(mg)': 297},
-    '베지': {'weight(g)': 86, 'calories(kcal)': 17, 'protein(g)': 0.8, 'saturated fat(g)': 0.1, 'sugars(g)': 2.6, 'sodium(mg)': 5}
+    '베지': {'weight(g)': 86, 'calories(kcal)': 17, 'protein(g)': 0.8, 'saturated fat(g)': 0.1, 'sugars(g)': 2.6, 'sodium(mg)': 5},
+
+    '안창 비프': {'weight(g)': 235, 'calories(kcal)': 342, 'protein(g)': 21.6, 'saturated fat(g)': 4.3, 'sugars(g)': 8.3, 'sodium(mg)': 830},
+    '안창 비프&머쉬룸': {'weight(g)': 235, 'calories(kcal)': 292, 'protein(g)': 16.5, 'saturated fat(g)': 2.5, 'sugars(g)': 8, 'sodium(mg)': 598},
+    '머쉬룸': {'weight(g)': 235, 'calories(kcal)': 245, 'protein(g)': 11.8, 'saturated fat(g)': 0.6, 'sugars(g)': 7.7, 'sodium(mg)': 376},
+    '안창 비프 썹픽': {'weight(g)': 265, 'calories(kcal)': 475, 'protein(g)': 22.6, 'saturated fat(g)': 7.4, 'sugars(g)': 10, 'sodium(mg)': 1144},
+    '안창 비프&머쉬룸 썹픽': {'weight(g)': 265, 'calories(kcal)': 427, 'protein(g)': 19, 'saturated fat(g)': 5.7, 'sugars(g)': 11.8, 'sodium(mg)': 967},
+    '머쉬룸 썹픽': {'weight(g)': 251, 'calories(kcal)': 390, 'protein(g)': 13.8, 'saturated fat(g)': 3.8, 'sugars(g)': 7.2, 'sodium(mg)': 909}
+
 }
 
 
