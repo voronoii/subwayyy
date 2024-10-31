@@ -27,6 +27,24 @@
 
     
     <script>
+        // 모달 열기 함수
+function openModal() {
+    // 모달을 보이게 함
+    document.getElementById("nutritionModal").style.display = "block";
+    // 영양 성분을 모달에 업데이트
+    document.getElementById("popup-weight").innerText = document.getElementById("weight").innerText;
+    document.getElementById("popup-calories").innerText = document.getElementById("calories").innerText;
+    document.getElementById("popup-protein").innerText = document.getElementById("protein").innerText;
+    document.getElementById("popup-saturated-fat").innerText = document.getElementById("saturated-fat").innerText;
+    document.getElementById("popup-sugars").innerText = document.getElementById("sugars").innerText;
+    document.getElementById("popup-sodium").innerText = document.getElementById("sodium").innerText;
+}
+
+// 모달 닫기 함수
+function closeModal() {
+    document.getElementById("nutritionModal").style.display = "none";
+}
+
         
         function addItem(selectId, listId) {
             var select = document.getElementById(selectId);
@@ -232,5 +250,24 @@
             </tr>
         </table>
     </div>
+
+
+    <button onclick="openModal()">결과 이미지로 저장</button>
+
+<!-- 팝업 모달 -->
+<div id="nutritionModal" class="modal">
+    <div class="modal-content">
+        <h3>🥪 영양성분 영수증 🥪</h3>
+        <table>
+            <tr><td>중량:</td><td id="popup-weight">0g</td></tr>
+            <tr><td>칼로리:</td><td id="popup-calories">0kcal</td></tr>
+            <tr><td>단백질:</td><td id="popup-protein">0g</td></tr>
+            <tr><td>포화지방:</td><td id="popup-saturated-fat">0g</td></tr>
+            <tr><td>당류:</td><td id="popup-sugars">0g</td></tr>
+            <tr><td>나트륨:</td><td id="popup-sodium">0mg</td></tr>
+        </table>
+        <button onclick="closeModal()">닫기</button>
+    </div>
+</div>
 </body>
 </html>
