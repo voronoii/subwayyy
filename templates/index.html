@@ -27,24 +27,23 @@
 
     
     <script>
-        // 모달 열기 함수
-function openModal() {
-    // 모달을 보이게 함
-    document.getElementById("nutritionModal").style.display = "block";
-    // 영양 성분을 모달에 업데이트
-    document.getElementById("popup-weight").innerText = document.getElementById("weight").innerText;
-    document.getElementById("popup-calories").innerText = document.getElementById("calories").innerText;
-    document.getElementById("popup-protein").innerText = document.getElementById("protein").innerText;
-    document.getElementById("popup-saturated-fat").innerText = document.getElementById("saturated-fat").innerText;
-    document.getElementById("popup-sugars").innerText = document.getElementById("sugars").innerText;
-    document.getElementById("popup-sodium").innerText = document.getElementById("sodium").innerText;
+       // 오버레이 열기 함수
+function openReceipt() {
+    // 오버레이를 보이게 함
+    document.getElementById("receiptOverlay").style.display = "flex";
+    // 영양 성분을 영수증에 업데이트
+    document.getElementById("receipt-weight").innerText = document.getElementById("weight").innerText;
+    document.getElementById("receipt-calories").innerText = document.getElementById("calories").innerText;
+    document.getElementById("receipt-protein").innerText = document.getElementById("protein").innerText;
+    document.getElementById("receipt-saturated-fat").innerText = document.getElementById("saturated-fat").innerText;
+    document.getElementById("receipt-sugars").innerText = document.getElementById("sugars").innerText;
+    document.getElementById("receipt-sodium").innerText = document.getElementById("sodium").innerText;
 }
 
-// 모달 닫기 함수
-function closeModal() {
-    document.getElementById("nutritionModal").style.display = "none";
+// 오버레이 닫기 함수
+function closeReceipt() {
+    document.getElementById("receiptOverlay").style.display = "none";
 }
-
         
         function addItem(selectId, listId) {
             var select = document.getElementById(selectId);
@@ -252,7 +251,7 @@ function closeModal() {
     </div>
 
 
-    <button onclick="openModal()">결과 이미지로 저장</button>
+    <button onclick="openReceipt()">결과 이미지로 저장</button>
 
 <!-- 팝업 모달 -->
 <div id="nutritionModal" class="modal">
@@ -266,7 +265,7 @@ function closeModal() {
             <tr><td>당류:</td><td id="popup-sugars">0g</td></tr>
             <tr><td>나트륨:</td><td id="popup-sodium">0mg</td></tr>
         </table>
-        <button onclick="closeModal()">닫기</button>
+        <button onclick="closeReceipt()">닫기</button>
     </div>
 </div>
 </body>
