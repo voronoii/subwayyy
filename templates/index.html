@@ -27,22 +27,23 @@
 
     
     <script>
-     // 오버레이 열기 함수
-function openReceipt() {
-    document.getElementById("receiptOverlay").style.display = "flex";
-    document.getElementById("receipt-weight").innerText = document.getElementById("weight").innerText;
-    document.getElementById("receipt-calories").innerText = document.getElementById("calories").innerText;
-    document.getElementById("receipt-protein").innerText = document.getElementById("protein").innerText;
-    document.getElementById("receipt-saturated-fat").innerText = document.getElementById("saturated-fat").innerText;
-    document.getElementById("receipt-sugars").innerText = document.getElementById("sugars").innerText;
-    document.getElementById("receipt-sodium").innerText = document.getElementById("sodium").innerText;
-}
+            // 오버레이 열기 함수
+        function openReceipt() {
+            document.getElementById("receiptOverlay").style.display = "flex";
+            document.body.style.overflow = "hidden"; // 스크롤 잠금
+            document.getElementById("receipt-weight").innerText = document.getElementById("weight").innerText;
+            document.getElementById("receipt-calories").innerText = document.getElementById("calories").innerText;
+            document.getElementById("receipt-protein").innerText = document.getElementById("protein").innerText;
+            document.getElementById("receipt-saturated-fat").innerText = document.getElementById("saturated-fat").innerText;
+            document.getElementById("receipt-sugars").innerText = document.getElementById("sugars").innerText;
+            document.getElementById("receipt-sodium").innerText = document.getElementById("sodium").innerText;
+        }
 
-// 오버레이 닫기 함수
-function closeReceipt() {
-    document.getElementById("receiptOverlay").style.display = "none";
-}
-        
+        // 오버레이 닫기 함수
+        function closeReceipt() {
+            document.getElementById("receiptOverlay").style.display = "none";
+            document.body.style.overflow = "auto"; // 스크롤 다시 활성화
+        }
         function addItem(selectId, listId) {
             var select = document.getElementById(selectId);
             var selectedItem = select.options[select.selectedIndex].value;
@@ -131,7 +132,22 @@ function closeReceipt() {
   <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
   <style>
-    /* 오버레이 내용 */
+   /* 오버레이 배경 */
+.overlay {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed; /* 화면 전체에 고정 */
+    z-index: 1000; /* 다른 요소들 위에 표시 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* 어두운 반투명 배경 */
+    display: flex;
+    justify-content: center; /* 중앙 정렬 */
+    align-items: center; /* 중앙 정렬 */
+}
+
+/* 오버레이 내용 */
 .overlay-content {
     text-align: center;
 }
@@ -181,8 +197,6 @@ function closeReceipt() {
 
 /* Google Fonts에서 8비트 폰트 불러오기 */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
-
 
   </style>
   
