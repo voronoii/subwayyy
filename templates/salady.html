@@ -209,51 +209,10 @@
   
 </head>
 <body>
-    <a href="https://subwayyy.kr">
-        <img src="{{ url_for('static', filename='images/subway.png') }}" ,alt="SUBWAY" class="logo" width="30%">
-    </a>
-    <div class="container">
-        <div id="notification" class="notification">추가되었습니다!</div>
-        <div class="selection">
-            <h3>🥪 Select your sandwiches (토핑만 반영됨)🥪</h3>
-            <select id="sandwich-select">
-                {% for sandwich in sandwiches %}
-                    <option value="{{ sandwich }}">{{ sandwich }}</option>
-                {% endfor %}
-            </select>
-            <button onclick="addItem('sandwich-select', 'selected-sandwiches')">Add Sandwich</button>
-            <h3>🍞 Select your bread 🍞</h3>
-            <select id="bread-select">
-                {% for bread in breads %}
-                    <option value="{{ bread }}">{{ bread }}</option>
-                {% endfor %}
-            </select>
-            <button onclick="addItem('bread-select', 'selected-breads')">Add Bread</button>
-            <h3>🧀 Select your cheese 🧀</h3>
-            <select id="cheese-select">
-                {% for cheese in cheeses %}
-                    <option value="{{ cheese }}">{{ cheese }}</option>
-                {% endfor %}
-            </select>
-            <button onclick="addItem('cheese-select', 'selected-cheeses')">Add Cheese</button>
-            <h3>🧂 Select your sauce 🧂</h3>
-            <select id="sauce-select">
-                {% for sauce in sauces %}
-                    <option value="{{ sauce }}">{{ sauce }}</option>
-                {% endfor %}
-            </select>
-            <button onclick="addItem('sauce-select', 'selected-sauces')">Add Sauce</button>
-
-            <h3>🍟 Select your sides 🍟</h3>
-            <select id="sides-select">
-                {% for side in sides %}
-                    <option value="{{ side }}">{{ side }}</option>
-                {% endfor %}
-            </select>
-            <button onclick="addItem('sides-select', 'selected-sides')">Add Sides</button>
-        </div>
-    </div>
-
+    <nav>
+        <a href="/" class="active">서브웨이</a>
+        <a href="/salady">샐러디</a>
+    </nav>
     
 </body>
 </html>
