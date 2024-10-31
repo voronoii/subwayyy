@@ -40,11 +40,18 @@
                 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
                 
                 if (isIOS) {
-                    // iOS에서는 링크를 클릭하여 새 창에 이미지 열기
+                    // iOS에서는 직접 링크를 클릭하도록 유도
                     const newWindowLink = document.createElement('a');
                     newWindowLink.href = imageData;
+                    newWindowLink.innerText = "여기를 클릭하여 이미지를 저장하세요";
+                    newWindowLink.style.display = 'block';
+                    newWindowLink.style.marginTop = '20px';
+                    newWindowLink.style.color = '#007bff';
+                    newWindowLink.style.textDecoration = 'underline';
                     newWindowLink.target = "_blank"; // 새 창에서 열리도록 설정
-                    newWindowLink.click(); // 자동으로 클릭하여 새 창에 이미지 열기
+
+                    // 기존의 영수증 상자 아래에 링크 추가
+                    document.querySelector('.receipt-box').appendChild(newWindowLink);
                     alert("이미지를 길게 눌러 카메라 롤에 저장할 수 있습니다.");
                 } else {
                     // iOS가 아닌 경우, 이미지 파일로 다운로드
@@ -55,6 +62,7 @@
                 }
             });
         }
+
         function openReceipt() {
             document.getElementById("receiptOverlay").style.display = "flex";
             document.body.style.overflow = "hidden";
