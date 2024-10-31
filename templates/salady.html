@@ -20,103 +20,10 @@
 
     <meta charset="UTF-8">
     <title>SALADY</title>
-    <meta name="description" content="서브웨이 칼로리를 계산해보세요. 샌드위치, 샐러드, 쿠키 등 ">
-    <meta name="keywords" content="서브웨이, 칼로리, 영양성분, 서브웨이 다이어트, 서브웨이 쿠키, 서브웨이 수프">
+    <meta name="description" content="샐러디 칼로리를 계산해보세요. ">
+    <meta name="keywords" content="샐러디, 칼로리, 영양성분, 샐러디 다이어트, 샐러디 수프">
     
-    <style>
-
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        a {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        img.logo {
-            max-width: 100%;
-            height: auto;
-        }
-
-        
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            max-width: 1200px;
-            width: 100%;
-            padding: 20px;
-        }
-        .selection, .nutrition-info {
-            flex: 1;
-            min-width: 300px;
-            box-sizing: border-box;
-        }
-        h1, h3 {
-            text-align: center;
-        }
-        #nutrition_table {
-            width: 50%;
-            border-collapse: collapse;
-            margin: 20px auto;
-            font-size: 14px;
-            text-align: left;
-        }
-        th, td {
-            border-bottom: 1px solid #ddd;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-            text-align: left;
-        }
-        .selected-items ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .selected-items ul li {
-            margin: 0;
-        }
-        .selection select, .selection button {
-            display: block;
-            width: 30%;
-            margin: 10px auto;
-        }
-        .nutrition-info table {
-            margin: 20px 0;
-        }
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .selection, .selected-items, .nutrition-info {
-                min-width: 100%;
-            }
-        }
-        
-        #selected_table {
-            width: 100%;
-            border-collapse: separate;
-            margin: 20px auto;
-            font-size: 14px;
-            text-align: left;
-            
-        }
-        #selected_table tr td {
-            text-align: left;
-        }
-
-        
-    </style>
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     
     <script>
         
@@ -213,6 +120,115 @@
         <a href="/" class="active">서브웨이</a>
         <a href="/salady">샐러디</a>
     </nav>
+
+    <a href="https://subwayyy.kr">
+        <img src="{{ url_for('static', filename='images/SALADY.png') }}" ,alt="SALADY" class="logo" width="30%">
+    </a>
+    <div class="container">
+        
+        <div class="selection">
+            <h3>🥪 Select your sandwiches (토핑만 반영됨)🥪</h3>
+            <select id="sandwich-select">
+                {% for sandwich in sandwiches %}
+                    <option value="{{ sandwich }}">{{ sandwich }}</option>
+                {% endfor %}
+            </select>
+            <button onclick="addItem('sandwich-select', 'selected-sandwiches')">Add Sandwich</button>
+            <h3>🍞 Select your bread 🍞</h3>
+            <select id="bread-select">
+                {% for bread in breads %}
+                    <option value="{{ bread }}">{{ bread }}</option>
+                {% endfor %}
+            </select>
+            <button onclick="addItem('bread-select', 'selected-breads')">Add Bread</button>
+            <h3>🧀 Select your cheese 🧀</h3>
+            <select id="cheese-select">
+                {% for cheese in cheeses %}
+                    <option value="{{ cheese }}">{{ cheese }}</option>
+                {% endfor %}
+            </select>
+            <button onclick="addItem('cheese-select', 'selected-cheeses')">Add Cheese</button>
+            <h3>🧂 Select your sauce 🧂</h3>
+            <select id="sauce-select">
+                {% for sauce in sauces %}
+                    <option value="{{ sauce }}">{{ sauce }}</option>
+                {% endfor %}
+            </select>
+            <button onclick="addItem('sauce-select', 'selected-sauces')">Add Sauce</button>
+
+            <h3>🍟 Select your sides 🍟</h3>
+            <select id="sides-select">
+                {% for side in sides %}
+                    <option value="{{ side }}">{{ side }}</option>
+                {% endfor %}
+            </select>
+            <button onclick="addItem('sides-select', 'selected-sides')">Add Sides</button>
+        </div>
+    </div>
+
+    <div class="selected-items">
+        <h3>🍕 Selected Items 🍕</h3>
+        <table id="selected_table">
+            <tbody>
+                <tr>
+                    <td><h3>Sandwiches:</h3></td>
+                    <td><ul id="selected-sandwiches"></ul></td>
+                </tr>
+                <tr>
+                    <td><h3>Breads:</h3></td>
+                    <td><ul id="selected-breads"></ul></td>
+                </tr>
+                <tr>
+                    <td><h3>Cheeses:</h3></td>
+                    <td><ul id="selected-cheeses"></ul></td>
+                </tr>
+                <tr>
+                    <td><h3>Sauces:</h3></td>
+                    <td><ul id="selected-sauces"></ul></td>
+                </tr>
+                <tr>
+                    <td><h3>Sides:</h3></td>
+                    <td><ul id="selected-sides"></ul></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <button onclick="calculateNutrition()">Calculate</button>
+    <div class="nutrition-info">
+        <h3>⭐Total Nutrition Information⭐</h3>
+        <table id="nutrition_table">
+            <tr>
+                <th>Nutrient</th>
+                <th>Amount</th>
+            </tr>
+            <tr>
+                <td>중량</td>
+                <td id="weight">0g</td>
+            </tr>
+            <tr>
+                <td>칼로리</td>
+                <td id="calories">0kcal</td>
+            </tr>
+            <tr>
+                <td>단백질</td>
+                <td id="protein">0g</td>
+            </tr>
+            <tr>
+                <td>포화지방</td>
+                <td id="saturated-fat">0g</td>
+            </tr>
+            <tr>
+                <td>당류</td>
+                <td id="sugars">0g</td>
+            </tr>
+            <tr>
+                <td>나트륨</td>
+                <td id="sodium">0mg</td>
+            </tr>
+        </table>
+    </div>
     
 </body>
 </html>
