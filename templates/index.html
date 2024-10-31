@@ -129,6 +129,62 @@ function closeReceipt() {
     
   </script>
   <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+  <style>
+    /* 오버레이 내용 */
+.overlay-content {
+    text-align: center;
+}
+
+/* 8비트 영수증 박스 스타일 */
+.receipt-box {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 4px dotted #333; /* 8비트 느낌의 점선 테두리 */
+    width: 300px;
+    max-width: 90%;
+    font-family: 'Press Start 2P', monospace;
+    color: #333;
+    box-shadow: 8px 8px 0 #222; /* 픽셀화된 그림자 */
+    position: relative;
+    text-align: left;
+    line-height: 1.6;
+}
+
+/* 영수증 안의 테이블 스타일 */
+.receipt-box table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 14px;
+}
+.receipt-box table td {
+    padding: 4px 0;
+}
+
+/* 닫기 버튼 */
+.close-button {
+    display: block;
+    margin: 15px auto 0;
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Press Start 2P', monospace;
+}
+.close-button:hover {
+    background-color: #d32f2f;
+}
+
+/* Google Fonts에서 8비트 폰트 불러오기 */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
+
+  </style>
   
 </head>
 <body>
@@ -254,7 +310,7 @@ function closeReceipt() {
     <button onclick="openReceipt()">Show Nutrition Receipt</button>
 
     <!-- 8비트 스타일 영수증 오버레이 -->
-    <div id="receiptOverlay" class="overlay">
+    <div id="receiptOverlay" class="overlay" style="display:none;">
         <div class="overlay-content">
             <div class="receipt-box">
                 <h3>🥪 Nutrition Receipt 🧾</h3>
