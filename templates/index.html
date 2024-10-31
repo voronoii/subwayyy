@@ -25,6 +25,45 @@
     
     <style>
 
+nav {
+            width: 100%;
+            background-color: #333;
+            overflow: hidden;
+            display: flex;
+            justify-content: flex-start; /* 좌측 정렬 */
+            padding: 10px;
+        }
+        nav a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            margin-right: 10px;
+            text-decoration: none;
+            font-size: 16px;
+            background-color: #000;
+            color: #fff;
+            border: 2px solid #fff;
+            box-shadow: 2px 2px 0 #fff;
+            text-shadow: 1px 1px #000;
+            font-family: 'Press Start 2P', sans-serif; /* 8비트 스타일 폰트 */
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+        nav a:hover {
+            background-color: #444;
+            transform: translate(2px, 2px); /* 8비트 효과 */
+            box-shadow: 0 0 0 #fff;
+        }
+        nav a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        /* 폰트 적용을 위해 Google Fonts에서 불러옴 */
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    
+        
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
