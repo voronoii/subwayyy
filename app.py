@@ -29,6 +29,9 @@ def index():
     return render_template('index.html', sandwiches=sandwich_nutrition, breads=bread_nutrition, 
                            cheeses=cheese_nutrition, sauces=sauce_nutrition, sides=sides_nutrition)
 
+@app.route('/salady')
+def salady():
+    return render_template('salady.html')
 
 def send_slack_notification(visitor_ip, result):
     message = f"New visitor with IP: {visitor_ip} - {result}"
