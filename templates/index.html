@@ -27,11 +27,9 @@
 
     
     <script>
-       // 오버레이 열기 함수
+     // 오버레이 열기 함수
 function openReceipt() {
-    // 오버레이를 보이게 함
     document.getElementById("receiptOverlay").style.display = "flex";
-    // 영양 성분을 영수증에 업데이트
     document.getElementById("receipt-weight").innerText = document.getElementById("weight").innerText;
     document.getElementById("receipt-calories").innerText = document.getElementById("calories").innerText;
     document.getElementById("receipt-protein").innerText = document.getElementById("protein").innerText;
@@ -251,22 +249,27 @@ function closeReceipt() {
     </div>
 
 
-    <button onclick="openReceipt()">결과 이미지로 저장</button>
 
-<!-- 팝업 모달 -->
-<div id="nutritionModal" class="modal">
-    <div class="modal-content">
-        <h3>🥪 영양성분 영수증 🥪</h3>
-        <table>
-            <tr><td>중량:</td><td id="popup-weight">0g</td></tr>
-            <tr><td>칼로리:</td><td id="popup-calories">0kcal</td></tr>
-            <tr><td>단백질:</td><td id="popup-protein">0g</td></tr>
-            <tr><td>포화지방:</td><td id="popup-saturated-fat">0g</td></tr>
-            <tr><td>당류:</td><td id="popup-sugars">0g</td></tr>
-            <tr><td>나트륨:</td><td id="popup-sodium">0mg</td></tr>
-        </table>
-        <button onclick="closeReceipt()">닫기</button>
+    <!-- 버튼 추가 (사용자가 클릭하면 8비트 영수증이 뜸) -->
+    <button onclick="openReceipt()">Show Nutrition Receipt</button>
+
+    <!-- 8비트 스타일 영수증 오버레이 -->
+    <div id="receiptOverlay" class="overlay">
+        <div class="overlay-content">
+            <div class="receipt-box">
+                <h3>🥪 Nutrition Receipt 🧾</h3>
+                <table>
+                    <tr><td>중량:</td><td id="receipt-weight">0g</td></tr>
+                    <tr><td>칼로리:</td><td id="receipt-calories">0kcal</td></tr>
+                    <tr><td>단백질:</td><td id="receipt-protein">0g</td></tr>
+                    <tr><td>포화지방:</td><td id="receipt-saturated-fat">0g</td></tr>
+                    <tr><td>당류:</td><td id="receipt-sugars">0g</td></tr>
+                    <tr><td>나트륨:</td><td id="receipt-sodium">0mg</td></tr>
+                </table>
+                <button onclick="closeReceipt()" class="close-button">닫기</button>
+            </div>
+        </div>
     </div>
-</div>
+
 </body>
 </html>
