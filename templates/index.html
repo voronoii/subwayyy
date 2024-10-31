@@ -14,6 +14,7 @@
 <meta name="google-adsense-account" content="ca-pub-1825078358159503">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1825078358159503"
      crossorigin="anonymous"></script>
@@ -27,17 +28,50 @@
 
     
     <script>
-            // 오버레이 열기 함수
+
+        function saveReceiptAsImage() {
+            const receiptElement = document.querySelector('.receipt-box'); // 영수증 박스 요소 선택
+            
+            html2canvas(receiptElement).then(canvas => {
+                // 캔버스를 이미지 데이터로 변환
+                const imageData = canvas.toDataURL('image/png');
+                
+                // 이미지 다운로드 링크 생성
+                const downloadLink = document.createElement('a');
+                downloadLink.href = imageData;
+                downloadLink.download = 'nutrition_receipt.png';
+                
+                // 링크 클릭으로 다운로드 트리거
+                downloadLink.click();
+            });
+        }
         function openReceipt() {
             document.getElementById("receiptOverlay").style.display = "flex";
-            document.body.style.overflow = "hidden"; // 스크롤 잠금
+            document.body.style.overflow = "hidden";
+
+            // 영양 성분 업데이트
             document.getElementById("receipt-weight").innerText = document.getElementById("weight").innerText;
             document.getElementById("receipt-calories").innerText = document.getElementById("calories").innerText;
             document.getElementById("receipt-protein").innerText = document.getElementById("protein").innerText;
             document.getElementById("receipt-saturated-fat").innerText = document.getElementById("saturated-fat").innerText;
             document.getElementById("receipt-sugars").innerText = document.getElementById("sugars").innerText;
             document.getElementById("receipt-sodium").innerText = document.getElementById("sodium").innerText;
+
+            // 선택한 항목 리스트 업데이트
+            const receiptSelectedItems = document.getElementById("receipt-selected-items");
+            receiptSelectedItems.innerHTML = ""; // 기존 내용 초기화
+            const selectedItemsCategories = ["selected-sandwiches", "selected-breads", "selected-cheeses", "selected-sauces", "selected-sides"];
+            
+            selectedItemsCategories.forEach(categoryId => {
+                const selectedItems = getSelectedItems(categoryId);
+                selectedItems.forEach(item => {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = item;
+                    receiptSelectedItems.appendChild(listItem);
+                });
+            });
         }
+
 
         // 오버레이 닫기 함수
         function closeReceipt() {
@@ -64,34 +98,35 @@
         }
 
         function calculateNutrition() {
-            var selectedSandwiches = getSelectedItems("selected-sandwiches");
-            var selectedBreads = getSelectedItems("selected-breads");
-            var selectedCheeses = getSelectedItems("selected-cheeses");
-            var selectedSauces = getSelectedItems("selected-sauces");
-            var selectedSides = getSelectedItems("selected-sides");
+    var selectedSandwiches = getSelectedItems("selected-sandwiches");
+    var selectedBreads = getSelectedItems("selected-breads");
+    var selectedCheeses = getSelectedItems("selected-cheeses");
+    var selectedSauces = getSelectedItems("selected-sauces");
+    var selectedSides = getSelectedItems("selected-sides");
 
-            fetch('/calculate', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    selected_sandwiches: selectedSandwiches,
-                    selected_breads: selectedBreads,
-                    selected_cheeses: selectedCheeses,
-                    selected_sauces: selectedSauces,
-                    selected_sides: selectedSides
-                })
-            }).then(response => response.json())
-              .then(data => {
-                  document.getElementById("weight").innerText = parseFloat(data["weight(g)"]).toFixed(2) + "g";
-                  document.getElementById("calories").innerText = parseFloat(data["calories(kcal)"]).toFixed(2) + "kcal";
-                  document.getElementById("protein").innerText = parseFloat(data["protein(g)"]).toFixed(2) + "g";
-                  document.getElementById("saturated-fat").innerText = parseFloat(data["saturated fat(g)"]).toFixed(2) + "g";
-                  document.getElementById("sugars").innerText = parseFloat(data["sugars(g)"]).toFixed(2) + "g";
-                  document.getElementById("sodium").innerText = parseFloat(data["sodium(mg)"]).toFixed(2) + "mg";
-              });
-        }
+    fetch('/calculate', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            selected_sandwiches: selectedSandwiches,
+            selected_breads: selectedBreads,
+            selected_cheeses: selectedCheeses,
+            selected_sauces: selectedSauces,
+            selected_sides: selectedSides
+        })
+    }).then(response => response.json())
+      .then(data => {
+          document.getElementById("weight").innerText = parseFloat(data["weight(g)"]).toFixed(1) + "g";
+          document.getElementById("calories").innerText = parseFloat(data["calories(kcal)"]).toFixed(1) + "kcal";
+          document.getElementById("protein").innerText = parseFloat(data["protein(g)"]).toFixed(1) + "g";
+          document.getElementById("saturated-fat").innerText = parseFloat(data["saturated fat(g)"]).toFixed(1) + "g";
+          document.getElementById("sugars").innerText = parseFloat(data["sugars(g)"]).toFixed(1) + "g";
+          document.getElementById("sodium").innerText = parseFloat(data["sodium(mg)"]).toFixed(1) + "mg";
+      });
+}
+
 
         function getSelectedItems(listId) {
             var selectedItems = [];
@@ -156,12 +191,12 @@
 .receipt-box {
     background-color: #f9f9f9;
     padding: 20px;
-    border: 4px dotted #333; /* 8비트 느낌의 점선 테두리 */
+    border: 4px dotted #333;
     width: 300px;
     max-width: 90%;
     font-family: 'Press Start 2P', monospace;
     color: #333;
-    box-shadow: 8px 8px 0 #222; /* 픽셀화된 그림자 */
+    box-shadow: 8px 8px 0 #222;
     position: relative;
     text-align: left;
     line-height: 1.6;
@@ -171,11 +206,20 @@
 .receipt-box table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
     font-size: 14px;
 }
 .receipt-box table td {
-    padding: 4px 0;
+    vertical-align: top;
+    padding: 8px;
+}
+
+/* 오른쪽 선택 항목 리스트 스타일 */
+#receipt-selected-items {
+    list-style-type: square;
+    padding-left: 20px;
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.5;
 }
 
 /* 닫기 버튼 */
@@ -324,22 +368,39 @@
     <button onclick="openReceipt()">Show Nutrition Receipt</button>
 
     <!-- 8비트 스타일 영수증 오버레이 -->
-    <div id="receiptOverlay" class="overlay" style="display:none;">
+    <div id="receiptOverlay" class="overlay">
         <div class="overlay-content">
             <div class="receipt-box">
-                <h3>🥪 Nutrition Receipt 🧾</h3>
+                <h3>🥪 나의 샌드위치 🧾</h3>
                 <table>
-                    <tr><td>중량:</td><td id="receipt-weight">0g</td></tr>
-                    <tr><td>칼로리:</td><td id="receipt-calories">0kcal</td></tr>
-                    <tr><td>단백질:</td><td id="receipt-protein">0g</td></tr>
-                    <tr><td>포화지방:</td><td id="receipt-saturated-fat">0g</td></tr>
-                    <tr><td>당류:</td><td id="receipt-sugars">0g</td></tr>
-                    <tr><td>나트륨:</td><td id="receipt-sodium">0mg</td></tr>
+                    <tr>
+                        <!-- 영양 성분 -->
+                        <td>
+                            <table>
+                                <tr><td>중량:</td><td id="receipt-weight">0g</td></tr>
+                                <tr><td>칼로리:</td><td id="receipt-calories">0kcal</td></tr>
+                                <tr><td>단백질:</td><td id="receipt-protein">0g</td></tr>
+                                <tr><td>포화지방:</td><td id="receipt-saturated-fat">0g</td></tr>
+                                <tr><td>당류:</td><td id="receipt-sugars">0g</td></tr>
+                                <tr><td>나트륨:</td><td id="receipt-sodium">0mg</td></tr>
+                            </table>
+                        </td>
+                        
+                        <!-- 선택한 항목 -->
+                        <td>
+                            <h4>Selected Items</h4>
+                            <ul id="receipt-selected-items">
+                                <!-- 항목들이 이곳에 추가됩니다 -->
+                            </ul>
+                        </td>
+                    </tr>
                 </table>
                 <button onclick="closeReceipt()" class="close-button">닫기</button>
+                <button onclick="saveReceiptAsImage()" class="save-button">영수증저장하기</button>
             </div>
         </div>
     </div>
+    
 
 </body>
 </html>
