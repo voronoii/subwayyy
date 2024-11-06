@@ -51,7 +51,7 @@
         }
 
         function calculateNutrition() {
-            var selectedSandwiches = getSelectedItems("selected-sandwiches");
+            var selectedSandwiches = getSelectedItems("selected-salads");
             var selectedBreads = getSelectedItems("selected-breads");
             var selectedCheeses = getSelectedItems("selected-cheeses");
             var selectedSauces = getSelectedItems("selected-sauces");
@@ -131,13 +131,13 @@
     <div class="container">
         
         <div class="selection">
-            <h3>🥪 Select your sandwiches (토핑만 반영됨)🥪</h3>
-            <select id="sandwich-select">
-                {% for sandwich in sandwiches %}
-                    <option value="{{ sandwich }}">{{ sandwich }}</option>
+            <h3>🥪 Select your salad🥪</h3>
+            <select id="salad-select">
+                {% for salad in salads %}
+                    <option value="{{ salad }}">{{ salad }}</option>
                 {% endfor %}
             </select>
-            <button onclick="addItem('sandwich-select', 'selected-sandwiches')">Add Sandwich</button>
+            <button onclick="addItem('salad-select', 'selected-salads')">Add Sandwich</button>
             <h3>🍞 Select your bread 🍞</h3>
             <select id="bread-select">
                 {% for bread in breads %}
@@ -176,7 +176,7 @@
             <tbody>
                 <tr>
                     <td><h3>Sandwiches:</h3></td>
-                    <td><ul id="selected-sandwiches"></ul></td>
+                    <td><ul id="selected-salads"></ul></td>
                 </tr>
                 <tr>
                     <td><h3>Breads:</h3></td>

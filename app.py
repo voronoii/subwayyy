@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, jsonify, send_from_directory
 from api.nutrition_data import sandwich_nutrition, bread_nutrition, cheese_nutrition, sauce_nutrition
 from api.nutrition_data import sides_nutrition
+from api.nutrition_salady import salad
 from datetime import date, datetime, timezone, timedelta
 import requests
 
@@ -31,12 +32,21 @@ def index():
 
 @app.route('/salady')
 def salady():
-    return render_template('salady.html')
+    return render_template('salady.html', salads=salads)
 
-def send_slack_notification(visitor_ip, result):
-    message = f"New visitor with IP: {visitor_ip} - {result}"
-    payload = {'text': message}
-    requests.post(SLACK_WEBHOOK_URL, json=payload)
+def calculate_salady():
+    selected_sandwiches = request.json.get('selected_sandwiches', [])
+    
+
+    total_nutrition = {'열량(kcal)': 0, '탄수화물(g)': 0, '당류(g)': 0, '단백질(g)': 0, '지방(g)': 0, '포화지방(g)': 0, '나트륨(mg)': 0}
+
+
+    for sandwich in selected_sandwiches:
+        nutrition = sandwich_nutrition[sandwich]
+        
+        for key in total_nutrition:
+            total_nutrition[key] += nutrition[key]
+    
 
 
 @app.route('/calculate', methods=['POST'])
@@ -77,7 +87,6 @@ def calculate():
 
     total_nutrition = round_nutrition(total_nutrition)
     print(f"result : ", total_nutrition)
-    send_slack_notification(request.remote_addr, total_nutrition)
     return jsonify(total_nutrition)
 
 
