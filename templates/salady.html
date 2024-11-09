@@ -124,7 +124,7 @@
     <div class="container">
         <div class="selection">
             <!-- Salad selection -->
-            <h3>🥪 Select your salad 🥪</h3>
+            <h3>🥙 salads 🥙</h3>
             <select id="salad-select">
                 {% for salad in salads %}
                     <option value="{{ salad }}">{{ salad }}</option>
@@ -133,7 +133,7 @@
             <button onclick="addItem('salad-select', 'selected-salads')">Add Salad</button>
 
             <!-- Additional categories for warmbowls, protein boxes, etc. -->
-            <h3>🍲 Select your warm bowl 🍲</h3>
+            <h3>🍲 warm bowls 🍲</h3>
             <select id="warmbowl-select">
                 {% for warmbowl in warmbowls %}
                     <option value="{{ warmbowl }}">{{ warmbowl }}</option>
@@ -141,7 +141,7 @@
             </select>
             <button onclick="addItem('warmbowl-select', 'selected-warmbowls')">Add Warm Bowl</button>
 
-            <h3>🍱 Select your protein box 🍱</h3>
+            <h3>🍱 protein box 🍱</h3>
             <select id="protein_box-select">
                 {% for protein_box in protein_boxes %}
                     <option value="{{ protein_box }}">{{ protein_box }}</option>
@@ -149,7 +149,7 @@
             </select>
             <button onclick="addItem('protein_box-select', 'selected-protein_boxes')">Add Protein Box</button>
 
-            <h3>🥙 Select your wrap or sandwich 🥙</h3>
+            <h3>🥙 wraps or sandwiches 🥙</h3>
             <select id="sand_wrap-select">
                 {% for sand_wrap in sand_wraps %}
                     <option value="{{ sand_wrap }}">{{ sand_wrap }}</option>
@@ -157,7 +157,7 @@
             </select>
             <button onclick="addItem('sand_wrap-select', 'selected-sand_wraps')">Add Wrap/Sandwich</button>
 
-            <h3>🥤 Select your beverage 🥤</h3>
+            <h3>🥤 beverages 🥤</h3>
             <select id="beverage-select">
                 {% for beverage in beverages %}
                     <option value="{{ beverage }}">{{ beverage }}</option>
@@ -165,7 +165,7 @@
             </select>
             <button onclick="addItem('beverage-select', 'selected-beverages')">Add Beverage</button>
 
-            <h3>🥗 Select your dressing (전부/하프) 🥗</h3>
+            <h3>🥗 dressing (전부/하프) 🥗</h3>
             <select id="dressing-select">
                 {% for dressing in dressings %}
                     <option value="{{ dressing }}">{{ dressing }}</option>
@@ -173,7 +173,7 @@
             </select>
             <button onclick="addItem('dressing-select', 'selected-dressings')">Add Dressing</button>
 
-            <h3>🌿 Select your topping 🌿</h3>
+            <h3>🌿 toppings 🌿</h3>
             <select id="topping-select">
                 {% for topping in toppings %}
                     <option value="{{ topping }}">{{ topping }}</option>
@@ -181,7 +181,7 @@
             </select>
             <button onclick="addItem('topping-select', 'selected-toppings')">Add Topping</button>
 
-            <h3>🍲 Select your side or soup 🍲</h3>
+            <h3>🍲 side or soup 🍲</h3>
             <select id="side_soup-select">
                 {% for side_soup in sides_soups %}
                     <option value="{{ side_soup }}">{{ side_soup }}</option>
