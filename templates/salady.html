@@ -5,8 +5,51 @@
     <meta charset="UTF-8">
     <title>SALADY</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <style>
+        /* 알림 박스 스타일 */
+        #notification {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #4CAF50; /* 녹색 배경 */
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            padding: 10px;
+            position: fixed;
+            z-index: 1;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 17px;
+        }
+
+        /* 알림 박스가 나타날 때의 애니메이션 */
+        #notification.show {
+            visibility: visible;
+            animation: fadeInOut 2s;
+        }
+
+        /* fadeInOut 애니메이션 정의 */
+        @keyframes fadeInOut {
+            0% {opacity: 0;}
+            10% {opacity: 1;}
+            90% {opacity: 1;}
+            100% {opacity: 0;}
+        }
+    </style>
     
     <script>
+
+        function showNotification() {
+            var notification = document.getElementById("notification");
+            notification.classList.add("show");
+            setTimeout(function() {
+                notification.classList.remove("show");
+            }, 1000); // 1초 후 알림 숨김
+        }
+
+
         function addItem(selectId, listId) {
             var select = document.getElementById(selectId);
             var selectedItem = select.options[select.selectedIndex].value;
@@ -16,6 +59,7 @@
                 listItem.id = selectedItem;
                 listItem.innerHTML = selectedItem + ' <button onclick="removeItem(\'' + selectedItem + '\')"> 삭제 </button>';
                 list.appendChild(listItem);
+                showNotification(); 
             }
         }
 
@@ -70,6 +114,10 @@
         <a href="/salady" class="{% if request.path == '/salady' %}active{% endif %}">샐러디</a>
     </nav>
 
+
+    <div id="notification">추가되었습니다!</div>
+
+    
     <div class="container">
         <div class="selection">
             <!-- Salad selection -->
