@@ -35,6 +35,10 @@ def salady():
     return render_template('salady.html', salads=salads_nutrition, warmbowls=warmbowls_nutrition, protein_boxes=protein_boxes_nutrition, 
                            sand_wraps=sand_wraps_nutrition, beverages=beverages_nutrition, dressings=dressings_nutrition, toppings=toppings_nutrition,
                            sides_soups=sides_soups_nutrition)
+    
+@app.route('/test', methods=['GET', 'POST'])
+def test():
+    return render_template('test.html')
 
 @app.route('/calculate_salady', methods=['POST'])
 def calculate_salady():
