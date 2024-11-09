@@ -32,21 +32,34 @@ def index():
 
 @app.route('/salady')
 def salady():
-    return render_template('salady.html', salads=salads)
+    return render_template('salady.html', salads=salads_nutrition, warmbowls=warmbowls_nutrition, protein_boxes=protein_boxes_nutrition, 
+                           sand_wraps=sand_wraps_nutrition, beverages=beverages_nutrition, dressings=dressings_nutrition, toppings=toppings_nutrition,
+                           sides_soups=sides_soups_nutrition)
 
 def calculate_salady():
-    selected_sandwiches = request.json.get('selected_sandwiches', [])
-    
+    selected_salads = request.json.get('selected-salads', []) 
+    selected_warmbowls = request.json.get('selected-warmbowls', [])    
+    selected_salads = request.json.get('selected-salads', [])    
+    selected_salads = request.json.get('selected-salads', []) 
+    selected_salads = request.json.get('selected-salads', []) 
 
     total_nutrition = {'열량(kcal)': 0, '탄수화물(g)': 0, '당류(g)': 0, '단백질(g)': 0, '지방(g)': 0, '포화지방(g)': 0, '나트륨(mg)': 0}
 
-
-    for sandwich in selected_sandwiches:
-        nutrition = sandwich_nutrition[sandwich]
+    for sandwich in selected_salads:
+        nutrition = salads_nutrition[sandwich]
+        
+        for key in total_nutrition:
+            total_nutrition[key] += nutrition[key]
+            
+    for sandwich in selected_warmbowls:
+        nutrition = warmbowls_nutrition[sandwich]
         
         for key in total_nutrition:
             total_nutrition[key] += nutrition[key]
     
+    total_nutrition = round_nutrition(total_nutrition)
+    print(f"result : ", total_nutrition)
+    return jsonify(total_nutrition)
 
 
 @app.route('/calculate', methods=['POST'])
