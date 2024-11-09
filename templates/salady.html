@@ -132,7 +132,6 @@
             </select>
             <button onclick="addItem('salad-select', 'selected-salads')">Add Salad</button>
 
-            <!-- Additional categories for warmbowls, protein boxes, etc. -->
             <h3>🍲 warm bowls 🍲</h3>
             <select id="warmbowl-select">
                 {% for warmbowl in warmbowls %}
@@ -141,7 +140,7 @@
             </select>
             <button onclick="addItem('warmbowl-select', 'selected-warmbowls')">Add Warm Bowl</button>
 
-            <h3>🍱 protein box 🍱</h3>
+            <h3>🍱 protein boxes 🍱</h3>
             <select id="protein_box-select">
                 {% for protein_box in protein_boxes %}
                     <option value="{{ protein_box }}">{{ protein_box }}</option>
@@ -181,7 +180,7 @@
             </select>
             <button onclick="addItem('topping-select', 'selected-toppings')">Add Topping</button>
 
-            <h3>🍲 side or soup 🍲</h3>
+            <h3>🍲 side & soup 🍲</h3>
             <select id="side_soup-select">
                 {% for side_soup in sides_soups %}
                     <option value="{{ side_soup }}">{{ side_soup }}</option>
