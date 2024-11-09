@@ -333,7 +333,7 @@
   
 </head>
 <body>
-    <div id="notification">추가되었습니다!</div>
+    
 
     <nav>
         <a href="/" class="{% if request.path == '/' %}active{% endif %}">서브웨이</a>
@@ -344,6 +344,8 @@
     <a href="https://subwayyy.kr">
         <img src="{{ url_for('static', filename='images/subway.png') }}" ,alt="SUBWAY" class="logo" width="30%">
     </a>
+
+    <div id="notification">추가되었습니다!</div>
     <div class="container">
         
         <div class="selection">
