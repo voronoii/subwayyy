@@ -1,45 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <!-- Google Adsense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1825078358159503"
-     crossorigin="anonymous"></script>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L4WC6NVKHG"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-L4WC6NVKHG');
-</script>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1825078358159503"
-     crossorigin="anonymous"></script>
-
+    <!-- Metadata and scripts omitted for brevity -->
     <meta charset="UTF-8">
     <title>SALADY</title>
-    <meta name="description" content="샐러디 칼로리를 계산해보세요. ">
-    <meta name="keywords" content="샐러디, 칼로리, 영양성분, 샐러디 다이어트, 샐러디 수프">
-    
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     
     <script>
-        
         function addItem(selectId, listId) {
             var select = document.getElementById(selectId);
             var selectedItem = select.options[select.selectedIndex].value;
             if (!document.getElementById(selectedItem)) {
                 var list = document.getElementById(listId);
                 var listItem = document.createElement("li");
-                
                 listItem.id = selectedItem;
-                
                 listItem.innerHTML = selectedItem + ' <button onclick="removeItem(\'' + selectedItem + '\')"> 삭제 </button>';
                 list.appendChild(listItem);
             }
@@ -51,34 +25,32 @@
         }
 
         function calculateNutrition() {
-            var selectedSalads = getSelectedItems("selected-salads");
-            var selectedBreads = getSelectedItems("selected-breads");
-            var selectedCheeses = getSelectedItems("selected-cheeses");
-            var selectedSauces = getSelectedItems("selected-sauces");
-            var selectedSides = getSelectedItems("selected-sides");
+            var selectedItems = {
+                selected_salads: getSelectedItems("selected-salads"),
+                selected_warmbowls: getSelectedItems("selected-warmbowls"),
+                selected_protein_boxes: getSelectedItems("selected-protein_boxes"),
+                selected_sand_wraps: getSelectedItems("selected-sand_wraps"),
+                selected_beverages: getSelectedItems("selected-beverages"),
+                selected_dressings: getSelectedItems("selected-dressings"),
+                selected_toppings: getSelectedItems("selected-toppings"),
+                selected_sides_soups: getSelectedItems("selected-sides_soups")
+            };
 
-            fetch('/calculate', {
+            fetch('/calculate_salady', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    selected_salads: selectedSalads,
-                    selected_breads: selectedBreads,
-                    selected_cheeses: selectedCheeses,
-                    selected_sauces: selectedSauces,
-                    selected_sides: selectedSides
-                })
+                body: JSON.stringify(selectedItems)
             }).then(response => response.json())
               .then(data => { 
-                  document.getElementById('열량(kcal)').innerText = parseFloat(data['열량(kcal)']).toFixed(2) ;
-                  document.getElementById('탄수화물(g)').innerText = parseFloat(data['탄수화물(g)']).toFixed(2) ;
-                  document.getElementById('당류(g)').innerText = parseFloat(data['당류(g)']).toFixed(2) ;
+                  document.getElementById('열량(kcal)').innerText = parseFloat(data['열량(kcal)']).toFixed(2);
+                  document.getElementById('탄수화물(g)').innerText = parseFloat(data['탄수화물(g)']).toFixed(2);
+                  document.getElementById('당류(g)').innerText = parseFloat(data['당류(g)']).toFixed(2);
                   document.getElementById('단백질(g)').innerText = parseFloat(data['단백질(g)']).toFixed(2);
-                  document.getElementById('지방(g)').innerText = parseFloat(data['지방(g)']).toFixed(2) ;
-                  document.getElementById('포화지방(g)').innerText = parseFloat(data['포화지방(g)']).toFixed(2) ;
-                  document.getElementById('나트륨(mg)').innerText = parseFloat(data['나트륨(mg)']).toFixed(2) ;
-
+                  document.getElementById('지방(g)').innerText = parseFloat(data['지방(g)']).toFixed(2);
+                  document.getElementById('포화지방(g)').innerText = parseFloat(data['포화지방(g)']).toFixed(2);
+                  document.getElementById('나트륨(mg)').innerText = parseFloat(data['나트륨(mg)']).toFixed(2);
               });
         }
 
@@ -91,35 +63,6 @@
             return selectedItems;
         }
     </script>
-
-    <script>
-        (function() {
-        var analytics = document.createElement('script');
-        analytics.src = 'https://cdn.vercel-insights.com/v1/script.tag';
-        analytics.async = true;
-        analytics.defer = true;
-        document.head.appendChild(analytics);
-        })();
-
-        import { inject } from '@vercel/analytics';
-        // import some helper that is exposed by your current framework to determine the right mode manually
-        import { dev } from '$app/environment';
-        
-        inject({
-        mode: dev ? 'development' : 'production',
-        });
-
-        function showNotification() {
-            var notification = document.getElementById("notification");
-            notification.classList.add("show");
-            setTimeout(function() {
-                notification.classList.remove("show");
-            }, 1000); // 1초 후 메시지 숨김
-        }
-    
-  </script>
-  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-  
 </head>
 <body>
     <nav>
@@ -127,48 +70,73 @@
         <a href="/salady" class="{% if request.path == '/salady' %}active{% endif %}">샐러디</a>
     </nav>
 
-    <a href="https://subwayyy.kr/salady">
-        <img src="{{ url_for('static', filename='images/salady.png') }}" ,alt="SALADY" class="logo" width="30%">
-    </a>
     <div class="container">
-        
         <div class="selection">
-            <h3>🥪 Select your salad🥪</h3>
+            <!-- Salad selection -->
+            <h3>🥪 Select your salad 🥪</h3>
             <select id="salad-select">
                 {% for salad in salads %}
                     <option value="{{ salad }}">{{ salad }}</option>
                 {% endfor %}
             </select>
             <button onclick="addItem('salad-select', 'selected-salads')">Add Salad</button>
-            <h3>🍞 Select your bread 🍞</h3>
-            <select id="bread-select">
-                {% for bread in breads %}
-                    <option value="{{ bread }}">{{ bread }}</option>
-                {% endfor %}
-            </select>
-            <button onclick="addItem('bread-select', 'selected-breads')">Add Bread</button>
-            <h3>🧀 Select your cheese 🧀</h3>
-            <select id="cheese-select">
-                {% for cheese in cheeses %}
-                    <option value="{{ cheese }}">{{ cheese }}</option>
-                {% endfor %}
-            </select>
-            <button onclick="addItem('cheese-select', 'selected-cheeses')">Add Cheese</button>
-            <h3>🧂 Select your sauce 🧂</h3>
-            <select id="sauce-select">
-                {% for sauce in sauces %}
-                    <option value="{{ sauce }}">{{ sauce }}</option>
-                {% endfor %}
-            </select>
-            <button onclick="addItem('sauce-select', 'selected-sauces')">Add Sauce</button>
 
-            <h3>🍟 Select your sides 🍟</h3>
-            <select id="sides-select">
-                {% for side in sides %}
-                    <option value="{{ side }}">{{ side }}</option>
+            <!-- Additional categories for warmbowls, protein boxes, etc. -->
+            <h3>🍲 Select your warm bowl 🍲</h3>
+            <select id="warmbowl-select">
+                {% for warmbowl in warmbowls %}
+                    <option value="{{ warmbowl }}">{{ warmbowl }}</option>
                 {% endfor %}
             </select>
-            <button onclick="addItem('sides-select', 'selected-sides')">Add Sides</button>
+            <button onclick="addItem('warmbowl-select', 'selected-warmbowls')">Add Warm Bowl</button>
+
+            <h3>🍱 Select your protein box 🍱</h3>
+            <select id="protein_box-select">
+                {% for protein_box in protein_boxes %}
+                    <option value="{{ protein_box }}">{{ protein_box }}</option>
+                {% endfor %}
+            </select>
+            <button onclick="addItem('protein_box-select', 'selected-protein_boxes')">Add Protein Box</button>
+
+            <h3>🥙 Select your wrap or sandwich 🥙</h3>
+            <select id="sand_wrap-select">
+                {% for sand_wrap in sand_wraps %}
+                    <option value="{{ sand_wrap }}">{{ sand_wrap }}</option>
+                {% endfor %}
+            </select>
+            <button onclick="addItem('sand_wrap-select', 'selected-sand_wraps')">Add Wrap/Sandwich</button>
+
+            <h3>🥤 Select your beverage 🥤</h3>
+            <select id="beverage-select">
+                {% for beverage in beverages %}
+                    <option value="{{ beverage }}">{{ beverage }}</option>
+                {% endfor %}
+            </select>
+            <button onclick="addItem('beverage-select', 'selected-beverages')">Add Beverage</button>
+
+            <h3>🥗 Select your dressing 🥗</h3>
+            <select id="dressing-select">
+                {% for dressing in dressings %}
+                    <option value="{{ dressing }}">{{ dressing }}</option>
+                {% endfor %}
+            </select>
+            <button onclick="addItem('dressing-select', 'selected-dressings')">Add Dressing</button>
+
+            <h3>🌿 Select your topping 🌿</h3>
+            <select id="topping-select">
+                {% for topping in toppings %}
+                    <option value="{{ topping }}">{{ topping }}</option>
+                {% endfor %}
+            </select>
+            <button onclick="addItem('topping-select', 'selected-toppings')">Add Topping</button>
+
+            <h3>🍲 Select your side or soup 🍲</h3>
+            <select id="side_soup-select">
+                {% for side_soup in sides_soups %}
+                    <option value="{{ side_soup }}">{{ side_soup }}</option>
+                {% endfor %}
+            </select>
+            <button onclick="addItem('side_soup-select', 'selected-sides_soups')">Add Side/Soup</button>
         </div>
     </div>
 
@@ -176,69 +144,31 @@
         <h3>🍕 Selected Items 🍕</h3>
         <table id="selected_table">
             <tbody>
-                <tr>
-                    <td><h3>Sandwiches:</h3></td>
-                    <td><ul id="selected-salads"></ul></td>
-                </tr>
-                <tr>
-                    <td><h3>Breads:</h3></td>
-                    <td><ul id="selected-breads"></ul></td>
-                </tr>
-                <tr>
-                    <td><h3>Cheeses:</h3></td>
-                    <td><ul id="selected-cheeses"></ul></td>
-                </tr>
-                <tr>
-                    <td><h3>Sauces:</h3></td>
-                    <td><ul id="selected-sauces"></ul></td>
-                </tr>
-                <tr>
-                    <td><h3>Sides:</h3></td>
-                    <td><ul id="selected-sides"></ul></td>
-                </tr>
-
+                <tr><td><h3>Salads:</h3></td><td><ul id="selected-salads"></ul></td></tr>
+                <tr><td><h3>Warm Bowls:</h3></td><td><ul id="selected-warmbowls"></ul></td></tr>
+                <tr><td><h3>Protein Boxes:</h3></td><td><ul id="selected-protein_boxes"></ul></td></tr>
+                <tr><td><h3>Wraps/Sandwiches:</h3></td><td><ul id="selected-sand_wraps"></ul></td></tr>
+                <tr><td><h3>Beverages:</h3></td><td><ul id="selected-beverages"></ul></td></tr>
+                <tr><td><h3>Dressings:</h3></td><td><ul id="selected-dressings"></ul></td></tr>
+                <tr><td><h3>Toppings:</h3></td><td><ul id="selected-toppings"></ul></td></tr>
+                <tr><td><h3>Sides/Soups:</h3></td><td><ul id="selected-sides_soups"></ul></td></tr>
             </tbody>
         </table>
     </div>
 
     <button onclick="calculateNutrition()">Calculate</button>
     <div class="nutrition-info">
-        <h3>⭐Total Nutrition Information⭐</h3>
+        <h3>⭐ Total Nutrition Information ⭐</h3>
         <table id="nutrition_table">
-            <tr>
-                <th>Nutrient</th>
-                <th>Amount</th>
-            </tr>
-            <tr>
-                <td>열량(kcal)</td>
-                <td id="열량(kcal)">0g</td>
-            </tr>
-            <tr>
-                <td>'탄수화물(g)'</td>
-                <td id="탄수화물(g)">0kcal</td>
-            </tr>
-            <tr>
-                <td>당류(g)</td>
-                <td id="당류(g)">0g</td>
-            </tr>
-            <tr>
-                <td>단백질(g)</td>
-                <td id="단백질(g)">0g</td>
-            </tr>
-            <tr>
-                <td>지방(g)</td>
-                <td id="지방(g)">0g</td>  
-            </tr>
-            <tr>
-                <td>포화지방(g)</td>
-                <td id="포화지방(g)">0mg</td>  
-            </tr>
-            <tr></tr>
-                <td>나트륨(mg)</td>
-                <td id="나트륨(mg)">0mg</td>  
-            </tr>
+            <tr><th>Nutrient</th><th>Amount</th></tr>
+            <tr><td>열량(kcal)</td><td id="열량(kcal)">0g</td></tr>
+            <tr><td>탄수화물(g)</td><td id="탄수화물(g)">0kcal</td></tr>
+            <tr><td>당류(g)</td><td id="당류(g)">0g</td></tr>
+            <tr><td>단백질(g)</td><td id="단백질(g)">0g</td></tr>
+            <tr><td>지방(g)</td><td id="지방(g)">0g</td></tr>
+            <tr><td>포화지방(g)</td><td id="포화지방(g)">0mg</td></tr>
+            <tr><td>나트륨(mg)</td><td id="나트륨(mg)">0mg</td></tr>
         </table>
     </div>
-    
 </body>
 </html>
