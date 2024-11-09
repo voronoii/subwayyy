@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, jsonify, send_from_directory
 from api.nutrition_data import sandwich_nutrition, bread_nutrition, cheese_nutrition, sauce_nutrition
 from api.nutrition_data import sides_nutrition
-from api.nutrition_salady import *
+from api.nutrition_salady import salads_nutrition, warmbowls_nutrition, protein_boxes_nutrition, sand_wraps_nutrition, beverages_nutrition,  dressings_nutrition, toppings_nutrition, sides_soups_nutrition,   , 
 from datetime import date, datetime, timezone, timedelta
 import requests
 
@@ -45,7 +45,7 @@ def calculate_salady():
 
     total_nutrition = {'열량(kcal)': 0, '탄수화물(g)': 0, '당류(g)': 0, '단백질(g)': 0, '지방(g)': 0, '포화지방(g)': 0, '나트륨(mg)': 0}
 
-    for sandwich in selected_salads:
+    for salad in selected_salads:
         nutrition = salads_nutrition[sandwich]
         
         for key in total_nutrition:
