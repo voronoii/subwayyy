@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, jsonify, send_from_directory
 from api.nutrition_data import sandwich_nutrition, bread_nutrition, cheese_nutrition, sauce_nutrition
 from api.nutrition_data import sides_nutrition
 from api.nutrition_salady import salads_nutrition, warmbowls_nutrition, protein_boxes_nutrition, sand_wraps_nutrition, beverages_nutrition,  dressings_nutrition, toppings_nutrition, sides_soups_nutrition
+from api.nutrition_poke import poke_nutrition, additional_topping_nutrition, sauce_nutrition, base_nutrition
 from datetime import date, datetime, timezone, timedelta
 import requests
 
@@ -38,9 +39,7 @@ def salady():
     
 @app.route('/poke')
 def poke():
-    return render_template('poke.html', salads=salads_nutrition, warmbowls=warmbowls_nutrition, protein_boxes=protein_boxes_nutrition, 
-                           sand_wraps=sand_wraps_nutrition, beverages=beverages_nutrition, dressings=dressings_nutrition, toppings=toppings_nutrition,
-                           sides_soups=sides_soups_nutrition)
+    return render_template('poke.html', pokes=poke_nutrition, bases=base_nutrition, toppings=additional_topping_nutrition, sauces=sauce_nutrition)
     
 @app.route('/test', methods=['GET', 'POST'])
 def test():
@@ -48,7 +47,7 @@ def test():
 
 @app.route('/calculate_salady', methods=['POST'])
 def calculate_salady():
-    # 요청된 모든 선택된 항목들을 받아옵니다.
+    # 요청된 모든 선택된 항목들을 받아옴
     selected_salads = request.json.get('selected_salads', [])
     selected_warmbowls = request.json.get('selected_warmbowls', [])
     selected_protein_boxes = request.json.get('selected_protein_boxes', [])
@@ -64,7 +63,7 @@ def calculate_salady():
         '지방(g)': 0, '포화지방(g)': 0, '나트륨(mg)': 0
     }
 
-    # 각 항목에 대해 영양 성분을 누적합산합니다.
+    # 각 항목에 대해 영양 성분을 누적합산
     for category, selected_items, nutrition_data in [
         ('salad', selected_salads, salads_nutrition),
         ('warmbowl', selected_warmbowls, warmbowls_nutrition),
@@ -84,6 +83,31 @@ def calculate_salady():
     total_nutrition = round_nutrition(total_nutrition)
     return jsonify(total_nutrition)
 
+@app.route('/calculate_poke', methods=['POST'])
+def calculate_poke():
+    selected_pokes = request.json.get('selected_pokes', [])
+    selected_add_toppings = request.json.get('selected_add_toppings', [])
+    selected_sauces = request.json.get('selected_sauces', [])
+    selected_bases = request.json.get('selected_bases', [])
+
+    total_nutrition = {'원재료 용량(g)': 0,
+        '열량(kcal)': 0, '탄수화물(g)': 0, '당류(g)': 0, '단백질(g)': 0,
+        '지방(g)': 0, '포화지방(g)': 0, '나트륨(mg)': 0
+    }
+
+    
+    for category, selected_items, nutrition_data in [
+        ('poke', selected_pokes, poke_nutrition),
+        ('base', selected_bases, base_nutrition),
+        ('topping', selected_add_toppings, additional_topping_nutrition),
+        ('sauce', selected_sauces, sauce_nutrition),
+    ]:
+        for item in selected_items:
+            nutrition = nutrition_data.get(item.strip(), {})
+            for key in total_nutrition.keys():
+                total_nutrition[key] += float(nutrition.get(key.strip(), 0))  
+    total_nutrition = round_nutrition(total_nutrition)
+    return jsonify(total_nutrition)
 
 
 
