@@ -26,6 +26,8 @@ def ads_txt():
 def round_nutrition(nutrition):
     return {key: round(value, 2) for key, value in nutrition.items()}
 
+
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('index.html', sandwiches=sandwich_nutrition, breads=bread_nutrition, 
