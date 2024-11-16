@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, jsonify, send_from_directory
-from api.nutrition_data import sandwich_nutrition, bread_nutrition, cheese_nutrition, sauce_nutrition, sub_salad_nutrition
+from api.nutrition_data import sandwich_nutrition, bread_nutrition, cheese_nutrition, sub_sauce_nutrition, sub_salad_nutrition
 from api.nutrition_data import sides_nutrition, sub_topping_nutrition
 from api.nutrition_salady import salads_nutrition, warmbowls_nutrition, protein_boxes_nutrition, sand_wraps_nutrition, beverages_nutrition,  dressings_nutrition, toppings_nutrition, sides_soups_nutrition
 from api.nutrition_poke import poke_nutrition, additional_topping_nutrition, sauce_nutrition, base_nutrition
@@ -31,7 +31,7 @@ def round_nutrition(nutrition):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('index.html', sandwiches=sandwich_nutrition, salads=sub_salad_nutrition, breads=bread_nutrition, 
-                           cheeses=cheese_nutrition, sauces=sauce_nutrition, sides=sides_nutrition, toppings=sub_topping_nutrition)
+                           cheeses=cheese_nutrition, sauces=sub_sauce_nutrition, sides=sides_nutrition, toppings=sub_topping_nutrition)
 
 @app.route('/salady')
 def salady():
@@ -157,7 +157,7 @@ def calculate():
             total_nutrition[key] += nutrition[key]  
 
     for sauce in selected_sauces:
-        nutrition = sauce_nutrition[sauce]
+        nutrition = sub_sauce_nutrition[sauce]
         for key in total_nutrition:
             total_nutrition[key] += nutrition[key]
             
