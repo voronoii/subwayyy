@@ -170,44 +170,52 @@
         }
 
         function calculateNutrition() {
-    var selectedSandwiches = getSelectedItems("selected-sandwiches");
-    var selectedBreads = getSelectedItems("selected-breads");
-    var selectedCheeses = getSelectedItems("selected-cheeses");
-    var selectedSauces = getSelectedItems("selected-sauces");
-    var selectedSides = getSelectedItems("selected-sides");
+            var selectedSandwiches = getSelectedItems("selected-sandwiches");
+            var selectedSalads = getSelectedItems("selected-salads");
 
-    fetch('/calculate', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            selected_sandwiches: selectedSandwiches,
-            selected_breads: selectedBreads,
-            selected_cheeses: selectedCheeses,
-            selected_sauces: selectedSauces,
-            selected_sides: selectedSides
-        })
-    }).then(response => response.json())
-      .then(data => {
-          document.getElementById("weight").innerText = parseFloat(data["weight(g)"]).toFixed(1) + "g";
-          document.getElementById("calories").innerText = parseFloat(data["calories(kcal)"]).toFixed(1) + "kcal";
-          document.getElementById("protein").innerText = parseFloat(data["protein(g)"]).toFixed(1) + "g";
-          document.getElementById("saturated-fat").innerText = parseFloat(data["saturated fat(g)"]).toFixed(1) + "g";
-          document.getElementById("sugars").innerText = parseFloat(data["sugars(g)"]).toFixed(1) + "g";
-          document.getElementById("sodium").innerText = parseFloat(data["sodium(mg)"]).toFixed(1) + "mg";
-      });
-}
+            var selectedBreads = getSelectedItems("selected-breads");
+            var selectedCheeses = getSelectedItems("selected-cheeses");
+            var selectedToppings = getSelectedItems("selected-toppings");
 
+            var selectedSauces = getSelectedItems("selected-sauces");
+            var selectedSides = getSelectedItems("selected-sides");
 
-        function getSelectedItems(listId) {
-            var selectedItems = [];
-            var list = document.getElementById(listId).children;
-            for (var i = 0; i < list.length; i++) {
-                selectedItems.push(list[i].id);
-            }
-            return selectedItems;
+            fetch('/calculate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    selected_sandwiches: selectedSandwiches,
+                    selected_salads: selectedSalads,
+                    selected_breads: selectedBreads,
+                    selected_cheeses: selectedCheeses,
+                    selected_toppings: selectedToppings,
+                    selected_sauces: selectedSauces,
+                    selected_sides: selectedSides
+                })
+                    }).then(response => response.json())
+                    .then(data => {
+                        document.getElementById("weight").innerText = parseFloat(data["중량 (g)"]).toFixed(1) + "g";
+                        document.getElementById("calories").innerText = parseFloat(data["열량 (kcal)"]).toFixed(1) + "kcal";
+                        document.getElementById("protein").innerText = parseFloat(data["단백질 (g)"]).toFixed(1) + "g";
+                        document.getElementById("saturated-fat").innerText = parseFloat(data["포화지방 (g)"]).toFixed(1) + "g";
+                        document.getElementById("sugars").innerText = parseFloat(data["당류 (g)"]).toFixed(1) + "g";
+                        document.getElementById("sodium").innerText = parseFloat(data["나트륨 (mg)"]).toFixed(1) + "mg";
+                        
+                        
+                    });   
         }
+
+
+    function getSelectedItems(listId) {
+        var selectedItems = [];
+        var list = document.getElementById(listId).children;
+        for (var i = 0; i < list.length; i++) {
+            selectedItems.push(list[i].id);
+        }
+        return selectedItems;
+    }
     </script>
 
     <script>
@@ -363,28 +371,52 @@
     <div class="container">
         
         <div class="selection">
-            <h3>🥪 Select your sandwiches (토핑만 반영됨)🥪</h3>
+            <h3>🥪 sandwiches🥪</h3>
+            <p style="text-align: center;">기본 빵을 제외하고 토핑만 반영됩니다.</p>
+            <p style="text-align: center;">메뉴명에 ‘치즈’가 포함되는 경우 치즈의 영양정보도 포함됩니다.</p>
+
             <select id="sandwich-select">
                 {% for sandwich in sandwiches %}
                     <option value="{{ sandwich }}">{{ sandwich }}</option>
                 {% endfor %}
             </select>
             <button onclick="addItem('sandwich-select', 'selected-sandwiches')">Add Sandwich</button>
-            <h3>🍞 Select your bread 🍞</h3>
+
+            <h3>🥙 salads 🥙</h3>  
+            <select id="salad-select">
+                {% for salad in salads %}
+                    <option value="{{ salad }}">{{ salad }}</option>
+                {% endfor %}
+            </select>
+            <button onclick="addItem('salad-select', 'selected-salads')">Add Salad</button>
+
+
+            <h3>🍞 bread 🍞</h3>
             <select id="bread-select">
                 {% for bread in breads %}
                     <option value="{{ bread }}">{{ bread }}</option>
                 {% endfor %}
             </select>
             <button onclick="addItem('bread-select', 'selected-breads')">Add Bread</button>
-            <h3>🧀 Select your cheese 🧀</h3>
+            <h3>🧀 cheeses 🧀</h3>
             <select id="cheese-select">
                 {% for cheese in cheeses %}
                     <option value="{{ cheese }}">{{ cheese }}</option>
                 {% endfor %}
             </select>
             <button onclick="addItem('cheese-select', 'selected-cheeses')">Add Cheese</button>
-            <h3>🧂 Select your sauce 🧂</h3>
+
+            <h3>🥓 Extra toppings 🥓</h3>
+            <select id="topping-select">
+                {% for topping in toppings %}
+                    <option value="{{ topping }}">{{ topping }}</option>
+                {% endfor %}
+            </select>
+            <button onclick="addItem('topping-select', 'selected-toppings')">Add Topping</button>
+
+
+
+            <h3>🧂 sauces 🧂</h3>
             <select id="sauce-select">
                 {% for sauce in sauces %}
                     <option value="{{ sauce }}">{{ sauce }}</option>
@@ -392,7 +424,7 @@
             </select>
             <button onclick="addItem('sauce-select', 'selected-sauces')">Add Sauce</button>
 
-            <h3>🍟 Select your sides 🍟</h3>
+            <h3>🍟 sides 🍟</h3>
             <select id="sides-select">
                 {% for side in sides %}
                     <option value="{{ side }}">{{ side }}</option>
@@ -410,6 +442,11 @@
                     <td><h3>Sandwiches:</h3></td>
                     <td><ul id="selected-sandwiches"></ul></td>
                 </tr>
+
+                <tr>
+                    <td><h3>Salads:</h3></td>
+                    <td><ul id="selected-salads"></ul></td>
+                </tr>
                 <tr>
                     <td><h3>Breads:</h3></td>
                     <td><ul id="selected-breads"></ul></td>
@@ -418,6 +455,13 @@
                     <td><h3>Cheeses:</h3></td>
                     <td><ul id="selected-cheeses"></ul></td>
                 </tr>
+
+                <tr>
+                    <td><h3>Toppings:</h3></td>
+                    <td><ul id="selected-toppings"></ul></td>
+                </tr>
+
+
                 <tr>
                     <td><h3>Sauces:</h3></td>
                     <td><ul id="selected-sauces"></ul></td>

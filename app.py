@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, jsonify, send_from_directory
-from api.nutrition_data import sandwich_nutrition, bread_nutrition, cheese_nutrition, sauce_nutrition
-from api.nutrition_data import sides_nutrition
+from api.nutrition_data import sandwich_nutrition, bread_nutrition, cheese_nutrition, sauce_nutrition, sub_salad_nutrition
+from api.nutrition_data import sides_nutrition, sub_topping_nutrition
 from api.nutrition_salady import salads_nutrition, warmbowls_nutrition, protein_boxes_nutrition, sand_wraps_nutrition, beverages_nutrition,  dressings_nutrition, toppings_nutrition, sides_soups_nutrition
 from api.nutrition_poke import poke_nutrition, additional_topping_nutrition, sauce_nutrition, base_nutrition
 from datetime import date, datetime, timezone, timedelta
@@ -30,8 +30,8 @@ def round_nutrition(nutrition):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html', sandwiches=sandwich_nutrition, breads=bread_nutrition, 
-                           cheeses=cheese_nutrition, sauces=sauce_nutrition, sides=sides_nutrition)
+    return render_template('index.html', sandwiches=sandwich_nutrition, salads=sub_salad_nutrition, breads=bread_nutrition, 
+                           cheeses=cheese_nutrition, sauces=sauce_nutrition, sides=sides_nutrition, toppings=sub_topping_nutrition)
 
 @app.route('/salady')
 def salady():
@@ -116,16 +116,28 @@ def calculate_poke():
 @app.route('/calculate', methods=['POST'])
 def calculate():
     selected_sandwiches = request.json.get('selected_sandwiches', [])
+    selected_salads = request.json.get('selected_salads', [])
     selected_breads = request.json.get('selected_breads', [])
     selected_cheeses = request.json.get('selected_cheeses', [])
-    selected_sauces = request.json.get('selected_sauces', [])
-    selected_sides = request.json.get('selected_sides', [])
+    selected_toppings = request.json.get('selected_toppings', [])
 
-    total_nutrition = {"weight(g)": 0, "calories(kcal)": 0, "protein(g)": 0, "saturated fat(g)": 0, "sugars(g)": 0, "sodium(mg)": 0}
+    selected_sauces = request.json.get('selected_sauces', [])
+    selected_sides = request.json.get('selected_sides', [])   
+    
+
+    total_nutrition = {'중량 (g)': 0, '열량 (kcal)': 0, '단백질 (g)': 0, '포화지방 (g)': 0, '당류 (g)': 0, '나트륨 (mg)': 0}
 
     for sandwich in selected_sandwiches:
         nutrition = sandwich_nutrition[sandwich]
+
+        for key in total_nutrition:
+            total_nutrition[key] -= bread_nutrition["위트"][key]
         
+        for key in total_nutrition:
+            total_nutrition[key] += nutrition[key] 
+            
+    for salad in selected_salads:
+        nutrition = sub_salad_nutrition[salad]
         for key in total_nutrition:
             total_nutrition[key] += nutrition[key]
 
@@ -138,6 +150,11 @@ def calculate():
         nutrition = cheese_nutrition[cheese]
         for key in total_nutrition:
             total_nutrition[key] += nutrition[key]
+            
+    for topping in selected_toppings:
+        nutrition = sub_topping_nutrition[topping]
+        for key in total_nutrition:
+            total_nutrition[key] += nutrition[key]  
 
     for sauce in selected_sauces:
         nutrition = sauce_nutrition[sauce]
@@ -154,22 +171,7 @@ def calculate():
     return jsonify(total_nutrition)
 
 
-@app.before_request
-def log_visitor():
-    # 방문자 정보 기록
-    visitor_ip = request.remote_addr
-    KST = timezone(timedelta(hours=9))
-    visit_time = datetime.now(KST)
-    
-    today = str(date.today())
-    time = str(visit_time.time())[:8]
-    visit_log.append({'ip': visitor_ip, 'time': f'{today}-{time}'})
-    print(f"Visitor IP: {visitor_ip}, Time: {visit_time}")
-    
-@app.route('/visit_log')
-def show_visit_log():
-    log_str = '<br>'.join([f"{entry['time']} - {entry['ip']}" for entry in visit_log])
-    return f"Visit Log:<br>{log_str}"
+
 
    
 if __name__ == '__main__':
