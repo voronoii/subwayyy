@@ -14,6 +14,8 @@
     gtag('config', 'G-L4WC6NVKHG');
     </script>
 
+
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4185KJP2PZ"></script>
     <script>
@@ -124,7 +126,8 @@
             // 선택한 항목 리스트 업데이트
             const receiptSelectedItems = document.getElementById("receipt-selected-items");
             receiptSelectedItems.innerHTML = ""; // 기존 내용 초기화
-            const selectedItemsCategories = ["selected-sandwiches", "selected-breads", "selected-cheeses", "selected-sauces", "selected-sides"];
+            const selectedItemsCategories = ["selected-sandwiches", "selected-salads", "selected-breads", "selected-cheeses", 
+            "selected-toppings", "selected-sauces", "selected-sides"];
             
             selectedItemsCategories.forEach(categoryId => {
                 const selectedItems = getSelectedItems(categoryId);
