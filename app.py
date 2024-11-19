@@ -167,7 +167,6 @@ def calculate():
             total_nutrition[key] += nutrition[key]
 
     total_nutrition = round_nutrition(total_nutrition)
-    print(f"result : ", total_nutrition)
     return jsonify(total_nutrition)
 
 
