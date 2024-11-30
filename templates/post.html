@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <style>
+        /* 8-bit 스타일 폰트 */
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        body {
+            font-family: 'Press Start 2P', monospace;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+            background-color: #000; /* 검정 배경 */
+            color: #00ff00; /* 네온 녹색 텍스트 */
+            text-align: center;
+        }
+        h1 {
+            font-size: 20px;
+            color: #ffcc00; /* 황금색 텍스트 */
+            text-shadow: 2px 2px 0px #000, 4px 4px 0px #ff33cc; /* 레트로 그림자 효과 */
+            margin-bottom: 20px;
+        }
+        p {text-align: center !important;
+            margin: 15px 0;
+            color: #33ff33; /* 밝은 초록색 텍스트 */
+        }
+        ul {
+            padding: 0;
+            margin: 20px auto;
+            list-style: none;
+        }
+        ul li {
+            display: inline-block;
+            background: #111; /* 어두운 배경 */
+            border: 2px solid #555; /* 레트로 테두리 */
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            color: #ffcc00;
+            text-shadow: 1px 1px 0px #000;
+        }
+        a {
+            color: #33ccff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        img {
+            display: block;
+            max-width: 700px;
+            margin: 20px auto;
+            border: 3px solid #ff33cc; /* 레트로 테두리 */
+            border-radius: 8px;
+            box-shadow: 0 0 10px #ff33cc, 0 0 20px #00ffff; /* 네온 효과 */
+            filter: contrast(1.4) saturate(1.8); /* 대비와 채도 강화 */
+        }
+        .imageblock {
+            margin: 30px 0;
+        }
+        .retro-frame {
+            padding: 15px;
+            border: 5px dashed #ff33cc; /* 대시된 테두리 */
+            margin: 20px auto;
+        }
+    </style>
+
+    <title>{{ post.title }}</title>
+</head>
+<nav>
+    <a href="/" class="{% if request.path == '/' %}active{% endif %}">서브웨이</a>
+    <a href="/salady" class="{% if request.path == '/salady' %}active{% endif %}">샐러디</a>
+    <a href="/poke" class="{% if request.path == '/poke' %}active{% endif %}">포케올데이</a>
+    <a href="/board" class="{% if request.path == '/board' %}active{% endif %}">리뷰</a>
+    <a href="/test" class="{% if request.path == '/test' %}active{% endif %}">테스트</a>
+</nav>
+<body>
+    <h1>{{ post.title }}</h1>
+    <p>작성자: {{ post.author }} | 날짜: {{ post.published }}</p>
+    <div class="content">
+        <!-- Summary는 HTML 콘텐츠로 출력 -->
+        {{ post.summary | safe }}
+    </div>
+    <div class="tags">
+        <ul>
+            {% for tag in post.tags %}
+                <li>{{ tag.term }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <p><a href="{{ post.link }}" target="_blank">원문 보기</a></p>
+    <a href="/board">뒤로 가기</a>
+</body>
+</html>

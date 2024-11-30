@@ -171,7 +171,54 @@ def calculate():
 
 
 
+url = 'https://helloo-world.tistory.com/rss'
+import feedparser
 
+posts_ = feedparser.parse(url)['entries']
+posts = []
+for p in posts_:
+    if 'tags' in p.keys():
+        if '내돈내산'==p['tags'][0]['term'] or '맛집탐방' == p['tags'][0]['term']:
+            posts.append(p)
+
+@app.route('/board')
+def board():
+    return render_template('board.html', posts=posts)
+
+# 개별 게시물 페이지
+from html import unescape
+from flask import render_template, abort
+
+@app.route('/board/post/<int:post_id>')
+def post(post_id):
+    # post_id가 유효한지 확인
+    if 0 <= post_id < len(posts):
+        post = posts[post_id]
+        
+        # description 필드를 HTML 디코딩
+        if 'description' in post:
+            post['description'] = unescape(post['description'])
+
+        return render_template('post.html', post=post)
+    else:
+        # 유효하지 않은 post_id 처리 (404 페이지 표시 등)
+        abort(404)  # Flask의 abort 함수로 404 오류 반환
+    
+
+
+
+from flask import redirect, url_for
+
+messages = ['테스트입니다.', '두번째테스트.']
+@app.route("/guestbook", methods=["GET", "POST"])
+def guestbook():
+    global messages
+    if request.method == "POST":
+        message = request.form.get("message")
+        if message and len(message) <= 100:  # 100자 제한
+            messages.insert(0, message)  # 최신 메시지가 맨 위로
+        return redirect("/guestbook")
+    return render_template("guestbook.html", messages=messages)
    
 if __name__ == '__main__':
     app.run(debug=True)
