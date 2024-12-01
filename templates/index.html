@@ -40,6 +40,7 @@
     <meta name="keywords" content="서브웨이, 칼로리, 영양성분, 서브웨이 다이어트, 서브웨이 쿠키, 서브웨이 수프">
     
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cal_pages.css') }}">
 
     <style>
         /* 알림 박스 스타일 */
@@ -71,6 +72,127 @@
             10% {opacity: 1;}
             90% {opacity: 1;}
             100% {opacity: 0;}
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 10px;
+        }
+    
+        nav a {
+            display: inline-block;
+            padding: 10px;
+            font-size: 14px;
+            color: #ffffff;
+            text-decoration: none;
+        }
+    
+        nav a.active {
+            font-weight: bold;
+            color: #007bff;
+        }
+    
+        .container, .selected-items, .nutrition-info {
+            margin: 0 auto;
+            max-width: 90%;
+        }
+    
+        h3 {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+    
+        select {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 1em;
+        }
+    
+        button {
+            padding: 10px 20px;
+            margin: 10px 0;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+    
+        button:hover {
+            background-color: #45a049;
+        }
+    
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+    
+        table th, table td {
+            text-align: left;
+            padding: 10px;
+            font-size: 0.9em;
+        }
+    
+        table th {
+            background-color: #f4f4f4;
+        }
+    
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+    
+        .receipt-box {
+            max-width: 90%;
+            padding: 20px;
+            background: white;
+            text-align: left;
+            font-size: 14px;
+        }
+    
+        /* 반응형 미디어 쿼리 */
+        @media screen and (max-width: 768px) {
+            h3 {
+                font-size: 1em;
+            }
+    
+            select, button {
+                font-size: 0.9em;
+                padding: 8px;
+            }
+    
+            table th, table td {
+                font-size: 0.8em;
+            }
+    
+            .receipt-box {
+                font-size: 12px;
+            }
+        }
+    
+        @media screen and (max-width: 480px) {
+            nav a {
+                display: block;
+                margin-bottom: 5px;
+                font-size: 12px;
+            }
+    
+            button {
+                font-size: 0.8em;
+                padding: 5px;
+            }
         }
     </style>
 
