@@ -51,6 +51,32 @@
             text-decoration: underline;
             color: #00ffff; /* Hover 시 밝은 파란색 */
         }
+
+        nav a {
+            display: inline-block;
+            padding: 10px;
+            font-size: 14px;
+            color: #ffffff;
+            text-decoration: none;
+        }
+    
+        nav a.active {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        @media screen and (max-width: 480px) {
+            nav a {
+                display: block;
+                margin-bottom: 5px;
+                font-size: 12px;
+            }
+    
+            button {
+                font-size: 0.8em;
+                padding: 5px;
+            }
+        }
     </style>
 </head>
 
