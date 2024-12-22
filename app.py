@@ -191,19 +191,16 @@ from flask import render_template, abort
 
 @app.route('/board/post/<int:post_id>')
 def post(post_id):
-    # post_id가 유효한지 확인
     if 0 <= post_id < len(posts):
         post = posts[post_id]
         
-        # description 필드를 HTML 디코딩
         if 'description' in post:
             post['description'] = unescape(post['description'])
 
         return render_template('post.html', post=post)
     else:
-        # 유효하지 않은 post_id 처리 (404 페이지 표시 등)
-        abort(404)  # Flask의 abort 함수로 404 오류 반환
-    
+      
+        abort(404) 
 
 
 
