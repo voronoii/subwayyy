@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}업데이트 내역{% endblock %}
+
+{% block content %}
+
+<style>
+    /* ✅ 기본 배경 설정 */
+    body {
+        background-color: #1b1b2f; /* 기본 배경색 */
+    
+        /* ✅ 픽셀 체크무늬 패턴 */
+        background-image:
+            linear-gradient(45deg, #222240 25%, transparent 25%),
+            linear-gradient(-45deg, #222240 25%, transparent 25%),
+            linear-gradient(45deg, transparent 75%, #222240 75%),
+            linear-gradient(-45deg, transparent 75%, #222240 75%);
+        background-size: 40px 40px; /* 체크무늬 크기 조정 */
+        background-position: 0 0, 20px 20px, 20px 20px, 0 0;
+    }
+
+    /* ✅ 업데이트 내역 컨테이너만 중앙 정렬 */
+    .update-container {
+        width: 400px;
+        margin: 100px auto; /* 중앙 정렬 */
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        border: 4px solid #00ff00; /* 8bit 스타일 테두리 */
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .update-title {
+        font-family: 'Press Start 2P', cursive;
+        color: #00ff00;
+        font-size: 18px;
+        text-shadow: 2px 2px 4px rgba(0, 255, 0, 0.8);
+    }
+
+    .update-list {
+        font-family: 'Press Start 2P', cursive;
+        color: #00ff00;
+        font-size: 12px;
+        list-style: none;
+        padding: 0;
+        text-shadow: 1px 1px 3px rgba(0, 255, 0, 0.6);
+    }
+
+    .update-item {
+        display: inline-block;
+        width: 200px; /* 항목 너비 설정 */
+        word-wrap: break-word; /* 긴 단어 줄바꿈 */
+        word-break: break-all; /* 긴 단어 줄바꿈 */
+    }
+
+    .update-list li {
+        border-bottom: 1px solid #00ff00; /* 구분선 추가 */
+        padding: 10px 0; /* 구분선과 텍스트 사이에 여백 추가 */
+    }
+
+    .update-list li:last-child {
+        border-bottom: none; /* 마지막 항목에는 구분선 제거 */
+    }
+</style>
+
+<!-- ✅ 업데이트 내역 -->
+<div class="update-container">
+    <h2 class="update-title">업데이트 내역</h2>
+    <ul class="update-list">
+        <li>2025-02-08 | 
+            <span class="update-item">서브웨이 소스 1/2용량 추가</span>
+            <span class="update-item">샐러디 메뉴 추가(죽)</span>
+           
+        </li>
+    </ul>
+</div>
+
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+{% endblock %}

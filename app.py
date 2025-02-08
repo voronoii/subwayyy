@@ -43,9 +43,9 @@ def salady():
 def poke():
     return render_template('poke.html', pokes=poke_nutrition, bases=base_nutrition, toppings=additional_topping_nutrition, sauces=sauce_nutrition)
     
-@app.route('/test', methods=['GET', 'POST'])
+@app.route('/update', methods=['GET', 'POST'])
 def test():
-    return render_template('test.html')
+    return render_template('update.html')
 
 @app.route('/calculate_salady', methods=['POST'])
 def calculate_salady():

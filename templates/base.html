@@ -32,7 +32,19 @@
     crossorigin="anonymous"></script>
 
     <style>
-        <style>
+        body {
+            background-color: #1b1b2f; /* 기본 배경색 */
+        
+            /* ✅ 픽셀 체크무늬 패턴 */
+            background-image:
+                linear-gradient(45deg, #222240 25%, transparent 25%),
+                linear-gradient(-45deg, #222240 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #222240 75%),
+                linear-gradient(-45deg, transparent 75%, #222240 75%);
+            background-size: 40px 40px; /* 체크무늬 크기 조정 */
+            background-position: 0 0, 20px 20px, 20px 20px, 0 0;
+        }
+
             /* 알림 박스 스타일 */
             #notification {
                 visibility: hidden;
@@ -63,6 +75,26 @@
                 90% {opacity: 1;}
                 100% {opacity: 0;}
             }
+
+        body, h1, h2, h3, h4, h5, h6, p {
+            color: white;
+        }
+
+        .nutrition-info table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+    
+        .nutrition-info table th, .nutrition-info table td {
+            text-align: left;
+            padding: 10px;
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+    
+        .nutrition-info table th {
+            background-color: rgb(0, 0, 0);
+        }
         </style>
 
 </head>
@@ -71,6 +103,7 @@
         <a href="/" class="{% if request.path == '/' %}active{% endif %}">서브웨이</a>
         <a href="/salady" class="{% if request.path == '/salady' %}active{% endif %}">샐러디</a>
         <a href="/poke" class="{% if request.path == '/poke' %}active{% endif %}">포케올데이</a>
+        <a href="/update" class="{% if request.path == '/update' %}active{% endif %}">업데이트내역</a>
         
     </nav>
 
