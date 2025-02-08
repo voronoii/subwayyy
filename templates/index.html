@@ -3,36 +3,7 @@
 {% block title %}서브웨이 영양성분 계산기{% endblock %}
 {% block content %}
     <style>
-        /* 알림 박스 스타일 */
-        #notification {
-            visibility: hidden;
-            min-width: 250px;
-            background-color: #4CAF50; /* 녹색 배경 */
-            color: white;
-            text-align: center;
-            border-radius: 5px;
-            padding: 10px;
-            position: fixed;
-            z-index: 1;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 17px;
-        }
-
-        /* 알림 박스가 나타날 때의 애니메이션 */
-        #notification.show {
-            visibility: visible;
-            animation: fadeInOut 2s;
-        }
-
-        /* fadeInOut 애니메이션 정의 */
-        @keyframes fadeInOut {
-            0% {opacity: 0;}
-            10% {opacity: 1;}
-            90% {opacity: 1;}
-            100% {opacity: 0;}
-        }
+    
 
         body {
             font-family: Arial, sans-serif;

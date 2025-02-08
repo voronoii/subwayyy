@@ -1,59 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SALADY</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/cal_pages.css') }}">
-    <meta name="naver-site-verification" content="2e6691a1007df9c965d266f0b5d6a94e5cda1eb7" />
+{% extends "base.html" %}
 
+{% block title %}샐러디 영양성분 계산기{% endblock %}
+{% block content %}
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1825078358159503"
-     crossorigin="anonymous"></script>
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4185KJP2PZ"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-4185KJP2PZ');
-    </script>
-
-    <style>
-        /* 알림 박스 스타일 */
-        #notification {
-            visibility: hidden;
-            min-width: 250px;
-            background-color: #4CAF50; /* 녹색 배경 */
-            color: white;
-            text-align: center;
-            border-radius: 5px;
-            padding: 10px;
-            position: fixed;
-            z-index: 1;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 17px;
-        }
-
-        /* 알림 박스가 나타날 때의 애니메이션 */
-        #notification.show {
-            visibility: visible;
-            animation: fadeInOut 2s;
-        }
-
-        /* fadeInOut 애니메이션 정의 */
-        @keyframes fadeInOut {
-            0% {opacity: 0;}
-            10% {opacity: 1;}
-            90% {opacity: 1;}
-            100% {opacity: 0;}
-        }
-    </style>
     
     <script>
 
@@ -125,13 +74,7 @@
     </script>
 </head>
 <body>
-    <nav>
-        <a href="/" class="{% if request.path == '/' %}active{% endif %}">서브웨이</a>
-        <a href="/salady" class="{% if request.path == '/salady' %}active{% endif %}">샐러디</a>
-        <a href="/poke" class="{% if request.path == '/poke' %}active{% endif %}">포케올데이</a>
-        <a href="/board" class="{% if request.path == '/board' %}active{% endif %}">리뷰</a>
-        <a href="/test" class="{% if request.path == '/test' %}active{% endif %}">테스트</a>
-    </nav>
+    
 
     <a href="https://subwayyy.kr/salady"></a>
         <img src="{{ url_for('static', filename='images/salady.png') }}" ,alt="SALADY" class="logo" width="15%">
@@ -238,5 +181,4 @@
             <tr><td>나트륨(mg)</td><td id="나트륨(mg)">0mg</td></tr>
         </table>
     </div>
-</body>
-</html>
+{% endblock %}
