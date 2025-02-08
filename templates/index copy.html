@@ -1,7 +1,44 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="naver-site-verification" content="2e6691a1007df9c965d266f0b5d6a94e5cda1eb7" />
 
-{% block title %}서브웨이 영양성분 계산기{% endblock %}
-{% block content %}
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L4WC6NVKHG"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-L4WC6NVKHG');
+    </script>
+
+
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4185KJP2PZ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-4185KJP2PZ');
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1825078358159503"
+        crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+    <title>서브웨이 영양성분 계산기</title>
+    <meta name="description" content="서브웨이 칼로리를 계산해보세요. 샌드위치, 샐러드, 쿠키 등 ">
+    <meta name="keywords" content="서브웨이, 칼로리, 영양성분, 서브웨이 다이어트, 서브웨이 쿠키, 서브웨이 수프">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cal_pages.css') }}">
+
     <style>
         /* 알림 박스 스타일 */
         #notification {
@@ -443,6 +480,14 @@
 <body>
     
 
+    <nav>
+        <a href="/" class="{% if request.path == '/' %}active{% endif %}">서브웨이</a>
+        <a href="/salady" class="{% if request.path == '/salady' %}active{% endif %}">샐러디</a>
+        <a href="/poke" class="{% if request.path == '/poke' %}active{% endif %}">포케올데이</a>
+        <a href="/board" class="{% if request.path == '/board' %}active{% endif %}">리뷰</a>
+        <a href="/test" class="{% if request.path == '/test' %}active{% endif %}">테스트</a>
+    </nav>
+
 
     <a href="https://subwayyy.kr">
         <img src="{{ url_for('static', filename='images/subway.png') }}" ,alt="SUBWAY" class="logo" width="30%">
@@ -633,4 +678,5 @@
     </div>
     
 
-{% endblock %}
+</body>
+</html>

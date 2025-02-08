@@ -1,0 +1,47 @@
+<!-- filepath: /home/vaiv/users/mjlee/projects/mj-demo/templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}서브웨이 영양성분 계산기{% endblock %}</title>
+    <!-- 필요한 메타 및 스크립트, 스타일 시트 추가 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cal_pages.css') }}">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L4WC6NVKHG"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-L4WC6NVKHG');
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4185KJP2PZ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4185KJP2PZ');
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1825078358159503"
+    crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <nav>
+        <a href="/" class="{% if request.path == '/' %}active{% endif %}">서브웨이</a>
+        <a href="/salady" class="{% if request.path == '/salady' %}active{% endif %}">샐러디</a>
+        <a href="/poke" class="{% if request.path == '/poke' %}active{% endif %}">포케올데이</a>
+        <a href="/board" class="{% if request.path == '/board' %}active{% endif %}">리뷰</a>
+        <a href="/test" class="{% if request.path == '/test' %}active{% endif %}">테스트</a>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html> 
