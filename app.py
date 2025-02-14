@@ -236,7 +236,7 @@ def guestbook():
     return render_template("guestbook.html", messages=messages)
 
 
-VISITOR_FILE = "visitors.txt"
+VISITOR_FILE = "./visitors.txt"
 
 # 방문자 수 초기화 (매일 00:00)
 def reset_visitor_count():
