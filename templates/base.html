@@ -31,6 +31,26 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1825078358159503"
     crossorigin="anonymous"></script>
 
+    <script>
+        // F12(개발자도구) 차단
+        document.addEventListener("keydown", function (e) {
+            if (e.keyCode === 123) { // F12 키
+                e.preventDefault();
+            }
+            if (e.ctrlKey && e.shiftKey && e.keyCode === 73) { // Ctrl + Shift + I
+                e.preventDefault();
+            }
+            if (e.ctrlKey && e.keyCode === 85) { // Ctrl + U (소스 보기)
+                e.preventDefault();
+            }
+        });
+    
+        // 우클릭 방지
+        document.addEventListener("contextmenu", function (e) {
+            e.preventDefault();
+        });
+    </script>
+
     <style>
         body {
             background-color: #1b1b2f; /* 기본 배경색 */
