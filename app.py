@@ -15,11 +15,11 @@ from datetime import date
 app = Flask(__name__)
 SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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'
 
-if os.getenv("VERCEL") is None:  # Vercel이 아닌 경우만 .env 사용
-    from dotenv import load_dotenv
-    load_dotenv()
+# if os.getenv("VERCEL") is None:  # Vercel이 아닌 경우만 .env 사용
+#     from dotenv import load_dotenv
+#     load_dotenv()
 
-app.secret_key = os.getenv("SECRET_KEY", "default_secret_key")
+# app.secret_key = os.getenv("SECRET_KEY", "default_secret_key")
 
 @app.route('/robots.txt')
 def robots_txt():
@@ -41,8 +41,9 @@ def round_nutrition(nutrition):
 @app.context_processor
 def inject_visitor_count():
     today_date = date.today().strftime('%y%m%d')
-    visitor_count = increase_visitor_count()
-    return dict(today_date=today_date, visitor_count=visitor_count)
+    # visitor_count = increase_visitor_count()
+    # return dict(today_date=today_date, visitor_count=visitor_count)
+    return dict(today_date=today_date)
 
 
 @app.route('/', methods=['GET', 'POST'])
