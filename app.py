@@ -13,7 +13,6 @@ from datetime import date
 
 
 app = Flask(__name__)
-SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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'
 
 if os.getenv("VERCEL") is None:  # Vercel이 아닌 경우만 .env 사용
     from dotenv import load_dotenv
@@ -23,21 +22,10 @@ app.secret_key = os.getenv("SECRET_KEY", "default_secret_key")
 
 
 
-@app.route('/ads.txt')
-def ads_txt():
-    return send_from_directory('static', 'ads.txt')
 
 def round_nutrition(nutrition):
     return {key: round(value, 2) for key, value in nutrition.items()}
 
-
-# 모든 템플릿에서 변수들을 사용할 수 있도록 설정
-@app.context_processor
-def inject_visitor_count():
-    today_date = date.today().strftime('%y%m%d')
-    visitor_count = increase_visitor_count()
-    return dict(today_date=today_date, visitor_count=visitor_count)
-    # return dict(today_date=today_date)
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -230,35 +218,6 @@ def guestbook():
     return render_template("guestbook.html", messages=messages)
 
 
-VISITOR_FILE = "./visitors.txt"
-
-# 방문자 수 초기화 (매일 00:00)
-def reset_visitor_count():
-    with open(VISITOR_FILE, "w") as f:
-        f.write("0")
-
-# 방문자 수 가져오기
-def get_visitor_count():
-    if not os.path.exists(VISITOR_FILE):
-        with open(VISITOR_FILE, "w") as f:
-            f.write("0")
-    with open(VISITOR_FILE, "r") as f:
-        return int(f.read().strip())
-
-# 방문자 수 증가 (세션 기반)
-def increase_visitor_count():
-    if "visited" not in session:  # 세션이 없을 경우에만 증가
-        session["visited"] = True
-        count = get_visitor_count() + 1
-        with open(VISITOR_FILE, "w") as f:
-            f.write(str(count))
-        return count
-    return get_visitor_count()
-
-# 스케줄러 설정 (매일 00:00에 실행)
-scheduler = BackgroundScheduler()
-scheduler.add_job(reset_visitor_count, "cron", hour=0, minute=0)  # 매일 자정 실행
-scheduler.start()
    
 if __name__ == '__main__':
     app.run(debug=True)
