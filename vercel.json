@@ -11,8 +11,11 @@
     {
       "src": "public/robots.txt",
       "use": "@vercel/static"
+    },
+    {
+      "src": "public/ads.txt",
+      "use": "@vercel/static"
     }
-    
   ],
   "routes": [
     {
@@ -24,12 +27,12 @@
       "dest": "/public/robots.txt"
     },
     {
-      "src": "/(.*)",
-      "dest": "app.py"
+      "src": "/ads.txt",
+      "dest": "/public/ads.txt"
     },
     {
-      "src": "/ads.txt",
-      "dest": "/ads.txt"
+      "src": "/(.*)",
+      "dest": "app.py"
     }
   ]
 }
