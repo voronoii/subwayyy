@@ -25,6 +25,10 @@
     {
       "src": "/(.*)",
       "dest": "app.py"
+    },
+    {
+      "src": "/ads.txt",
+      "dest": "/public/ads.txt"
     }
   ]
 }
