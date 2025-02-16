@@ -32,7 +32,7 @@
     },
     {
       "src": "/ads.txt",
-      "dest": "/public/ads.txt"
+      "dest": "/static/ads.txt"
     }
   ]
 }
