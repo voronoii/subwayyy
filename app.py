@@ -21,13 +21,7 @@ if os.getenv("VERCEL") is None:  # Vercel이 아닌 경우만 .env 사용
 
 app.secret_key = os.getenv("SECRET_KEY", "default_secret_key")
 
-@app.route('/robots.txt')
-def robots_txt():
-    return send_from_directory('static', 'robots.txt')
 
-@app.route('/sitemap.xml')
-def sitemap():
-    return send_from_directory('static', 'sitemap.xml')
 
 @app.route('/ads.txt')
 def ads_txt():
