@@ -23,15 +23,15 @@ app.secret_key = os.getenv("SECRET_KEY", "default_secret_key")
 
 @app.route('/robots.txt')
 def robots_txt():
-    return send_from_directory(app.static_folder, 'robots.txt')
+    return send_from_directory('static', 'robots.txt')
 
 @app.route('/sitemap.xml')
-def sitemap_xml():
-    return send_from_directory(app.static_folder, 'sitemap.xml')
+def sitemap():
+    return send_from_directory('static', 'sitemap.xml')
 
 @app.route('/ads.txt')
 def ads_txt():
-    return send_from_directory(app.static_folder, 'ads.txt')
+    return send_from_directory('static', 'ads.txt')
 
 def round_nutrition(nutrition):
     return {key: round(value, 2) for key, value in nutrition.items()}

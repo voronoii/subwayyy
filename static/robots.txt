@@ -1,4 +1,7 @@
-Sitemap: https://exam-bomb-service.vercel.app/sitemap/index.xml
+Sitemap: https://subwayyy.kr/sitemap.xml
+
+User-agent: *
+Disallow:
 
 User-agent: Applebot
 User-agent: baiduspider
@@ -15,12 +18,8 @@ User-agent: Yandex
 User-agent: Vercelbot
 User-agent: Yeti
 Allow: /
+
 Disallow: /chapter
 Disallow: /test
 Disallow: /user
 
-# Host
-Host: https://subwayyy.kr
-
-User-agent: *
-Disallow: /
