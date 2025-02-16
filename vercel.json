@@ -11,11 +11,8 @@
     {
       "src": "public/robots.txt",
       "use": "@vercel/static"
-    },
-    {
-      "src": "public/ads.txt",
-      "use": "@vercel/static"
     }
+    
   ],
   "routes": [
     {
@@ -32,7 +29,7 @@
     },
     {
       "src": "/ads.txt",
-      "dest": "/public/ads.txt"
+      "dest": "/ads.txt"
     }
   ]
 }
