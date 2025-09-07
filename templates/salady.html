@@ -45,14 +45,10 @@
             <h1>샐러디 영양성분 계산기</h1>
             <p class="hero-description">샐러디 샐러드, 웜볼, 프로틴박스의 정확한 칼로리와 영양성분을 계산하여 건강한 식단을 계획하세요.</p>
             
-            <div class="usage-guide">
-                <h2>사용법</h2>
-                <p>원하는 메뉴를 선택하고 영양성분을 확인해보세요. 다양한 조합으로 나만의 건강식을 찾을 수 있습니다.</p>
-            </div>
+            
         </header>
         
         <section class="calculator-section">
-            <h2>메뉴 선택하기</h2>
     
     <script>
 
@@ -207,7 +203,7 @@
         </section>
         
         <section class="results-section">
-            <h2>선택한 메뉴 & 영양성분</h2>
+            <h2 style="text-align: center;">선택한 메뉴 & 영양성분</h2>
     <div class="selected-items">
         <h3>🍕 선택한 항목 🍕</h3>
         <table id="selected_table">
@@ -224,7 +220,7 @@
         </table>
     </div>
 
-    <button onclick="calculateNutrition()">영양성분 계산하기</button>
+    <button onclick="calculateNutrition()" style="display: block; margin: 0 auto;">영양성분 계산하기</button>
     <div class="nutrition-info">
         <h3>⭐ 총 영양정보 ⭐</h3>
         <table id="nutrition_table">
@@ -241,19 +237,10 @@
     
     </section>
     
-    <aside class="tips-section">
-        <h2>건강한 선택 가이드</h2>
-        <div class="health-tips">
-            <h3>🥗 샐러디 추천 조합</h3>
-            <ul>
-                <li><strong>다이어트:</strong> 그린샐러드 + 닭가슴살 + 저칼로리 드레싱</li>
-                <li><strong>균형식단:</strong> 웜볼 + 현미 베이스 + 다양한 채소</li>
-                <li><strong>단백질 보충:</strong> 프로틴박스 + 계란 + 견과류</li>
-            </ul>
-            
-            <h3>🍴 다른 브랜드 계산기</h3>
-            <p><a href="/calculator/subway">서브웨이 칼로리 계산기</a> | <a href="/calculator/poke">포케올데이 칼로리 계산기</a></p>
-        </div>
+    <aside class="tips-section">     
+        <h3>🍴 다른 브랜드 계산기</h3>
+        <p><a href="/calculator/subway">서브웨이 칼로리 계산기</a><a href="/calculator/poke">포케올데이 칼로리 계산기</a></p>
+        
     </aside>
     
     </main>
