@@ -462,25 +462,21 @@
                     <source srcset="{{ url_for('static', filename='images/subway.webp') }}" type="image/webp">
                     <img src="{{ url_for('static', filename='images/subway.png') }}" alt="서브웨이 로고 - 영양성분 계산기" class="logo" width="307" height="90" loading="lazy">
                 </picture>
-            </a>
+            </a>    
             
-            <h1>서브웨이 칼로리 계산기</h1>
-            <p class="hero-description">서브웨이 샌드위치, 샐러드, 사이드 메뉴의 정확한 칼로리와 영양성분을 계산하세요. 건강한 식단 관리와 다이어트를 위한 필수 도구입니다.</p>
+            <h1>서브웨이 영양성분 계산기</h1>
+            <p class="hero-description">서브웨이 샌드위치, 샐러드, 사이드 메뉴의 정확한 칼로리와 영양성분을 계산하세요. </p>
             
             <div class="usage-guide">
-                <h2>사용 방법</h2>
-                <ol class="guide-steps">
-                    <li><strong>메뉴 선택:</strong> 원하는 샌드위치, 빵, 토핑을 선택하세요</li>
-                    <li><strong>조합 완성:</strong> 치즈, 소스, 사이드를 추가하여 나만의 조합을 만드세요</li>
-                    <li><strong>영양성분 확인:</strong> 계산하기 버튼을 눌러 총 칼로리와 영양정보를 확인하세요</li>
-                </ol>
+                <p>원하는 샌드위치, 빵, 토핑을 선택하세요</p>
+                <p>메뉴명에 ‘치즈’가 포함되는 경우 치즈의 영양정보도 포함됩니다.</p>
+
             </div>
         </header>
 
         <div id="notification">추가되었습니다!</div>
         
         <section class="calculator-section">
-            <h2>메뉴 선택</h2>
             <div class="container">
         
         <div class="selection">
@@ -588,12 +584,12 @@
         </table>
     </div>
 
-    <button onclick="calculateNutrition()">영양성분 계산하기</button>
-    
+    <button onclick="calculateNutrition()" style="display: block; margin: 0 auto;">영양성분 계산하기</button>
+
     </section>
 
     <section class="results-section">
-        <h2>영양성분 결과</h2>
+        <h2 style="text-align: center;">영양성분 결과</h2>
     <div class="nutrition-info">
         <h3>⭐ 총 영양정보 ⭐</h3>
         <table id="nutrition_table">
@@ -631,15 +627,17 @@
 
 
     <!-- 버튼 추가 (사용자가 클릭하면 8비트 영수증이 뜸) -->
-    <button onclick="openReceipt()">영수증 보기</button>
+    <div style="text-align: center;">
+        <button onclick="openReceipt()">영수증 보기</button>
+    </div>
     
     </section>
     
-    <aside class="tips-section">
+    <aside class="tips-section" style="text-align: center;">
         <h2>건강 정보</h2>
         <div class="health-tips">
             <h3>📊 일일 권장량</h3>
-            <ul>
+            <ul style="display: inline-block; text-align: left;">
                 <li><strong>성인 남성:</strong> 2,500kcal</li>
                 <li><strong>성인 여성:</strong> 2,000kcal</li>
                 <li><strong>나트륨:</strong> 2,300mg 이하 권장</li>
@@ -647,7 +645,7 @@
             </ul>
             
             <h3>💡 다이어트 팁</h3>
-            <ul>
+            <ul style="display: inline-block; text-align: left;">
                 <li>빵은 위트, 오트&허니 등 통곡물 선택</li>
                 <li>치즈는 적당량으로 제한</li>
                 <li>야채 토핑을 풍부하게 추가</li>
@@ -655,7 +653,7 @@
             </ul>
             
             <h3>🍴 다른 브랜드도 확인해보세요</h3>
-            <p><a href="/calculator/salady">샐러디 칼로리 계산기</a> | <a href="/calculator/poke">포케올데이 칼로리 계산기</a></p>
+            <p><a href="/calculator/salady">샐러디 칼로리 계산기</a ><a href="/calculator/poke">포케올데이 칼로리 계산기</a></p>
         </div>
     </aside>
     
@@ -665,7 +663,7 @@
     <div id="receiptOverlay" class="overlay">
         <div class="overlay-content">
             <div class="receipt-box">
-                <h3>🥪 나의 샌드위치 🧾</h3>
+                <h3 style="color:black">🥪 나의 샌드위치 🧾</h3>
                 <table>
                     <tr>
                         <!-- 영양 성분 -->
