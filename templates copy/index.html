@@ -42,80 +42,12 @@
     
 
     <style>
-      
+    
 
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 10px;
-            background: linear-gradient(135deg, #008B47 0%, #009639 50%, #FFDD00 100%);
-            min-height: 100vh;
-            color: #333;
-        }
-
-        main {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 20px;
-            margin: 10px auto;
-            max-width: 1200px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .hero-section {
-            background: linear-gradient(45deg, #008B47, #009639);
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0, 139, 71, 0.3);
-        }
-
-        .hero-section .logo {
-            max-width: 300px;
-            height: auto;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-            transition: transform 0.3s ease;
-        }
-
-        .hero-section .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .hero-section h1 {
-            margin: 15px 0;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-description {
-            font-size: 1.1em;
-            margin: 15px 0;
-            opacity: 0.9;
-        }
-
-        .usage-guide {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-
-        .calculator-section, .results-section {
-            background: rgba(0, 139, 71, 0.05);
-            padding: 25px;
-            border-radius: 15px;
-            margin: 20px 0;
-            border: 2px solid rgba(0, 139, 71, 0.1);
-        }
-
-        .calculator-section h2, .results-section h2 {
-            color: #008B47;
-            font-size: 1.8em;
-            margin-bottom: 20px;
         }
     
         nav a {
@@ -128,7 +60,7 @@
     
         nav a.active {
             font-weight: bold;
-            color: #FFDD00;
+            color: #007bff;
         }
     
         .container, .selected-items, .nutrition-info {
@@ -139,25 +71,14 @@
         h3 {
             font-size: 1.2em;
             margin: 10px 0;
-            color: #008B47;
-            font-weight: bold;
         }
     
         select {
             width: auto;
+            
             padding: 10px;
             margin: 10px 0;
             font-size: 1em;
-            border: 2px solid #008B47;
-            border-radius: 8px;
-            background: white;
-            color: #333;
-        }
-
-        select:focus {
-            outline: none;
-            border-color: #009639;
-            box-shadow: 0 0 5px rgba(0, 139, 71, 0.3);
         }
     
         button {
@@ -165,88 +86,30 @@
             margin: 10px 0;
             font-size: 1em;
             border: none;
-            border-radius: 8px;
-            background: linear-gradient(45deg, #008B47, #009639);
+            border-radius: 5px;
+            background-color: #4CAF50;
             color: white;
             cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0, 139, 71, 0.3);
         }
     
         button:hover {
-            background: linear-gradient(45deg, #009639, #00A83E);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 139, 71, 0.4);
+            background-color: #45a049;
         }
     
         table {
             width: 100%;
             border-collapse: collapse;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
     
         table th, table td {
             text-align: left;
-            padding: 12px;
+            padding: 10px;
             font-size: 0.9em;
-            border-bottom: 1px solid rgba(0, 139, 71, 0.1);
         }
     
         table th {
-            background: linear-gradient(45deg, #008B47, #009639);
-            color: white;
-            font-weight: bold;
+            background-color: #f4f4f4;
         }
-
-        table tr:nth-child(even) {
-            background: rgba(0, 139, 71, 0.05);
-        }
-
-        table tr:hover {
-            background: rgba(0, 139, 71, 0.1);
-        }
-
-        .tips-section {
-            background: linear-gradient(135deg, #FFDD00, #FFE55C);
-            padding: 25px;
-            border-radius: 15px;
-            margin: 20px 0;
-            box-shadow: 0 4px 15px rgba(255, 221, 0, 0.3);
-        }
-
-        .tips-section h2 {
-            color: #333;
-            font-size: 1.8em;
-            margin-bottom: 20px;
-        }
-
-        .tips-section h3 {
-            color: #333;
-        }
-
-        .tips-section ul {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 15px 30px;
-            border-radius: 10px;
-            margin: 15px 0;
-        }
-
-        .tips-section a {
-            color: #008B47;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .tips-section a:hover {
-            color: #009639;
-            text-decoration: underline;
-        }
-
-    
     
         .overlay {
             display: none;
@@ -391,8 +254,10 @@
             var selectedItem = select.options[select.selectedIndex].value;
             if (!document.getElementById(selectedItem)) {
                 var list = document.getElementById(listId);
-                var listItem = document.createElement("li");                
-                listItem.id = selectedItem;                
+                var listItem = document.createElement("li");
+                
+                listItem.id = selectedItem;
+                
                 listItem.innerHTML = selectedItem + ' <button onclick="removeItem(\'' + selectedItem + '\')"> 삭제 </button>';
                 list.appendChild(listItem);
                 showNotification(); 
@@ -469,6 +334,14 @@
         inject({
         mode: dev ? 'development' : 'production',
         });
+
+        function showNotification() {
+            var notification = document.getElementById("notification");
+            notification.classList.add("show");
+            setTimeout(function() {
+                notification.classList.remove("show");
+            }, 1000); // 1초 후 메시지 숨김
+        }
     
   </script>
   <!-- favicon은 base.html에서 처리됨 -->
@@ -578,11 +451,9 @@
   </style>
   
 </head>
-
-
 <body>
     
-    <div id="notification">추가되었습니다!</div>
+
 
     <main>
         <header class="hero-section">
@@ -603,14 +474,14 @@
             </div>
         </header>
 
-        
+        <div id="notification">추가되었습니다!</div>
         
         <section class="calculator-section">
             <div class="container">
         
         <div class="selection">
             <h3>🥪 sandwiches🥪</h3>
-            <p style="text-align: center; color:black;" >기본 빵을 제외하고 토핑만 반영됩니다.</p>
+            <p style="text-align: center;">기본 빵을 제외하고 토핑만 반영됩니다.</p>
             
 
             <select id="sandwich-select">

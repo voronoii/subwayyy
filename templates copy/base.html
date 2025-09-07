@@ -1,0 +1,270 @@
+<!-- filepath: /home/vaiv/users/mjlee/projects/mj-demo/templates/base.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title -->
+    <title>{% block title %}{% endblock %} | 영양성분 계산기</title>
+    
+    <!-- Meta Tags -->
+    {% block head %}{% endblock %}
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://subwayyy.kr{% block canonical %}{{ request.path }}{% endblock %}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
+    
+    <!-- Theme -->
+    <meta name="theme-color" content="#1b1b2f">
+    
+    <!-- Basic Open Graph -->
+    <meta property="og:site_name" content="영양성분 계산기">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ko_KR">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@subwayyy_kr">
+    
+    <!-- Critical CSS 인라인 -->
+    <style>
+    /* Critical above-the-fold styles */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 10px;
+        background-color: #1b1b2f;
+        color: white;
+        background-image:
+            linear-gradient(45deg, #222240 25%, transparent 25%),
+            linear-gradient(-45deg, #222240 25%, transparent 25%),
+            linear-gradient(45deg, transparent 75%, #222240 75%),
+            linear-gradient(-45deg, transparent 75%, #222240 75%);
+        background-size: 40px 40px;
+        background-position: 0 0, 20px 20px, 20px 20px, 0 0;
+    }
+    nav {
+        width: 100%;
+        background-color: #333;
+        overflow: hidden;
+        display: flex;
+        justify-content: flex-start;
+        padding: 10px;
+    }
+    nav a {
+        display: inline-block;
+        color: white;
+        text-align: center;
+        padding: 10px 20px;
+        margin-right: 10px;
+        text-decoration: none;
+        font-size: 16px;
+        background-color: #000;
+        border: 2px solid #fff;
+        box-shadow: 2px 2px 0 #fff;
+        text-shadow: 1px 1px #000;
+        cursor: pointer;
+        transition: transform 0.1s;
+    }
+    .logo { max-width: 100%; height: auto; }
+    h1 { font-size: 2em; margin: 0.67em 0; }
+    h2 { font-size: 1.5em; margin: 0.83em 0; }
+    .hero-section { text-align: center; padding: 20px 0; }
+    </style>
+    
+    <!-- 비중요 CSS 지연 로딩 -->
+    <link rel="preload" href="{{ url_for('static', filename='css/styles.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="{{ url_for('static', filename='css/cal_pages.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/cal_pages.css') }}">
+    </noscript>
+    
+    <!-- Resource Hints 최적화 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    
+    <!-- Google Fonts 최적화 -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+
+    <!-- Google tag (gtag.js) - 지연 로딩으로 FID 개선 -->
+    <script>
+    // 지연된 Analytics 로딩
+    window.addEventListener('load', function() {
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-L4WC6NVKHG';
+        document.head.appendChild(script);
+        
+        script.onload = function() {
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-L4WC6NVKHG');
+            gtag('config', 'G-4185KJP2PZ');
+        };
+    });
+    </script>
+
+    <!-- 공통 JavaScript -->
+    <script defer src="{{ url_for('static', filename='js/optimized-common.js') }}"></script>
+    
+    <!-- Core Web Vitals 모니터링 -->
+    <script>
+    // Core Web Vitals 측정 및 전송
+    function sendToAnalytics(metric) {
+        // Google Analytics가 로드된 후 전송
+        if (typeof gtag !== 'undefined') {
+            gtag('event', metric.name, {
+                custom_parameter_1: Math.round(metric.value),
+                custom_parameter_2: metric.id,
+            });
+        }
+    }
+
+    // Web Vitals 라이브러리 동적 로드
+    window.addEventListener('load', function() {
+        import('https://unpkg.com/web-vitals@3/dist/web-vitals.js').then(({ onCLS, onFID, onLCP }) => {
+            onCLS(sendToAnalytics);
+            onFID(sendToAnalytics);
+            onLCP(sendToAnalytics);
+        });
+    });
+    </script>
+    
+    <!-- 비필수 스크립트 지연 로딩 -->
+    <script defer src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1825078358159503"
+    crossorigin="anonymous"></script>
+
+    <!-- 기본 구조화된 데이터 -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "영양성분 계산기",
+        "description": "서브웨이, 샐러디, 포케올데이 메뉴의 칼로리와 영양성분을 정확하게 계산해주는 도구",
+        "url": "https://subwayyy.kr",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "All",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "KRW"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "Subwayyy",
+            "url": "https://subwayyy.kr"
+        },
+        "keywords": ["칼로리 계산", "영양성분", "다이어트", "건강식단", "서브웨이", "샐러디", "포케올데이"]
+    }
+    </script>
+
+    <script>
+        // F12(개발자도구) 차단
+        document.addEventListener("keydown", function (e) {
+            if (e.keyCode === 123) { // F12 키
+                e.preventDefault();
+            }
+            if (e.ctrlKey && e.shiftKey && e.keyCode === 73) { // Ctrl + Shift + I
+                e.preventDefault();
+            }
+            if (e.ctrlKey && e.keyCode === 85) { // Ctrl + U (소스 보기)
+                e.preventDefault();
+            }
+        });
+    
+        // 우클릭 방지
+        document.addEventListener("contextmenu", function (e) {
+            e.preventDefault();
+        });
+    </script>
+
+    <style>
+        body {
+            background-color: #1b1b2f; /* 기본 배경색 */
+        
+            /* ✅ 픽셀 체크무늬 패턴 */
+            background-image:
+                linear-gradient(45deg, #222240 25%, transparent 25%),
+                linear-gradient(-45deg, #222240 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #222240 75%),
+                linear-gradient(-45deg, transparent 75%, #222240 75%);
+            background-size: 40px 40px; /* 체크무늬 크기 조정 */
+            background-position: 0 0, 20px 20px, 20px 20px, 0 0;
+        }
+
+            /* 알림 박스 스타일 */
+            #notification {
+                visibility: hidden;
+                min-width: 250px;
+                background-color: #4CAF50; /* 녹색 배경 */
+                color: white;
+                text-align: center;
+                border-radius: 5px;
+                padding: 10px;
+                position: fixed;
+                z-index: 1;
+                bottom: 30px;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 17px;
+            }
+    
+            /* 알림 박스가 나타날 때의 애니메이션 */
+            #notification.show {
+                visibility: visible;
+                animation: fadeInOut 2s;
+            }
+    
+            /* fadeInOut 애니메이션 정의 */
+            @keyframes fadeInOut {
+                0% {opacity: 0;}
+                10% {opacity: 1;}
+                90% {opacity: 1;}
+                100% {opacity: 0;}
+            }
+
+        body, h1, h2, h3, h4, h5, h6, p {
+            color: white;
+        }
+
+        .nutrition-info table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+    
+        .nutrition-info table th, .nutrition-info table td {
+            text-align: left;
+            padding: 10px;
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+    
+        .nutrition-info table th {
+            background-color: rgb(0, 0, 0);
+        }
+        </style>
+
+</head>
+<body>
+    <nav>
+        <a href="/calculator/subway" class="{% if request.path == '/calculator/subway' %}active{% endif %}">서브웨이</a>
+        <a href="/calculator/salady" class="{% if request.path == '/calculator/salady' %}active{% endif %}">샐러디</a>
+        <a href="/calculator/poke" class="{% if request.path == '/calculator/poke' %}active{% endif %}">포케올데이</a>
+        <a href="/update" class="{% if request.path == '/update' %}active{% endif %}">업데이트내역</a>
+        
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html> 

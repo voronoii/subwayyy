@@ -1,121 +1,80 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="naver-site-verification" content="2e6691a1007df9c965d266f0b5d6a94e5cda1eb7" />
 
-{% block title %}서브웨이 칼로리 계산기 | 샌드위치 영양성분 분석{% endblock %}
-{% block head %}
-<meta name="description" content="서브웨이 샌드위치, 쿠키, 샐러드의 정확한 칼로리와 영양성분을 무료로 계산하세요. 다이어트와 건강 관리에 도움되는 영양성분 분석 도구입니다.">
-<meta name="keywords" content="서브웨이 칼로리, 서브웨이 영양성분, 서브웨이 다이어트, 샌드위치 칼로리, 서브웨이 쿠키, 영양성분 계산">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L4WC6NVKHG"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-<!-- Open Graph for Subway -->
-<meta property="og:title" content="서브웨이 칼로리 계산기 | 샌드위치 영양성분 분석">
-<meta property="og:description" content="서브웨이 샌드위치, 쿠키, 샐러드의 정확한 칼로리와 영양성분을 무료로 계산하세요">
-<meta property="og:image" content="https://subwayyy.kr{{ url_for('static', filename='images/subway.png') }}">
-<meta property="og:url" content="https://subwayyy.kr/calculator/subway">
+    gtag('config', 'G-L4WC6NVKHG');
+    </script>
 
-<!-- Twitter Card for Subway -->
-<meta name="twitter:title" content="서브웨이 칼로리 계산기">
-<meta name="twitter:description" content="서브웨이 메뉴의 정확한 칼로리와 영양성분 계산">
-<meta name="twitter:image" content="https://subwayyy.kr{{ url_for('static', filename='images/subway.png') }}">
 
-<!-- 서브웨이 전용 구조화된 데이터 -->
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "NutritionInformation",
-    "name": "서브웨이 영양성분 계산기",
-    "description": "서브웨이 샌드위치, 샐러드, 쿠키, 사이드 메뉴의 정확한 칼로리와 영양성분을 계산합니다",
-    "url": "https://subwayyy.kr/",
-    "about": {
-        "@type": "Restaurant",
-        "name": "서브웨이",
-        "servesCuisine": "Fast Food"
-    },
-    "provider": {
-        "@type": "Organization", 
-        "name": "Subwayyy"
-    },
-    "applicationCategory": "HealthApplication",
-    "keywords": ["서브웨이", "칼로리", "영양성분", "샌드위치", "다이어트", "건강식단"]
-}
-</script>
-{% endblock %}
-{% block content %}
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4185KJP2PZ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-4185KJP2PZ');
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1825078358159503"
+        crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+    <title>서브웨이 영양성분 계산기</title>
+    <meta name="description" content="서브웨이 칼로리를 계산해보세요. 샌드위치, 샐러드, 쿠키 등 ">
+    <meta name="keywords" content="서브웨이, 칼로리, 영양성분, 서브웨이 다이어트, 서브웨이 쿠키, 서브웨이 수프">
     
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cal_pages.css') }}">
 
     <style>
-      
+        /* 알림 박스 스타일 */
+        #notification {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #4CAF50; /* 녹색 배경 */
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            padding: 10px;
+            position: fixed;
+            z-index: 1;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 17px;
+        }
+
+        /* 알림 박스가 나타날 때의 애니메이션 */
+        #notification.show {
+            visibility: visible;
+            animation: fadeInOut 2s;
+        }
+
+        /* fadeInOut 애니메이션 정의 */
+        @keyframes fadeInOut {
+            0% {opacity: 0;}
+            10% {opacity: 1;}
+            90% {opacity: 1;}
+            100% {opacity: 0;}
+        }
 
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 10px;
-            background: linear-gradient(135deg, #008B47 0%, #009639 50%, #FFDD00 100%);
-            min-height: 100vh;
-            color: #333;
-        }
-
-        main {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 20px;
-            margin: 10px auto;
-            max-width: 1200px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .hero-section {
-            background: linear-gradient(45deg, #008B47, #009639);
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0, 139, 71, 0.3);
-        }
-
-        .hero-section .logo {
-            max-width: 300px;
-            height: auto;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-            transition: transform 0.3s ease;
-        }
-
-        .hero-section .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .hero-section h1 {
-            margin: 15px 0;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-description {
-            font-size: 1.1em;
-            margin: 15px 0;
-            opacity: 0.9;
-        }
-
-        .usage-guide {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-
-        .calculator-section, .results-section {
-            background: rgba(0, 139, 71, 0.05);
-            padding: 25px;
-            border-radius: 15px;
-            margin: 20px 0;
-            border: 2px solid rgba(0, 139, 71, 0.1);
-        }
-
-        .calculator-section h2, .results-section h2 {
-            color: #008B47;
-            font-size: 1.8em;
-            margin-bottom: 20px;
         }
     
         nav a {
@@ -128,7 +87,7 @@
     
         nav a.active {
             font-weight: bold;
-            color: #FFDD00;
+            color: #007bff;
         }
     
         .container, .selected-items, .nutrition-info {
@@ -139,25 +98,14 @@
         h3 {
             font-size: 1.2em;
             margin: 10px 0;
-            color: #008B47;
-            font-weight: bold;
         }
     
         select {
             width: auto;
+            
             padding: 10px;
             margin: 10px 0;
             font-size: 1em;
-            border: 2px solid #008B47;
-            border-radius: 8px;
-            background: white;
-            color: #333;
-        }
-
-        select:focus {
-            outline: none;
-            border-color: #009639;
-            box-shadow: 0 0 5px rgba(0, 139, 71, 0.3);
         }
     
         button {
@@ -165,88 +113,30 @@
             margin: 10px 0;
             font-size: 1em;
             border: none;
-            border-radius: 8px;
-            background: linear-gradient(45deg, #008B47, #009639);
+            border-radius: 5px;
+            background-color: #4CAF50;
             color: white;
             cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0, 139, 71, 0.3);
         }
     
         button:hover {
-            background: linear-gradient(45deg, #009639, #00A83E);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 139, 71, 0.4);
+            background-color: #45a049;
         }
     
         table {
             width: 100%;
             border-collapse: collapse;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
     
         table th, table td {
             text-align: left;
-            padding: 12px;
+            padding: 10px;
             font-size: 0.9em;
-            border-bottom: 1px solid rgba(0, 139, 71, 0.1);
         }
     
         table th {
-            background: linear-gradient(45deg, #008B47, #009639);
-            color: white;
-            font-weight: bold;
+            background-color: #f4f4f4;
         }
-
-        table tr:nth-child(even) {
-            background: rgba(0, 139, 71, 0.05);
-        }
-
-        table tr:hover {
-            background: rgba(0, 139, 71, 0.1);
-        }
-
-        .tips-section {
-            background: linear-gradient(135deg, #FFDD00, #FFE55C);
-            padding: 25px;
-            border-radius: 15px;
-            margin: 20px 0;
-            box-shadow: 0 4px 15px rgba(255, 221, 0, 0.3);
-        }
-
-        .tips-section h2 {
-            color: #333;
-            font-size: 1.8em;
-            margin-bottom: 20px;
-        }
-
-        .tips-section h3 {
-            color: #333;
-        }
-
-        .tips-section ul {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 15px 30px;
-            border-radius: 10px;
-            margin: 15px 0;
-        }
-
-        .tips-section a {
-            color: #008B47;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .tips-section a:hover {
-            color: #009639;
-            text-decoration: underline;
-        }
-
-    
     
         .overlay {
             display: none;
@@ -301,8 +191,6 @@
                 padding: 5px;
             }
         }
-
-        
     </style>
 
     
@@ -391,8 +279,10 @@
             var selectedItem = select.options[select.selectedIndex].value;
             if (!document.getElementById(selectedItem)) {
                 var list = document.getElementById(listId);
-                var listItem = document.createElement("li");                
-                listItem.id = selectedItem;                
+                var listItem = document.createElement("li");
+                
+                listItem.id = selectedItem;
+                
                 listItem.innerHTML = selectedItem + ' <button onclick="removeItem(\'' + selectedItem + '\')"> 삭제 </button>';
                 list.appendChild(listItem);
                 showNotification(); 
@@ -469,9 +359,17 @@
         inject({
         mode: dev ? 'development' : 'production',
         });
+
+        function showNotification() {
+            var notification = document.getElementById("notification");
+            notification.classList.add("show");
+            setTimeout(function() {
+                notification.classList.remove("show");
+            }, 1000); // 1초 후 메시지 숨김
+        }
     
   </script>
-  <!-- favicon은 base.html에서 처리됨 -->
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
   <style>
 .overlay {
@@ -573,45 +471,35 @@
     margin: 0 5px; /* 버튼 간의 약간의 간격 */
 }
 
-/* Google Fonts는 base.html에서 로드됨 */
+/* Google Fonts에서 8비트 폰트 불러오기 */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
   </style>
   
 </head>
-
-
 <body>
     
+
+    <nav>
+        <a href="/" class="{% if request.path == '/' %}active{% endif %}">서브웨이</a>
+        <a href="/salady" class="{% if request.path == '/salady' %}active{% endif %}">샐러디</a>
+        <a href="/poke" class="{% if request.path == '/poke' %}active{% endif %}">포케올데이</a>
+        <a href="/board" class="{% if request.path == '/board' %}active{% endif %}">리뷰</a>
+        <a href="/test" class="{% if request.path == '/test' %}active{% endif %}">테스트</a>
+    </nav>
+
+
+    <a href="https://subwayyy.kr">
+        <img src="{{ url_for('static', filename='images/subway.png') }}" ,alt="SUBWAY" class="logo" width="30%">
+    </a>
+
     <div id="notification">추가되었습니다!</div>
-
-    <main>
-        <header class="hero-section">
-            <a href="https://subwayyy.kr">
-                <picture>
-                    <source srcset="{{ url_for('static', filename='images/subway.webp') }}" type="image/webp">
-                    <img src="{{ url_for('static', filename='images/subway.png') }}" alt="서브웨이 로고 - 영양성분 계산기" class="logo" width="307" height="90" loading="lazy">
-                </picture>
-            </a>    
-            
-            <h1>서브웨이 영양성분 계산기</h1>
-            <p class="hero-description">서브웨이 샌드위치, 샐러드, 사이드 메뉴의 정확한 칼로리와 영양성분을 계산하세요. </p>
-            
-            <div class="usage-guide">
-                <p>원하는 샌드위치, 빵, 토핑을 선택하세요</p>
-                <p>메뉴명에 ‘치즈’가 포함되는 경우 치즈의 영양정보도 포함됩니다.</p>
-
-            </div>
-        </header>
-
-        
-        
-        <section class="calculator-section">
-            <div class="container">
+    <div class="container">
         
         <div class="selection">
             <h3>🥪 sandwiches🥪</h3>
-            <p style="text-align: center; color:black;" >기본 빵을 제외하고 토핑만 반영됩니다.</p>
-            
+            <p style="text-align: center;">기본 빵을 제외하고 토핑만 반영됩니다.</p>
+            <p style="text-align: center;">메뉴명에 ‘치즈’가 포함되는 경우 치즈의 영양정보도 포함됩니다.</p>
 
             <select id="sandwich-select">
                 {% for sandwich in sandwiches %}
@@ -713,14 +601,9 @@
         </table>
     </div>
 
-    <button onclick="calculateNutrition()" style="display: block; margin: 0 auto;">영양성분 계산하기</button>
-
-    </section>
-
-    <section class="results-section">
-        <h2 style="text-align: center;">영양성분 결과</h2>
+    <button onclick="calculateNutrition()">Calculate</button>
     <div class="nutrition-info">
-        <h3>⭐ 총 영양정보 ⭐</h3>
+        <h3>⭐Total Nutrition Information⭐</h3>
         <table id="nutrition_table">
             <tr>
                 <th>Nutrient</th>
@@ -756,43 +639,13 @@
 
 
     <!-- 버튼 추가 (사용자가 클릭하면 8비트 영수증이 뜸) -->
-    <div style="text-align: center;">
-        <button onclick="openReceipt()">영수증 보기</button>
-    </div>
-    
-    </section>
-    
-    <aside class="tips-section" style="text-align: center;">
-        <h2>건강 정보</h2>
-        <div class="health-tips">
-            <h3>📊 일일 권장량</h3>
-            <ul style="display: inline-block; text-align: left;">
-                <li><strong>성인 남성:</strong> 2,500kcal</li>
-                <li><strong>성인 여성:</strong> 2,000kcal</li>
-                <li><strong>나트륨:</strong> 2,300mg 이하 권장</li>
-                <li><strong>단백질:</strong> 체중 1kg당 0.8g</li>
-            </ul>
-            
-            <h3>💡 건강한 다이어트</h3>
-            <ul style="display: inline-block; text-align: left;">
-                <li>빵은 위트, 오트&허니 등 통곡물 선택</li>
-                <li>치즈는 적당량으로 제한</li>
-                <li>야채 토핑을 풍부하게 추가</li>
-                <li>소스는 칼로리가 낮은 머스타드, 핫소스 추천</li>
-            </ul>
-            
-            <h3>🍴 다른 브랜드도 확인해보세요</h3>
-            <p><a href="/calculator/salady">샐러디 칼로리 계산기</a ><a href="/calculator/poke">포케올데이 칼로리 계산기</a></p>
-        </div>
-    </aside>
-    
-    </main>
+    <button onclick="openReceipt()">결과 캡쳐하기</button>
     <br><br><br>
     <!-- 8비트 스타일 영수증 오버레이 -->
     <div id="receiptOverlay" class="overlay">
         <div class="overlay-content">
             <div class="receipt-box">
-                <h3 style="color:black">🥪 나의 샌드위치 🧾</h3>
+                <h3>🥪 나의 샌드위치 🧾</h3>
                 <table>
                     <tr>
                         <!-- 영양 성분 -->
@@ -825,4 +678,5 @@
     </div>
     
 
-{% endblock %}
+</body>
+</html>

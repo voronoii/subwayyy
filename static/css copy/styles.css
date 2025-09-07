@@ -98,7 +98,7 @@ th {
 }
 .selection select, .selection button {
     display: block;
-    width: 40%;
+    width: 50%;
     margin: 10px auto;
 }
 .nutrition-info table {
@@ -151,8 +151,8 @@ th {
     background-color: #f9f9f9;
     padding: 20px;
     border: 4px dotted #333; /* 8비트 느낌의 점선 테두리 */
-    width: 300px;
-    max-width: 90%;
+    width: 600px;
+    max-width: 100%;
     font-family: 'Press Start 2P', monospace;
     color: #333;
     box-shadow: 8px 8px 0 #222; /* 픽셀화된 그림자 */

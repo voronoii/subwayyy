@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}방명록{% endblock %}
+{% block head %}
+<meta name="description" content="영양성분 계산기 방명록입니다. 의견과 피드백을 남겨주세요">
+<meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            text-shadow: 1px 1px 0px #fff, 2px 2px 0px #ccc;
+        }
+        form {
+            margin-bottom: 30px;
+        }
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #0078D7;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #005a9e;
+        }
+        .message {
+            margin: 10px 0;
+            background-color: #fefefe;
+            border: 2px solid #ccc;
+            padding: 10px;
+            box-shadow: 3px 3px 0 #999;
+            display: inline-block;
+            font-size: 14px;
+            color: #333;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: left;
+            font-family: 'Courier New', monospace;
+        }
+        .message img {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Guestbook</h1>
+       
+
+        <form action="/guestbook" method="POST">
+            <input type="text" name="message" placeholder="Write your message" maxlength="100" required>
+            <button type="submit">Submit</button>
+        </form>
+
+        <div class="messages">
+            {% for message in messages %}
+            <div class="message">
+                <img src="https://via.placeholder.com/32" alt="Alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
+
+
+

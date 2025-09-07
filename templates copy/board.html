@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}맛집 리뷰 게시판{% endblock %}
+{% block head %}
+<meta name="description" content="맛집 탐방과 내돈내산 리뷰를 확인하세요. 솔직한 음식점 후기를 공유합니다">
+<meta name="keywords" content="맛집 리뷰, 내돈내산, 맛집 탐방, 음식점 후기">
+{% endblock %}
+
+{% block content %}
+    
+    <style>
+        /* 8-bit 스타일 폰트는 base.html에서 로드됨 */
+
+        body {
+            font-family: 'Press Start 2P', monospace;
+            background-color: #000; /* 검정 배경 */
+            color: #00ff00; /* 네온 녹색 텍스트 */
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #ffcc00; /* 황금색 텍스트 */
+            text-shadow: 2px 2px 0px #000, 4px 4px 0px #ff33cc; /* 레트로 그림자 효과 */
+            margin-bottom: 30px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+        ul li {
+            margin: 10px 0;
+            padding: 10px;
+            background: #111; /* 어두운 배경 */
+            border: 2px solid #555; /* 레트로 테두리 */
+            border-radius: 5px;
+            text-shadow: 1px 1px 0px #000;
+            color: #ffcc00;
+        }
+        ul li:hover {
+            background: #222; /* Hover 시 약간 더 밝게 */
+            border-color: #ff33cc; /* 테두리 색 변경 */
+        }
+        a {
+            color: #33ccff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #00ffff; /* Hover 시 밝은 파란색 */
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 10px;
+            font-size: 14px;
+            color: #ffffff;
+            text-decoration: none;
+        }
+    
+        nav a.active {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        @media screen and (max-width: 480px) {
+            nav a {
+                display: block;
+                margin-bottom: 5px;
+                font-size: 12px;
+            }
+    
+            button {
+                font-size: 0.8em;
+                padding: 5px;
+            }
+        }
+    </style>
+</head>
+
+<nav>
+    <a href="/" class="{% if request.path == '/' %}active{% endif %}">서브웨이</a>
+    <a href="/salady" class="{% if request.path == '/salady' %}active{% endif %}">샐러디</a>
+    <a href="/poke" class="{% if request.path == '/poke' %}active{% endif %}">포케올데이</a>
+    <a href="/board" class="{% if request.path == '/board' %}active{% endif %}">리뷰</a>
+    <a href="/test" class="{% if request.path == '/test' %}active{% endif %}">테스트</a>
+</nav>
+
+<body>
+    <h1>리뷰</h1>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <a href="/board/post/{{ loop.index0 }}">{{ post.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
