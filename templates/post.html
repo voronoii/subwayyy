@@ -1,13 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }} | 맛집 리뷰{% endblock %}
+{% block head %}
+<meta name="description" content="{{ post.summary if post.summary else (post.description[:150] + '...' if post.description and post.description|length > 150 else post.description) }}">
+<meta name="keywords" content="맛집 리뷰, 내돈내산, {{ post.title }}">
+
+<!-- Open Graph for Post -->
+<meta property="og:title" content="{{ post.title }}">
+<meta property="og:description" content="{{ post.summary if post.summary else post.description[:200] }}">
+<meta property="og:url" content="https://subwayyy.kr{{ request.path }}">
+<meta property="og:type" content="article">
+
+<!-- Twitter Card for Post -->
+<meta name="twitter:title" content="{{ post.title }}">
+<meta name="twitter:description" content="{{ post.summary if post.summary else post.description[:200] }}">
+{% endblock %}
+
+{% block content %}
 
     <style>
-        /* 8-bit 스타일 폰트 */
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        /* 8-bit 스타일 폰트는 base.html에서 로드됨 */
 
         body {
             font-family: 'Press Start 2P', monospace;

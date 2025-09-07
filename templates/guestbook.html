@@ -1,9 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guestbook</title>
+{% extends "base.html" %}
+
+{% block title %}방명록{% endblock %}
+{% block head %}
+<meta name="description" content="영양성분 계산기 방명록입니다. 의견과 피드백을 남겨주세요">
+<meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block content %}
     <style>
         body {
             font-family: 'Courier New', monospace;
