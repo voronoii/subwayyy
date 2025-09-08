@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+
+<html>
+
+<!-- #201224_hmkim -->
+<head>
+	<title>SUBWAY - 치킨 베이컨 미니 랩</title>
+    <meta charset="utf-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+
+    
+    
+    
+        <!-- SNS LINK
+        메뉴소개 관리 기능추가로인한 하드코딩 수정
+        -->
+        <meta content="website" property="og:type" />
+        <meta property="og:title" content="SUBWAY KOREA - 치킨 베이컨 미니 랩" />
+        <meta property="og:url" content="http://www.subway.co.kr/menuView/unit?menuItemIdx=1381" /><!-- 20180221 -->
+        <meta property="og:image" content="https://www.subway.co.kr/upload/menu/chicken_bacon_mini_wrap_20210315105919945.jpg" /><!-- 20180221 -->
+        <meta content="image/png" property="og:image:type" />
+        <meta content="570" property="og:image:width" />
+        <meta content="400" property="og:image:height" />
+        <meta property="og:description" content="담백한 치킨, 바삭한 베이컨 비츠가
+쫀득한 통밀 랩에 쏘옥!
+치킨 베이컨 미니 랩" />
+        <!--// SNS LINK -->
+    
+    
+
+
+    <link href="http://subway.co.kr/" rel="canonical" /><!-- 20180221 -->
+    <meta content="신선하고 건강한 글로벌 NO.1 샌드위치 브랜드, 써브웨이" name="description" /><!-- 20181212 -->
+    <link rel="shortcut icon" type="image/x-icon" href="/images/common/subway_favicon.ico?v=20250211-2" />
+        <!-- 20180131 -->
+        <link rel="stylesheet" type="text/css" href="/css/ui.common.css?v=20250211-2" />
+        <link rel="stylesheet" type="text/css" href="/css/jquery.mCustomScrollbar.min.css?v=20250211-2" />
+        
+        
+
+        <script type="text/javascript" src="/js/jquery/jquery-1.12.4.min.js?v=20250211-2"></script>
+        <script type="text/javascript" src="/js/jquery/jquery-ui-1.12.0.min.js?v=20250211-2"></script>
+        <script type="text/javascript" src="/js/jquery/jquery.easing.1.3.min.js?v=20250211-2"></script>
+        <script type="text/javascript" src="/js/jquery/jquery.bxslider.min.js?v=20250211-2"></script>
+        <script type="text/javascript" src="/js/jquery/jquery.mCustomScrollbar.concat.min.js?v=20250211-2"></script>
+        <!-- block ui -->
+        <script type="text/javascript" src="/js/jquery/jquery.blockUI.min.js?v=20250211-2"></script>
+
+        <script type="text/javascript" src="/js/jquery/TweenMax.min.js?v=20250211-2"></script>
+        <script type="text/javascript" src="/js/jquery/jquery.cookie.js?v=20250211-2"></script>
+        <!--<script type="text/javascript" th:src="'/js/lottie.js?v=' + ${cacheParam}"></script>-->
+        <script type="text/javascript" src="/js/ui.common.js?v=20250211-2"></script>
+        <script type="text/javascript" src="/js/subway.common.js?v=20250211-2"></script>
+        <script type="text/javascript" src="/js/util/jsrender.js?v=20250211-2"></script>
+        <script type="text/javascript" src="/js/jquery/jquery.tmpl.min.js?v=20250211-2"></script>
+        <script type="text/javascript" src="/js/waffle/waffle.utils.js?v=20250211-2"></script>
+
+
+        
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org",
+                "@type": "Person",
+                "name": "신선하고 건강한 글로벌 NO.1 샌드위치 브랜드, 써브웨이",
+                "url": "http://www.subway.co.kr",
+                "sameAs": [
+                    "https://www.instagram.com/subwaykorea",
+                    "https://www.youtube.com/user/Subwaykr",
+                    "https://www.facebook.com/Subwaykr"
+                ]
+            }
+        </script>
+        <!-- Facebook Pixel Code -->
+        <script>
+            !function (f, b, e, v, n, t, s) {
+                if (f.fbq) return;
+                n = f.fbq = function () {
+                    n.callMethod ?
+                        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                };
+                if (!f._fbq) f._fbq = n;
+                n.push = n;
+                n.loaded = !0;
+                n.version = '2.0';
+                n.queue = [];
+                t = b.createElement(e);
+                t.async = !0;
+                t.src = v;
+                s = b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t, s)
+            }(window, document, 'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '825983077607831');
+            fbq('track', 'PageView');
+        </script>
+        <noscript>
+            </noscript><img height="1" src="https://www.facebook.com/tr?id=825983077607831&ev=PageView&noscript=1" style="display:none" width="1" />
+        
+        <!-- End Facebook Pixel Code -->
+
+        <!-- Kakao Pixel Code -->
+        <!--
+        <script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/adfit/static/kp.js"></script>
+        <script type="text/javascript">
+            kakaoPixel('6816847143406094352').pageView();
+        </script>
+         -->
+        <!-- Kakao Pixel Code -->
+	<link href="../css/ui.menu.css" rel="stylesheet" type="text/css" />
+	<!-- 메뉴소개 css -->
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+	<script>
+            $(document).ready(function(){
+                //210802 관리자 미리보기 시 msg 값이 있다면 창닫기
+                var msg = null;
+                if(msg != null){
+                    alert(msg);
+                    window.close();
+                }
+               //영양성분 문구 -> 마크업으로 인한 스크립트
+               var itemNutritionDesc = '\u203B 15cm \uC0CC\uB4DC\uC704\uCE58\uC758 \uC601\uC591 \uC815\uBCF4\uB294 \uAE30\uBCF8 \uC57C\uCC44 5\uC885(\uC591\uC0C1\uCD94, \uD1A0\uB9C8\uD1A0, \uC624\uC774, \uD53C\uB9DD(\uD30C\uD504\uB9AC\uCE74), \uC591\uD30C), 15cm \uC704\uD2B8 \uBE0C\uB808\uB4DC \uBC0F \uC81C\uD488\uC5D0 \uB530\uB978 \uBBF8\uD2B8\uB958\uAC00 \uD3EC\uD568\uB418\uC5B4 \uC788\uC73C\uBA70, \uCE58\uC988\uC640 \uC18C\uC2A4\uB294 \uC81C\uC678\uB429\uB2C8\uB2E4.\r\n\u203B \uC0D0\uB7EC\uB4DC\uC758 \uC601\uC591 \uC815\uBCF4\uB294 \uAE30\uBCF8 \uC57C\uCC44 5\uC885(\uC591\uC0C1\uCD94, \uD1A0\uB9C8\uD1A0, \uC624\uC774, \uD53C\uB9DD(\uD30C\uD504\uB9AC\uCE74), \uC591\uD30C) \uBC0F \uC81C\uD488\uC5D0 \uB530\uB978 \uBBF8\uD2B8\uB958\uAC00 \uD3EC\uD568\uB418\uC5B4 \uC788\uC73C\uBA70, \uCE58\uC988\uC640 \uC18C\uC2A4\uB294 \uC81C\uC678\uB429\uB2C8\uB2E4.\r\n\u203B \uB2E8, \uBA54\uB274\uBA85\uC5D0 \u2018\uCE58\uC988\u2019\uAC00 \uD3EC\uD568\uB418\uB294 \uACBD\uC6B0 \uCE58\uC988\uC758 \uC601\uC591\uC815\uBCF4\uB3C4 \uD3EC\uD568\uB429\uB2C8\uB2E4.\r\n\u203B \uB7A9\uC758 \uC601\uC591 \uC815\uBCF4\uB294 \uCE58\uC988\uC640 \uC18C\uC2A4\uB97C \uD3EC\uD568\uD55C \uACE0\uC815 \uB808\uC2DC\uD53C\uB97C \uAE30\uC900\uC73C\uB85C \uD569\uB2C8\uB2E4.\r\n\u203B \uC544\uCE68\uBA54\uB274\uC758 \uC601\uC591 \uC815\uBCF4\uB294 15cm \uC704\uD2B8 \uBE0C\uB808\uB4DC \uBC0F \uC81C\uD488\uC5D0 \uB530\uB978 \uBBF8\uD2B8\uB958, \uC57C\uCC44, \uC544\uBA54\uB9AC\uCE78 \uCE58\uC988\uAC00 \uD3EC\uD568\uB418\uC5B4 \uC788\uC73C\uBA70, \uC18C\uC2A4\uB294 \uC81C\uC678\uB429\uB2C8\uB2E4.\r\n\u203B \uC601\uC591 \uC815\uBCF4\uD45C\uC5D0 \uD45C\uC2DC\uB41C \uC81C\uD488\uC758 \uC601\uC591 \uC815\uBCF4/\uC911\uB7C9\uC740 \uD45C\uC900 \uB808\uC2DC\uD53C\uB97C \uAE30\uC900\uC73C\uB85C \uD558\uB098, \uACC4\uC808\uC758 \uBCC0\uD654, \uACF5\uAE09\uC0AC\uC758 \uBCC0\uD654, \uC6D0\uC7AC\uB8CC\uC758 \uC218\uAE09 \uC0C1\uD669 \uBC0F \uC81C\uD488 \uC81C\uC870\uC2DC\uC5D0 \uBC1C\uC0DD\uD558\uB294 \uC911\uB7C9\uC758 \uCC28\uC774 \uB4F1\uC5D0 \uB530\uB77C \uC2E4\uC81C \uC81C\uACF5\uB418\uB294 \uC81C\uD488\uC758 \uC601\uC591 \uC815\uBCF4/\uC911\uB7C9\uACFC \uCC28\uC774\uAC00 \uC788\uC744 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\r\n\u203B \uAD04\uD638 \uC548 %\uB294 1\uC77C \uC601\uC591\uC18C \uAE30\uC900\uCE58\uC5D0 \uB300\uD55C \uBE44\uC728\uC785\uB2C8\uB2E4.'.split('\r\n');
+               for(var i=0;i<itemNutritionDesc.length;i++){
+                   $('.notice').append('<li>' + itemNutritionDesc[i] + '</li>');
+               }
+                //추천소스 및 하단문구 스크립트
+                $('.menu_info').append('<p class=\"summary\">\n\uC368\uBE0C\uC6E8\uC774 \uB7A9\uC740 \uCD5C\uC0C1\uC758 \uB9DB\uC744 \uC704\uD574 \uAC1C\uBC1C\uB41C \uACE0\uC815 \uB808\uC2DC\uD53C\uB85C \uC81C\uACF5\uB429\uB2C8\uB2E4.<br>\n\uC591\uC0C1\uCD94\uAC00 \uC81C\uACF5\uB418\uBA70 \uC57C\uCC44 \uCD94\uAC00\uB294 \uBD88\uAC00\uD569\uB2C8\uB2E4.<\/p>\n\n<div class=\"recipe\">\n\t\t\t\t\t\t\t<ul>\n\t\t\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t\t\t<div class=\"img\">\n\t\t\t\t\t\t\t\t\t\t<img src=\"/upload/menu/recipe_chicken_strips_half.jpg\" alt=\"\uCE58\uD0A8 \uC2A4\uD2B8\uB9BD 1/2 cut\">\n\t\t\t\t\t\t\t\t\t<\/div>\n\t\t\t\t\t\t\t\t\t<p>\uCE58\uD0A8 \uC2A4\uD2B8\uB9BD 1/2 cut<\/p>\n\t\t\t\t\t\t\t\t<\/li>\n                                <li>\n\t\t\t\t\t\t\t\t\t<div class=\"img\">\n\t\t\t\t\t\t\t\t\t\t<img src=\"/upload/menu/\trecipe_bacon_beats.jpg\" alt=\"\uBCA0\uC774\uCEE8 \uBE44\uCE20\">\n\t\t\t\t\t\t\t\t\t<\/div>\n\t\t\t\t\t\t\t\t\t<p>\uBCA0\uC774\uCEE8 \uBE44\uCE20 10g<\/p>\n\t\t\t\t\t\t\t\t<\/li>\n                                <li>\n\t\t\t\t\t\t\t\t\t<div class=\"img\">\n\t\t\t\t\t\t\t\t\t\t<img src=\"/upload/menu/img_recipe_c02.jpg\" alt=\"\uC288\uB808\uB4DC\uCE58\uC988\">\n\t\t\t\t\t\t\t\t\t<\/div>\n\t\t\t\t\t\t\t\t\t<p>\uC288\uB808\uB4DC \uCE58\uC988 1\uC2A4\uCFF1<\/p>\n\t\t\t\t\t\t\t\t<\/li>\n\t\t\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t\t\t<div class=\"img\">\n\t\t\t\t\t\t\t\t\t\t<img src=\"/upload/menu/sauce_honey_mustard.png\" alt=\"\uD5C8\uB2C8 \uBA38\uC2A4\uD0C0\uB4DC\">\n\t\t\t\t\t\t\t\t\t<\/div>\n\t\t\t\t\t\t\t\t\t<p>\uD5C8\uB2C8 \uBA38\uC2A4\uD0C0\uB4DC 1\uC904<\/p>\n\t\t\t\t\t\t\t\t<\/li>\n\t\t\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t\t\t<div class=\"img\">\n\t\t\t\t\t\t\t\t\t\t<img src=\"/upload/menu/sauce_ranch.png\" alt=\"\uB79C\uCE58\">\n\t\t\t\t\t\t\t\t\t<\/div>\n\t\t\t\t\t\t\t\t\t<p>\uB79C\uCE58 1\uC904<\/p>\n\t\t\t\t\t\t\t\t<\/li>\n\t\t\t\t\t\t\t<\/ul>\n\t\t\t\t\t\t<\/div>\n<p class=\"common_caution\">* \uC81C\uD488 \uC0AC\uC9C4\uC740 \uC774\uBBF8\uC9C0\uCEF7\uC785\uB2C8\uB2E4.<\/p>\n<p class=\"common_caution\">* \uBBF8\uB2C8 \uB7A9\uC740 \uC77C\uBD80 \uB9E4\uC7A5\uC5D0 \uD55C\uD574 \uC81C\uACF5\uB429\uB2C8\uB2E4. <a href=\"https://www.subway.co.kr/storeSearch\" target=\"_blank\" style=\"text-decoration:underline\">\uB9E4\uC7A5 \uCC3E\uAE30<\/a>\uC5D0\uC11C \uB9E4\uC7A5\uBA85 \uAC80\uC0C9\uC744 \uD1B5\uD574 \uC81C\uACF5\uB9E4\uC7A5\uC744 \uD655\uC778\uD558\uC2E4 \uC218 \uC788\uC2B5\uB2C8\uB2E4.<br><\/p>');
+
+                //subwayCommon.shareToKakao("ui_kakao_btn", "블랙 포레스트햄 & 에그, 치즈", "/images/menu/sandwich_bf01.jpg", location.href);
+                $("#ui_kakao_btn").hide();
+                menuNavOver();//메뉴소개 이전,다음이미지 hover
+
+                //카테고리 클릭 시 첫번째 제품 상세페이지 이동
+                $(".category").children('a').click(function (index) {
+                    var path = 'unit';
+                    var data = $(this).attr("id");
+
+                    var param = {"path" : path, "category" : data};
+                    $.ajax({
+                        type: "POST",
+                        url: "/getCategoryMenu",
+                        data: param,
+                        cache: false,
+                        success: function (result) {
+                            if(result != "") {
+                                location.href = "/menuView/" + path + "?menuItemIdx=" + result;
+                            }else{
+                                alert('해당 제품이 없습니다.');
+                            }
+                        }
+                    });
+                });
+            })
+        </script>
+
+    </head>
+    <!--// inc header e -->
+
+<body>
+
+
+<script type="text/javascript">
+    var IS_LOGIN = false;
+    var IS_AUTH_NON_MEMBER =  null;
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-112310613-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+            gtag('js', new Date());
+            gtag('config', 'UA-112310613-1');
+        </script>
+
+<!-- Global site tag (gtag.js) - AdWords: 802450606 -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=AW-802450606"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'AW-802450606');
+</script>
+
+        
+        <div id="wrap">
+            <!-- inc header s -->
+            <div id="header">
+    <script>
+        /*<![CDATA[*/
+        var memberVO = false;
+        /*]]*/
+    </script>
+    <div class="content">
+        <h1 class="logo"><a href="/">SUBWAY</a></h1>
+        <!-- gnb -->
+        <nav id="gnb">
+            <ul>
+                <li>
+                    <a class="dp1" href="#none">메뉴소개</a>
+                    <div class="dp2">
+                        <ul>
+                            <li>
+                                <a href="/menuList/sandwich">샌드위치</a>
+                            </li>
+                            <li>
+                                <a class="active" href="/menuList/unit">랩ㆍ기타</a>
+                            </li>
+                            <li>
+                                <a href="/menuList/salad">샐러드</a>
+                            </li>
+                            <li>
+                                <a href="/menuList/morning">아침메뉴</a>
+                            </li>
+                            <li>
+                                <a href="/menuList/sidedrink">스마일 썹</a>
+                            </li>
+                            <li>
+                                <a href="/menuList/catering">단체메뉴</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#none" class="dp1">이용방법</a>
+                    <div class="dp2">
+                        <ul>
+                            <li><a href="/utilizationSubway">써브웨이 이용방법</a></li><!-- 20180201 -->
+                            <li><a href="/utilizationGroupMenu">단체메뉴 이용방법</a></li>
+                            <li><a href="/freshInfo">신선한 재료 소개</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#none" class="dp1">새소식</a>
+                    <div class="dp2">
+                        <ul>
+                            <li><a href="/eventList">이벤트ㆍ프로모션</a></li>
+                            <li><a href="/newsList">뉴스ㆍ공지사항</a></li>
+                            <li><a href="/tvCommercial">광고영상</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#none" class="dp1">써브웨이</a>
+                    <div class="dp2">
+                        <ul>
+                            <li><a href="/subwayHistory">써브웨이 역사</a></li>
+                            <li><a href="/subwayPromise">써브웨이 약속</a></li>
+                            <li><a href="/storeSearch">매장찾기</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#none" class="dp1">가맹점</a>
+                    <div class="dp2">
+                        <ul>
+                            <li><a href="/franchise">써브웨이 프랜차이즈</a></li>
+                            <li><a href="/franchiseFaq">가맹관련 FAQ</a></li>
+                            <li><a href="/franchiseInquiry">가맹신청ㆍ문의</a></li>
+                            <li><a href="/franchiseBranchGuide">지사안내</a></li>
+                            <li><a href="/franchiseInformation">사업설명회</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a class="dp1" href="javascript:void(0);">온라인 주문</a>
+                    <div class="dp2">
+                        <ul>
+                            <li><a href="/appOrder">APP 주문</a></li>
+                            <li><a href="/order/view/group">단체주문</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <!--// gnb -->
+    </div>
+</div>
+            <!--// inc header e -->
+
+
+            <!-- container s -->
+            <div id="container">
+            <div class="sub_header">
+                <div class="content">
+	<a class="logo" href="/">HOME</a>
+	<!-- sub location -->
+	<div class="sub_loc">
+		<!-- 메뉴소개 -->
+		<ul>
+			<li><a href="/menuList/sandwich">샌드위치</a></li>
+			<li class="active"><a href="/menuList/unit">랩ㆍ기타</a></li>
+			<li><a href="/menuList/salad">샐러드</a></li>
+			<li><a href="/menuList/morning">아침메뉴</a></li>
+			<li><a href="/menuList/sidedrink">스마일 썹</a></li>
+			<li><a href="/menuList/catering">단체메뉴</a></li>
+			<!--	<li th:class="${#strings.contains(servletPath,'sandwich')} ? 'active':''"><a th:href="'/menuList/sandwich'">샌드위치</a></li>
+                <li th:class="${#strings.contains(servletPath,'wrap')} ? 'active':''"><a href="/menuList/wrap">랩</a></li>
+                <li th:class="${#strings.contains(servletPath,'salad')} ? 'active':''"><a href="/menuList/salad">찹샐러드</a></li>
+                <li th:class="${smenu eq 'sideDrink' or #strings.contains(servletPath,'sidesDrink') ? 'active':''}"><a href="/menuList/sidesDrink">스마일 썹</a></li>
+                <li th:class="${#strings.contains(servletPath,'catering')} ? 'active':''"><a href="/menuList/catering">단체메뉴</a></li>-->
+		</ul>
+		<!-- 이용방법 -->
+		
+	</div>
+	<!--// sub location -->
+	<a class="top" href="#none">TOP</a>
+</div>
+            </div>
+            <!-- sub content s -->
+            <div id="content">
+                <!-- 메뉴소개 s -->
+                <div class="menu_view_wrapper">
+                    <!-- 메뉴 header -->
+                    <div class="hd">
+                        <!-- 20180208 -->
+                        <div class="category">
+                            <a href="#" id="ITEM_WRAP.SIGNATURE">시그니처 랩</a>
+                            <a href="#" class="active" id="ITEM_WRAP.MINI">미니 랩</a>
+                            <button type="button">open</button>
+                        </div>
+
+                        <!--// 20180208 -->
+                        <h2 class="name">치킨 베이컨 미니 랩</h2>
+                        <p class="eng">Chicken Bacon Mini Wrap</p>
+                        <!--<p class="cal" th:text="${nutritionList == null ? item.itemCalorie + ' Kcal' : item.itemCalorie}"></p>-->
+
+                        <!-- sns -->
+                        <div class="sns">
+                            <a class="fb" href="#" onclick="subwayCommon.shareToFacebook(location.href); return false;">FACE BOOK</a>
+                            <a class="kt" href="#" id="ui_kakao_btn" onclick="subwayCommon.shareToKakao(location.href); return false;">KAKAO TALK</a>
+                            <a class="url" href="#" onclick="subwayCommon.copyToClipboard(location.href, this); return false;">COPY URL</a>
+                        </div>
+                        <!--// sns -->
+                    </div>
+                    <!--// 메뉴 header -->
+                    <!-- 메뉴 content -->
+                    <div class="menu_content">
+                        <!-- 메뉴정보 -->
+                        <div class="menu_info">
+                            <div class="menu_img"><img onError="this.src='/images/common/noneImage.jpg'" src="/upload/menu/chicken_bacon_mini_wrap_20210315105919945.jpg" alt="치킨 베이컨 미니 랩" /></div>
+                            <!-- 이전/다음 버튼 -->
+                            <a class="arr prev" href="/menuView/unit?menuItemIdx=1381"><span>치킨 베이컨 미니 랩</span></a>
+                            <a class="arr next" href="/menuView/unit?menuItemIdx=1381"><span>치킨 베이컨 미니 랩</span></a>
+                            <!--// 이전/다음 버튼 -->
+
+                            <p class="summary">담백한 치킨, 바삭한 베이컨 비츠가<br />쫀득한 통밀 랩에 쏘옥!<br />치킨 베이컨 미니 랩</p>
+
+                            <!-- 레시피 -->
+                            <!--<div class="recipe">
+                            </div>-->
+                            <!--// 레시피 -->
+                          <!--  <p class="not"></p>
+                            <p class="common_caution" th:if="${item.cautionStr ne null}" th:utext="${#strings.replace(item.cautionStr, T(org.apache.commons.lang3.StringUtils).LF, '&lt;br /&gt;')}"></p> 공통문구-->
+                        </div>
+                        <!--// 메뉴정보 -->
+
+                        <!-- 영양성분표 -->
+                        <div class="component_chart">
+                            <div class="content">
+                                <h3>영양성분표</h3>
+                                <div class="board_list_wrapper">
+                                    <table>
+                                        <thead>
+                                            <TR><th scope="col">중량(g)</th>
+                                            <th scope="col">열량(kcal)</th>
+                                            <th scope="col">단백질(g)</th>
+                                            <th scope="col">포화지방(g)</th>
+                                            <th scope="col">당류(g)</th>
+                                            <th scope="col">나트륨(mg)</th>
+                                        
+                                        </TR></thead><tbody>
+                                            <TR><td>161</td>
+                                            <td>391</td><td>20.8 (38%)</td><td>7.4 (49%)</td><td>5.5 (5%)</td><td>1091 (55%)</td></TR></tbody></table>
+                                </div>
+                                <ul class="notice"></ul>
+                                <div class="btns_wrapper">
+                                    <a class="btn bgc_black size1" href="/sandwichCountry" link-type="popup" onclick="popup_open(this,630,740); return false;" style="width:110px;"><span>원산지 정보</span></a>
+                                    <a class="btn bgc_black size1" href="/sandwichAllergy" link-type="popup" onclick="popup_open_alleryge(this,900,740); return false;" style="width:125px;"><span>알레르기 정보</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--// 영양성분표 -->
+                        <!-- 세가지 원칙 -->
+                        <div class="fresh3_wrapper">
+<!-- 세가지 원칙 -->
+<div>
+	<div class="hd">
+		<p>써브웨이만이 가지고 있는 세가지 원칙</p>
+		<h3>
+			<span>SUBWAY</span> 3 FRESH
+		</h3>
+	</div>
+	<div class="content">
+		<ol>
+			<li>
+				<div class="img">
+					<img alt="매장에서 직접 구워낸 신선한 빵" src="../images/menu/img_fresh3_01.jpg" />
+				</div>
+				<div class="info">
+					<span class="num">1</span> <strong>매장에서 직접 구워낸<br />신선한
+						빵
+					</strong>
+					<p>
+						매일 아침 각 매장에서 발효하고 직접 구워서<br />퀄러티 높은 신선한 빵을 제공합니다.
+					</p>
+				</div>
+			</li>
+			<li>
+				<div class="img">
+					<img alt="매일 배송되는 신선한 야채 제공" src="../images/menu/img_fresh3_02.jpg" />
+				</div>
+				<div class="info">
+					<span class="num">2</span> <strong>매일 배송되는<br />신선한
+						야채 제공
+					</strong>
+					<p>
+						매장에서 직접 손질한 야채를<br />당일판매 원칙으로 제공하고 있습니다.
+					</p>
+				</div>
+			</li>
+			<li>
+				<div class="img">
+					<img alt="주문과 동시에 바로 만드는 신선함" src="../images/menu/img_fresh3_03.jpg" />
+				</div>
+				<div class="info">
+					<span class="num">3</span> <strong>주문과 동시에<br />바로
+						만드는 신선함
+					</strong>
+					<p>
+						주문과 동시에 만들어지는 시스템으로<br />직접 눈으로 신선함을 확인하실 수 있습니다.
+					</p>
+				</div>
+			</li>
+		</ol>
+	</div>
+</div>
+<!--// 세가지 원칙 -->
+</div>
+                        <!--// 세가지 원칙 -->
+
+                        <!-- 이전메뉴 -->
+                        <div class="menu_nav prev">
+                            <div class="img"><img onError="this.src='/images/common/noneImage.jpg'" src="/upload/menu/chicken_bacon_mini_wrap_20210315105919945.jpg" /></div>
+                        </div>
+                        <!--// 이전메뉴 -->
+                        <!-- 다음메뉴 -->
+                        <div class="menu_nav next">
+                            <div class="img"><img onError="this.src='/images/common/noneImage.jpg'" src="/upload/menu/chicken_bacon_mini_wrap_20210315105919945.jpg" /></div>
+                        </div>
+                        <!--// 다음메뉴 -->
+
+                        <!-- 목록보기 -->
+                        <div class="btns_list_wrapper">
+                            <div class="btn_list"><a href="/menuList/unit">목록보기</a></div>
+                        </div>
+                        <!--// 목록보기 -->
+                    </div>
+                    <!--// 메뉴 content -->
+                </div>
+                <!--// 메뉴소개 e -->
+            </div>
+            <!--// sub content e -->
+        </div>
+
+            <!-- inc footer s -->
+            <div id="footer">
+	    <div class="content">
+	        <!-- util menu -->
+	        <div class="util_menu">
+	            <ul>
+	                <li><a href="/agreement">이용약관</a></li>
+	                <li><a href="/privacy"><strong>개인정보처리방침</strong></a></li>
+	                <li><a href="/subcard">썹 카드& 썹 포인트 이용약관</a></li>
+	                <li><a href="https://store.subway.co.kr/" target="_blank">점주관리자</a></li><!-- 20180202 추가 -->
+	                <!-- 삭제 20180208
+	                <li><a href="http://www.subway.com/en-us/exploreourworld" class="eng" target="_blank">Explore our world</a></li>
+	                 -->
+					<!-- 삭제 20180718
+	                <li><a href="https://www.tellsubway.kr/ContentManager/Controller.aspx?page=Home/Home" class="eng" target="_blank">Tell Subway</a></li>
+					-->
+	                <!--<li><a href="http://www.global.subway.com" class="eng" target="_blank">Subway Listens</a></li>-->
+	            </ul>
+	        </div>
+	        <!--// util menu -->
+
+	        <span class="addr">서울시 서초구 강남대로 535 프린스빌딩 15층</span>
+	        <span class="rep">대표 : INSOO CHO(인수조)</span>
+	        <span class="tel">전화 : 02-797-5036</span>
+			<span class="rep">사업자등록번호 : 101-84-04143</span>
+	        <p class="copyright">SUBWAY® is a Registered Trademark of Subway IP LLC. © 2021 Subway IP LLC. All Rights Reserved.</p>
+			<a class="sns_area instagram" href="https://www.instagram.com/subwaykorea" target="_blank">instagram</a>
+	        <a class="sns_area fackbook" href="https://www.facebook.com/Subwaykr" target="_blank">facebook</a>
+	    </div>
+	</div>
+            <!--// inc footer e -->
+        </div>
+    
+
+</body></html>

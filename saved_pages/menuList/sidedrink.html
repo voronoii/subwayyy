@@ -1,0 +1,2064 @@
+<!DOCTYPE html>
+
+<html>
+
+<!-- #201224_hmkim -->
+<head>
+	<title>SUBWAY - 스마일 썹</title>
+    <meta charset="utf-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+
+    
+    
+    
+    
+        <!-- SNS LINK -->
+        <meta content="website" property="og:type" />
+        <meta content="SUBWAY KOREA" property="og:title" />
+        <meta content="http://m.subway.co.kr/" property="og:url" /><!-- 20180221 -->
+        <meta content="http://m.subway.co.kr/images/common/subway_og.png" property="og:image" /><!-- 20180221 -->
+        <meta content="image/png" property="og:image:type" />
+        <meta content="570" property="og:image:width" />
+        <meta content="400" property="og:image:height" />
+        <meta content="신선하고 건강한 글로벌 NO.1 샌드위치 브랜드, 써브웨이" property="og:description" />
+        <!--// SNS LINK -->
+    
+
+
+    <link href="http://subway.co.kr/" rel="canonical" /><!-- 20180221 -->
+    <meta content="신선하고 건강한 글로벌 NO.1 샌드위치 브랜드, 써브웨이" name="description" /><!-- 20181212 -->
+    <link rel="shortcut icon" type="image/x-icon" href="/images/common/subway_favicon.ico?v=20250211-2" />
+        <!-- 20180131 -->
+        <link rel="stylesheet" type="text/css" href="/css/ui.common.css?v=20250211-2" />
+        <link rel="stylesheet" type="text/css" href="/css/jquery.mCustomScrollbar.min.css?v=20250211-2" />
+        
+        
+
+        <script type="text/javascript" src="/js/jquery/jquery-1.12.4.min.js?v=20250211-2"></script>
+        <script type="text/javascript" src="/js/jquery/jquery-ui-1.12.0.min.js?v=20250211-2"></script>
+        <script type="text/javascript" src="/js/jquery/jquery.easing.1.3.min.js?v=20250211-2"></script>
+        <script type="text/javascript" src="/js/jquery/jquery.bxslider.min.js?v=20250211-2"></script>
+        <script type="text/javascript" src="/js/jquery/jquery.mCustomScrollbar.concat.min.js?v=20250211-2"></script>
+        <!-- block ui -->
+        <script type="text/javascript" src="/js/jquery/jquery.blockUI.min.js?v=20250211-2"></script>
+
+        <script type="text/javascript" src="/js/jquery/TweenMax.min.js?v=20250211-2"></script>
+        <script type="text/javascript" src="/js/jquery/jquery.cookie.js?v=20250211-2"></script>
+        <!--<script type="text/javascript" th:src="'/js/lottie.js?v=' + ${cacheParam}"></script>-->
+        <script type="text/javascript" src="/js/ui.common.js?v=20250211-2"></script>
+        <script type="text/javascript" src="/js/subway.common.js?v=20250211-2"></script>
+        <script type="text/javascript" src="/js/util/jsrender.js?v=20250211-2"></script>
+        <script type="text/javascript" src="/js/jquery/jquery.tmpl.min.js?v=20250211-2"></script>
+        <script type="text/javascript" src="/js/waffle/waffle.utils.js?v=20250211-2"></script>
+
+
+        
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org",
+                "@type": "Person",
+                "name": "신선하고 건강한 글로벌 NO.1 샌드위치 브랜드, 써브웨이",
+                "url": "http://www.subway.co.kr",
+                "sameAs": [
+                    "https://www.instagram.com/subwaykorea",
+                    "https://www.youtube.com/user/Subwaykr",
+                    "https://www.facebook.com/Subwaykr"
+                ]
+            }
+        </script>
+        <!-- Facebook Pixel Code -->
+        <script>
+            !function (f, b, e, v, n, t, s) {
+                if (f.fbq) return;
+                n = f.fbq = function () {
+                    n.callMethod ?
+                        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                };
+                if (!f._fbq) f._fbq = n;
+                n.push = n;
+                n.loaded = !0;
+                n.version = '2.0';
+                n.queue = [];
+                t = b.createElement(e);
+                t.async = !0;
+                t.src = v;
+                s = b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t, s)
+            }(window, document, 'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '825983077607831');
+            fbq('track', 'PageView');
+        </script>
+        <noscript>
+            </noscript><img height="1" src="https://www.facebook.com/tr?id=825983077607831&ev=PageView&noscript=1" style="display:none" width="1" />
+        
+        <!-- End Facebook Pixel Code -->
+
+        <!-- Kakao Pixel Code -->
+        <!--
+        <script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/adfit/static/kp.js"></script>
+        <script type="text/javascript">
+            kakaoPixel('6816847143406094352').pageView();
+        </script>
+         -->
+        <!-- Kakao Pixel Code -->
+	<link rel="stylesheet" type="text/css" href="../css/ui.menu.css?v=20250211-2" />
+	<!-- 메뉴소개 css -->
+	<script src="/js/menu/menuList.js" type="text/javascript"></script>
+	<script type="text/javascript">
+            tab = null;
+        </script>
+	<script>
+            $(document).ready(function(){
+                var msg = null;
+
+                if(msg != null){
+                    alert(msg);
+                    window.location.href = "/";
+                }
+
+                var menu = 'sidedrink';
+                var category = ['sandwich','salad','sides_drink','fresh','catering','wrap','morning'];
+                var categoryCss = '';
+                if(menu == 'sidedrink'){
+                    menu = 'sides_drink';
+                }else if(menu == 'unit'){
+                    menu = 'wrap';
+                }
+                for(var i=0;i<category.length;i++){
+                    if(menu == category[i]){
+                        categoryCss = 'visual ' + menu;
+                        break;
+                    }else{
+                        categoryCss = 'visual wrap';
+                    }
+                }
+
+                $('#cssCategory').addClass(categoryCss);
+
+                //tab 파라미터에 대한 함수
+                $(window).load(function(){
+                    if(tab){
+                        $('.pd_tab li a').each(function(){
+                            if($(this).attr('href') == tab){
+                                $(this).trigger('click');
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
+
+    </head>
+    <!--// inc header e -->
+
+<body>
+
+
+<script type="text/javascript">
+    var IS_LOGIN = false;
+    var IS_AUTH_NON_MEMBER =  null;
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-112310613-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+            gtag('js', new Date());
+            gtag('config', 'UA-112310613-1');
+        </script>
+
+<!-- Global site tag (gtag.js) - AdWords: 802450606 -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=AW-802450606"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'AW-802450606');
+</script>
+
+        
+        <div id="wrap">
+            <!-- inc header s -->
+            <div id="header">
+    <script>
+        /*<![CDATA[*/
+        var memberVO = false;
+        /*]]*/
+    </script>
+    <div class="content">
+        <h1 class="logo"><a href="/">SUBWAY</a></h1>
+        <!-- gnb -->
+        <nav id="gnb">
+            <ul>
+                <li>
+                    <a class="dp1 active" href="#none">메뉴소개</a>
+                    <div class="dp2">
+                        <ul>
+                            <li>
+                                <a href="/menuList/sandwich">샌드위치</a>
+                            </li>
+                            <li>
+                                <a href="/menuList/unit">랩ㆍ기타</a>
+                            </li>
+                            <li>
+                                <a href="/menuList/salad">샐러드</a>
+                            </li>
+                            <li>
+                                <a href="/menuList/morning">아침메뉴</a>
+                            </li>
+                            <li>
+                                <a class="active" href="/menuList/sidedrink">스마일 썹</a>
+                            </li>
+                            <li>
+                                <a href="/menuList/catering">단체메뉴</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#none" class="dp1">이용방법</a>
+                    <div class="dp2">
+                        <ul>
+                            <li><a href="/utilizationSubway">써브웨이 이용방법</a></li><!-- 20180201 -->
+                            <li><a href="/utilizationGroupMenu">단체메뉴 이용방법</a></li>
+                            <li><a href="/freshInfo">신선한 재료 소개</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#none" class="dp1">새소식</a>
+                    <div class="dp2">
+                        <ul>
+                            <li><a href="/eventList">이벤트ㆍ프로모션</a></li>
+                            <li><a href="/newsList">뉴스ㆍ공지사항</a></li>
+                            <li><a href="/tvCommercial">광고영상</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#none" class="dp1">써브웨이</a>
+                    <div class="dp2">
+                        <ul>
+                            <li><a href="/subwayHistory">써브웨이 역사</a></li>
+                            <li><a href="/subwayPromise">써브웨이 약속</a></li>
+                            <li><a href="/storeSearch">매장찾기</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#none" class="dp1">가맹점</a>
+                    <div class="dp2">
+                        <ul>
+                            <li><a href="/franchise">써브웨이 프랜차이즈</a></li>
+                            <li><a href="/franchiseFaq">가맹관련 FAQ</a></li>
+                            <li><a href="/franchiseInquiry">가맹신청ㆍ문의</a></li>
+                            <li><a href="/franchiseBranchGuide">지사안내</a></li>
+                            <li><a href="/franchiseInformation">사업설명회</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a class="dp1" href="javascript:void(0);">온라인 주문</a>
+                    <div class="dp2">
+                        <ul>
+                            <li><a href="/appOrder">APP 주문</a></li>
+                            <li><a href="/order/view/group">단체주문</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <!--// gnb -->
+    </div>
+</div>
+            <!--// inc header e -->
+
+
+            <!-- container s -->
+            <div id="container">
+
+            <div class="sub_header type01"><!-- 메뉴소개일경우 type01클래스 추가 -->
+                <div class="content">
+	<a class="logo" href="/">HOME</a>
+	<!-- sub location -->
+	<div class="sub_loc">
+		<!-- 메뉴소개 -->
+		<ul>
+			<li><a href="/menuList/sandwich">샌드위치</a></li>
+			<li><a href="/menuList/unit">랩ㆍ기타</a></li>
+			<li><a href="/menuList/salad">샐러드</a></li>
+			<li><a href="/menuList/morning">아침메뉴</a></li>
+			<li class="active"><a href="/menuList/sidedrink">스마일 썹</a></li>
+			<li><a href="/menuList/catering">단체메뉴</a></li>
+			<!--	<li th:class="${#strings.contains(servletPath,'sandwich')} ? 'active':''"><a th:href="'/menuList/sandwich'">샌드위치</a></li>
+                <li th:class="${#strings.contains(servletPath,'wrap')} ? 'active':''"><a href="/menuList/wrap">랩</a></li>
+                <li th:class="${#strings.contains(servletPath,'salad')} ? 'active':''"><a href="/menuList/salad">찹샐러드</a></li>
+                <li th:class="${smenu eq 'sideDrink' or #strings.contains(servletPath,'sidesDrink') ? 'active':''}"><a href="/menuList/sidesDrink">스마일 썹</a></li>
+                <li th:class="${#strings.contains(servletPath,'catering')} ? 'active':''"><a href="/menuList/catering">단체메뉴</a></li>-->
+		</ul>
+		<!-- 이용방법 -->
+		
+	</div>
+	<!--// sub location -->
+	<a class="top" href="#none">TOP</a>
+</div>
+            </div>
+
+            <!-- sub content s -->
+            <div id="content">
+                <!-- 메뉴소개 s -->
+                <div class="menu_list_wrapper">
+                    <!-- 상품 visual 스마일썹,랩 클래스명 css명과 동일하게 수정 -->
+                    <div id="cssCategory">
+                        
+                        
+                        
+                        
+                        <h2>Smile Sub</h2>
+                        
+                        
+                        
+                        
+                        
+                        <p>웃음이 번지는 착한 가격, 착한 맛!<br />스마일 썹과 함께 하루 종일 스마일 하세요~</p>
+                        
+                        <div class="img01"></div>
+                        <div class="img02"></div>
+                        <div class="img03"></div>
+                    </div>
+                    <!--// 상품 visual -->
+
+                    <!-- 상품별 정렬 tab -->
+                    <div class="pd_tab">
+                        <!-- 샌드위치 -->
+                        <ul>
+                            
+                            <li class="active"><a href="ITEM_SIDEDRINK.SMILESUB">스마일 썹</a></li>
+                        </ul>
+                    </div>
+                    <!--// 상품별 정렬 tab -->
+
+                    <!-- 상품목록 -->
+                    <div class="pd_list_wrapper">
+                        <ul>
+                            <li data-menusubsort="2" data-menumainsort="2" class="ITEM_SIDEDRINK.SMILESUB">
+                                <!-- label -->
+                                <div class="label">
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                </div>
+                                <!--// label -->
+                                <div class="img"><img onError="this.src='/images/common/noneImage.jpg'" src="/upload/menu/corn-soup_20231204124355500.png" alt="콘 수프" /></div>
+                                <strong class="tit">콘 수프</strong>
+                                <span class="eng">Corn Soup</span>
+                                <!--<span class="cal" th:if="${rs.itemCalorie != '' and rs.itemCalorie != null}" th:text="${#strings.replace(rs.itemCalorie,'/','kcal / ')} + ' kcal'"></span>-->
+                                <div class="summary">
+                                    <p>달콤한 옥수수의 깊은 풍미가 느껴지는 콘 수프</p></div>
+                                <a href="#" onclick="menuDetail(this); return false;" data-category="sidedrink" data-menuitemidx="1465" class="btn_view"></a>
+                            </li>
+                            <li data-menusubsort="3" data-menumainsort="3" class="ITEM_SIDEDRINK.SMILESUB">
+                                <!-- label -->
+                                <div class="label">
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                </div>
+                                <!--// label -->
+                                <div class="img"><img onError="this.src='/images/common/noneImage.jpg'" src="/upload/menu/Mushroom-soup_20231204012446176.png" alt="머쉬룸 수프" /></div>
+                                <strong class="tit">머쉬룸 수프</strong>
+                                <span class="eng">Mushroom Soup</span>
+                                <!--<span class="cal" th:if="${rs.itemCalorie != '' and rs.itemCalorie != null}" th:text="${#strings.replace(rs.itemCalorie,'/','kcal / ')} + ' kcal'"></span>-->
+                                <div class="summary">
+                                    <p>부드러운 머쉬룸의 풍미가 가득한 머쉬룸 수프</p></div>
+                                <a href="#" onclick="menuDetail(this); return false;" data-category="sidedrink" data-menuitemidx="1317" class="btn_view"></a>
+                            </li>
+                            <li data-menusubsort="14" data-menumainsort="4" class="ITEM_SIDEDRINK.SMILESUB">
+                                <!-- label -->
+                                <div class="label">
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  <span class="new" style="background-color:secondary-01">NEW</span>
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                </div>
+                                <!--// label -->
+                                <div class="img"><img onError="this.src='/images/common/noneImage.jpg'" src="/upload/menu/민트초코_570X400_20250204124919047.jpg" alt="민트 초코" /></div>
+                                <strong class="tit">민트 초코</strong>
+                                <span class="eng">Mint Choco</span>
+                                <!--<span class="cal" th:if="${rs.itemCalorie != '' and rs.itemCalorie != null}" th:text="${#strings.replace(rs.itemCalorie,'/','kcal / ')} + ' kcal'"></span>-->
+                                <div class="summary">
+                                    <p>민트의 상쾌함, 초코의 달콤함</p></div>
+                                <a href="#" onclick="menuDetail(this); return false;" data-category="sidedrink" data-menuitemidx="1316" class="btn_view"></a>
+                            </li>
+                            <li data-menusubsort="4" data-menumainsort="5" class="ITEM_SIDEDRINK.SMILESUB">
+                                <!-- label -->
+                                <div class="label">
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                </div>
+                                <!--// label -->
+                                <div class="img"><img onError="this.src='/images/common/noneImage.jpg'" src="/upload/menu/chocolate_chip_20210315021446423.jpg" alt="초코칩" /></div>
+                                <strong class="tit">초코칩</strong>
+                                <span class="eng">Chocolate Chip</span>
+                                <!--<span class="cal" th:if="${rs.itemCalorie != '' and rs.itemCalorie != null}" th:text="${#strings.replace(rs.itemCalorie,'/','kcal / ')} + ' kcal'"></span>-->
+                                <div class="summary">
+                                    <p>알알이 가득한 초코의 가장 클래식한 달콤함</p></div>
+                                <a href="#" onclick="menuDetail(this); return false;" data-category="sidedrink" data-menuitemidx="1308" class="btn_view"></a>
+                            </li>
+                            <li data-menusubsort="5" data-menumainsort="6" class="ITEM_SIDEDRINK.SMILESUB">
+                                <!-- label -->
+                                <div class="label">
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                </div>
+                                <!--// label -->
+                                <div class="img"><img onError="this.src='/images/common/noneImage.jpg'" src="/upload/menu/double_chocolate_chip_20210315021500386.jpg" alt="더블 초코칩" /></div>
+                                <strong class="tit">더블 초코칩</strong>
+                                <span class="eng">Double Chocolate Chip</span>
+                                <!--<span class="cal" th:if="${rs.itemCalorie != '' and rs.itemCalorie != null}" th:text="${#strings.replace(rs.itemCalorie,'/','kcal / ')} + ' kcal'"></span>-->
+                                <div class="summary">
+                                    <p>부드러운 화이트초콜릿과 다크 초콜릿의<br />절묘한 조화로 더욱 풍부한 달콤함</p></div>
+                                <a href="#" onclick="menuDetail(this); return false;" data-category="sidedrink" data-menuitemidx="1307" class="btn_view"></a>
+                            </li>
+                            <li data-menusubsort="6" data-menumainsort="7" class="ITEM_SIDEDRINK.SMILESUB">
+                                <!-- label -->
+                                <div class="label">
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                </div>
+                                <!--// label -->
+                                <div class="img"><img onError="this.src='/images/common/noneImage.jpg'" src="/upload/menu/oatmeal_rasin_20210315021428482.jpg" alt="오트밀 레이즌" /></div>
+                                <strong class="tit">오트밀 레이즌</strong>
+                                <span class="eng">Oatmeal Raisin</span>
+                                <!--<span class="cal" th:if="${rs.itemCalorie != '' and rs.itemCalorie != null}" th:text="${#strings.replace(rs.itemCalorie,'/','kcal / ')} + ' kcal'"></span>-->
+                                <div class="summary">
+                                    <p>건포도와 귀리에 살짝 더해진 <br />계피향의 환상적인 조화</p></div>
+                                <a href="#" onclick="menuDetail(this); return false;" data-category="sidedrink" data-menuitemidx="1309" class="btn_view"></a>
+                            </li>
+                            <li data-menusubsort="7" data-menumainsort="8" class="ITEM_SIDEDRINK.SMILESUB">
+                                <!-- label -->
+                                <div class="label">
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                </div>
+                                <!--// label -->
+                                <div class="img"><img onError="this.src='/images/common/noneImage.jpg'" src="/upload/menu/raspberry_cheese_cake_20210315021413854.jpg" alt="라즈베리 치즈케익" /></div>
+                                <strong class="tit">라즈베리 치즈케익</strong>
+                                <span class="eng">Raspberry Cheese Cake</span>
+                                <!--<span class="cal" th:if="${rs.itemCalorie != '' and rs.itemCalorie != null}" th:text="${#strings.replace(rs.itemCalorie,'/','kcal / ')} + ' kcal'"></span>-->
+                                <div class="summary">
+                                    <p>부드럽고 풍부한 치즈와 새콤달콤 라즈베리의<br />달콤한 만남</p></div>
+                                <a href="#" onclick="menuDetail(this); return false;" data-category="sidedrink" data-menuitemidx="1310" class="btn_view"></a>
+                            </li>
+                            <li data-menusubsort="8" data-menumainsort="9" class="ITEM_SIDEDRINK.SMILESUB">
+                                <!-- label -->
+                                <div class="label">
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                </div>
+                                <!--// label -->
+                                <div class="img"><img onError="this.src='/images/common/noneImage.jpg'" src="/upload/menu/white_choco_macadamia_20210315021402115.jpg" alt="화이트 초코 마카다미아" /></div>
+                                <strong class="tit">화이트 초코 마카다미아</strong>
+                                <span class="eng">White Choco Macadamia</span>
+                                <!--<span class="cal" th:if="${rs.itemCalorie != '' and rs.itemCalorie != null}" th:text="${#strings.replace(rs.itemCalorie,'/','kcal / ')} + ' kcal'"></span>-->
+                                <div class="summary">
+                                    <p>고소함 가득한 마카다미아와<br />달콤한 화이트 초콜릿의 환상 궁합</p></div>
+                                <a href="#" onclick="menuDetail(this); return false;" data-category="sidedrink" data-menuitemidx="1311" class="btn_view"></a>
+                            </li>
+                            <li data-menusubsort="9" data-menumainsort="10" class="ITEM_SIDEDRINK.SMILESUB">
+                                <!-- label -->
+                                <div class="label">
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                </div>
+                                <!--// label -->
+                                <div class="img"><img onError="this.src='/images/common/noneImage.jpg'" src="/upload/menu/웨지포테이토_20220916104739353.jpg" alt="웨지 포테이토" /></div>
+                                <strong class="tit">웨지 포테이토</strong>
+                                <span class="eng">Ovenbaked Wedge Potatoes</span>
+                                <!--<span class="cal" th:if="${rs.itemCalorie != '' and rs.itemCalorie != null}" th:text="${#strings.replace(rs.itemCalorie,'/','kcal / ')} + ' kcal'"></span>-->
+                                <div class="summary">
+                                    <p>오븐에 구워 더 담백,<br />겉은 바삭 속은 촉촉한 건강한 사이드<br />※제공시간 : 오전 11시 ~</p></div>
+                                <a href="#" onclick="menuDetail(this); return false;" data-category="sidedrink" data-menuitemidx="1321" class="btn_view"></a>
+                            </li>
+                            <li data-menusubsort="10" data-menumainsort="11" class="ITEM_SIDEDRINK.SMILESUB">
+                                <!-- label -->
+                                <div class="label">
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                </div>
+                                <!--// label -->
+                                <div class="img"><img onError="this.src='/images/common/noneImage.jpg'" src="/upload/menu/치지웨지포테이토_20220916104711296.jpg" alt="Cheesy 웨지 포테이토" /></div>
+                                <strong class="tit">Cheesy 웨지 포테이토</strong>
+                                <span class="eng">Cheesy Ovenbaked Wedge Potatoes</span>
+                                <!--<span class="cal" th:if="${rs.itemCalorie != '' and rs.itemCalorie != null}" th:text="${#strings.replace(rs.itemCalorie,'/','kcal / ')} + ' kcal'"></span>-->
+                                <div class="summary">
+                                    <p>치즈 풍미 한가득, 오븐에 구워<br />더 담백한 겉은 바삭<br />속은 촉촉한 건강한 사이드<br />※제공시간 : 오전 11시 ~</p></div>
+                                <a href="#" onclick="menuDetail(this); return false;" data-category="sidedrink" data-menuitemidx="1322" class="btn_view"></a>
+                            </li>
+                            <li data-menusubsort="11" data-menumainsort="12" class="ITEM_SIDEDRINK.SMILESUB">
+                                <!-- label -->
+                                <div class="label">
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                </div>
+                                <!--// label -->
+                                <div class="img"><img onError="this.src='/images/common/noneImage.jpg'" src="/upload/menu/베이컨치지웨지포테이토_20220916104811767.jpg" alt="Bacon Cheesy 웨지 포테이토" /></div>
+                                <strong class="tit">Bacon Cheesy 웨지 포테이토</strong>
+                                <span class="eng">Bacon Cheesy Ovenbaked Wedge Potatoes</span>
+                                <!--<span class="cal" th:if="${rs.itemCalorie != '' and rs.itemCalorie != null}" th:text="${#strings.replace(rs.itemCalorie,'/','kcal / ')} + ' kcal'"></span>-->
+                                <div class="summary">
+                                    <p>짭쪼름한 베이컨과 치즈의 궁합을 더한,<br />오븐에 구워 더 담백한 겉은 바삭<br />속은 촉촉한 건강한 사이드<br />※제공시간 : 오전 11시 ~</p></div>
+                                <a href="#" onclick="menuDetail(this); return false;" data-category="sidedrink" data-menuitemidx="1323" class="btn_view"></a>
+                            </li>
+                            <li data-menusubsort="16" data-menumainsort="13" class="ITEM_SIDEDRINK.SMILESUB">
+                                <!-- label -->
+                                <div class="label">
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                </div>
+                                <!--// label -->
+                                <div class="img"><img onError="this.src='/images/common/noneImage.jpg'" src="/upload/menu/chicken_bacon_mini_wrap_20210315021709762.jpg" alt="치킨 베이컨 미니 랩" /></div>
+                                <strong class="tit">치킨 베이컨 미니 랩</strong>
+                                <span class="eng">Chicken Bacon Mini Wrap</span>
+                                <!--<span class="cal" th:if="${rs.itemCalorie != '' and rs.itemCalorie != null}" th:text="${#strings.replace(rs.itemCalorie,'/','kcal / ')} + ' kcal'"></span>-->
+                                <div class="summary">
+                                    <p>담백한 치킨, 바삭한 베이컨 비츠가<br />쫀득한 통밀 랩에 쏘옥!<br />치킨 베이컨 미니 랩</p></div>
+                                <a href="#" onclick="menuDetail(this); return false;" data-category="sidedrink" data-menuitemidx="1320" class="btn_view"></a>
+                            </li>
+                            <li data-menusubsort="20" data-menumainsort="15" class="ITEM_SIDEDRINK.SMILESUB">
+                                <!-- label -->
+                                <div class="label">
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                </div>
+                                <!--// label -->
+                                <div class="img"><img onError="this.src='/images/common/noneImage.jpg'" src="/upload/menu/chips_20210315021347952.jpg" alt="칩" /></div>
+                                <strong class="tit">칩</strong>
+                                <span class="eng">Chip</span>
+                                <!--<span class="cal" th:if="${rs.itemCalorie != '' and rs.itemCalorie != null}" th:text="${#strings.replace(rs.itemCalorie,'/','kcal / ')} + ' kcal'"></span>-->
+                                <div class="summary">
+                                    <p>바삭바삭한 칩을 추가해 써브웨이를 즐겨보세요</p></div>
+                                <a href="#" onclick="menuDetail(this); return false;" data-category="sidedrink" data-menuitemidx="1312"></a>
+                            </li>
+                            <li data-menusubsort="22" data-menumainsort="17" class="ITEM_SIDEDRINK.SMILESUB">
+                                <!-- label -->
+                                <div class="label">
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                </div>
+                                <!--// label -->
+                                <div class="img"><img onError="this.src='/images/common/noneImage.jpg'" src="/upload/menu/음료_20220706095155463.png" alt="탄산음료" /></div>
+                                <strong class="tit">탄산음료</strong>
+                                <span class="eng">Soda</span>
+                                <!--<span class="cal" th:if="${rs.itemCalorie != '' and rs.itemCalorie != null}" th:text="${#strings.replace(rs.itemCalorie,'/','kcal / ')} + ' kcal'"></span>-->
+                                <div class="summary">
+                                    <p>-</p></div>
+                                <a href="#" onclick="menuDetail(this); return false;" data-category="sidedrink" data-menuitemidx="1313"></a>
+                            </li>
+                            <li data-menusubsort="23" data-menumainsort="18" class="ITEM_SIDEDRINK.SMILESUB">
+                                <!-- label -->
+                                <div class="label">
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                </div>
+                                <!--// label -->
+                                <div class="img"><img onError="this.src='/images/common/noneImage.jpg'" src="/upload/menu/새 프로젝트_20220706094947135.png" alt="커피" /></div>
+                                <strong class="tit">커피</strong>
+                                <span class="eng">Coffee</span>
+                                <!--<span class="cal" th:if="${rs.itemCalorie != '' and rs.itemCalorie != null}" th:text="${#strings.replace(rs.itemCalorie,'/','kcal / ')} + ' kcal'"></span>-->
+                                <div class="summary">
+                                    <p>-</p></div>
+                                <a href="#" onclick="menuDetail(this); return false;" data-category="sidedrink" data-menuitemidx="1314"></a>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!--// 상품목록 -->
+                </div>
+                <!--// 메뉴소개 e -->
+            </div>
+            <!--// sub content e -->
+        </div>
+
+            <!-- inc footer s -->
+            <div id="footer">
+	    <div class="content">
+	        <!-- util menu -->
+	        <div class="util_menu">
+	            <ul>
+	                <li><a href="/agreement">이용약관</a></li>
+	                <li><a href="/privacy"><strong>개인정보처리방침</strong></a></li>
+	                <li><a href="/subcard">썹 카드& 썹 포인트 이용약관</a></li>
+	                <li><a href="https://store.subway.co.kr/" target="_blank">점주관리자</a></li><!-- 20180202 추가 -->
+	                <!-- 삭제 20180208
+	                <li><a href="http://www.subway.com/en-us/exploreourworld" class="eng" target="_blank">Explore our world</a></li>
+	                 -->
+					<!-- 삭제 20180718
+	                <li><a href="https://www.tellsubway.kr/ContentManager/Controller.aspx?page=Home/Home" class="eng" target="_blank">Tell Subway</a></li>
+					-->
+	                <!--<li><a href="http://www.global.subway.com" class="eng" target="_blank">Subway Listens</a></li>-->
+	            </ul>
+	        </div>
+	        <!--// util menu -->
+
+	        <span class="addr">서울시 서초구 강남대로 535 프린스빌딩 15층</span>
+	        <span class="rep">대표 : INSOO CHO(인수조)</span>
+	        <span class="tel">전화 : 02-797-5036</span>
+			<span class="rep">사업자등록번호 : 101-84-04143</span>
+	        <p class="copyright">SUBWAY® is a Registered Trademark of Subway IP LLC. © 2021 Subway IP LLC. All Rights Reserved.</p>
+			<a class="sns_area instagram" href="https://www.instagram.com/subwaykorea" target="_blank">instagram</a>
+	        <a class="sns_area fackbook" href="https://www.facebook.com/Subwaykr" target="_blank">facebook</a>
+	    </div>
+	</div>
+            <!--// inc footer e -->
+        </div>
+    
+
+</body></html>
