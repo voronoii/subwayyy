@@ -93,22 +93,22 @@
 <body>
     <header>
         <h1>{{ '텍스트 다운로드를 준비하고 있습니다' if lang == 'ko' else 'Preparing your text download' }}</h1>
-        <p>{{ '잠시만 기다려주세요. 광고 안내 후 다운로드 버튼이 활성화됩니다.' if lang == 'ko' else 'Please wait a moment. The download button will activate after this short notice.' }}</p>
+        <p>{{ '잠시만 기다려주세요. 다운로드 버튼이 활성화됩니다.' if lang == 'ko' else 'Please wait a moment. The download button will activate after this short notice.' }}</p>
     </header>
     <main>
-        <section class="card">
-            <h2>{{ '잠깐! 다운로드 전에 이런 정보는 어떠세요?' if lang == 'ko' else 'Quick tip before you download!' }}</h2>
-            <div class="ad-slot">
-                {{ '광고가 여기에 표시됩니다. 5초만 기다리시면 다운로드 버튼이 열립니다.' if lang == 'ko' else 'Your sponsored message appears here. The download button unlocks in 5 seconds.' }}
-            </div>
+        <section class="card download-section">
+            <h2>{{ '다운로드 준비 상태' if lang == 'ko' else 'Download Preparation' }}</h2>
+            <p>{{ '안전한 다운로드를 위해 잠시만 기다려주세요.' if lang == 'ko' else 'Please wait a moment while we prepare your download securely.' }}</p>
+            <button type="button" id="downloadNowBtn" disabled>{{ '다운로드 시작' if lang == 'ko' else 'Start Download' }}</button>
+            <div id="downloadTimer" class="timer"></div>
+            <div id="downloadStatus" class="status">{{ '서버와 연결을 확인하는 중입니다...' if lang == 'ko' else 'Connecting to the server...' }}</div>
         </section>
 
-        <section class="card download-section">
-            <h2>{{ '다운로드 센터' if lang == 'ko' else 'Download Center' }}</h2>
-            <p>{{ '파일을 안전하게 준비 중입니다. 진행 상황을 확인해주세요.' if lang == 'ko' else 'We are preparing your file securely. Please watch the progress below.' }}</p>
-            <div id="downloadStatus" class="status">{{ '원본 페이지와 연결을 확인하는 중입니다...' if lang == 'ko' else 'Checking connection with the original page...' }}</div>
-            <div id="downloadTimer" class="timer"></div>
-            <button type="button" id="downloadNowBtn" disabled>{{ '다운로드 시작' if lang == 'ko' else 'Start Download' }}</button>
+        <section class="card">
+            <h2>{{ '잠깐! 다운로드 전에 이런 정보는 어떠세요?' if lang == 'ko' else 'Spotlight before you download' }}</h2>
+            <div class="ad-slot">
+                {{ '5초만 기다리시면 다운로드 버튼이 열립니다.' if lang == 'ko' else 'Your sponsored message appears here. The download button unlocks in 5 seconds.' }}
+            </div>
         </section>
     </main>
     <footer>
@@ -121,6 +121,7 @@
         const timerEl = document.getElementById('downloadTimer');
         const downloadBtn = document.getElementById('downloadNowBtn');
         const COUNTDOWN_SECONDS = 5;
+        const downloadToken = {{ token|tojson }};
 
         const messages = {
             timer: {{ ("{sec}초 후 다운로드 버튼이 활성화됩니다." if lang == 'ko' else "Download button activates in {sec} seconds.") | tojson }},
@@ -130,9 +131,10 @@
             emptyText: {{ ("전달받은 텍스트가 비어 있습니다. 원본 페이지에서 다시 시도해주세요." if lang == 'ko' else "Received text is empty. Please retry from the source page.") | tojson }},
             notFound: {{ ("다운로드할 텍스트를 찾을 수 없습니다. 원본 페이지에서 다시 시도해주세요." if lang == 'ko' else "No text available to download. Please retry from the main page.") | tojson }},
             noText: {{ ("다운로드할 텍스트가 없습니다. 다시 시도해주세요." if lang == 'ko' else "No text available. Please try again.") | tojson }},
-            startStatus: {{ ("원본 페이지에서 텍스트를 전달받는 중입니다..." if lang == 'ko' else "Requesting text from the original page...") | tojson }},
-            noOpener: {{ ("원본 페이지와의 연결이 확인되지 않습니다. 창을 닫고 다시 시도해주세요." if lang == 'ko' else "Connection to the original page could not be confirmed. Please close this window and try again.") | tojson }},
-            downloadStarted: {{ ("다운로드가 시작되었습니다. 이용해주셔서 감사합니다!" if lang == 'ko' else "Download started. Thank you for using our tool!") | tojson }}
+            startStatus: {{ ("서버에서 텍스트를 불러오는 중입니다..." if lang == 'ko' else "Fetching your text from the server...") | tojson }},
+            downloadStarted: {{ ("다운로드가 시작되었습니다. 이용해주셔서 감사합니다!" if lang == 'ko' else "Download started. Thank you for using our tool!") | tojson }},
+            invalidToken: {{ ("다운로드 토큰이 유효하지 않습니다. 처음부터 다시 시도해주세요." if lang == 'ko' else "The download link is invalid. Please start again from the extraction page.") | tojson }},
+            fetchFailed: {{ ("텍스트를 불러오는 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요." if lang == 'ko' else "We ran into a problem fetching the text. Please try again shortly.") | tojson }}
         };
 
         let receivedText = '';
@@ -159,27 +161,33 @@
             }, 1000);
         }
 
-        window.addEventListener('message', (event) => {
-            if (event.origin !== window.location.origin || !event.data) {
+        async function loadText() {
+            if (!downloadToken) {
+                setStatus(messages.invalidToken);
                 return;
             }
 
-            if (event.data.type === 'PDF_TEXT_PAYLOAD') {
-                receivedText = event.data.text || '';
-                if (receivedText) {
-                    setStatus(messages.textReady);
-                    startCountdown();
-                } else {
-                    setStatus(messages.emptyText);
-                    timerEl.textContent = '';
-                }
-            }
+            setStatus(messages.startStatus);
 
-            if (event.data.type === 'PDF_TEXT_ERROR') {
-                setStatus(messages.notFound);
+            try {
+                const response = await fetch(`/api/pdf-to-text/buffer/${encodeURIComponent(downloadToken)}`);
+                const data = await response.json();
+
+                if (!response.ok || !data.text) {
+                    setStatus(data.error || messages.notFound);
+                    timerEl.textContent = '';
+                    return;
+                }
+
+                receivedText = data.text;
+                setStatus(messages.textReady);
+                startCountdown();
+            } catch (error) {
+                console.error('Failed to fetch text for download', error);
+                setStatus(messages.fetchFailed);
                 timerEl.textContent = '';
             }
-        });
+        }
 
         downloadBtn.addEventListener('click', () => {
             if (!receivedText) {
@@ -199,14 +207,7 @@
             setStatus(messages.downloadStarted);
         });
 
-        window.addEventListener('load', () => {
-            if (window.opener) {
-                window.opener.postMessage({ type: 'DOWNLOAD_PAGE_READY' }, window.location.origin);
-                setStatus(messages.startStatus);
-            } else {
-                setStatus(messages.noOpener);
-            }
-        });
+        loadText();
     })();
     </script>
 </body>

@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 import os
 from datetime import date
 import fitz  # PyMuPDF
+from uuid import uuid4
 # load_dotenv() 
 
 
@@ -25,6 +26,37 @@ app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024  # 16 MB upload limit
 
 SUPPORTED_LANGS = ('ko', 'en')
 DEFAULT_LANG = 'ko'
+
+PDF_TEXT_BUFFER_TTL = 5 * 60  # seconds
+pdf_text_buffer = {}
+
+
+def cleanup_pdf_text_buffer():
+    now = datetime.now(timezone.utc)
+    expired_tokens = [
+        token for token, entry in pdf_text_buffer.items()
+        if (now - entry['stored_at']).total_seconds() > PDF_TEXT_BUFFER_TTL
+    ]
+    for token in expired_tokens:
+        pdf_text_buffer.pop(token, None)
+
+
+def store_pdf_text(text):
+    cleanup_pdf_text_buffer()
+    token = uuid4().hex
+    pdf_text_buffer[token] = {
+        'text': text,
+        'stored_at': datetime.now(timezone.utc)
+    }
+    return token
+
+
+def pop_pdf_text(token):
+    cleanup_pdf_text_buffer()
+    entry = pdf_text_buffer.pop(token, None)
+    if not entry:
+        return None
+    return entry['text']
 
 
 def detect_language(request):
@@ -337,7 +369,35 @@ def pdf_to_text_page():
 @app.route('/tools/pdf-to-text/download', methods=['GET'])
 def pdf_to_text_download():
     lang = detect_language(request)
-    return render_template('pdf_to_text_download.html', lang=lang)
+    token = request.args.get('token', '')
+    return render_template('pdf_to_text_download.html', lang=lang, token=token)
+
+
+@app.route('/api/pdf-to-text/buffer', methods=['POST'])
+def api_pdf_to_text_buffer():
+    payload = request.get_json(silent=True) or {}
+    text = payload.get('text', '')
+
+    if not isinstance(text, str) or not text.strip():
+        return jsonify({'error': '저장할 텍스트가 없습니다.'}), 400
+
+    if len(text) > 500_000:  # 약 500KB 제한
+        return jsonify({'error': '텍스트가 너무 큽니다. 일부를 분할해 다운로드해주세요.'}), 413
+
+    token = store_pdf_text(text)
+    return jsonify({'token': token})
+
+
+@app.route('/api/pdf-to-text/buffer/<token>', methods=['GET'])
+def api_pdf_to_text_buffer_fetch(token):
+    if not token:
+        return jsonify({'error': '유효하지 않은 요청입니다.'}), 400
+
+    text = pop_pdf_text(token)
+    if text is None:
+        return jsonify({'error': '다운로드 토큰이 만료되었거나 존재하지 않습니다.'}), 404
+
+    return jsonify({'text': text})
 
 
 @app.route('/api/pdf-to-text', methods=['POST'])
