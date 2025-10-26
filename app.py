@@ -23,6 +23,14 @@ app.secret_key = os.getenv("SECRET_KEY", "default_secret_key")
 
 app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024  # 16 MB upload limit
 
+SUPPORTED_LANGS = ('ko', 'en')
+DEFAULT_LANG = 'ko'
+
+
+def detect_language(request):
+    matched = request.accept_languages.best_match(SUPPORTED_LANGS)
+    return matched or DEFAULT_LANG
+
 
 
 def round_nutrition(nutrition):
@@ -322,12 +330,14 @@ def guestbook():
 
 @app.route('/tools/pdf-to-text', methods=['GET'])
 def pdf_to_text_page():
-    return render_template('pdf_to_text.html')
+    lang = detect_language(request)
+    return render_template('pdf_to_text.html', lang=lang)
 
 
 @app.route('/tools/pdf-to-text/download', methods=['GET'])
 def pdf_to_text_download():
-    return render_template('pdf_to_text_download.html')
+    lang = detect_language(request)
+    return render_template('pdf_to_text_download.html', lang=lang)
 
 
 @app.route('/api/pdf-to-text', methods=['POST'])
