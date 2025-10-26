@@ -9,6 +9,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from dotenv import load_dotenv
 import os
 from datetime import date
+import fitz  # PyMuPDF
 # load_dotenv() 
 
 
@@ -20,6 +21,7 @@ if os.getenv("VERCEL") is None:  # Vercel이 아닌 경우만 .env 사용
 
 app.secret_key = os.getenv("SECRET_KEY", "default_secret_key")
 
+app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024  # 16 MB upload limit
 
 
 
@@ -316,6 +318,63 @@ def guestbook():
             messages.insert(0, message)  # 최신 메시지가 맨 위로
         return redirect("/guestbook")
     return render_template("guestbook.html", messages=messages)
+
+
+@app.route('/tools/pdf-to-text', methods=['GET'])
+def pdf_to_text_page():
+    return render_template('pdf_to_text.html')
+
+
+@app.route('/tools/pdf-to-text/download', methods=['GET'])
+def pdf_to_text_download():
+    return render_template('pdf_to_text_download.html')
+
+
+@app.route('/api/pdf-to-text', methods=['POST'])
+def api_pdf_to_text():
+    if 'pdf_file' not in request.files:
+        return jsonify({'error': 'PDF 파일을 업로드해주세요.'}), 400
+
+    uploaded_file = request.files['pdf_file']
+
+    if not uploaded_file or uploaded_file.filename == '':
+        return jsonify({'error': 'PDF 파일을 선택해주세요.'}), 400
+
+    if not uploaded_file.filename.lower().endswith('.pdf'):
+        return jsonify({'error': 'PDF 파일만 업로드할 수 있습니다.'}), 400
+
+    pdf_bytes = uploaded_file.read()
+    if not pdf_bytes:
+        return jsonify({'error': '업로드된 파일이 비어 있습니다.'}), 400
+
+    try:
+        with fitz.open(stream=pdf_bytes, filetype="pdf") as doc:
+            pages = []
+            for page_number, page in enumerate(doc, start=1):
+                extracted_text = page.get_text("text").strip()
+                pages.append({
+                    "page": page_number,
+                    "text": extracted_text
+                })
+    except RuntimeError:
+        return jsonify({'error': '암호화되었거나 손상된 PDF입니다.'}), 400
+    except Exception:
+        app.logger.exception("Unexpected error during PDF to text conversion")
+        return jsonify({'error': 'PDF 처리 중 오류가 발생했습니다.'}), 500
+
+    if not pages:
+        return jsonify({'error': 'PDF에서 텍스트를 찾을 수 없습니다.'}), 200
+
+    has_text = any(page["text"] for page in pages)
+    response_payload = {
+        "pages": pages,
+        "total_pages": len(pages)
+    }
+
+    if not has_text:
+        response_payload["message"] = "PDF에서 추출할 수 있는 텍스트가 없습니다."
+
+    return jsonify(response_payload)
 
 
    

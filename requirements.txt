@@ -3,3 +3,4 @@ requests
 feedparser
 apscheduler
 python-dotenv
+pymupdf

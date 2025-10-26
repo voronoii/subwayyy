@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>PDF 텍스트 다운로드 준비 중</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Pretendard', Arial, sans-serif;
+            background: linear-gradient(135deg, #1c1c35 0%, #2a2a4f 50%, #3d3d6d 100%);
+            color: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header, footer {
+            padding: 24px;
+            text-align: center;
+        }
+        main {
+            flex: 1;
+            padding: 0 24px 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .card {
+            background: rgba(0, 0, 0, 0.35);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+        }
+        .card h2 {
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+        .ad-slot {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 24px;
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            font-size: 0.95rem;
+            border: 1px dashed rgba(255, 255, 255, 0.25);
+        }
+        .download-section {
+            text-align: center;
+        }
+        .status {
+            margin-top: 16px;
+            font-size: 1rem;
+        }
+        .timer {
+            margin-top: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffdd00;
+        }
+        button {
+            margin-top: 20px;
+            padding: 14px 22px;
+            border: none;
+            border-radius: 10px;
+            background: #ffdd00;
+            color: #000;
+            font-weight: 700;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: transform 0.12s ease, box-shadow 0.12s ease;
+        }
+        button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25);
+        }
+        button:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+        }
+        footer {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.65);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>텍스트 다운로드를 준비하고 있습니다</h1>
+        <p>잠시만 기다려주세요. 광고 안내 후 다운로드 버튼이 활성화됩니다.</p>
+    </header>
+    <main>
+        <section class="card">
+            <h2>잠깐! 다운로드 전에 이런 정보는 어떠세요?</h2>
+            <div class="ad-slot">
+                <!-- 광고 스크립트 영역 -->
+                광고가 여기에 표시됩니다. 5초만 기다리시면 다운로드 버튼이 열립니다.
+            </div>
+        </section>
+
+        <section class="card download-section">
+            <h2>다운로드 센터</h2>
+            <p>파일을 안전하게 준비 중입니다. 진행 상황을 확인해주세요.</p>
+            <div id="downloadStatus" class="status">원본 페이지와 연결을 확인하는 중입니다...</div>
+            <div id="downloadTimer" class="timer"></div>
+            <button type="button" id="downloadNowBtn" disabled>다운로드 시작</button>
+        </section>
+    </main>
+    <footer>
+        광고 수익은 서비스 유지 및 개선에 사용됩니다.
+    </footer>
+
+    <script>
+    (function () {
+        const statusEl = document.getElementById('downloadStatus');
+        const timerEl = document.getElementById('downloadTimer');
+        const downloadBtn = document.getElementById('downloadNowBtn');
+        const COUNTDOWN_SECONDS = 5;
+
+        let receivedText = '';
+        let countdownTimer = null;
+
+        function setStatus(message) {
+            statusEl.textContent = message;
+        }
+
+        function startCountdown() {
+            let remaining = COUNTDOWN_SECONDS;
+            timerEl.textContent = `${remaining}초 후 다운로드 버튼이 활성화됩니다.`;
+
+            countdownTimer = setInterval(() => {
+                remaining -= 1;
+                if (remaining > 0) {
+                    timerEl.textContent = `${remaining}초 후 다운로드 버튼이 활성화됩니다.`;
+                } else {
+                    clearInterval(countdownTimer);
+                    timerEl.textContent = '다운로드 준비가 완료되었습니다!';
+                    downloadBtn.disabled = false;
+                    setStatus('다운로드 버튼을 눌러 텍스트 파일을 저장해주세요.');
+                }
+            }, 1000);
+        }
+
+        window.addEventListener('message', (event) => {
+            if (event.origin !== window.location.origin || !event.data) {
+                return;
+            }
+
+            if (event.data.type === 'PDF_TEXT_PAYLOAD') {
+                receivedText = event.data.text || '';
+                if (receivedText) {
+                    setStatus('텍스트가 준비되었습니다. 잠시 후 다운로드 버튼이 활성화됩니다.');
+                    startCountdown();
+                } else {
+                    setStatus('전달받은 텍스트가 비어 있습니다. 원본 페이지에서 다시 시도해주세요.');
+                    timerEl.textContent = '';
+                }
+            }
+
+            if (event.data.type === 'PDF_TEXT_ERROR') {
+                setStatus('다운로드할 텍스트를 찾을 수 없습니다. 원본 페이지에서 다시 시도해주세요.');
+                timerEl.textContent = '';
+            }
+        });
+
+        downloadBtn.addEventListener('click', () => {
+            if (!receivedText) {
+                setStatus('다운로드할 텍스트가 없습니다. 다시 시도해주세요.');
+                return;
+            }
+
+            const blob = new Blob([receivedText], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `pdf_text_${new Date().toISOString().replace(/[:.]/g, '-')}.txt`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            setStatus('다운로드가 시작되었습니다. 이용해주셔서 감사합니다!');
+        });
+
+        window.addEventListener('load', () => {
+            if (window.opener) {
+                window.opener.postMessage({ type: 'DOWNLOAD_PAGE_READY' }, window.location.origin);
+                setStatus('원본 페이지에서 텍스트를 전달받는 중입니다...');
+            } else {
+                setStatus('원본 페이지와의 연결이 확인되지 않습니다. 창을 닫고 다시 시도해주세요.');
+            }
+        });
+    })();
+    </script>
+</body>
+</html>
