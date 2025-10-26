@@ -3,12 +3,19 @@
 {% set is_en = (lang != 'ko') %}
 
 {% block title %}
-{{ 'PDF 텍스트 변환' if not is_en else 'PDF Text Extractor' }}
+{{ 'PDF 텍스트 변환 | 무료 PDF 텍스트 추출 도구' if not is_en else 'Free PDF Text Extractor | Convert PDF to Text Online' }}
 {% endblock %}
 
 {% block head %}
-<meta name="description" content="{{ 'PDF 파일을 업로드하면 텍스트를 추출해주는 간단한 도구입니다.' if not is_en else 'Upload a PDF and extract its text instantly with PyMuPDF.' }}">
-<meta name="robots" content="noindex">
+<meta name="description" content="{{ '무료로 PDF에서 텍스트를 추출하세요. PDF 텍스트 변환, PDF 텍스트 추출, PDF to Text 온라인 도구.' if not is_en else 'Free online tool to extract text from PDFs instantly. Convert PDF to text for free with high accuracy.' }}">
+<meta name="keywords" content="{{ 'PDF 텍스트 변환, PDF 텍스트 추출, PDF to Text, PDF 텍스트 복사, 무료 PDF 변환기' if not is_en else 'PDF to Text, Extract Text from PDF, Free PDF Text Converter, Online PDF Tool' }}">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://yourdomain.com/tools/pdf-to-text">
+<meta property="og:title" content="{{ 'PDF 텍스트 변환 | 무료 PDF 텍스트 추출' if not is_en else 'PDF Text Extractor | Free PDF to Text Converter' }}">
+<meta property="og:description" content="{{ 'PDF 파일에서 텍스트를 빠르게 추출하는 무료 웹 도구입니다.' if not is_en else 'Upload your PDF and extract text instantly for free.' }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yourdomain.com/tools/pdf-to-text">
+<meta property="og:image" content="https://yourdomain.com/static/images/pdf-to-text-preview.png">
 {% endblock %}
 
 {% block content %}
