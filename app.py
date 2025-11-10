@@ -5,7 +5,6 @@ from api.nutrition_salady import salads_nutrition, warmbowls_nutrition, protein_
 from api.nutrition_poke import poke_nutrition, additional_topping_nutrition, sauce_nutrition, base_nutrition
 from datetime import date, datetime, timezone, timedelta
 import requests
-from apscheduler.schedulers.background import BackgroundScheduler
 from dotenv import load_dotenv
 import os
 from datetime import date

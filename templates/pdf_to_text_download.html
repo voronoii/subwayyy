@@ -95,6 +95,25 @@
             opacity: 0.55;
             cursor: not-allowed;
         }
+        .button-link {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 12px 20px;
+            border-radius: 10px;
+            border: 2px solid #ffdd00;
+            background: transparent;
+            color: #ffdd00;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease, color 0.12s ease;
+        }
+        .button-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+            background: #ffdd00;
+            color: #000;
+        }
         footer {
             font-size: 0.85rem;
             color: rgba(255, 255, 255, 0.65);
@@ -113,6 +132,7 @@
             <button type="button" id="downloadNowBtn" disabled>{{ '다운로드 시작' if lang == 'ko' else 'Start Download' }}</button>
             <div id="downloadTimer" class="timer"></div>
             <div id="downloadStatus" class="status">{{ '서버와 연결을 확인하는 중입니다...' if lang == 'ko' else 'Connecting to the server...' }}</div>
+            <a href="/tools/pdf-to-text" class="button-link">{{ '메인으로 돌아가기' if lang == 'ko' else 'Return to Main Tool' }}</a>
         </section>
 
         <section class="card">
