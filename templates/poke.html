@@ -16,6 +16,17 @@
 <meta name="twitter:description" content="포케올데이 메뉴의 정확한 칼로리와 영양성분 계산">
 <meta name="twitter:image" content="https://subwayyy.kr{{ url_for('static', filename='images/poke.png') }}">
 
+<!-- Resource Hints 최적화 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+<script defer src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1825078358159503"
+    crossorigin="anonymous"></script>
+    
 <!-- 포케올데이 전용 구조화된 데이터 -->
 <script type="application/ld+json">
 {
@@ -40,293 +51,291 @@
 {% endblock %}
 {% block content %}
 
-    <style>
-        #notification.show {
-            opacity: 1 !important;
-            transform: translateX(0) !important;
-        }
+<style>
+    #notification.show {
+        opacity: 1 !important;
+        transform: translateX(0) !important;
+    }
 
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 10px;
-            background: linear-gradient(135deg, #e24b3b 0%, #04ab73 50%, #094231 100%);
-            min-height: 100vh;
-            color: #333;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 10px;
+        background: linear-gradient(135deg, #e24b3b 0%, #04ab73 50%, #094231 100%);
+        min-height: 100vh;
+        color: #333;
+    }
 
-        main {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 20px;
-            margin: 10px auto;
-            max-width: 1200px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-        }
+    main {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 20px;
+        margin: 10px auto;
+        max-width: 1200px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+    }
 
-        .hero-section {
-            background: linear-gradient(45deg, #e24b3b, #04ab73);
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(226, 75, 59, 0.3);
-        }
+    .hero-section {
+        background: linear-gradient(45deg, #e24b3b, #04ab73);
+        color: white;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 15px rgba(226, 75, 59, 0.3);
+    }
 
-        .hero-section .logo {
-            max-width: 300px;
-            height: auto;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-            transition: transform 0.3s ease;
-        }
+    .hero-section .logo {
+        max-width: 300px;
+        height: auto;
+        margin-bottom: 20px;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        transition: transform 0.3s ease;
+    }
 
-        .hero-section .logo:hover {
-            transform: scale(1.05);
-        }
+    .hero-section .logo:hover {
+        transform: scale(1.05);
+    }
 
-        .hero-section h1 {
-            margin: 15px 0;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
+    .hero-section h1 {
+        margin: 15px 0;
+        font-size: 2.5em;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
 
-        .hero-description {
-            font-size: 1.1em;
-            margin: 15px 0;
-            opacity: 0.9;
-        }
+    .hero-description {
+        font-size: 1.1em;
+        margin: 15px 0;
+        opacity: 0.9;
+    }
 
-        .calculator-section, .results-section {
-            background: rgba(4, 171, 115, 0.05);
-            padding: 25px;
-            border-radius: 15px;
-            margin: 20px 0;
-            border: 2px solid rgba(4, 171, 115, 0.1);
-        }
+    .calculator-section, .results-section {
+        background: rgba(4, 171, 115, 0.05);
+        padding: 25px;
+        border-radius: 15px;
+        margin: 20px 0;
+        border: 2px solid rgba(4, 171, 115, 0.1);
+    }
 
-        .calculator-section h2, .results-section h2 {
-            color: #04ab73;
-            font-size: 1.8em;
-            margin-bottom: 20px;
-        }
+    .calculator-section h2, .results-section h2 {
+        color: #04ab73;
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
 
-        .container, .selected-items, .nutrition-info {
-            margin: 0 auto;
-            max-width: 90%;
-        }
+    .container, .selected-items, .nutrition-info {
+        margin: 0 auto;
+        max-width: 90%;
+    }
 
+    h3 {
+        font-size: 1.2em;
+        margin: 10px 0;
+        color: #094231;
+        font-weight: bold;
+    }
+
+    select {
+        width: auto;
+        padding: 10px;
+        margin: 10px 0;
+        font-size: 1em;
+        border: 2px solid #04ab73;
+        border-radius: 8px;
+        background: white;
+        color: #333;
+    }
+
+    select:focus {
+        outline: none;
+        border-color: #e24b3b;
+        box-shadow: 0 0 5px rgba(226, 75, 59, 0.3);
+    }
+
+    button {
+        padding: 10px 20px;
+        margin: 10px 0;
+        font-size: 1em;
+        border: none;
+        border-radius: 8px;
+        background: #e24b3b;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(226, 75, 59, 0.3);
+    }
+
+    button:hover {
+        background: linear-gradient(45deg, #04ab73, #094231);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(4, 171, 115, 0.4);
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    table th, table td {
+        text-align: left;
+        padding: 12px;
+        font-size: 0.9em;
+        border-bottom: 1px solid rgba(4, 171, 115, 0.1);
+    }
+
+    table th {
+        background: linear-gradient(45deg, #e24b3b, #04ab73);
+        color: white;
+        font-weight: bold;
+    }
+
+    table tr:nth-child(even) {
+        background: rgba(4, 171, 115, 0.05);
+    }
+
+    table tr:hover {
+        background: rgba(4, 171, 115, 0.1);
+    }
+
+    .tips-section {
+        background: linear-gradient(135deg, #ffffff, #f8f9fa);
+        padding: 25px;
+        border-radius: 15px;
+        margin: 20px 0;
+        box-shadow: 0 4px 15px rgba(9, 66, 49, 0.1);
+        text-align: center;
+    }
+
+    .tips-section h3 {
+        color: #094231;
+    }
+
+    .tips-section a {
+        color: #e24b3b;
+        font-weight: bold;
+        text-decoration: none;
+        margin: 0 10px;
+    }
+
+    .tips-section a:hover {
+        color: #04ab73;
+        text-decoration: underline;
+    }
+
+    /* 반응형 미디어 쿼리 */
+    @media screen and (max-width: 768px) {
         h3 {
-            font-size: 1.2em;
-            margin: 10px 0;
-            color: #094231;
-            font-weight: bold;
-        }
-
-        select {
-            width: auto;
-            padding: 10px;
-            margin: 10px 0;
             font-size: 1em;
-            border: 2px solid #04ab73;
-            border-radius: 8px;
-            background: white;
-            color: #333;
         }
 
-        select:focus {
-            outline: none;
-            border-color: #e24b3b;
-            box-shadow: 0 0 5px rgba(226, 75, 59, 0.3);
-        }
-
-        button {
-            padding: 10px 20px;
-            margin: 10px 0;
-            font-size: 1em;
-            border: none;
-            border-radius: 8px;
-            background: #e24b3b;
-            color: white;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(226, 75, 59, 0.3);
-        }
-
-        button:hover {
-            background: linear-gradient(45deg, #04ab73, #094231);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(4, 171, 115, 0.4);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        select, button {
+            font-size: 0.9em;
+            padding: 8px;
         }
 
         table th, table td {
-            text-align: left;
-            padding: 12px;
-            font-size: 0.9em;
-            border-bottom: 1px solid rgba(4, 171, 115, 0.1);
+            font-size: 0.8em;
         }
+    }
 
-        table th {
-            background: linear-gradient(45deg, #e24b3b, #04ab73);
-            color: white;
-            font-weight: bold;
+    @media screen and (max-width: 480px) {
+        button {
+            font-size: 0.8em;
+            padding: 5px;
         }
+    }
+</style>
 
-        table tr:nth-child(even) {
-            background: rgba(4, 171, 115, 0.05);
-        }
 
-        table tr:hover {
-            background: rgba(4, 171, 115, 0.1);
-        }
-
-        .tips-section {
-            background: linear-gradient(135deg, #ffffff, #f8f9fa);
-            padding: 25px;
-            border-radius: 15px;
-            margin: 20px 0;
-            box-shadow: 0 4px 15px rgba(9, 66, 49, 0.1);
-            text-align: center;
-        }
-
-        .tips-section h3 {
-            color: #094231;
-        }
-
-        .tips-section a {
-            color: #e24b3b;
-            font-weight: bold;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-
-        .tips-section a:hover {
-            color: #04ab73;
-            text-decoration: underline;
-        }
-
-        /* 반응형 미디어 쿼리 */
-        @media screen and (max-width: 768px) {
-            h3 {
-                font-size: 1em;
-            }
-
-            select, button {
-                font-size: 0.9em;
-                padding: 8px;
-            }
-
-            table th, table td {
-                font-size: 0.8em;
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            button {
-                font-size: 0.8em;
-                padding: 5px;
-            }
-        }
-    </style>
-
+<main>
+    <header class="hero-section">
+        <a href="https://subwayyy.kr/calculator/poke">
+            <picture>
+                <source srcset="{{ url_for('static', filename='images/poke.png') }}" type="image/png">
+                <img src="{{ url_for('static', filename='images/poke.png') }}" alt="포케올데이 로고 - 영양성분 계산기" class="logo" width="150"  loading="lazy">
+            </picture>
+        </a>
+        
+        <h1>포케올데이 영양성분 계산기</h1>
+        <p class="hero-description">포케올데이 포케볼, 베이스, 토핑의 정확한 칼로리와 영양성분을 계산하여 균형잡힌 식단을 계획하세요.</p>
+    </header>
 
     
-
-    <main>
-        <header class="hero-section">
-            <a href="https://subwayyy.kr/calculator/poke">
-                <picture>
-                    <source srcset="{{ url_for('static', filename='images/poke.png') }}" type="image/png">
-                    <img src="{{ url_for('static', filename='images/poke.png') }}" alt="포케올데이 로고 - 영양성분 계산기" class="logo" width="150"  loading="lazy">
-                </picture>
-            </a>
-            
-            <h1>포케올데이 영양성분 계산기</h1>
-            <p class="hero-description">포케올데이 포케볼, 베이스, 토핑의 정확한 칼로리와 영양성분을 계산하여 균형잡힌 식단을 계획하세요.</p>
-        </header>
-
-        
-        
-        <section class="calculator-section">
-       
-    <script>
-
-        function showNotification() {
-            var notification = document.getElementById("notification");
-            notification.classList.add("show");
-            setTimeout(function() {
-                notification.classList.remove("show");
-            }, 1000); // 1초 후 알림 숨김
-        }
-
-
-        function addItem(selectId, listId) {
-            var select = document.getElementById(selectId);
-            var selectedItem = select.options[select.selectedIndex].value;
-            if (!document.getElementById(selectedItem)) {
-                var list = document.getElementById(listId);
-                var listItem = document.createElement("li");
-                listItem.id = selectedItem;
-                listItem.innerHTML = selectedItem + ' <button onclick="removeItem(\'' + selectedItem + '\')"> 삭제 </button>';
-                list.appendChild(listItem);
-                showNotification(); 
-            }
-        }
-
-        function removeItem(itemId) {
-            var listItem = document.getElementById(itemId);
-            listItem.parentNode.removeChild(listItem);
-        }
-
-        function calculateNutrition() {
-            var selectedItems = {
-                selected_pokes: getSelectedItems("selected-pokes"),
-                selected_toppings: getSelectedItems("selected-toppings"),
-                selected_sauces: getSelectedItems("selected-sauces"),
-                selected_bases: getSelectedItems("selected-bases")
-            }; 
-
-            fetch('/calculate_poke', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(selectedItems)
-            }).then(response => response.json())
-              .then(data => { 
-                  document.getElementById('열량(kcal)').innerText = parseFloat(data['열량(kcal)']).toFixed(2);
-                  document.getElementById('탄수화물(g)').innerText = parseFloat(data['탄수화물(g)']).toFixed(2);
-                  document.getElementById('당류(g)').innerText = parseFloat(data['당류(g)']).toFixed(2);
-                  document.getElementById('단백질(g)').innerText = parseFloat(data['단백질(g)']).toFixed(2);
-                  document.getElementById('지방(g)').innerText = parseFloat(data['지방(g)']).toFixed(2);
-                  document.getElementById('포화지방(g)').innerText = parseFloat(data['포화지방(g)']).toFixed(2);
-                  document.getElementById('나트륨(mg)').innerText = parseFloat(data['나트륨(mg)']).toFixed(2);
-              });
-        }
-
-        function getSelectedItems(listId) {
-            var selectedItems = [];
-            var list = document.getElementById(listId).children;
-            for (var i = 0; i < list.length; i++) {
-                selectedItems.push(list[i].id);
-            }
-            return selectedItems;
-        }
-    </script>
     
-</head>
+    <section class="calculator-section">
+
+<script>
+
+    function showNotification() {
+        var notification = document.getElementById("notification");
+        notification.classList.add("show");
+        setTimeout(function() {
+            notification.classList.remove("show");
+        }, 1000); // 1초 후 알림 숨김
+    }
+
+
+    function addItem(selectId, listId) {
+        var select = document.getElementById(selectId);
+        var selectedItem = select.options[select.selectedIndex].value;
+        if (!document.getElementById(selectedItem)) {
+            var list = document.getElementById(listId);
+            var listItem = document.createElement("li");
+            listItem.id = selectedItem;
+            listItem.innerHTML = selectedItem + ' <button onclick="removeItem(\'' + selectedItem + '\')"> 삭제 </button>';
+            list.appendChild(listItem);
+            showNotification(); 
+        }
+    }
+
+    function removeItem(itemId) {
+        var listItem = document.getElementById(itemId);
+        listItem.parentNode.removeChild(listItem);
+    }
+
+    function calculateNutrition() {
+        var selectedItems = {
+            selected_pokes: getSelectedItems("selected-pokes"),
+            selected_toppings: getSelectedItems("selected-toppings"),
+            selected_sauces: getSelectedItems("selected-sauces"),
+            selected_bases: getSelectedItems("selected-bases")
+        }; 
+
+        fetch('/calculate_poke', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(selectedItems)
+        }).then(response => response.json())
+        .then(data => { 
+            document.getElementById('열량(kcal)').innerText = parseFloat(data['열량(kcal)']).toFixed(2);
+            document.getElementById('탄수화물(g)').innerText = parseFloat(data['탄수화물(g)']).toFixed(2);
+            document.getElementById('당류(g)').innerText = parseFloat(data['당류(g)']).toFixed(2);
+            document.getElementById('단백질(g)').innerText = parseFloat(data['단백질(g)']).toFixed(2);
+            document.getElementById('지방(g)').innerText = parseFloat(data['지방(g)']).toFixed(2);
+            document.getElementById('포화지방(g)').innerText = parseFloat(data['포화지방(g)']).toFixed(2);
+            document.getElementById('나트륨(mg)').innerText = parseFloat(data['나트륨(mg)']).toFixed(2);
+        });
+    }
+
+    function getSelectedItems(listId) {
+        var selectedItems = [];
+        var list = document.getElementById(listId).children;
+        for (var i = 0; i < list.length; i++) {
+            selectedItems.push(list[i].id);
+        }
+        return selectedItems;
+    }
+</script>
+    
+
 
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5L5CJDVJ"
