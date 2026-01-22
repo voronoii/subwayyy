@@ -356,32 +356,42 @@ crossorigin="anonymous"></script>
             }).then(canvas => {
                 // Canvas를 Blob으로 변환
                 canvas.toBlob((blob) => {
-                    const url = URL.createObjectURL(blob);
-                    const link = document.createElement('a');
-                    const timestamp = new Date().getTime();
+                    // 모바일 기기 감지
+                    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
                     
-                    link.download = `subwayyy_receipt_${timestamp}.png`;
-                    link.href = url;
-                    
-                    // 다운로드 트리거
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    
-                    // URL 정리
-                    setTimeout(() => URL.revokeObjectURL(url), 100);
-                    
-                    if (button) {
-                        button.innerHTML = '✅ 저장 완료!';
-                        setTimeout(() => {
-                            button.innerHTML = originalText;
-                            button.disabled = false;
-                        }, 2000);
+                    if (isMobile && navigator.share) {
+                        // 모바일 + Web Share API 지원: 공유 시트로 바로 전송
+                        const file = new File([blob], 'subwayyy_receipt.png', { type: 'image/png' });
+                        
+                        navigator.share({
+                            files: [file],
+                            title: '서브웨이 영양성분',
+                            text: '내 서브웨이 샌드위치 영양성분'
+                        }).then(() => {
+                            if (button) {
+                                button.innerHTML = '✅ 공유 완료!';
+                                setTimeout(() => {
+                                    button.innerHTML = originalText;
+                                    button.disabled = false;
+                                }, 2000);
+                            }
+                        }).catch((error) => {
+                            // 사용자가 취소한 경우
+                            if (error.name !== 'AbortError') {
+                                console.error('공유 실패:', error);
+                                // 공유 실패 시 다운로드로 대체
+                                downloadImage(blob, button, originalText);
+                            } else {
+                                if (button) {
+                                    button.innerHTML = originalText;
+                                    button.disabled = false;
+                                }
+                            }
+                        });
+                    } else {
+                        // PC 또는 Web Share API 미지원: 다운로드
+                        downloadImage(blob, button, originalText);
                     }
-                    
-                    // 안내 메시지
-                    alert('이미지가 다운로드 폴더에 저장되었습니다!\n인스타그램 앱에서 업로드하세요.');
-                    
                 }, 'image/png', 1.0);
             }).catch(error => {
                 console.error('이미지 생성 실패:', error);
@@ -392,6 +402,33 @@ crossorigin="anonymous"></script>
                     button.disabled = false;
                 }
             });
+        }
+        
+        function downloadImage(blob, button, originalText) {
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            const timestamp = new Date().getTime();
+            
+            link.download = `subwayyy_receipt_${timestamp}.png`;
+            link.href = url;
+            
+            // 다운로드 트리거
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // URL 정리
+            setTimeout(() => URL.revokeObjectURL(url), 100);
+            
+            if (button) {
+                button.innerHTML = '✅ 저장 완료!';
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                }, 2000);
+            }
+            
+            alert('이미지가 저장되었습니다!');
         }
 
         function openReceipt() {
@@ -815,7 +852,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div style="text-align: center;">
         <button onclick="openReceipt()">영수증 보기</button>
         <button onclick="saveReceiptAsImage()" style="background: linear-gradient(135deg, #667eea, #764ba2); margin-left: 10px;">
-            💾 이미지 저장
+            📤 공유/저장
         </button>
     </div>
     
@@ -854,7 +891,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div id="receiptOverlay" class="overlay">
         <div class="overlay-content">
             <div class="receipt-box">
-                <h3 style="color:black">🥪 나의 샌드위치 🧾</h3>
+                <h3 style="color:black">🥪 SUBWAY 🧾</h3>
                 <table>
                     <tr>
                         <!-- 영양 성분 -->
@@ -871,7 +908,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         
                         <!-- 선택한 항목 -->
                         <td>
-                            <h4>선택메뉴</h4>
+                            <h4 style="color:black">선택메뉴</h4>
                             <ul id="receipt-selected-items">
                                 <!-- 항목들이 이곳에 추가됩니다 -->
                             </ul>
@@ -879,7 +916,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </tr>
                 </table>
                 <div class="button-container">
-                    <button onclick="captureReceiptImage()" class="save-button">💾 이미지 저장</button>
+                    <button onclick="captureReceiptImage()" class="save-button">📤 공유/저장</button>
                     <button onclick="closeReceipt()" class="close-button">닫기</button>
                 </div>
             </div>
