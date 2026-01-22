@@ -320,35 +320,76 @@ crossorigin="anonymous"></script>
     <script>
 
         function saveReceiptAsImage() {
-            const receiptElement = document.querySelector('.receipt-box'); // 영수증 박스 요소 선택
+            // 영수증이 열려있는지 확인
+            const overlay = document.getElementById("receiptOverlay");
+            const isOpen = overlay.style.display === "flex";
             
-            html2canvas(receiptElement).then(canvas => {
-                // 캔버스를 이미지 데이터로 변환
-                const imageData = canvas.toDataURL('image/png');
+            if (!isOpen) {
+                // 영수증이 안 열려있으면 먼저 열기
+                openReceipt();
                 
-                // iOS 환경 감지
-                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                // 잠시 대기 후 이미지 저장 (영수증이 렌더링될 시간)
+                setTimeout(() => {
+                    captureReceiptImage();
+                }, 300);
+            } else {
+                // 이미 열려있으면 바로 저장
+                captureReceiptImage();
+            }
+        }
+        
+        function captureReceiptImage() {
+            const button = event.target;
+            const originalText = button ? button.innerHTML : '';
+            
+            if (button) {
+                button.innerHTML = '⏳ 생성 중...';
+                button.disabled = true;
+            }
+            
+            const receiptElement = document.querySelector('.receipt-box');
+            
+            html2canvas(receiptElement, {
+                scale: 2, // 고해상도
+                backgroundColor: '#f9f9f9',
+                logging: false
+            }).then(canvas => {
+                // Canvas를 Blob으로 변환
+                canvas.toBlob((blob) => {
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    const timestamp = new Date().getTime();
+                    
+                    link.download = `subwayyy_receipt_${timestamp}.png`;
+                    link.href = url;
+                    
+                    // 다운로드 트리거
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    // URL 정리
+                    setTimeout(() => URL.revokeObjectURL(url), 100);
+                    
+                    if (button) {
+                        button.innerHTML = '✅ 저장 완료!';
+                        setTimeout(() => {
+                            button.innerHTML = originalText;
+                            button.disabled = false;
+                        }, 2000);
+                    }
+                    
+                    // 안내 메시지
+                    alert('이미지가 다운로드 폴더에 저장되었습니다!\n인스타그램 앱에서 업로드하세요.');
+                    
+                }, 'image/png', 1.0);
+            }).catch(error => {
+                console.error('이미지 생성 실패:', error);
+                alert('이미지 생성에 실패했습니다. 다시 시도해주세요.');
                 
-                if (isIOS) {
-                    // iOS에서는 직접 링크를 클릭하도록 유도
-                    const newWindowLink = document.createElement('a');
-                    newWindowLink.href = imageData;
-                    newWindowLink.innerText = "여기를 클릭하여 이미지를 저장하세요";
-                    newWindowLink.style.display = 'block';
-                    newWindowLink.style.marginTop = '20px';
-                    newWindowLink.style.color = '#007bff';
-                    newWindowLink.style.textDecoration = 'underline';
-                    newWindowLink.target = "_blank"; // 새 창에서 열리도록 설정
-
-                    // 기존의 영수증 상자 아래에 링크 추가
-                    document.querySelector('.receipt-box').appendChild(newWindowLink);
-                    alert("이미지를 길게 눌러 카메라 롤에 저장할 수 있습니다.");
-                } else {
-                    // iOS가 아닌 경우, 이미지 파일로 다운로드
-                    const downloadLink = document.createElement('a');
-                    downloadLink.href = imageData;
-                    downloadLink.download = 'nutrition_receipt.png';
-                    downloadLink.click();
+                if (button) {
+                    button.innerHTML = originalText;
+                    button.disabled = false;
                 }
             });
         }
@@ -773,8 +814,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- 버튼 추가 (사용자가 클릭하면 8비트 영수증이 뜸) -->
     <div style="text-align: center;">
         <button onclick="openReceipt()">영수증 보기</button>
-        <button onclick="openInstagramShare()" style="background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); margin-left: 10px;">
-            📸 인스타그램 공유
+        <button onclick="saveReceiptAsImage()" style="background: linear-gradient(135deg, #667eea, #764ba2); margin-left: 10px;">
+            💾 이미지 저장
         </button>
     </div>
     
@@ -838,14 +879,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </tr>
                 </table>
                 <div class="button-container">
+                    <button onclick="captureReceiptImage()" class="save-button">💾 이미지 저장</button>
                     <button onclick="closeReceipt()" class="close-button">닫기</button>
-                    <!-- <button onclick="saveReceiptAsImage()" class="save-button">영수증저장</button> -->
                 </div>
             </div>
         </div>
     </div>
-    
-    <!-- 인스타그램 공유 기능 -->
-    {% include 'instagram_share.html' %}
 
 {% endblock %}

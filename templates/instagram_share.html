@@ -297,69 +297,21 @@
     box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
 }
 
-.instagram-format-selector {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 10000;
-    background: white;
-    padding: 15px;
-    border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-.instagram-format-selector button {
-    padding: 15px 30px;
-    margin: 5px;
-    border: 2px solid #008B47;
-    background: white;
-    color: #008B47;
-    border-radius: 15px;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 16px;
-    transition: all 0.3s;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.instagram-format-selector button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(0, 139, 71, 0.3);
-}
-
-.instagram-format-selector button.active {
-    background: linear-gradient(135deg, #008B47, #009639);
-    color: white;
-    border-color: #009639;
-}
-
 /* 모바일 최적화 */
 @media (max-width: 768px) {
-    .instagram-format-selector {
-        top: 10px;
-        right: 10px;
-        left: 10px;
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-    }
-    
-    .instagram-format-selector button {
-        flex: 1;
-        padding: 12px 20px;
-        font-size: 15px;
-    }
-    
     .instagram-actions {
         bottom: 10px;
         flex-direction: column;
         width: calc(100% - 40px);
         max-width: 400px;
+        gap: 10px;
     }
     
     .instagram-btn {
         width: 100%;
         justify-content: center;
+        padding: 15px 30px;
+        font-size: 16px;
     }
 }
 </style>
@@ -441,14 +393,9 @@
 
 <!-- 인스타그램 미리보기 오버레이 -->
 <div id="instagram-overlay" class="instagram-overlay">
-    <div class="instagram-format-selector">
-        <button onclick="quickShare('story')" id="format-story-btn" class="active">📱 스토리로 공유</button>
-        <button onclick="quickShare('feed')" id="format-feed-btn">🖼️ 피드로 공유</button>
-    </div>
-    
-    <div style="position: fixed; top: 90px; left: 50%; transform: translateX(-50%); z-index: 10001; background: rgba(255,255,255,0.95); padding: 10px 20px; border-radius: 10px; font-size: 14px; color: #333; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.2);" id="instagram-guide">
-        <div style="font-weight: 600; margin-bottom: 5px;">📱 버튼을 눌러 바로 공유하세요!</div>
-        <div style="font-size: 12px; opacity: 0.8;">스토리/피드 선택 → 인스타그램 앱으로 바로 이동</div>
+    <div style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 10001; background: rgba(255,255,255,0.95); padding: 15px 25px; border-radius: 15px; font-size: 16px; color: #333; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.3); max-width: 90%;" id="instagram-guide">
+        <div style="font-weight: 700; margin-bottom: 8px; font-size: 18px;">📱 인스타그램으로 공유하세요!</div>
+        <div style="font-size: 14px; opacity: 0.8; line-height: 1.5;">이미지를 저장하고 인스타그램 앱에서 스토리나 피드에 업로드하세요</div>
     </div>
     
     <div id="instagram-preview" class="instagram-preview">
@@ -457,7 +404,10 @@
     
     <div class="instagram-actions" id="instagram-action-buttons">
         <button class="instagram-btn instagram-btn-download" onclick="downloadInstagramImage()">
-            💾 이미지만 저장
+            💾 이미지 저장
+        </button>
+        <button class="instagram-btn instagram-btn-share" onclick="shareToInstagram()" id="share-btn-mobile" style="display: none;">
+            📤 앱으로 공유
         </button>
         <button class="instagram-btn instagram-btn-close" onclick="closeInstagramOverlay()">
             ✕ 닫기
@@ -466,8 +416,6 @@
 </div>
 
 <script>
-let currentFormat = 'story'; // 'story' 또는 'feed'
-
 // 인스타그램 공유 오버레이 열기
 function openInstagramShare() {
     // 영양성분 데이터 가져오기
@@ -501,35 +449,37 @@ function openInstagramShare() {
     document.getElementById('instagram-overlay').classList.add('active');
     document.body.style.overflow = 'hidden';
     
-    // 모바일인지 확인
+    // 스토리 포맷으로 미리보기 표시
+    const preview = document.getElementById('instagram-preview');
+    const sourceCard = document.getElementById('instagram-story-card');
+    preview.innerHTML = sourceCard.outerHTML;
+    preview.firstElementChild.style.position = 'relative';
+    preview.firstElementChild.style.left = '0';
+    preview.firstElementChild.style.top = '0';
+    
+    // 모바일인지 확인하고 Web Share 버튼 표시 여부 결정
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const shareBtn = document.getElementById('share-btn-mobile');
     
-    // 초기 미리보기 표시
-    switchInstagramFormat(currentFormat);
+    if (isMobile && navigator.share) {
+        shareBtn.style.display = 'inline-flex';
+    } else {
+        shareBtn.style.display = 'none';
+    }
     
-    // 가이드 메시지 업데이트
+    // 가이드 메시지 자동 숨김 (5초 후)
     const guideElement = document.getElementById('instagram-guide');
     if (guideElement) {
-        if (isMobile && navigator.share) {
-            guideElement.innerHTML = `
-                <div style="font-weight: 600; margin-bottom: 5px;">📱 버튼을 눌러 바로 공유하세요!</div>
-                <div style="font-size: 12px; opacity: 0.8;">스토리/피드 선택 → 인스타그램 앱으로 바로 이동</div>
-            `;
-        } else {
-            guideElement.innerHTML = `
-                <div style="font-weight: 600; margin-bottom: 5px;">💾 이미지를 저장하세요</div>
-                <div style="font-size: 12px; opacity: 0.8;">저장 후 모바일로 전송해서 인스타그램에 업로드</div>
-            `;
-        }
+        guideElement.style.display = 'block';
+        guideElement.style.opacity = '1';
         
-        // 3초 후 가이드 메시지 페이드아웃
         setTimeout(() => {
             guideElement.style.transition = 'opacity 0.5s';
             guideElement.style.opacity = '0';
             setTimeout(() => {
                 guideElement.style.display = 'none';
             }, 500);
-        }, 3000);
+        }, 5000);
     }
 }
 
@@ -568,126 +518,8 @@ function updateFeedCard(calories, protein, sodium, items) {
     });
 }
 
-// 포맷 전환
-function switchInstagramFormat(format) {
-    currentFormat = format;
-    
-    // 버튼 활성화 상태 변경
-    document.getElementById('format-story-btn').classList.remove('active');
-    document.getElementById('format-feed-btn').classList.remove('active');
-    document.getElementById('format-' + format + '-btn').classList.add('active');
-    
-    // 미리보기 업데이트
-    const preview = document.getElementById('instagram-preview');
-    const sourceCard = format === 'story' ? 
-        document.getElementById('instagram-story-card') : 
-        document.getElementById('instagram-feed-card');
-    
-    preview.innerHTML = sourceCard.outerHTML;
-    preview.firstElementChild.style.position = 'relative';
-    preview.firstElementChild.style.left = '0';
-    preview.firstElementChild.style.top = '0';
-}
-
-// 빠른 공유 함수 (모바일 최적화)
-async function quickShare(format) {
-    // 포맷 변경
-    currentFormat = format;
-    
-    // 모바일인지 확인
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    
-    if (isMobile && navigator.share) {
-        // 모바일에서는 바로 공유
-        await generateAndShare(format);
-    } else {
-        // PC에서는 미리보기 표시
-        switchInstagramFormat(format);
-    }
-}
-
-// 이미지 생성 및 공유
-async function generateAndShare(format) {
-    try {
-        const cardId = format === 'story' ? 'instagram-story-card' : 'instagram-feed-card';
-        const card = document.getElementById(cardId);
-        
-        // 로딩 표시
-        const loadingMsg = document.createElement('div');
-        loadingMsg.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.9);color:white;padding:30px 50px;border-radius:20px;font-size:18px;z-index:99999;text-align:center;';
-        loadingMsg.innerHTML = '📸<br>이미지 생성 중...';
-        document.body.appendChild(loadingMsg);
-        
-        // 임시로 화면에 표시
-        card.style.position = 'fixed';
-        card.style.left = '0';
-        card.style.top = '0';
-        card.style.zIndex = '-1';
-        
-        const canvas = await html2canvas(card, {
-            scale: 2,
-            useCORS: true,
-            backgroundColor: null,
-            logging: false
-        });
-        
-        // 다시 숨김
-        card.style.position = 'absolute';
-        card.style.left = '-9999px';
-        card.style.top = '-9999px';
-        
-        // Canvas를 Blob으로 변환
-        canvas.toBlob(async (blob) => {
-            try {
-                const formatName = format === 'story' ? '스토리' : '피드';
-                const file = new File([blob], `subwayyy_${format}_${Date.now()}.png`, { type: 'image/png' });
-                
-                // Web Share API 사용
-                if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-                    loadingMsg.innerHTML = '📤<br>공유 화면 여는 중...';
-                    
-                    await navigator.share({
-                        files: [file],
-                        title: `나의 건강 식단 - ${formatName}`,
-                        text: `서브웨이 영양성분 계산 결과!\n#서브웨이 #건강식단 #다이어트 #영양성분`,
-                        url: 'https://www.subwayyy.kr'
-                    });
-                    
-                    loadingMsg.innerHTML = '✅<br>공유 완료!';
-                    setTimeout(() => {
-                        document.body.removeChild(loadingMsg);
-                    }, 1500);
-                } else {
-                    // Web Share 미지원 시 다운로드
-                    loadingMsg.innerHTML = '💾<br>이미지 저장 중...';
-                    const link = document.createElement('a');
-                    link.download = `subwayyy_${format}_${Date.now()}.png`;
-                    link.href = canvas.toDataURL('image/png');
-                    link.click();
-                    
-                    loadingMsg.innerHTML = '✅<br>저장 완료!<br><small>인스타그램 앱에서 업로드하세요</small>';
-                    setTimeout(() => {
-                        document.body.removeChild(loadingMsg);
-                    }, 2500);
-                }
-            } catch (error) {
-                if (error.name !== 'AbortError') {
-                    console.error('공유 실패:', error);
-                    loadingMsg.innerHTML = '❌<br>공유 취소됨';
-                    setTimeout(() => {
-                        document.body.removeChild(loadingMsg);
-                    }, 1500);
-                } else {
-                    document.body.removeChild(loadingMsg);
-                }
-            }
-        }, 'image/png', 1.0);
-        
-    } catch (error) {
-        console.error('이미지 생성 실패:', error);
-        alert('이미지 생성에 실패했습니다. 다시 시도해주세요.');
-    }
-}
+// 포맷 변수는 유지 (나중에 필요할 수 있음)
+let currentFormat = 'story';
 
 // 이미지 다운로드
 async function downloadInstagramImage() {
@@ -697,8 +529,8 @@ async function downloadInstagramImage() {
     button.disabled = true;
     
     try {
-        const cardId = currentFormat === 'story' ? 'instagram-story-card' : 'instagram-feed-card';
-        const card = document.getElementById(cardId);
+        // 스토리 포맷으로 고정 (세로형이 인스타그램에 더 범용적)
+        const card = document.getElementById('instagram-story-card');
         
         // 임시로 화면에 표시 (html2canvas가 렌더링하기 위해)
         card.style.position = 'fixed';
@@ -710,7 +542,9 @@ async function downloadInstagramImage() {
             scale: 2, // 고해상도
             useCORS: true,
             backgroundColor: null,
-            logging: false
+            logging: false,
+            width: 1080,
+            height: 1920
         });
         
         // 다시 숨김
@@ -718,18 +552,45 @@ async function downloadInstagramImage() {
         card.style.left = '-9999px';
         card.style.top = '-9999px';
         
-        // 다운로드
-        const link = document.createElement('a');
-        const timestamp = new Date().getTime();
-        link.download = `subwayyy_${currentFormat}_${timestamp}.png`;
-        link.href = canvas.toDataURL('image/png');
-        link.click();
+        button.innerHTML = '💾 저장 중...';
         
-        button.innerHTML = '✅ 저장 완료!';
-        setTimeout(() => {
-            button.innerHTML = originalText;
-            button.disabled = false;
-        }, 2000);
+        // Canvas를 Blob으로 변환하여 다운로드
+        canvas.toBlob((blob) => {
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            const timestamp = new Date().getTime();
+            
+            // 파일명 설정
+            link.download = `subwayyy_instagram_${timestamp}.png`;
+            link.href = url;
+            
+            // 실제 클릭 트리거
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // URL 정리
+            setTimeout(() => URL.revokeObjectURL(url), 100);
+            
+            button.innerHTML = '✅ 저장 완료!';
+            
+            // 2초 후 가이드 메시지 표시
+            setTimeout(() => {
+                const guide = document.getElementById('instagram-guide');
+                if (guide) {
+                    guide.innerHTML = `
+                        <div style="font-weight: 700; margin-bottom: 8px; font-size: 18px; color: #008B47;">✅ 저장 완료!</div>
+                        <div style="font-size: 14px; opacity: 0.9; line-height: 1.5;">갤러리(다운로드 폴더)에서 확인 후<br>인스타그램 앱에서 업로드하세요</div>
+                    `;
+                }
+            }, 500);
+            
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }, 2000);
+            
+        }, 'image/png', 1.0);
         
     } catch (error) {
         console.error('이미지 생성 실패:', error);
@@ -739,7 +600,7 @@ async function downloadInstagramImage() {
     }
 }
 
-// 인스타그램 공유
+// 인스타그램 공유 (모바일 Web Share API)
 async function shareToInstagram() {
     const button = event.target;
     const originalText = button.innerHTML;
@@ -747,8 +608,7 @@ async function shareToInstagram() {
     button.disabled = true;
     
     try {
-        const cardId = currentFormat === 'story' ? 'instagram-story-card' : 'instagram-feed-card';
-        const card = document.getElementById(cardId);
+        const card = document.getElementById('instagram-story-card');
         
         // 임시로 화면에 표시
         card.style.position = 'fixed';
@@ -760,7 +620,9 @@ async function shareToInstagram() {
             scale: 2,
             useCORS: true,
             backgroundColor: null,
-            logging: false
+            logging: false,
+            width: 1080,
+            height: 1920
         });
         
         // 다시 숨김
@@ -768,47 +630,41 @@ async function shareToInstagram() {
         card.style.left = '-9999px';
         card.style.top = '-9999px';
         
+        button.innerHTML = '📤 공유 중...';
+        
         // Canvas를 Blob으로 변환
         canvas.toBlob(async (blob) => {
-            const file = new File([blob], 'subwayyy_share.png', { type: 'image/png' });
+            const file = new File([blob], `subwayyy_${Date.now()}.png`, { type: 'image/png' });
             
-            // Web Share API 지원 확인
-            if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-                try {
-                    await navigator.share({
-                        files: [file],
-                        title: '나의 건강 식단',
-                        text: '서브웨이 영양성분 계산 결과를 공유합니다! #서브웨이 #건강식단 #다이어트',
-                        url: 'https://www.subwayyy.kr'
-                    });
-                    
-                    button.innerHTML = '✅ 공유 완료!';
-                } catch (error) {
-                    if (error.name !== 'AbortError') {
-                        throw error;
-                    }
+            try {
+                await navigator.share({
+                    files: [file],
+                    title: '나의 건강 식단',
+                    text: `서브웨이 영양성분 계산 결과!\n#서브웨이 #건강식단 #다이어트 #영양성분`,
+                    url: 'https://www.subwayyy.kr'
+                });
+                
+                button.innerHTML = '✅ 공유 완료!';
+                
+                setTimeout(() => {
                     button.innerHTML = originalText;
+                    button.disabled = false;
+                }, 2000);
+                
+            } catch (error) {
+                if (error.name === 'AbortError') {
+                    // 사용자가 공유 취소
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                } else {
+                    throw error;
                 }
-            } else {
-                // Web Share API 미지원 시 다운로드로 대체
-                alert('이 브라우저에서는 직접 공유가 지원되지 않습니다.\n이미지를 저장한 후 인스타그램 앱에서 업로드해주세요.');
-                const link = document.createElement('a');
-                link.download = `subwayyy_${currentFormat}_${Date.now()}.png`;
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-                button.innerHTML = '💾 저장됨';
             }
-            
-            setTimeout(() => {
-                button.innerHTML = originalText;
-                button.disabled = false;
-            }, 2000);
-            
         }, 'image/png', 1.0);
         
     } catch (error) {
         console.error('공유 실패:', error);
-        alert('공유에 실패했습니다. 다시 시도해주세요.');
+        alert('공유에 실패했습니다. "이미지 저장" 버튼을 사용해주세요.');
         button.innerHTML = originalText;
         button.disabled = false;
     }
