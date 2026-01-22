@@ -773,6 +773,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- 버튼 추가 (사용자가 클릭하면 8비트 영수증이 뜸) -->
     <div style="text-align: center;">
         <button onclick="openReceipt()">영수증 보기</button>
+        <button onclick="openInstagramShare()" style="background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); margin-left: 10px;">
+            📸 인스타그램 공유
+        </button>
     </div>
     
     </section>
@@ -842,5 +845,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </div>
     
+    <!-- 인스타그램 공유 기능 -->
+    {% include 'instagram_share.html' %}
 
 {% endblock %}

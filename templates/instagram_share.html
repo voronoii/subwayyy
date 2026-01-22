@@ -1,0 +1,836 @@
+<!-- 인스타그램 공유용 템플릿 -->
+<style>
+/* 인스타그램 스토리용 컨테이너 (1080 x 1920) */
+.instagram-story-card {
+    width: 1080px;
+    height: 1920px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 80px 60px;
+    box-sizing: border-box;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.instagram-story-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 221, 0, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 139, 71, 0.3) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.story-content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.story-header {
+    text-align: center;
+    color: white;
+    margin-bottom: 60px;
+}
+
+.story-header h1 {
+    font-size: 72px;
+    font-weight: 900;
+    margin: 0 0 20px 0;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    letter-spacing: -2px;
+}
+
+.story-header .emoji {
+    font-size: 96px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.story-main {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 40px;
+    padding: 60px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.story-title {
+    font-size: 56px;
+    font-weight: 800;
+    color: #333;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.story-items {
+    margin-bottom: 50px;
+    background: #f8f9fa;
+    padding: 40px;
+    border-radius: 30px;
+}
+
+.story-item {
+    font-size: 42px;
+    color: #555;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.story-item::before {
+    content: '🍴';
+    margin-right: 20px;
+    font-size: 48px;
+}
+
+.story-nutrition {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.nutrition-item {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+    color: white;
+}
+
+.nutrition-label {
+    font-size: 36px;
+    opacity: 0.9;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.nutrition-value {
+    font-size: 64px;
+    font-weight: 900;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.story-footer {
+    text-align: center;
+    color: white;
+    margin-top: 60px;
+}
+
+.story-footer .watermark {
+    font-size: 48px;
+    font-weight: 700;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+}
+
+.story-footer .url {
+    font-size: 42px;
+    opacity: 0.9;
+    font-weight: 600;
+}
+
+/* 인스타그램 피드용 (1080 x 1080) */
+.instagram-feed-card {
+    width: 1080px;
+    height: 1080px;
+    background: linear-gradient(135deg, #008B47 0%, #009639 50%, #FFDD00 100%);
+    padding: 60px;
+    box-sizing: border-box;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.feed-content {
+    background: white;
+    border-radius: 40px;
+    padding: 60px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.feed-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.feed-header .emoji {
+    font-size: 96px;
+    margin-bottom: 20px;
+}
+
+.feed-header h1 {
+    font-size: 64px;
+    color: #008B47;
+    font-weight: 900;
+    margin: 0;
+}
+
+.feed-items {
+    background: #f8f9fa;
+    padding: 40px;
+    border-radius: 25px;
+    margin-bottom: 40px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.feed-item {
+    font-size: 36px;
+    color: #333;
+    margin: 15px 0;
+    font-weight: 500;
+}
+
+.feed-nutrition {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.feed-nutrition-item {
+    background: linear-gradient(135deg, #008B47, #009639);
+    padding: 30px 20px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+}
+
+.feed-nutrition-label {
+    font-size: 28px;
+    opacity: 0.9;
+    margin-bottom: 10px;
+}
+
+.feed-nutrition-value {
+    font-size: 48px;
+    font-weight: 900;
+}
+
+.feed-footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #008B47;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+/* 오버레이 스타일 */
+.instagram-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    overflow: auto;
+    padding: 20px;
+}
+
+.instagram-overlay.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.instagram-preview {
+    transform: scale(0.4);
+    transform-origin: center;
+    margin: 40px 0;
+}
+
+.instagram-actions {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    z-index: 10000;
+}
+
+.instagram-btn {
+    padding: 20px 40px;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.instagram-btn-download {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+}
+
+.instagram-btn-share {
+    background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: white;
+}
+
+.instagram-btn-close {
+    background: #666;
+    color: white;
+}
+
+.instagram-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
+}
+
+.instagram-format-selector {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.instagram-format-selector button {
+    padding: 15px 30px;
+    margin: 5px;
+    border: 2px solid #008B47;
+    background: white;
+    color: #008B47;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 16px;
+    transition: all 0.3s;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.instagram-format-selector button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 139, 71, 0.3);
+}
+
+.instagram-format-selector button.active {
+    background: linear-gradient(135deg, #008B47, #009639);
+    color: white;
+    border-color: #009639;
+}
+
+/* 모바일 최적화 */
+@media (max-width: 768px) {
+    .instagram-format-selector {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .instagram-format-selector button {
+        flex: 1;
+        padding: 12px 20px;
+        font-size: 15px;
+    }
+    
+    .instagram-actions {
+        bottom: 10px;
+        flex-direction: column;
+        width: calc(100% - 40px);
+        max-width: 400px;
+    }
+    
+    .instagram-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+</style>
+
+<!-- 인스타그램 스토리용 카드 (숨겨진 상태) -->
+<div id="instagram-story-card" class="instagram-story-card" style="position: absolute; left: -9999px; top: -9999px;">
+    <div class="story-content">
+        <div class="story-header">
+            <span class="emoji" id="story-emoji">🥗</span>
+            <h1>나의 건강 식단</h1>
+        </div>
+        
+        <div class="story-main">
+            <div class="story-title" id="story-main-title">오늘의 메뉴</div>
+            
+            <div class="story-items" id="story-items-list">
+                <!-- 선택한 메뉴들이 여기에 추가됩니다 -->
+            </div>
+            
+            <div class="story-nutrition">
+                <div class="nutrition-item">
+                    <div class="nutrition-label">칼로리</div>
+                    <div class="nutrition-value" id="story-calories">0</div>
+                </div>
+                <div class="nutrition-item">
+                    <div class="nutrition-label">단백질</div>
+                    <div class="nutrition-value" id="story-protein">0g</div>
+                </div>
+                <div class="nutrition-item">
+                    <div class="nutrition-label">당류</div>
+                    <div class="nutrition-value" id="story-sugars">0g</div>
+                </div>
+                <div class="nutrition-item">
+                    <div class="nutrition-label">나트륨</div>
+                    <div class="nutrition-value" id="story-sodium">0mg</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="story-footer">
+            <div class="watermark">🥪 SUBWAYYY</div>
+            <div class="url">www.subwayyy.kr</div>
+        </div>
+    </div>
+</div>
+
+<!-- 인스타그램 피드용 카드 (숨겨진 상태) -->
+<div id="instagram-feed-card" class="instagram-feed-card" style="position: absolute; left: -9999px; top: -9999px;">
+    <div class="feed-content">
+        <div class="feed-header">
+            <div class="emoji">🥗</div>
+            <h1>나의 건강 식단</h1>
+        </div>
+        
+        <div class="feed-items" id="feed-items-list">
+            <!-- 선택한 메뉴들 -->
+        </div>
+        
+        <div class="feed-nutrition">
+            <div class="feed-nutrition-item">
+                <div class="feed-nutrition-label">열량</div>
+                <div class="feed-nutrition-value" id="feed-calories">0</div>
+            </div>
+            <div class="feed-nutrition-item">
+                <div class="feed-nutrition-label">단백질</div>
+                <div class="feed-nutrition-value" id="feed-protein">0g</div>
+            </div>
+            <div class="feed-nutrition-item">
+                <div class="feed-nutrition-label">나트륨</div>
+                <div class="feed-nutrition-value" id="feed-sodium">0mg</div>
+            </div>
+        </div>
+        
+        <div class="feed-footer">
+            www.subwayyy.kr
+        </div>
+    </div>
+</div>
+
+<!-- 인스타그램 미리보기 오버레이 -->
+<div id="instagram-overlay" class="instagram-overlay">
+    <div class="instagram-format-selector">
+        <button onclick="quickShare('story')" id="format-story-btn" class="active">📱 스토리로 공유</button>
+        <button onclick="quickShare('feed')" id="format-feed-btn">🖼️ 피드로 공유</button>
+    </div>
+    
+    <div style="position: fixed; top: 90px; left: 50%; transform: translateX(-50%); z-index: 10001; background: rgba(255,255,255,0.95); padding: 10px 20px; border-radius: 10px; font-size: 14px; color: #333; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.2);" id="instagram-guide">
+        <div style="font-weight: 600; margin-bottom: 5px;">📱 버튼을 눌러 바로 공유하세요!</div>
+        <div style="font-size: 12px; opacity: 0.8;">스토리/피드 선택 → 인스타그램 앱으로 바로 이동</div>
+    </div>
+    
+    <div id="instagram-preview" class="instagram-preview">
+        <!-- 선택된 카드가 여기에 복제됩니다 -->
+    </div>
+    
+    <div class="instagram-actions" id="instagram-action-buttons">
+        <button class="instagram-btn instagram-btn-download" onclick="downloadInstagramImage()">
+            💾 이미지만 저장
+        </button>
+        <button class="instagram-btn instagram-btn-close" onclick="closeInstagramOverlay()">
+            ✕ 닫기
+        </button>
+    </div>
+</div>
+
+<script>
+let currentFormat = 'story'; // 'story' 또는 'feed'
+
+// 인스타그램 공유 오버레이 열기
+function openInstagramShare() {
+    // 영양성분 데이터 가져오기
+    const calories = document.getElementById("calories").innerText;
+    const protein = document.getElementById("protein").innerText;
+    const sugars = document.getElementById("sugars").innerText;
+    const sodium = document.getElementById("sodium").innerText;
+    
+    // 선택한 항목들 가져오기
+    const selectedItems = [];
+    const categories = ["selected-sandwiches", "selected-salads", "selected-breads", 
+                       "selected-cheeses", "selected-toppings", "selected-sauces", "selected-sides"];
+    
+    categories.forEach(categoryId => {
+        const items = getSelectedItems(categoryId);
+        selectedItems.push(...items);
+    });
+    
+    if (selectedItems.length === 0) {
+        alert('메뉴를 먼저 선택해주세요!');
+        return;
+    }
+    
+    // 스토리 카드 업데이트
+    updateStoryCard(calories, protein, sugars, sodium, selectedItems);
+    
+    // 피드 카드 업데이트
+    updateFeedCard(calories, protein, sodium, selectedItems);
+    
+    // 오버레이 표시
+    document.getElementById('instagram-overlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // 모바일인지 확인
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
+    // 초기 미리보기 표시
+    switchInstagramFormat(currentFormat);
+    
+    // 가이드 메시지 업데이트
+    const guideElement = document.getElementById('instagram-guide');
+    if (guideElement) {
+        if (isMobile && navigator.share) {
+            guideElement.innerHTML = `
+                <div style="font-weight: 600; margin-bottom: 5px;">📱 버튼을 눌러 바로 공유하세요!</div>
+                <div style="font-size: 12px; opacity: 0.8;">스토리/피드 선택 → 인스타그램 앱으로 바로 이동</div>
+            `;
+        } else {
+            guideElement.innerHTML = `
+                <div style="font-weight: 600; margin-bottom: 5px;">💾 이미지를 저장하세요</div>
+                <div style="font-size: 12px; opacity: 0.8;">저장 후 모바일로 전송해서 인스타그램에 업로드</div>
+            `;
+        }
+        
+        // 3초 후 가이드 메시지 페이드아웃
+        setTimeout(() => {
+            guideElement.style.transition = 'opacity 0.5s';
+            guideElement.style.opacity = '0';
+            setTimeout(() => {
+                guideElement.style.display = 'none';
+            }, 500);
+        }, 3000);
+    }
+}
+
+// 스토리 카드 업데이트
+function updateStoryCard(calories, protein, sugars, sodium, items) {
+    document.getElementById('story-calories').innerText = calories.replace('kcal', '');
+    document.getElementById('story-protein').innerText = protein;
+    document.getElementById('story-sugars').innerText = sugars;
+    document.getElementById('story-sodium').innerText = sodium;
+    
+    const itemsList = document.getElementById('story-items-list');
+    itemsList.innerHTML = '';
+    
+    items.slice(0, 8).forEach(item => { // 최대 8개만 표시
+        const div = document.createElement('div');
+        div.className = 'story-item';
+        div.textContent = item;
+        itemsList.appendChild(div);
+    });
+}
+
+// 피드 카드 업데이트
+function updateFeedCard(calories, protein, sodium, items) {
+    document.getElementById('feed-calories').innerText = calories.replace('kcal', '');
+    document.getElementById('feed-protein').innerText = protein;
+    document.getElementById('feed-sodium').innerText = sodium;
+    
+    const itemsList = document.getElementById('feed-items-list');
+    itemsList.innerHTML = '';
+    
+    items.slice(0, 6).forEach(item => { // 최대 6개만 표시
+        const div = document.createElement('div');
+        div.className = 'feed-item';
+        div.textContent = '• ' + item;
+        itemsList.appendChild(div);
+    });
+}
+
+// 포맷 전환
+function switchInstagramFormat(format) {
+    currentFormat = format;
+    
+    // 버튼 활성화 상태 변경
+    document.getElementById('format-story-btn').classList.remove('active');
+    document.getElementById('format-feed-btn').classList.remove('active');
+    document.getElementById('format-' + format + '-btn').classList.add('active');
+    
+    // 미리보기 업데이트
+    const preview = document.getElementById('instagram-preview');
+    const sourceCard = format === 'story' ? 
+        document.getElementById('instagram-story-card') : 
+        document.getElementById('instagram-feed-card');
+    
+    preview.innerHTML = sourceCard.outerHTML;
+    preview.firstElementChild.style.position = 'relative';
+    preview.firstElementChild.style.left = '0';
+    preview.firstElementChild.style.top = '0';
+}
+
+// 빠른 공유 함수 (모바일 최적화)
+async function quickShare(format) {
+    // 포맷 변경
+    currentFormat = format;
+    
+    // 모바일인지 확인
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
+    if (isMobile && navigator.share) {
+        // 모바일에서는 바로 공유
+        await generateAndShare(format);
+    } else {
+        // PC에서는 미리보기 표시
+        switchInstagramFormat(format);
+    }
+}
+
+// 이미지 생성 및 공유
+async function generateAndShare(format) {
+    try {
+        const cardId = format === 'story' ? 'instagram-story-card' : 'instagram-feed-card';
+        const card = document.getElementById(cardId);
+        
+        // 로딩 표시
+        const loadingMsg = document.createElement('div');
+        loadingMsg.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.9);color:white;padding:30px 50px;border-radius:20px;font-size:18px;z-index:99999;text-align:center;';
+        loadingMsg.innerHTML = '📸<br>이미지 생성 중...';
+        document.body.appendChild(loadingMsg);
+        
+        // 임시로 화면에 표시
+        card.style.position = 'fixed';
+        card.style.left = '0';
+        card.style.top = '0';
+        card.style.zIndex = '-1';
+        
+        const canvas = await html2canvas(card, {
+            scale: 2,
+            useCORS: true,
+            backgroundColor: null,
+            logging: false
+        });
+        
+        // 다시 숨김
+        card.style.position = 'absolute';
+        card.style.left = '-9999px';
+        card.style.top = '-9999px';
+        
+        // Canvas를 Blob으로 변환
+        canvas.toBlob(async (blob) => {
+            try {
+                const formatName = format === 'story' ? '스토리' : '피드';
+                const file = new File([blob], `subwayyy_${format}_${Date.now()}.png`, { type: 'image/png' });
+                
+                // Web Share API 사용
+                if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+                    loadingMsg.innerHTML = '📤<br>공유 화면 여는 중...';
+                    
+                    await navigator.share({
+                        files: [file],
+                        title: `나의 건강 식단 - ${formatName}`,
+                        text: `서브웨이 영양성분 계산 결과!\n#서브웨이 #건강식단 #다이어트 #영양성분`,
+                        url: 'https://www.subwayyy.kr'
+                    });
+                    
+                    loadingMsg.innerHTML = '✅<br>공유 완료!';
+                    setTimeout(() => {
+                        document.body.removeChild(loadingMsg);
+                    }, 1500);
+                } else {
+                    // Web Share 미지원 시 다운로드
+                    loadingMsg.innerHTML = '💾<br>이미지 저장 중...';
+                    const link = document.createElement('a');
+                    link.download = `subwayyy_${format}_${Date.now()}.png`;
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                    
+                    loadingMsg.innerHTML = '✅<br>저장 완료!<br><small>인스타그램 앱에서 업로드하세요</small>';
+                    setTimeout(() => {
+                        document.body.removeChild(loadingMsg);
+                    }, 2500);
+                }
+            } catch (error) {
+                if (error.name !== 'AbortError') {
+                    console.error('공유 실패:', error);
+                    loadingMsg.innerHTML = '❌<br>공유 취소됨';
+                    setTimeout(() => {
+                        document.body.removeChild(loadingMsg);
+                    }, 1500);
+                } else {
+                    document.body.removeChild(loadingMsg);
+                }
+            }
+        }, 'image/png', 1.0);
+        
+    } catch (error) {
+        console.error('이미지 생성 실패:', error);
+        alert('이미지 생성에 실패했습니다. 다시 시도해주세요.');
+    }
+}
+
+// 이미지 다운로드
+async function downloadInstagramImage() {
+    const button = event.target;
+    const originalText = button.innerHTML;
+    button.innerHTML = '⏳ 생성 중...';
+    button.disabled = true;
+    
+    try {
+        const cardId = currentFormat === 'story' ? 'instagram-story-card' : 'instagram-feed-card';
+        const card = document.getElementById(cardId);
+        
+        // 임시로 화면에 표시 (html2canvas가 렌더링하기 위해)
+        card.style.position = 'fixed';
+        card.style.left = '0';
+        card.style.top = '0';
+        card.style.zIndex = '-1';
+        
+        const canvas = await html2canvas(card, {
+            scale: 2, // 고해상도
+            useCORS: true,
+            backgroundColor: null,
+            logging: false
+        });
+        
+        // 다시 숨김
+        card.style.position = 'absolute';
+        card.style.left = '-9999px';
+        card.style.top = '-9999px';
+        
+        // 다운로드
+        const link = document.createElement('a');
+        const timestamp = new Date().getTime();
+        link.download = `subwayyy_${currentFormat}_${timestamp}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        
+        button.innerHTML = '✅ 저장 완료!';
+        setTimeout(() => {
+            button.innerHTML = originalText;
+            button.disabled = false;
+        }, 2000);
+        
+    } catch (error) {
+        console.error('이미지 생성 실패:', error);
+        alert('이미지 생성에 실패했습니다. 다시 시도해주세요.');
+        button.innerHTML = originalText;
+        button.disabled = false;
+    }
+}
+
+// 인스타그램 공유
+async function shareToInstagram() {
+    const button = event.target;
+    const originalText = button.innerHTML;
+    button.innerHTML = '⏳ 준비 중...';
+    button.disabled = true;
+    
+    try {
+        const cardId = currentFormat === 'story' ? 'instagram-story-card' : 'instagram-feed-card';
+        const card = document.getElementById(cardId);
+        
+        // 임시로 화면에 표시
+        card.style.position = 'fixed';
+        card.style.left = '0';
+        card.style.top = '0';
+        card.style.zIndex = '-1';
+        
+        const canvas = await html2canvas(card, {
+            scale: 2,
+            useCORS: true,
+            backgroundColor: null,
+            logging: false
+        });
+        
+        // 다시 숨김
+        card.style.position = 'absolute';
+        card.style.left = '-9999px';
+        card.style.top = '-9999px';
+        
+        // Canvas를 Blob으로 변환
+        canvas.toBlob(async (blob) => {
+            const file = new File([blob], 'subwayyy_share.png', { type: 'image/png' });
+            
+            // Web Share API 지원 확인
+            if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+                try {
+                    await navigator.share({
+                        files: [file],
+                        title: '나의 건강 식단',
+                        text: '서브웨이 영양성분 계산 결과를 공유합니다! #서브웨이 #건강식단 #다이어트',
+                        url: 'https://www.subwayyy.kr'
+                    });
+                    
+                    button.innerHTML = '✅ 공유 완료!';
+                } catch (error) {
+                    if (error.name !== 'AbortError') {
+                        throw error;
+                    }
+                    button.innerHTML = originalText;
+                }
+            } else {
+                // Web Share API 미지원 시 다운로드로 대체
+                alert('이 브라우저에서는 직접 공유가 지원되지 않습니다.\n이미지를 저장한 후 인스타그램 앱에서 업로드해주세요.');
+                const link = document.createElement('a');
+                link.download = `subwayyy_${currentFormat}_${Date.now()}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                button.innerHTML = '💾 저장됨';
+            }
+            
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }, 2000);
+            
+        }, 'image/png', 1.0);
+        
+    } catch (error) {
+        console.error('공유 실패:', error);
+        alert('공유에 실패했습니다. 다시 시도해주세요.');
+        button.innerHTML = originalText;
+        button.disabled = false;
+    }
+}
+
+// 오버레이 닫기
+function closeInstagramOverlay() {
+    document.getElementById('instagram-overlay').classList.remove('active');
+    document.body.style.overflow = 'auto';
+    
+    // 가이드 메시지 리셋
+    const guideElement = document.getElementById('instagram-guide');
+    if (guideElement) {
+        guideElement.style.display = 'block';
+        guideElement.style.opacity = '1';
+    }
+}
+
+// ESC 키로 닫기
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeInstagramOverlay();
+    }
+});
+</script>
