@@ -10,9 +10,10 @@ interface ResultSheetProps {
   nutritionKeys: NutritionKey[];
   selectedItems: MenuItem[];
   brandName?: string;
+  onPlant?: () => void;
 }
 
-export default function ResultSheet({ open, onClose, totals, nutritionKeys, selectedItems, brandName }: ResultSheetProps) {
+export default function ResultSheet({ open, onClose, totals, nutritionKeys, selectedItems, brandName, onPlant }: ResultSheetProps) {
   const captureRef = useRef<HTMLDivElement>(null);
   const [capturing, setCapturing] = useState(false);
 
@@ -83,13 +84,18 @@ p{margin-top:16px;font-size:14px;color:#8E8E93}
             </div>
           )}
         </div>
-        <div className="share-row">
+        <div className="share-row three">
           <button className="btn-p" onClick={onClose}>
             닫기
           </button>
           <button className="btn-s" onClick={handleCapture} disabled={capturing}>
             {capturing ? "저장 중..." : "이미지 저장"}
           </button>
+          {onPlant && (
+            <button className="btn-plant" onClick={onPlant}>
+              심기 🌱
+            </button>
+          )}
         </div>
       </div>
     </div>

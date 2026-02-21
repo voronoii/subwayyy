@@ -7,11 +7,11 @@ export const subwayConfig: BrandConfig = {
   id: "subway",
   name: "서브웨이",
   subtitle: "샌드위치 · 샐러드 · 사이드 영양성분 계산",
-  tip: "샌드위치 기본 칼로리에는 '위트' 빵이 포함되어 있어요. 빵을 따로 선택하면 기본 빵 칼로리를 제외하고 계산됩니다.",
+  tip: "샌드위치에는 빵이 포함되어 있지 않아요. 빵을 반드시 선택해주세요!",
   categories: [
     { id: "sandwiches", label: "샌드위치", icon: "🥪", items: data.sandwiches },
-    { id: "salads", label: "샐러드", icon: "🥗", items: data.salads },
     { id: "breads", label: "빵", icon: "🍞", items: data.breads },
+    { id: "salads", label: "샐러드", icon: "🥗", items: data.salads },
     { id: "cheeses", label: "치즈", icon: "🧀", items: data.cheeses },
     { id: "toppings", label: "토핑", icon: "🥓", items: data.toppings },
     { id: "sauces", label: "소스", icon: "🫙", items: data.sauces },

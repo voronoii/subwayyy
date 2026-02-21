@@ -10,6 +10,7 @@ import MenuGrid from "../../components/MenuGrid";
 import BottomBar from "../../components/BottomBar";
 import ResultSheet from "../../components/ResultSheet";
 import TipCard from "../../components/TipCard";
+import PlantModal from "../../components/PlantModal";
 
 export default function CalculatorPage() {
   const params = useParams();
@@ -18,6 +19,7 @@ export default function CalculatorPage() {
 
   const [activeCat, setActiveCat] = useState(config.categories[0]?.id ?? "");
   const [sheetOpen, setSheetOpen] = useState(false);
+  const [plantOpen, setPlantOpen] = useState(false);
 
   const { selected, selectedItems, totals, toggle, remove, clear } = useCalculator(config.nutritionKeys);
 
@@ -68,6 +70,18 @@ export default function CalculatorPage() {
         nutritionKeys={config.nutritionKeys}
         selectedItems={selectedItems}
         brandName={config.name}
+        onPlant={() => {
+          setSheetOpen(false);
+          setPlantOpen(true);
+        }}
+      />
+
+      <PlantModal
+        open={plantOpen}
+        onClose={() => setPlantOpen(false)}
+        brandId={config.id}
+        menuNames={selectedItems.map((i) => i.name)}
+        totalCalories={totals.calories ?? 0}
       />
     </>
   );
