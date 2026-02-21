@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>칼로리 계산기 — 디자인 시안</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+:root {
+  --bg: #F5F5F7;
+  --card: #FFFFFF;
+  --text-1: #1A1A1A;
+  --text-2: #8E8E93;
+  --text-3: #C7C7CC;
+  --accent: #34C759;
+  --accent-light: #E8F8EC;
+  --accent-dark: #1B8A3E;
+  --border: #E5E5EA;
+  --shadow: 0 1px 8px rgba(0,0,0,0.06);
+  --r: 14px;
+  --r-sm: 10px;
+  --font: 'Pretendard',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:var(--font);background:var(--bg);color:var(--text-1);-webkit-font-smoothing:antialiased;max-width:430px;margin:0 auto;min-height:100vh;padding-bottom:80px;position:relative}
+
+/* ── Top Nav ── */
+.top-nav{position:sticky;top:0;z-index:100;background:var(--card);border-bottom:1px solid var(--border);padding:12px 20px}
+.brand-tabs{display:flex;gap:8px}
+.brand-tab{flex-shrink:0;padding:8px 18px;border-radius:20px;font-size:14px;font-weight:600;border:1.5px solid var(--border);background:var(--card);color:var(--text-2);cursor:pointer;transition:all .2s;user-select:none}
+.brand-tab.active{background:var(--text-1);color:#fff;border-color:var(--text-1)}
+
+/* ── Header ── */
+.page-header{padding:24px 20px 8px}
+.page-header h1{font-size:26px;font-weight:800;letter-spacing:-.5px}
+.page-header .sub{font-size:14px;color:var(--text-2);margin-top:4px}
+.page-header .tag{display:inline-block;font-size:11px;color:var(--text-3);background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:2px 8px;margin-top:8px}
+
+/* ── Category Pills ── */
+.cat-bar{padding:16px 20px 8px;position:sticky;top:49px;z-index:90;background:var(--bg)}
+.cat-pills{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.cat-pills::-webkit-scrollbar{display:none}
+.cat-pill{flex-shrink:0;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:600;background:var(--card);border:1px solid var(--border);color:var(--text-2);cursor:pointer;transition:all .2s;user-select:none}
+.cat-pill.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+/* ── Selected Chips ── */
+.sel-area{padding:0 20px;margin-bottom:4px}
+.sel-area.empty{display:none}
+.sel-label{font-size:12px;color:var(--text-2);margin-bottom:8px;font-weight:500}
+.sel-chips{display:flex;flex-wrap:wrap;gap:8px}
+.sel-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:var(--accent-light);border-radius:20px;font-size:13px;font-weight:600;color:var(--accent-dark);animation:chipIn .2s ease}
+.sel-chip .x{width:18px;height:18px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.08);border-radius:50%;font-size:11px;cursor:pointer;color:var(--text-2);font-weight:400}
+@keyframes chipIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+
+/* ── Menu Grid ── */
+.menu-section{padding:12px 20px 0}
+.sec-title{font-size:16px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.sec-title .icon{font-size:18px}
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.menu-card{background:var(--card);border-radius:var(--r-sm);padding:14px;border:1.5px solid var(--border);cursor:pointer;transition:all .15s;user-select:none;-webkit-user-select:none}
+.menu-card:active{transform:scale(.97)}
+.menu-card.selected{border-color:var(--accent);background:var(--accent-light)}
+.menu-card .name{font-size:14px;font-weight:600;line-height:1.35;margin-bottom:6px;color:var(--text-1)}
+.menu-card .kcal{font-size:13px;color:var(--accent-dark);font-weight:700}
+.menu-card .detail{font-size:11px;color:var(--text-2);margin-top:2px}
+
+/* ── Bottom Bar ── */
+.bot-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:var(--card);border-top:1px solid var(--border);padding:12px 20px;padding-bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:100;display:flex;align-items:center;justify-content:space-between}
+.bot-bar .info .lbl{font-size:12px;color:var(--text-2)}
+.bot-bar .info .val{font-size:22px;font-weight:800;letter-spacing:-.5px}
+.bot-bar .info .val .unit{font-size:14px;font-weight:600;color:var(--text-2)}
+.cta{padding:14px 24px;background:var(--text-1);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:var(--font);transition:opacity .2s}
+.cta:active{opacity:.7}
+
+/* ── Result Sheet ── */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
+.overlay.open{opacity:1;pointer-events:auto}
+.sheet{width:100%;max-width:430px;background:var(--card);border-radius:24px 24px 0 0;padding:20px 24px;padding-bottom:calc(24px + env(safe-area-inset-bottom,0px));max-height:85vh;overflow-y:auto;transform:translateY(100%);transition:transform .3s cubic-bezier(.32,.72,0,1)}
+.overlay.open .sheet{transform:translateY(0)}
+.handle{width:40px;height:4px;background:var(--text-3);border-radius:2px;margin:0 auto 20px}
+.sheet h2{font-size:20px;font-weight:800;text-align:center;margin-bottom:6px}
+.sheet .sheet-sub{font-size:13px;color:var(--text-2);text-align:center;margin-bottom:20px}
+.n-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--border)}
+.n-row:last-of-type{border-bottom:none}
+.n-row .n-lbl{font-size:15px;color:var(--text-2)}
+.n-row .n-val{font-size:17px;font-weight:700}
+.n-row.hi .n-val{color:var(--accent);font-size:22px;font-weight:800}
+.n-row.hi .n-lbl{font-size:16px;color:var(--text-1);font-weight:600}
+.share-row{display:flex;gap:10px;margin-top:20px}
+.share-row button{flex:1;padding:14px;border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font)}
+.share-row .btn-p{background:var(--text-1);color:#fff}
+.share-row .btn-s{background:var(--bg);color:var(--text-1)}
+
+/* ── Daily Tip Card ── */
+.tip-card{margin:8px 20px 24px;background:linear-gradient(135deg,#F0FFF4,#E8F8EC);border-radius:var(--r);padding:18px;border:1px solid #D4EDDA}
+.tip-card .tip-t{font-size:13px;font-weight:700;color:var(--accent-dark);margin-bottom:6px}
+.tip-card .tip-b{font-size:12px;color:var(--text-2);line-height:1.5}
+
+/* ── Scrollbar hide ── */
+::-webkit-scrollbar{width:0;height:0}
+</style>
+</head>
+<body>
+
+<!-- ─── Top Nav ─── -->
+<nav class="top-nav">
+  <div class="brand-tabs">
+    <div class="brand-tab active">서브웨이</div>
+    <div class="brand-tab">샐러디</div>
+    <div class="brand-tab">포케올데이</div>
+  </div>
+</nav>
+
+<!-- ─── Header ─── -->
+<header class="page-header">
+  <h1>서브웨이</h1>
+  <p class="sub">샌드위치 · 샐러드 · 사이드 영양성분 계산</p>
+  <span class="tag">업데이트 2025.01.21</span>
+</header>
+
+<!-- ─── Category Pills ─── -->
+<div class="cat-bar">
+  <div class="cat-pills">
+    <div class="cat-pill active" data-cat="sandwich">샌드위치</div>
+    <div class="cat-pill" data-cat="salad">샐러드</div>
+    <div class="cat-pill" data-cat="bread">빵</div>
+    <div class="cat-pill" data-cat="cheese">치즈</div>
+    <div class="cat-pill" data-cat="topping">토핑</div>
+    <div class="cat-pill" data-cat="sauce">소스</div>
+    <div class="cat-pill" data-cat="side">사이드</div>
+  </div>
+</div>
+
+<!-- ─── Selected Items ─── -->
+<div class="sel-area empty" id="selArea">
+  <div class="sel-label">선택한 메뉴</div>
+  <div class="sel-chips" id="selChips"></div>
+</div>
+
+<!-- ─── Tip Card ─── -->
+<div class="tip-card">
+  <div class="tip-t">💡 알고 계셨나요?</div>
+  <div class="tip-b">샌드위치 기본 칼로리에는 '위트' 빵이 포함되어 있어요. 빵을 따로 선택하면 기본 빵 칼로리를 제외하고 계산됩니다.</div>
+</div>
+
+<!-- ─── Menu Sections ─── -->
+<div class="menu-section" data-section="sandwich">
+  <div class="sec-title"><span class="icon">🥪</span> 샌드위치</div>
+  <div class="menu-grid">
+    <div class="menu-card" data-name="에그마요" data-kcal="416" data-protein="16.4">
+      <div class="name">에그마요</div>
+      <div class="kcal">416 kcal</div>
+      <div class="detail">단백질 16.4g</div>
+    </div>
+    <div class="menu-card" data-name="로스트 치킨" data-kcal="300" data-protein="26.0">
+      <div class="name">로스트 치킨</div>
+      <div class="kcal">300 kcal</div>
+      <div class="detail">단백질 26.0g</div>
+    </div>
+    <div class="menu-card" data-name="터키" data-kcal="265" data-protein="18.6">
+      <div class="name">터키</div>
+      <div class="kcal">265 kcal</div>
+      <div class="detail">단백질 18.6g</div>
+    </div>
+    <div class="menu-card" data-name="이탈리안 비엠티" data-kcal="388" data-protein="21.0">
+      <div class="name">이탈리안 비엠티</div>
+      <div class="kcal">388 kcal</div>
+      <div class="detail">단백질 21.0g</div>
+    </div>
+    <div class="menu-card" data-name="스테이크 & 치즈" data-kcal="355" data-protein="28.1">
+      <div class="name">스테이크 & 치즈</div>
+      <div class="kcal">355 kcal</div>
+      <div class="detail">단백질 28.1g</div>
+    </div>
+    <div class="menu-card" data-name="치킨 데리야끼" data-kcal="314" data-protein="26.5">
+      <div class="name">치킨 데리야끼</div>
+      <div class="kcal">314 kcal</div>
+      <div class="detail">단백질 26.5g</div>
+    </div>
+    <div class="menu-card" data-name="로티세리 바비큐 치킨" data-kcal="327" data-protein="29.1">
+      <div class="name">로티세리 바비큐 치킨</div>
+      <div class="kcal">327 kcal</div>
+      <div class="detail">단백질 29.1g</div>
+    </div>
+    <div class="menu-card" data-name="쉬림프" data-kcal="241" data-protein="16.3">
+      <div class="name">쉬림프</div>
+      <div class="kcal">241 kcal</div>
+      <div class="detail">단백질 16.3g</div>
+    </div>
+    <div class="menu-card" data-name="참치" data-kcal="316" data-protein="26.9">
+      <div class="name">참치</div>
+      <div class="kcal">316 kcal</div>
+      <div class="detail">단백질 26.9g</div>
+    </div>
+    <div class="menu-card" data-name="베지" data-kcal="209" data-protein="9.2">
+      <div class="name">베지</div>
+      <div class="kcal">209 kcal</div>
+      <div class="detail">단백질 9.2g</div>
+    </div>
+  </div>
+</div>
+
+<div class="menu-section" data-section="salad" style="display:none">
+  <div class="sec-title"><span class="icon">🥗</span> 샐러드</div>
+  <div class="menu-grid">
+    <div class="menu-card" data-name="로스트 치킨 샐러드" data-kcal="138" data-protein="19.3">
+      <div class="name">로스트 치킨</div>
+      <div class="kcal">138 kcal</div>
+      <div class="detail">단백질 19.3g</div>
+    </div>
+    <div class="menu-card" data-name="쉬림프 샐러드" data-kcal="79" data-protein="9.6">
+      <div class="name">쉬림프</div>
+      <div class="kcal">79 kcal</div>
+      <div class="detail">단백질 9.6g</div>
+    </div>
+    <div class="menu-card" data-name="치킨 데리야끼 샐러드" data-kcal="152" data-protein="19.8">
+      <div class="name">치킨 데리야끼</div>
+      <div class="kcal">152 kcal</div>
+      <div class="detail">단백질 19.8g</div>
+    </div>
+    <div class="menu-card" data-name="베지 샐러드" data-kcal="47" data-protein="2.5">
+      <div class="name">베지</div>
+      <div class="kcal">47 kcal</div>
+      <div class="detail">단백질 2.5g</div>
+    </div>
+  </div>
+</div>
+
+<div class="menu-section" data-section="bread" style="display:none">
+  <div class="sec-title"><span class="icon">🍞</span> 빵</div>
+  <div class="menu-grid">
+    <div class="menu-card" data-name="화이트" data-kcal="132" data-protein="5.4">
+      <div class="name">화이트</div>
+      <div class="kcal">132 kcal</div>
+      <div class="detail">단백질 5.4g</div>
+    </div>
+    <div class="menu-card" data-name="위트" data-kcal="130" data-protein="5.8">
+      <div class="name">위트</div>
+      <div class="kcal">130 kcal</div>
+      <div class="detail">단백질 5.8g</div>
+    </div>
+    <div class="menu-card" data-name="허니오트" data-kcal="168" data-protein="6.2">
+      <div class="name">허니오트</div>
+      <div class="kcal">168 kcal</div>
+      <div class="detail">단백질 6.2g</div>
+    </div>
+    <div class="menu-card" data-name="파마산 오레가노" data-kcal="137" data-protein="5.7">
+      <div class="name">파마산 오레가노</div>
+      <div class="kcal">137 kcal</div>
+      <div class="detail">단백질 5.7g</div>
+    </div>
+    <div class="menu-card" data-name="플랫브레드" data-kcal="117" data-protein="4.8">
+      <div class="name">플랫브레드</div>
+      <div class="kcal">117 kcal</div>
+      <div class="detail">단백질 4.8g</div>
+    </div>
+  </div>
+</div>
+
+<div class="menu-section" data-section="cheese" style="display:none">
+  <div class="sec-title"><span class="icon">🧀</span> 치즈</div>
+  <div class="menu-grid">
+    <div class="menu-card" data-name="아메리칸 치즈" data-kcal="52" data-protein="2.7">
+      <div class="name">아메리칸 치즈</div>
+      <div class="kcal">52 kcal</div>
+      <div class="detail">단백질 2.7g</div>
+    </div>
+    <div class="menu-card" data-name="슈레드 치즈" data-kcal="53" data-protein="3.4">
+      <div class="name">슈레드 치즈</div>
+      <div class="kcal">53 kcal</div>
+      <div class="detail">단백질 3.4g</div>
+    </div>
+    <div class="menu-card" data-name="모차렐라 치즈" data-kcal="50" data-protein="3.5">
+      <div class="name">모차렐라 치즈</div>
+      <div class="kcal">50 kcal</div>
+      <div class="detail">단백질 3.5g</div>
+    </div>
+  </div>
+</div>
+
+<div class="menu-section" data-section="topping" style="display:none">
+  <div class="sec-title"><span class="icon">🥓</span> 추가 토핑</div>
+  <div class="menu-grid">
+    <div class="menu-card" data-name="베이컨" data-kcal="89" data-protein="6.0">
+      <div class="name">베이컨</div>
+      <div class="kcal">89 kcal</div>
+      <div class="detail">단백질 6.0g</div>
+    </div>
+    <div class="menu-card" data-name="아보카도" data-kcal="63" data-protein="1.0">
+      <div class="name">아보카도</div>
+      <div class="kcal">63 kcal</div>
+      <div class="detail">단백질 1.0g</div>
+    </div>
+    <div class="menu-card" data-name="페퍼로니" data-kcal="81" data-protein="4.0">
+      <div class="name">페퍼로니</div>
+      <div class="kcal">81 kcal</div>
+      <div class="detail">단백질 4.0g</div>
+    </div>
+    <div class="menu-card" data-name="에그마요 토핑" data-kcal="110" data-protein="3.5">
+      <div class="name">에그마요</div>
+      <div class="kcal">110 kcal</div>
+      <div class="detail">단백질 3.5g</div>
+    </div>
+  </div>
+</div>
+
+<div class="menu-section" data-section="sauce" style="display:none">
+  <div class="sec-title"><span class="icon">🫙</span> 소스</div>
+  <div class="menu-grid">
+    <div class="menu-card" data-name="머스타드" data-kcal="9" data-protein="0.5">
+      <div class="name">머스타드</div>
+      <div class="kcal">9 kcal</div>
+      <div class="detail">단백질 0.5g</div>
+    </div>
+    <div class="menu-card" data-name="마요네즈" data-kcal="100" data-protein="0.1">
+      <div class="name">마요네즈</div>
+      <div class="kcal">100 kcal</div>
+      <div class="detail">단백질 0.1g</div>
+    </div>
+    <div class="menu-card" data-name="스위트 어니언" data-kcal="39" data-protein="0.1">
+      <div class="name">스위트 어니언</div>
+      <div class="kcal">39 kcal</div>
+      <div class="detail">단백질 0.1g</div>
+    </div>
+    <div class="menu-card" data-name="핫칠리" data-kcal="14" data-protein="0.2">
+      <div class="name">핫칠리</div>
+      <div class="kcal">14 kcal</div>
+      <div class="detail">단백질 0.2g</div>
+    </div>
+    <div class="menu-card" data-name="랜치" data-kcal="87" data-protein="0.2">
+      <div class="name">랜치</div>
+      <div class="kcal">87 kcal</div>
+      <div class="detail">단백질 0.2g</div>
+    </div>
+    <div class="menu-card" data-name="허니머스타드" data-kcal="42" data-protein="0.2">
+      <div class="name">허니머스타드</div>
+      <div class="kcal">42 kcal</div>
+      <div class="detail">단백질 0.2g</div>
+    </div>
+  </div>
+</div>
+
+<div class="menu-section" data-section="side" style="display:none">
+  <div class="sec-title"><span class="icon">🍪</span> 사이드</div>
+  <div class="menu-grid">
+    <div class="menu-card" data-name="초코칩 쿠키" data-kcal="228" data-protein="2.1">
+      <div class="name">초코칩 쿠키</div>
+      <div class="kcal">228 kcal</div>
+      <div class="detail">단백질 2.1g</div>
+    </div>
+    <div class="menu-card" data-name="더블 초코칩 쿠키" data-kcal="212" data-protein="2.0">
+      <div class="name">더블 초코칩</div>
+      <div class="kcal">212 kcal</div>
+      <div class="detail">단백질 2.0g</div>
+    </div>
+    <div class="menu-card" data-name="웨지 포테이토" data-kcal="140" data-protein="2.5">
+      <div class="name">웨지 포테이토</div>
+      <div class="kcal">140 kcal</div>
+      <div class="detail">단백질 2.5g</div>
+    </div>
+    <div class="menu-card" data-name="콘 수프" data-kcal="81" data-protein="2.5">
+      <div class="name">콘 수프</div>
+      <div class="kcal">81 kcal</div>
+      <div class="detail">단백질 2.5g</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Bottom Bar ─── -->
+<div class="bot-bar">
+  <div class="info">
+    <div class="lbl">총 칼로리</div>
+    <div class="val"><span id="totalKcal">0</span> <span class="unit">kcal</span></div>
+  </div>
+  <button class="cta" id="showResult">결과 보기</button>
+</div>
+
+<!-- ─── Result Bottom Sheet ─── -->
+<div class="overlay" id="overlay">
+  <div class="sheet">
+    <div class="handle"></div>
+    <h2>영양성분 결과</h2>
+    <div class="sheet-sub" id="sheetSub">선택한 메뉴의 총 영양성분</div>
+    <div class="n-row hi">
+      <div class="n-lbl">칼로리</div>
+      <div class="n-val" id="rKcal">0 kcal</div>
+    </div>
+    <div class="n-row">
+      <div class="n-lbl">단백질</div>
+      <div class="n-val" id="rProtein">0g</div>
+    </div>
+    <div class="n-row">
+      <div class="n-lbl">포화지방</div>
+      <div class="n-val" id="rFat">0g</div>
+    </div>
+    <div class="n-row">
+      <div class="n-lbl">당류</div>
+      <div class="n-val" id="rSugar">0g</div>
+    </div>
+    <div class="n-row">
+      <div class="n-lbl">나트륨</div>
+      <div class="n-val" id="rSodium">0mg</div>
+    </div>
+    <div class="share-row">
+      <button class="btn-p" onclick="closeSheet()">닫기</button>
+      <button class="btn-s">공유하기</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── State ──
+const selected = new Map(); // name → { kcal, protein }
+let totalKcal = 0;
+let totalProtein = 0;
+
+// ── Category Switching ──
+document.querySelectorAll('.cat-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    const cat = pill.dataset.cat;
+    document.querySelectorAll('.menu-section').forEach(s => {
+      s.style.display = s.dataset.section === cat ? '' : 'none';
+    });
+  });
+});
+
+// ── Card Selection ──
+document.querySelectorAll('.menu-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const name = card.dataset.name;
+    if (selected.has(name)) {
+      selected.delete(name);
+      card.classList.remove('selected');
+    } else {
+      selected.set(name, {
+        kcal: parseFloat(card.dataset.kcal),
+        protein: parseFloat(card.dataset.protein)
+      });
+      card.classList.add('selected');
+    }
+    updateUI();
+  });
+});
+
+function updateUI() {
+  // Totals
+  totalKcal = 0; totalProtein = 0;
+  selected.forEach(v => { totalKcal += v.kcal; totalProtein += v.protein; });
+  document.getElementById('totalKcal').textContent = Math.round(totalKcal);
+
+  // Chips
+  const area = document.getElementById('selArea');
+  const chips = document.getElementById('selChips');
+  chips.innerHTML = '';
+  if (selected.size === 0) {
+    area.classList.add('empty');
+  } else {
+    area.classList.remove('empty');
+    selected.forEach((v, name) => {
+      const chip = document.createElement('div');
+      chip.className = 'sel-chip';
+      chip.innerHTML = name + ' <span class="x" data-name="' + name + '">✕</span>';
+      chips.appendChild(chip);
+    });
+    // Remove chip handler
+    chips.querySelectorAll('.x').forEach(x => {
+      x.addEventListener('click', e => {
+        e.stopPropagation();
+        const n = x.dataset.name;
+        selected.delete(n);
+        document.querySelectorAll('.menu-card').forEach(c => {
+          if (c.dataset.name === n) c.classList.remove('selected');
+        });
+        updateUI();
+      });
+    });
+  }
+
+  // Result sheet values
+  document.getElementById('rKcal').textContent = Math.round(totalKcal) + ' kcal';
+  document.getElementById('rProtein').textContent = totalProtein.toFixed(1) + 'g';
+  document.getElementById('rFat').textContent = '—';
+  document.getElementById('rSugar').textContent = '—';
+  document.getElementById('rSodium').textContent = '—';
+  document.getElementById('sheetSub').textContent = selected.size + '개 메뉴 선택';
+}
+
+// ── Bottom Sheet ──
+const overlay = document.getElementById('overlay');
+document.getElementById('showResult').addEventListener('click', () => {
+  overlay.classList.add('open');
+});
+function closeSheet() { overlay.classList.remove('open'); }
+overlay.addEventListener('click', e => { if (e.target === overlay) closeSheet(); });
+
+// ── Brand Tab (visual only for mockup) ──
+document.querySelectorAll('.brand-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.brand-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
