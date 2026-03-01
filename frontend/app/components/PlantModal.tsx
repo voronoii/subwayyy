@@ -1,5 +1,5 @@
 "use client";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { addEntry, getRandomNickname } from "../lib/grassStore";
 
@@ -13,8 +13,14 @@ interface PlantModalProps {
 
 export default function PlantModal({ open, onClose, brandId, menuNames, totalCalories }: PlantModalProps) {
   const router = useRouter();
-  const [nickname, setNickname] = useState(() => getRandomNickname());
+  const [nickname, setNickname] = useState("");
   const [comment, setComment] = useState("");
+
+  useEffect(() => {
+    if (open && !nickname) {
+      setNickname(getRandomNickname());
+    }
+  }, [open, nickname]);
 
   const handleOverlayClick = useCallback(
     (e: React.MouseEvent) => {
@@ -39,7 +45,7 @@ export default function PlantModal({ open, onClose, brandId, menuNames, totalCal
     <div className={`overlay${open ? " open" : ""}`} onClick={handleOverlayClick}>
       <div className="sheet">
         <div className="handle" />
-        <h2>메뉴 심기 🌱</h2>
+        <h2>고양이 부르기 🐱</h2>
         <div className="plant-summary">
           {menuNames.join(" + ")}
           <span className="plant-kcal">{Math.round(totalCalories)}kcal</span>
@@ -66,7 +72,7 @@ export default function PlantModal({ open, onClose, brandId, menuNames, totalCal
         </div>
         <div className="share-row">
           <button className="btn-s" onClick={onClose}>취소</button>
-          <button className="btn-p" onClick={handlePlant}>심기 🌱</button>
+          <button className="btn-p" onClick={handlePlant}>부르기 🐱</button>
         </div>
       </div>
     </div>

@@ -20,7 +20,7 @@ export default function TopNav({ activeBrand }: TopNavProps) {
           </Link>
         ))}
       </div>
-      <Link href="/grass" className="grass-link">🌱</Link>
+      <Link href="/grass" className="grass-link">🐱</Link>
     </nav>
   );
 }

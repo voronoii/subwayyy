@@ -109,44 +109,60 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);-webkit-fo
 .btn-plant{flex:1;padding:14px;border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font);background:var(--accent);color:#fff}
 .btn-plant:active{opacity:.8}
 
-/* -- Grass Page -- */
-.grass-page{max-width:430px;margin:0 auto;min-height:100vh;background:#1a1a2e;padding-bottom:40px}
-.grass-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:#1a1a2e;position:sticky;top:0;z-index:10}
-.grass-back{font-size:14px;font-weight:600;color:#9be9a8;text-decoration:none;min-width:70px}
-.grass-title{font-size:18px;font-weight:800;color:#fff;text-align:center}
-.grass-spacer{min-width:70px}
-.grass-stats{display:flex;align-items:center;justify-content:center;gap:4px;padding:0 20px 12px;font-size:13px;color:#8E8E93}
-.grass-stats strong{color:#9be9a8;font-weight:700}
-.grass-stats-dot{color:#555}
-.grass-legend{display:flex;align-items:center;justify-content:center;gap:4px;padding:0 20px 16px}
-.grass-legend-label{font-size:11px;color:#666}
-.grass-legend-block{width:14px;height:14px;border-radius:3px}
+/* -- Tycoon Page -- */
+.tycoon-page{max-width:430px;margin:0 auto;min-height:100vh;background:#E8F4FD;padding-bottom:40px}
+.tycoon-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);position:sticky;top:0;z-index:10;border-bottom:1px solid rgba(0,0,0,.06)}
+.tycoon-back{font-size:14px;font-weight:600;color:var(--accent-dark);text-decoration:none;min-width:70px}
+.tycoon-title{font-size:18px;font-weight:800;color:var(--text-1);text-align:center}
+.tycoon-spacer{min-width:70px}
+.tycoon-stats{display:flex;align-items:center;justify-content:center;gap:4px;padding:10px 20px 6px;font-size:13px;color:var(--text-2)}
+.tycoon-stats strong{color:var(--accent-dark);font-weight:700}
+.tycoon-stats-dot{color:var(--text-3)}
 
-/* -- Grass Grid -- */
-.grass-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;padding:0 16px;max-width:430px;margin:0 auto}
-.grass-cell{aspect-ratio:1;border-radius:4px;position:relative;cursor:default;transition:transform .15s}
-.grass-cell.planted{cursor:pointer;box-shadow:inset 0 -3px 0 rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.15)}
-.grass-cell.planted:active{transform:scale(.92)}
-.grass-cell.planted.active{transform:scale(1.1);z-index:5;box-shadow:0 0 0 2px #fff,inset 0 -3px 0 rgba(0,0,0,.25)}
-.grass-cell.dirt{background:#2d2d44;box-shadow:inset 0 -2px 0 rgba(0,0,0,.15)}
-.grass-cat{position:absolute;top:50%;left:50%;transform:translate(-50%,-55%);animation:catIdle 2.5s ease-in-out infinite}
-@keyframes catIdle{0%,100%{transform:translate(-50%,-55%)}50%{transform:translate(-50%,-60%)}}
-.grass-cell.just-planted{animation:plantDrop .5s cubic-bezier(.34,1.56,.64,1)}
-@keyframes plantDrop{0%{opacity:0;transform:scale(0) translateY(-20px)}60%{transform:scale(1.15)}100%{opacity:1;transform:scale(1) translateY(0)}}
+/* -- Tycoon Scene -- */
+.tycoon-scene-wrap{position:relative;width:100%;min-height:600px;overflow:hidden;border-radius:0 0 20px 20px}
+.tycoon-bg{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.tycoon-cats-layer{position:absolute;inset:0;z-index:1}
 
-/* -- Grass Bubble (detail card) -- */
-.grass-bubble-overlay{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.5);padding:20px;animation:fadeIn .15s ease}
-.grass-bubble{background:#fff;border-radius:16px;padding:20px 24px;max-width:320px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,.2);animation:bubblePop .25s cubic-bezier(.34,1.56,.64,1)}
-.grass-bubble-nick{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:700;color:var(--text-1);margin-bottom:10px}
-.grass-bubble-brand{font-size:11px;font-weight:500;color:var(--text-2);background:var(--bg);border-radius:6px;padding:2px 6px;margin-left:auto}
-.grass-bubble-menu{font-size:14px;color:var(--text-1);font-weight:600;line-height:1.5;margin-bottom:6px}
-.grass-bubble-kcal{font-size:15px;color:var(--accent-dark);font-weight:700;margin-bottom:6px}
-.grass-bubble-comment{font-size:13px;color:var(--text-2);font-style:italic}
+/* -- Tycoon Cat Slots -- */
+.tycoon-cat-slot{position:absolute;transform:translate(-50%,-50%);z-index:2;transition:z-index 0s}
+.tycoon-cat-slot:hover{z-index:10}
+.tycoon-just-arrived{animation:catArrive .6s cubic-bezier(.34,1.56,.64,1)}
+@keyframes catArrive{0%{opacity:0;transform:translate(-50%,-50%) scale(0) rotate(-20deg)}60%{transform:translate(-50%,-50%) scale(1.2) rotate(5deg)}100%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0)}}
+
+/* -- Tycoon Cat Component -- */
+.tycoon-cat{cursor:pointer;transition:transform .2s cubic-bezier(.34,1.56,.64,1);filter:drop-shadow(0 2px 3px rgba(0,0,0,.15))}
+.tycoon-cat:active{transform:scale(.9)}
+.tycoon-cat-active{transform:scale(1.15);filter:drop-shadow(0 4px 8px rgba(0,0,0,.25))}
+
+/* -- Cat Idle Animations -- */
+.cat-anim-idle{animation:catBob 3s ease-in-out infinite}
+.cat-anim-sit{animation:catSitBob 4s ease-in-out infinite}
+.cat-anim-walk{animation:catWalk 2.5s ease-in-out infinite}
+.cat-anim-sleep{animation:catSleep 4s ease-in-out infinite}
+.cat-anim-wave{animation:catWave 2s ease-in-out infinite}
+
+@keyframes catBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes catSitBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+@keyframes catWalk{0%{transform:translateX(0)}25%{transform:translateX(4px) translateY(-2px)}50%{transform:translateX(8px)}75%{transform:translateX(4px) translateY(-2px)}100%{transform:translateX(0)}}
+@keyframes catSleep{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+@keyframes catWave{0%,100%{transform:rotate(0)}25%{transform:rotate(-3deg)}75%{transform:rotate(3deg)}}
+
+/* -- Tycoon Bubble (detail card) -- */
+.tycoon-bubble-overlay{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.4);padding:20px;animation:fadeIn .15s ease}
+.tycoon-bubble{background:#fff;border-radius:20px;padding:24px;max-width:320px;width:100%;box-shadow:0 12px 40px rgba(0,0,0,.15);animation:bubblePop .3s cubic-bezier(.34,1.56,.64,1)}
+.tycoon-bubble-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.tycoon-bubble-info{display:flex;flex-direction:column;gap:2px}
+.tycoon-bubble-nick{font-size:15px;font-weight:700;color:var(--text-1)}
+.tycoon-bubble-brand{font-size:11px;font-weight:500;color:var(--text-2);background:var(--bg);border-radius:6px;padding:2px 8px;width:fit-content}
+.tycoon-bubble-menu{font-size:14px;color:var(--text-1);font-weight:600;line-height:1.5;margin-bottom:6px;padding:10px 14px;background:var(--bg);border-radius:10px}
+.tycoon-bubble-kcal{font-size:16px;color:var(--accent-dark);font-weight:700;margin-bottom:6px}
+.tycoon-bubble-comment{font-size:13px;color:var(--text-2);font-style:italic;padding-top:6px;border-top:1px solid var(--border)}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes bubblePop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
 
-/* -- Grass Empty State -- */
-.grass-empty{text-align:center;padding:60px 20px;color:#666;font-size:14px;line-height:1.8}
+/* -- Tycoon Empty State -- */
+.tycoon-empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:5;text-align:center;color:var(--text-2);font-size:15px;line-height:2;background:rgba(255,255,255,.6);border-radius:0 0 20px 20px}
 
 /* -- Scrollbar hide -- */
 ::-webkit-scrollbar{width:0;height:0}
