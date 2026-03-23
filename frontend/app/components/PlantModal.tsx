@@ -3,6 +3,11 @@ import { useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { addEntry, getRandomNickname } from "../lib/grassStore";
 
+function generateNickname(menuNames: string[]): string {
+  const first = menuNames[0] ?? "";
+  return first ? `${first} 좋아하는 고양이` : getRandomNickname();
+}
+
 interface PlantModalProps {
   open: boolean;
   onClose: () => void;
@@ -18,9 +23,9 @@ export default function PlantModal({ open, onClose, brandId, menuNames, totalCal
 
   useEffect(() => {
     if (open && !nickname) {
-      setNickname(getRandomNickname());
+      setNickname(generateNickname(menuNames));
     }
-  }, [open, nickname]);
+  }, [open, nickname, menuNames]);
 
   const handleOverlayClick = useCallback(
     (e: React.MouseEvent) => {
@@ -34,7 +39,7 @@ export default function PlantModal({ open, onClose, brandId, menuNames, totalCal
       brandId,
       menuNames,
       totalCalories,
-      nickname: nickname.trim() || getRandomNickname(),
+      nickname: nickname.trim() || generateNickname(menuNames),
       comment: comment.trim(),
     });
     sessionStorage.setItem("grassJustPlanted", "true");
@@ -57,7 +62,7 @@ export default function PlantModal({ open, onClose, brandId, menuNames, totalCal
             type="text"
             value={nickname}
             onChange={(e) => setNickname(e.target.value)}
-            maxLength={10}
+            maxLength={20}
             placeholder="닉네임"
           />
           <label className="plant-label">한줄 리뷰 <span className="plant-opt">(선택)</span></label>

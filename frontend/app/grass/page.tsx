@@ -2,9 +2,9 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import Link from "next/link";
 import { getAllEntries, type GrassEntry } from "../lib/grassStore";
-import { getCatPosition } from "../lib/catGenerator";
 import TycoonCat from "../components/TycoonCat";
 import TycoonScene from "../components/TycoonScene";
+import { useCatSimulation } from "../hooks/useCatSimulation";
 
 const BRAND_LABEL: Record<string, string> = { subway: "서브웨이", salady: "샐러디", poke: "포케올데이" };
 
@@ -22,14 +22,17 @@ export default function GrassPage() {
     }
   }, []);
 
+  const { cats, handleInteract } = useCatSimulation(entries);
+
   const avgCalories = useMemo(() => {
     if (entries.length === 0) return 0;
     return Math.round(entries.reduce((s, e) => s + e.totalCalories, 0) / entries.length);
   }, [entries]);
 
   const handleCatClick = useCallback((id: string) => {
+    handleInteract(id);
     setActiveId((prev) => (prev === id ? null : id));
-  }, []);
+  }, [handleInteract]);
 
   const handleOverlayClose = useCallback(() => {
     setActiveId(null);
@@ -40,18 +43,11 @@ export default function GrassPage() {
     return entries.find((e) => e.id === activeId) ?? null;
   }, [activeId, entries]);
 
-  const catPositions = useMemo(() => {
-    return entries.map((entry, i) => ({
-      entry,
-      pos: getCatPosition(i, entries.length, entry.id),
-    }));
-  }, [entries]);
-
   return (
     <div className="tycoon-page">
       <nav className="tycoon-header">
         <Link href="/calculator/subway" className="tycoon-back">← 계산기</Link>
-        <h1 className="tycoon-title">고양이 간식바 🐱</h1>
+        <h1 className="tycoon-title">고양이 놀이방 🐱</h1>
         <div className="tycoon-spacer" />
       </nav>
 
@@ -65,22 +61,34 @@ export default function GrassPage() {
         <TycoonScene />
 
         <div className="tycoon-cats-layer">
-          {catPositions.map(({ entry, pos }) => (
-            <div
-              key={entry.id}
-              className={`tycoon-cat-slot${justPlantedId === entry.id ? " tycoon-just-arrived" : ""}`}
-              style={{ left: `${pos.x}%`, top: `${pos.y}%` }}
-            >
-              <TycoonCat
-                entryId={entry.id}
-                brandId={entry.brandId}
-                size={52}
-                onClick={() => handleCatClick(entry.id)}
-                active={activeId === entry.id}
-                isNew={justPlantedId === entry.id}
-              />
-            </div>
-          ))}
+          {cats.map((cat) => {
+            const entry = entries.find(e => e.id === cat.id);
+            if (!entry) return null;
+            return (
+              <div
+                key={cat.id}
+                className={`tycoon-cat-slot${justPlantedId === cat.id ? " tycoon-just-arrived" : ""}`}
+                style={{
+                  left: `${cat.x}%`,
+                  top: `${cat.y}%`,
+                  zIndex: activeId === cat.id ? 50 : 2,
+                  transition: cat.state === 'walk' ? 'none' : 'left 0.3s ease, top 0.3s ease',
+                }}
+              >
+                <TycoonCat
+                  entryId={entry.id}
+                  brandId={entry.brandId}
+                  size={52}
+                  onClick={() => handleCatClick(cat.id)}
+                  active={activeId === cat.id}
+                  isNew={justPlantedId === cat.id}
+                  pose={cat.state}
+                  facing={cat.facing}
+                  bobPhase={cat.bobPhase}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
 

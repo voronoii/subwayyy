@@ -125,7 +125,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);-webkit-fo
 .tycoon-cats-layer{position:absolute;inset:0;z-index:1}
 
 /* -- Tycoon Cat Slots -- */
-.tycoon-cat-slot{position:absolute;transform:translate(-50%,-50%);z-index:2;transition:z-index 0s}
+.tycoon-cat-slot{position:absolute;transform:translate(-50%,-50%);z-index:2;transition:z-index 0s;cursor:grab}
+.tycoon-cat-slot:active{cursor:grabbing}
 .tycoon-cat-slot:hover{z-index:10}
 .tycoon-just-arrived{animation:catArrive .6s cubic-bezier(.34,1.56,.64,1)}
 @keyframes catArrive{0%{opacity:0;transform:translate(-50%,-50%) scale(0) rotate(-20deg)}60%{transform:translate(-50%,-50%) scale(1.2) rotate(5deg)}100%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0)}}
@@ -166,3 +167,15 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);-webkit-fo
 
 /* -- Scrollbar hide -- */
 ::-webkit-scrollbar{width:0;height:0}
+
+/* Cat roll animation (sleeping cat clicked) */
+@keyframes catRollAnim {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(20deg); }
+}
+
+/* Pulse animation for active/new effects */
+@keyframes pulse {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.1); }
+}
