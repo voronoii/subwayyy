@@ -1,0 +1,175 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1774254807397,
+  "projectRoot": "/DATA3/users/mj/subwayyy",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      },
+      {
+        "name": "Python",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "requirements.txt"
+        ]
+      }
+    ],
+    "frameworks": [],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "public",
+      "static",
+      "tests"
+    ],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "__pycache__": {
+      "path": "__pycache__",
+      "purpose": null,
+      "fileCount": 4,
+      "lastAccessed": 1774254807388,
+      "keyFiles": [
+        "app.cpython-310.pyc",
+        "app.cpython-312.pyc",
+        "app.cpython-39.pyc",
+        "nutrition_data.cpython-39.pyc"
+      ]
+    },
+    "api": {
+      "path": "api",
+      "purpose": "API routes",
+      "fileCount": 6,
+      "lastAccessed": 1774254807388,
+      "keyFiles": [
+        "cali.txt",
+        "nutrition_data.py",
+        "nutrition_poke.py",
+        "nutrition_salady.py",
+        "update_blog_page.ipynb"
+      ]
+    },
+    "frontend": {
+      "path": "frontend",
+      "purpose": null,
+      "fileCount": 8,
+      "lastAccessed": 1774254807393,
+      "keyFiles": [
+        "README.md",
+        "next-env.d.ts",
+        "next.config.ts",
+        "package-lock.json",
+        "package.json"
+      ]
+    },
+    "mj_demo": {
+      "path": "mj_demo",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1774254807393,
+      "keyFiles": [
+        "__init__.py"
+      ]
+    },
+    "public": {
+      "path": "public",
+      "purpose": "Public files",
+      "fileCount": 4,
+      "lastAccessed": 1774254807394,
+      "keyFiles": [
+        "_redirects",
+        "ads.txt",
+        "robots.txt",
+        "sitemap.xml"
+      ]
+    },
+    "saved_pages": {
+      "path": "saved_pages",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1774254807395,
+      "keyFiles": [
+        "index.html",
+        "sitemap.txt"
+      ]
+    },
+    "static": {
+      "path": "static",
+      "purpose": "Static files",
+      "fileCount": 0,
+      "lastAccessed": 1774254807395,
+      "keyFiles": []
+    },
+    "templates": {
+      "path": "templates",
+      "purpose": null,
+      "fileCount": 13,
+      "lastAccessed": 1774254807395,
+      "keyFiles": [
+        "base.html",
+        "board.html",
+        "guestbook.html",
+        "index copy.html",
+        "index.html"
+      ]
+    },
+    "tests": {
+      "path": "tests",
+      "purpose": "Test files",
+      "fileCount": 1,
+      "lastAccessed": 1774254807395,
+      "keyFiles": [
+        "__init__.py"
+      ]
+    },
+    "frontend/app": {
+      "path": "frontend/app",
+      "purpose": "Application code",
+      "fileCount": 4,
+      "lastAccessed": 1774254807396,
+      "keyFiles": [
+        "favicon.ico",
+        "globals.css",
+        "layout.tsx"
+      ]
+    },
+    "frontend/node_modules": {
+      "path": "frontend/node_modules",
+      "purpose": "Dependencies",
+      "fileCount": 1,
+      "lastAccessed": 1774254807396,
+      "keyFiles": []
+    }
+  },
+  "hotPaths": [],
+  "userDirectives": []
+}
