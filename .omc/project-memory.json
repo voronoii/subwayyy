@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1774254807397,
+  "lastScanned": 1782908258877,
   "projectRoot": "/DATA3/users/mj/subwayyy",
   "techStack": {
     "languages": [
@@ -57,7 +57,7 @@
       "path": "__pycache__",
       "purpose": null,
       "fileCount": 4,
-      "lastAccessed": 1774254807388,
+      "lastAccessed": 1782908258869,
       "keyFiles": [
         "app.cpython-310.pyc",
         "app.cpython-312.pyc",
@@ -69,7 +69,7 @@
       "path": "api",
       "purpose": "API routes",
       "fileCount": 6,
-      "lastAccessed": 1774254807388,
+      "lastAccessed": 1782908258870,
       "keyFiles": [
         "cali.txt",
         "nutrition_data.py",
@@ -82,7 +82,7 @@
       "path": "frontend",
       "purpose": null,
       "fileCount": 8,
-      "lastAccessed": 1774254807393,
+      "lastAccessed": 1782908258873,
       "keyFiles": [
         "README.md",
         "next-env.d.ts",
@@ -95,7 +95,7 @@
       "path": "mj_demo",
       "purpose": null,
       "fileCount": 1,
-      "lastAccessed": 1774254807393,
+      "lastAccessed": 1782908258874,
       "keyFiles": [
         "__init__.py"
       ]
@@ -104,7 +104,7 @@
       "path": "public",
       "purpose": "Public files",
       "fileCount": 4,
-      "lastAccessed": 1774254807394,
+      "lastAccessed": 1782908258874,
       "keyFiles": [
         "_redirects",
         "ads.txt",
@@ -116,7 +116,7 @@
       "path": "saved_pages",
       "purpose": null,
       "fileCount": 2,
-      "lastAccessed": 1774254807395,
+      "lastAccessed": 1782908258874,
       "keyFiles": [
         "index.html",
         "sitemap.txt"
@@ -126,14 +126,14 @@
       "path": "static",
       "purpose": "Static files",
       "fileCount": 0,
-      "lastAccessed": 1774254807395,
+      "lastAccessed": 1782908258875,
       "keyFiles": []
     },
     "templates": {
       "path": "templates",
       "purpose": null,
       "fileCount": 13,
-      "lastAccessed": 1774254807395,
+      "lastAccessed": 1782908258875,
       "keyFiles": [
         "base.html",
         "board.html",
@@ -146,7 +146,7 @@
       "path": "tests",
       "purpose": "Test files",
       "fileCount": 1,
-      "lastAccessed": 1774254807395,
+      "lastAccessed": 1782908258876,
       "keyFiles": [
         "__init__.py"
       ]
@@ -155,7 +155,7 @@
       "path": "frontend/app",
       "purpose": "Application code",
       "fileCount": 4,
-      "lastAccessed": 1774254807396,
+      "lastAccessed": 1782908258876,
       "keyFiles": [
         "favicon.ico",
         "globals.css",
@@ -166,10 +166,29 @@
       "path": "frontend/node_modules",
       "purpose": "Dependencies",
       "fileCount": 1,
-      "lastAccessed": 1774254807396,
+      "lastAccessed": 1782908258876,
       "keyFiles": []
     }
   },
-  "hotPaths": [],
+  "hotPaths": [
+    {
+      "path": "api/nutrition_data.py",
+      "accessCount": 4,
+      "lastAccessed": 1782917290774,
+      "type": "file"
+    },
+    {
+      "path": "app.py",
+      "accessCount": 1,
+      "lastAccessed": 1782909003965,
+      "type": "file"
+    },
+    {
+      "path": "frontend/app/data/subway.ts",
+      "accessCount": 1,
+      "lastAccessed": 1782917416542,
+      "type": "file"
+    }
+  ],
   "userDirectives": []
 }
