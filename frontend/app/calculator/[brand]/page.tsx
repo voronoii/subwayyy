@@ -1,88 +1,75 @@
-"use client";
-import { useState, useCallback } from "react";
-import { useParams } from "next/navigation";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { getBrandConfig, brands } from "../../data/brands";
-import { useCalculator } from "../../hooks/useCalculator";
-import TopNav from "../../components/TopNav";
-import CategoryPills from "../../components/CategoryPills";
-import SelectedChips from "../../components/SelectedChips";
-import MenuGrid from "../../components/MenuGrid";
-import BottomBar from "../../components/BottomBar";
-import ResultSheet from "../../components/ResultSheet";
-import TipCard from "../../components/TipCard";
-import PlantModal from "../../components/PlantModal";
+import CalculatorClient from "./CalculatorClient";
 
-export default function CalculatorPage() {
-  const params = useParams();
-  const brandId = typeof params.brand === "string" ? params.brand : "subway";
-  const config = getBrandConfig(brandId) ?? brands[0];
+interface Props {
+  params: Promise<{ brand: string }>;
+}
 
-  const [activeCat, setActiveCat] = useState(config.categories[0]?.id ?? "");
-  const [sheetOpen, setSheetOpen] = useState(false);
-  const [plantOpen, setPlantOpen] = useState(false);
+const BRAND_SEO: Record<string, { title: string; description: string }> = {
+  subway: {
+    title: "서브웨이 칼로리 계산기 — 샌드위치 조합별 영양성분",
+    description:
+      "서브웨이 샌드위치·빵·치즈·소스·토핑 조합의 칼로리를 바로 계산하세요. 에그마요, 이탈리안 비엠티 등 전 메뉴의 열량, 단백질, 당류, 나트륨을 무료로 확인할 수 있습니다.",
+  },
+  salady: {
+    title: "샐러디 칼로리 계산기 — 샐러드·랩 조합별 영양성분",
+    description:
+      "샐러디 샐러드, 웜볼, 랩, 드레싱 조합의 칼로리를 바로 계산하세요. 메뉴별 열량, 단백질, 당류, 나트륨을 무료로 확인할 수 있는 다이어터 필수 도구입니다.",
+  },
+  poke: {
+    title: "포케올데이 칼로리 계산기 — 포케 조합별 영양성분",
+    description:
+      "포케올데이 포케, 베이스, 토핑, 소스 조합의 칼로리를 바로 계산하세요. 연어 포케, 참치 포케 등 메뉴별 열량과 영양성분을 무료로 확인할 수 있습니다.",
+  },
+};
 
-  const { selected, selectedItems, totals, toggle, remove, clear } = useCalculator(config.nutritionKeys);
+export function generateStaticParams() {
+  return brands.map((b) => ({ brand: b.id }));
+}
 
-  const activeCategory = config.categories.find((c) => c.id === activeCat) ?? config.categories[0];
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { brand } = await params;
+  const seo = BRAND_SEO[brand];
+  if (!seo) return {};
+  return {
+    title: { absolute: seo.title },
+    description: seo.description,
+    alternates: {
+      canonical: `/calculator/${brand}`,
+    },
+    openGraph: {
+      title: seo.title,
+      description: seo.description,
+      url: `/calculator/${brand}`,
+    },
+  };
+}
 
-  const handleShowResult = useCallback(() => {
-    if (selectedItems.length > 0) {
-      setSheetOpen(true);
-    }
-  }, [selectedItems.length]);
+export default async function CalculatorPage({ params }: Props) {
+  const { brand } = await params;
+  const config = getBrandConfig(brand);
+  if (!config) notFound();
+
+  const itemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `${config.name} 메뉴 칼로리`,
+    itemListElement: config.categories[0]?.items.slice(0, 30).map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: `${config.name} ${item.name} — ${item.calories}kcal`,
+    })),
+  };
 
   return (
     <>
-      <TopNav activeBrand={config.id} />
-
-      <header className="page-header">
-        <h1>{config.name}</h1>
-        <p className="sub">{config.subtitle}</p>
-      </header>
-
-      <CategoryPills
-        categories={config.categories}
-        activeId={activeCat}
-        onSelect={setActiveCat}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
       />
-
-      <SelectedChips items={selectedItems} onRemove={remove} />
-
-      {config.tip && <TipCard text={config.tip} />}
-
-      {activeCategory && (
-        <MenuGrid
-          category={activeCategory}
-          selectedNames={selected}
-          onToggle={toggle}
-        />
-      )}
-
-      <BottomBar
-        totalKcal={totals.calories ?? 0}
-        onShowResult={handleShowResult}
-      />
-
-      <ResultSheet
-        open={sheetOpen}
-        onClose={() => setSheetOpen(false)}
-        totals={totals}
-        nutritionKeys={config.nutritionKeys}
-        selectedItems={selectedItems}
-        brandName={config.name}
-        onPlant={() => {
-          setSheetOpen(false);
-          setPlantOpen(true);
-        }}
-      />
-
-      <PlantModal
-        open={plantOpen}
-        onClose={() => setPlantOpen(false)}
-        brandId={config.id}
-        menuNames={selectedItems.map((i) => i.name)}
-        totalCalories={totals.calories ?? 0}
-      />
+      <CalculatorClient brandId={brand} />
     </>
   );
 }

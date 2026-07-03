@@ -28,7 +28,11 @@ export default function TopNav({ activeBrand }: TopNavProps) {
         ))}
       </div>
       <div className="top-nav-right">
-        <Link href="/grass" className="grass-link">🐱</Link>
+        <Link href="/grass" className="grass-link" title="고양이 놀이방">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/cats/cat_cheese.png" alt="고양이 놀이방" width={26} height={26} style={{ imageRendering: "pixelated", display: "block" }} />
+          <span className="grass-link-label">놀이방</span>
+        </Link>
         {BUILD_DATE_SHORT && (
           <span className="version-tag" title={`Build ${BUILD_ISO}`}>
             <span className="version-date">{BUILD_DATE_SHORT}</span>

@@ -6,6 +6,10 @@ export interface GrassEntry {
   nickname: string;
   comment: string;
   timestamp: number;
+  /** 'photo' = 사진으로 만든 픽셀 고양이 */
+  kind?: "meal" | "photo";
+  /** 사진 픽셀냥이의 스프라이트 (작은 PNG data URL) */
+  spriteUrl?: string;
 }
 
 const STORAGE_KEY = "subwayyy_grass";
@@ -89,6 +93,8 @@ export function addEntry(input: {
   totalCalories: number;
   nickname: string;
   comment: string;
+  kind?: "meal" | "photo";
+  spriteUrl?: string;
 }): GrassEntry {
   const entry: GrassEntry = {
     id: uid(),

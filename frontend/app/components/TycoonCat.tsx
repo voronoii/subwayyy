@@ -2,7 +2,14 @@
 
 import type { CatState } from '../hooks/useCatSimulation';
 
-const CAT_IMAGES = ['/cats/blue.png', '/cats/mint.png', '/cats/orange.png'];
+const CAT_IMAGES = [
+  '/cats/cat_cheese.png',
+  '/cats/cat_cream.png',
+  '/cats/cat_gray.png',
+  '/cats/cat_black.png',
+  '/cats/cat_white.png',
+  '/cats/cat_choco.png',
+];
 
 function hashCode(str: string): number {
   let hash = 0;
@@ -23,6 +30,8 @@ interface TycoonCatProps {
   pose?: CatState;
   facing?: 'left' | 'right';
   bobPhase?: number;
+  /** 사진으로 만든 픽셀냥이 스프라이트 (data URL) */
+  spriteUrl?: string;
 }
 
 export default function TycoonCat({
@@ -34,8 +43,9 @@ export default function TycoonCat({
   pose,
   facing = 'right',
   bobPhase = 0,
+  spriteUrl,
 }: TycoonCatProps) {
-  const catImage = CAT_IMAGES[hashCode(entryId) % CAT_IMAGES.length];
+  const catImage = spriteUrl ?? CAT_IMAGES[hashCode(entryId) % CAT_IMAGES.length];
 
   // Walk bobbing offset
   const bobY = pose === 'walk' ? Math.sin(bobPhase) * 3 : 0;
@@ -69,7 +79,7 @@ export default function TycoonCat({
         width={size}
         height={size}
         draggable={false}
-        style={{ display: 'block' }}
+        style={{ display: 'block', imageRendering: 'pixelated' }}
       />
 
       {/* Active glow */}

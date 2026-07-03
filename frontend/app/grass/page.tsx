@@ -4,6 +4,7 @@ import Link from "next/link";
 import { getAllEntries, type GrassEntry } from "../lib/grassStore";
 import TycoonCat from "../components/TycoonCat";
 import TycoonScene from "../components/TycoonScene";
+import PhotoCatModal from "../components/PhotoCatModal";
 import { useCatSimulation } from "../hooks/useCatSimulation";
 
 const BRAND_LABEL: Record<string, string> = { subway: "서브웨이", salady: "샐러디", poke: "포케올데이" };
@@ -12,6 +13,7 @@ export default function GrassPage() {
   const [entries, setEntries] = useState<GrassEntry[]>([]);
   const [activeId, setActiveId] = useState<string | null>(null);
   const [justPlantedId, setJustPlantedId] = useState<string | null>(null);
+  const [photoOpen, setPhotoOpen] = useState(false);
 
   useEffect(() => {
     const all = getAllEntries();
@@ -25,8 +27,9 @@ export default function GrassPage() {
   const { cats, handleInteract } = useCatSimulation(entries);
 
   const avgCalories = useMemo(() => {
-    if (entries.length === 0) return 0;
-    return Math.round(entries.reduce((s, e) => s + e.totalCalories, 0) / entries.length);
+    const meals = entries.filter((e) => e.kind !== "photo");
+    if (meals.length === 0) return 0;
+    return Math.round(meals.reduce((s, e) => s + e.totalCalories, 0) / meals.length);
   }, [entries]);
 
   const handleCatClick = useCallback((id: string) => {
@@ -36,6 +39,12 @@ export default function GrassPage() {
 
   const handleOverlayClose = useCallback(() => {
     setActiveId(null);
+  }, []);
+
+  const handlePhotoSaved = useCallback((entry: GrassEntry) => {
+    setPhotoOpen(false);
+    setEntries(getAllEntries());
+    setJustPlantedId(entry.id);
   }, []);
 
   const activeEntry = useMemo(() => {
@@ -55,6 +64,9 @@ export default function GrassPage() {
         <span>🐱 <strong>{entries.length}</strong>마리</span>
         <span className="tycoon-stats-dot">·</span>
         <span>평균 <strong>{avgCalories}</strong>kcal</span>
+        <button type="button" className="photo-cat-cta" onClick={() => setPhotoOpen(true)}>
+          📷 내 고양이 데려오기
+        </button>
       </div>
 
       <div className="tycoon-scene-wrap">
@@ -78,6 +90,7 @@ export default function GrassPage() {
                 <TycoonCat
                   entryId={entry.id}
                   brandId={entry.brandId}
+                  spriteUrl={entry.spriteUrl}
                   size={52}
                   onClick={() => handleCatClick(cat.id)}
                   active={activeId === cat.id}
@@ -96,22 +109,36 @@ export default function GrassPage() {
         <div className="tycoon-bubble-overlay" onClick={handleOverlayClose}>
           <div className="tycoon-bubble" onClick={(e) => e.stopPropagation()}>
             <div className="tycoon-bubble-top">
-              <TycoonCat entryId={activeEntry.id} brandId={activeEntry.brandId} size={36} />
+              <TycoonCat entryId={activeEntry.id} brandId={activeEntry.brandId} spriteUrl={activeEntry.spriteUrl} size={36} />
               <div className="tycoon-bubble-info">
                 <span className="tycoon-bubble-nick">{activeEntry.nickname}</span>
-                <span className="tycoon-bubble-brand">{BRAND_LABEL[activeEntry.brandId] ?? activeEntry.brandId}</span>
+                <span className="tycoon-bubble-brand">
+                  {activeEntry.kind === "photo"
+                    ? "우리집 고양이 📷"
+                    : BRAND_LABEL[activeEntry.brandId] ?? activeEntry.brandId}
+                </span>
               </div>
             </div>
-            <div className="tycoon-bubble-menu">
-              {activeEntry.menuNames.join(" + ")}
-            </div>
-            <div className="tycoon-bubble-kcal">{Math.round(activeEntry.totalCalories)}kcal</div>
+            {activeEntry.menuNames.length > 0 && (
+              <div className="tycoon-bubble-menu">
+                {activeEntry.menuNames.join(" + ")}
+              </div>
+            )}
+            {activeEntry.kind !== "photo" && (
+              <div className="tycoon-bubble-kcal">{Math.round(activeEntry.totalCalories)}kcal</div>
+            )}
             {activeEntry.comment && (
               <div className="tycoon-bubble-comment">&ldquo;{activeEntry.comment}&rdquo;</div>
             )}
           </div>
         </div>
       )}
+
+      <PhotoCatModal
+        open={photoOpen}
+        onClose={() => setPhotoOpen(false)}
+        onSaved={handlePhotoSaved}
+      />
 
       {entries.length === 0 && (
         <div className="tycoon-empty">

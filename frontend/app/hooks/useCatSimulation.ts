@@ -19,14 +19,14 @@ export interface CatSim {
 
 // Obstacle zones (percentage coordinates) - cats won't walk into these
 const OBSTACLES = [
-  { x: 5, y: 38, w: 18, h: 30 },    // slide area (left)
-  { x: 18, y: 80, w: 20, h: 10 },   // left fence
-  { x: 60, y: 80, w: 20, h: 10 },   // right fence
-  { x: 38, y: 82, w: 24, h: 15 },   // sandbox (center bottom)
+  { x: 6, y: 58, w: 18, h: 18 },    // slide area (left)
+  { x: 20, y: 80, w: 18, h: 8 },    // left fence
+  { x: 62, y: 80, w: 18, h: 8 },    // right fence
+  { x: 36, y: 84, w: 28, h: 8 },    // sandbox (center bottom)
 ];
 
-// Grass walkable area bounds
-const BOUNDS = { minX: 5, maxX: 95, minY: 38, maxY: 88 };
+// Grass walkable area bounds — 잔디는 장면의 세로 ~54%부터 시작 (그 위는 하늘)
+const BOUNDS = { minX: 8, maxX: 92, minY: 58, maxY: 90 };
 
 function isInObstacle(x: number, y: number): boolean {
   return OBSTACLES.some(o => x >= o.x && x <= o.x + o.w && y >= o.y && y <= o.y + o.h);
