@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { brands } from "../data/brands";
 
@@ -14,12 +15,20 @@ const BUILD_DATE_SHORT =
     : "";
 
 export default function TopNav({ activeBrand }: TopNavProps) {
+  const activeRef = useRef<HTMLAnchorElement>(null);
+
+  // Keep the active brand tab fully in view even when tabs overflow the narrow header.
+  useEffect(() => {
+    activeRef.current?.scrollIntoView({ inline: "center", block: "nearest" });
+  }, []);
+
   return (
     <nav className="top-nav">
       <div className="brand-tabs">
         {brands.map((b) => (
           <Link
             key={b.id}
+            ref={b.id === activeBrand ? activeRef : undefined}
             href={`/calculator/${b.id}`}
             className={`brand-tab${b.id === activeBrand ? " active" : ""}`}
           >
@@ -28,11 +37,6 @@ export default function TopNav({ activeBrand }: TopNavProps) {
         ))}
       </div>
       <div className="top-nav-right">
-        <Link href="/grass" className="grass-link" title="고양이 놀이방">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/cats/cat_cheese.png" alt="고양이 놀이방" width={26} height={26} style={{ imageRendering: "pixelated", display: "block" }} />
-          <span className="grass-link-label">놀이방</span>
-        </Link>
         {BUILD_DATE_SHORT && (
           <span className="version-tag" title={`Build ${BUILD_ISO}`}>
             <span className="version-date">{BUILD_DATE_SHORT}</span>

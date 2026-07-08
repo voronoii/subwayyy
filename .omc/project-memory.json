@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1782908258877,
+  "lastScanned": 1783471131889,
   "projectRoot": "/DATA3/users/mj/subwayyy",
   "techStack": {
     "languages": [
@@ -57,7 +57,7 @@
       "path": "__pycache__",
       "purpose": null,
       "fileCount": 4,
-      "lastAccessed": 1782908258869,
+      "lastAccessed": 1783471131880,
       "keyFiles": [
         "app.cpython-310.pyc",
         "app.cpython-312.pyc",
@@ -69,7 +69,7 @@
       "path": "api",
       "purpose": "API routes",
       "fileCount": 6,
-      "lastAccessed": 1782908258870,
+      "lastAccessed": 1783471131881,
       "keyFiles": [
         "cali.txt",
         "nutrition_data.py",
@@ -82,7 +82,7 @@
       "path": "frontend",
       "purpose": null,
       "fileCount": 8,
-      "lastAccessed": 1782908258873,
+      "lastAccessed": 1783471131885,
       "keyFiles": [
         "README.md",
         "next-env.d.ts",
@@ -95,7 +95,7 @@
       "path": "mj_demo",
       "purpose": null,
       "fileCount": 1,
-      "lastAccessed": 1782908258874,
+      "lastAccessed": 1783471131885,
       "keyFiles": [
         "__init__.py"
       ]
@@ -104,7 +104,7 @@
       "path": "public",
       "purpose": "Public files",
       "fileCount": 4,
-      "lastAccessed": 1782908258874,
+      "lastAccessed": 1783471131885,
       "keyFiles": [
         "_redirects",
         "ads.txt",
@@ -116,7 +116,7 @@
       "path": "saved_pages",
       "purpose": null,
       "fileCount": 2,
-      "lastAccessed": 1782908258874,
+      "lastAccessed": 1783471131887,
       "keyFiles": [
         "index.html",
         "sitemap.txt"
@@ -126,14 +126,14 @@
       "path": "static",
       "purpose": "Static files",
       "fileCount": 0,
-      "lastAccessed": 1782908258875,
+      "lastAccessed": 1783471131887,
       "keyFiles": []
     },
     "templates": {
       "path": "templates",
       "purpose": null,
       "fileCount": 13,
-      "lastAccessed": 1782908258875,
+      "lastAccessed": 1783471131887,
       "keyFiles": [
         "base.html",
         "board.html",
@@ -146,7 +146,7 @@
       "path": "tests",
       "purpose": "Test files",
       "fileCount": 1,
-      "lastAccessed": 1782908258876,
+      "lastAccessed": 1783471131887,
       "keyFiles": [
         "__init__.py"
       ]
@@ -154,39 +154,99 @@
     "frontend/app": {
       "path": "frontend/app",
       "purpose": "Application code",
-      "fileCount": 4,
-      "lastAccessed": 1782908258876,
+      "fileCount": 8,
+      "lastAccessed": 1783471131887,
       "keyFiles": [
         "favicon.ico",
         "globals.css",
-        "layout.tsx"
+        "icon.png"
       ]
     },
     "frontend/node_modules": {
       "path": "frontend/node_modules",
       "purpose": "Dependencies",
       "fileCount": 1,
-      "lastAccessed": 1782908258876,
+      "lastAccessed": 1783471131887,
       "keyFiles": []
     }
   },
   "hotPaths": [
     {
       "path": "api/nutrition_data.py",
-      "accessCount": 4,
-      "lastAccessed": 1782917290774,
+      "accessCount": 6,
+      "lastAccessed": 1783472135335,
       "type": "file"
     },
     {
       "path": "app.py",
-      "accessCount": 1,
-      "lastAccessed": 1782909003965,
+      "accessCount": 4,
+      "lastAccessed": 1783473434570,
+      "type": "file"
+    },
+    {
+      "path": "templates/yundar.html",
+      "accessCount": 4,
+      "lastAccessed": 1783473598386,
+      "type": "file"
+    },
+    {
+      "path": "frontend/app/calculator/[brand]/page.tsx",
+      "accessCount": 4,
+      "lastAccessed": 1783475888729,
+      "type": "file"
+    },
+    {
+      "path": "frontend/app/data/types.ts",
+      "accessCount": 3,
+      "lastAccessed": 1783475750801,
+      "type": "file"
+    },
+    {
+      "path": "templates/base.html",
+      "accessCount": 2,
+      "lastAccessed": 1783473442103,
+      "type": "file"
+    },
+    {
+      "path": "frontend/app/data/brands.ts",
+      "accessCount": 2,
+      "lastAccessed": 1783475775692,
+      "type": "file"
+    },
+    {
+      "path": "frontend/app/components/TopNav.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1783486802084,
       "type": "file"
     },
     {
       "path": "frontend/app/data/subway.ts",
       "accessCount": 1,
       "lastAccessed": 1782917416542,
+      "type": "file"
+    },
+    {
+      "path": "templates/poke.html",
+      "accessCount": 1,
+      "lastAccessed": 1783473316605,
+      "type": "file"
+    },
+    {
+      "path": "frontend/app/data/yundar.ts",
+      "accessCount": 1,
+      "lastAccessed": 1783475759296,
+      "type": "file"
+    },
+    {
+      "path": "frontend/app/calculator/[brand]/CatalogClient.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1783475845050,
+      "type": "file"
+    },
+    {
+      "path": "frontend/app/globals.css",
+      "accessCount": 1,
+      "lastAccessed": 1783475929190,
       "type": "file"
     }
   ],

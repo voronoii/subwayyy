@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"python3 .omc/tmp/apply_updates.py\",\"description\":\"Apply all catalog data updates\"}",
+  "error": "Exit code 1\nTraceback (most recent call last):\n  File \"/DATA3/users/mj/subwayyy/.omc/tmp/apply_updates.py\", line 62, in <module>\n    n = txt_nutri[\"라즈베리 레몬 케이크 (드리즐) 삼각이\"]\nKeyError: '라즈베리 레몬 케이크 (드리즐) 삼각이'",
+  "timestamp": "2026-07-08T05:21:34.579Z",
+  "retry_count": 1
+}
