@@ -42,7 +42,6 @@ export default function CalculatorClient({ brandId }: { brandId: string }) {
         categories={config.categories}
         activeId={activeCat}
         onSelect={setActiveCat}
-        nutritionNote={config.nutritionNote}
       />
 
       <SelectedChips items={selectedItems} onRemove={remove} />
@@ -54,6 +53,7 @@ export default function CalculatorClient({ brandId }: { brandId: string }) {
           category={activeCategory}
           selectedNames={selected}
           onToggle={toggle}
+          nutritionNote={config.nutritionNote}
         />
       )}
 
