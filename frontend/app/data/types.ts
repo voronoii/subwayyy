@@ -44,4 +44,5 @@ export interface BrandConfig {
   layout?: BrandLayout;
   // optional official source link shown in catalog footer
   sourceUrl?: string;
+  nutritionNote?: string[];
 }
