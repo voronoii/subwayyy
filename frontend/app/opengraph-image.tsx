@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "서브웨이 · 샐러디 · 포케올데이 칼로리 계산기";
+export const alt = "서브웨이 · 샐러디 · 포케올데이 · 윤달베이커리 칼로리 계산기";
 
 export default function OgImage() {
   return new ImageResponse(
@@ -20,12 +20,12 @@ export default function OgImage() {
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ fontSize: 96, marginBottom: 24 }}>🥪🐱</div>
+        <div style={{ fontSize: 96, marginBottom: 24 }}>🥪🥐🐱</div>
         <div style={{ fontSize: 72, fontWeight: 800, marginBottom: 16 }}>
           칼로리 계산기
         </div>
         <div style={{ fontSize: 36, opacity: 0.95 }}>
-          서브웨이 · 샐러디 · 포케올데이
+          서브웨이 · 샐러디 · 포케올데이 · 윤달베이커리
         </div>
         <div
           style={{

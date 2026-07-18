@@ -5,15 +5,18 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://subwayyy.kr"),
   title: {
-    default: "칼로리 계산기 — 서브웨이 · 샐러디 · 포케올데이",
+    default: "칼로리 계산기 — 서브웨이 · 샐러디 · 포케올데이 · 윤달베이커리",
     template: "%s | subwayyy.kr",
   },
   description:
-    "다이어터를 위한 프랜차이즈 메뉴 영양성분 계산기. 메뉴, 토핑, 소스를 선택하면 칼로리와 영양성분을 자동으로 계산해드립니다.",
+    "다이어터를 위한 영양성분 계산기. 서브웨이·샐러디·포케올데이 조합별 칼로리 계산과 윤달베이커리 삼각이(통밀스콘) 영양성분 도감을 무료로 제공합니다.",
   keywords: [
     "서브웨이 칼로리",
     "샐러디 칼로리",
     "포케올데이 칼로리",
+    "윤달베이커리 칼로리",
+    "윤달 삼각이 영양성분",
+    "통밀 스콘 칼로리",
     "칼로리 계산기",
     "영양성분",
     "다이어트",
@@ -46,10 +49,10 @@ export const viewport: Viewport = {
 const JSON_LD = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "서브웨이 · 샐러디 · 포케올데이 칼로리 계산기",
+  name: "서브웨이 · 샐러디 · 포케올데이 · 윤달베이커리 칼로리 계산기",
   url: "https://subwayyy.kr",
   description:
-    "서브웨이, 샐러디, 포케올데이 메뉴의 칼로리와 영양성분을 조합별로 계산해주는 무료 도구",
+    "서브웨이, 샐러디, 포케올데이 메뉴의 칼로리를 조합별로 계산하고, 윤달베이커리 삼각이 통밀스콘의 영양성분을 사진 도감으로 제공하는 무료 도구",
   applicationCategory: "HealthApplication",
   operatingSystem: "All",
   inLanguage: "ko",
