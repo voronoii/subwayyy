@@ -1,4 +1,5 @@
 import Link from "next/link";
+import FeedbackButton from "./FeedbackButton";
 
 export default function SiteFooter() {
   return (
@@ -16,6 +17,7 @@ export default function SiteFooter() {
         <Link href="/calculator/yundar">윤달베이커리</Link>
         <Link href="/grass">고양이 놀이방</Link>
         <Link href="/privacy">개인정보처리방침</Link>
+        <FeedbackButton />
       </nav>
       <p className="site-footer-copy">© {new Date().getFullYear()} subwayyy.kr</p>
     </footer>
