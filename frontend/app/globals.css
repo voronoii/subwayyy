@@ -7,6 +7,9 @@
   --accent: #34C759;
   --accent-light: #E8F8EC;
   --accent-dark: #1B8A3E;
+  /* 주간 판매중 표시. 흰 글씨 대비 5.3:1로 10px 뱃지에서도 읽힌다. */
+  --sale: #D9480F;
+  --sale-light: #FFF1E8;
   --border: #E5E5EA;
   --shadow: 0 1px 8px rgba(0,0,0,0.06);
   --r: 14px;
@@ -28,6 +31,9 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);-webkit-fo
 .page-header h1{font-size:26px;font-weight:800;letter-spacing:-.5px}
 .page-header .sub{font-size:14px;color:var(--text-2);margin-top:4px}
 .page-header .tag{display:inline-block;font-size:11px;color:var(--text-3);background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:2px 8px;margin-top:8px}
+.y-week{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:var(--sale);background:var(--sale-light);border-radius:20px;padding:5px 11px;margin-top:8px;width:fit-content}
+.y-week-dot{width:6px;height:6px;border-radius:50%;background:var(--sale);flex:none}
+.y-week-date{font-weight:500;color:var(--text-2)}
 
 /* -- Category Pills -- */
 .cat-bar{padding:16px 20px 8px;position:sticky;top:49px;z-index:90;background:var(--bg)}
@@ -265,6 +271,9 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);-webkit-fo
 .y-cat-thumb{position:relative;aspect-ratio:1/1;background:var(--bg);display:flex;align-items:center;justify-content:center;overflow:hidden}
 .y-cat-thumb img{width:100%;height:100%;object-fit:contain}
 .y-incart-badge{position:absolute;top:6px;right:6px;background:var(--accent);color:#fff;font-size:10px;font-weight:700;padding:3px 7px;border-radius:20px}
+/* 판매중은 좌측 상단 — 우측 상단은 '담김 ✓'이 쓰므로 겹치지 않게 나눈다.
+   초록(--accent)은 '내가 선택함', 주황(--sale)은 '이번 주 재고'로 의미를 구분. */
+.y-onsale-badge{position:absolute;top:6px;left:6px;background:var(--sale);color:#fff;font-size:10px;font-weight:700;padding:3px 7px;border-radius:20px}
 .y-cat-name{font-size:12px;font-weight:600;line-height:1.3;color:var(--text-1);padding:0 8px;min-height:31px}
 .y-cat-kcal{font-size:12px;font-weight:700;color:var(--accent-dark);padding:0 8px 10px}
 .y-cat-kcal.muted{color:var(--text-3);font-weight:600}

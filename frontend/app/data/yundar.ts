@@ -1,7 +1,9 @@
-import type { BrandConfig, MenuItem } from "./types";
+import type { BrandConfig, MenuItem, WeeklyAvailability } from "./types";
 import raw from "./_yundar.json";
+import weeklyRaw from "./_yundar-weekly.json";
 
 const data = raw as Record<string, MenuItem[]>;
+const weekly = weeklyRaw as WeeklyAvailability;
 
 export const yundarConfig: BrandConfig = {
   id: "yundar",
@@ -9,6 +11,7 @@ export const yundarConfig: BrandConfig = {
   subtitle: "삼각이 통밀스콘 · 사진과 영양성분 도감",
   layout: "catalog",
   sourceUrl: "https://smartstore.naver.com/yunder",
+  weekly,
   categories: [
     { id: "samgak", label: "삼각이", icon: "🥐", items: data.samgak },
     { id: "creambread", label: "크림빵", icon: "🥯", items: data.creambread },

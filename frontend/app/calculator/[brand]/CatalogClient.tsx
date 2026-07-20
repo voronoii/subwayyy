@@ -46,6 +46,22 @@ export default function CatalogClient({ brandId }: { brandId: string }) {
 
   const q = query.trim().toLowerCase();
 
+  // 이번 회차 판매 목록. 없으면 빈 Set이라 정렬·뱃지가 모두 무력화된다.
+  const onSale = useMemo(
+    () => new Set(config.weekly?.available ?? []),
+    [config.weekly]
+  );
+  // 판매중을 앞으로 당기되, 그룹 안에서는 도감 순서를 그대로 둔다(sort는 안정 정렬).
+  const sortByOnSale = useCallback(
+    (items: MenuItem[]) =>
+      onSale.size === 0
+        ? items
+        : [...items].sort(
+            (a, b) => Number(onSale.has(b.name)) - Number(onSale.has(a.name))
+          ),
+    [onSale]
+  );
+
   const allItems = useMemo(() => categories.flatMap((c) => c.items), [categories]);
   const activeItems = useMemo(
     () => categories.find((c) => c.id === activeCat)?.items ?? [],
@@ -53,8 +69,11 @@ export default function CatalogClient({ brandId }: { brandId: string }) {
   );
   // 검색어가 있으면 전체 카테고리에서, 없으면 선택한 카테고리에서
   const filtered = useMemo(
-    () => (q ? allItems.filter((it) => it.name.toLowerCase().includes(q)) : activeItems),
-    [q, allItems, activeItems]
+    () =>
+      sortByOnSale(
+        q ? allItems.filter((it) => it.name.toLowerCase().includes(q)) : activeItems
+      ),
+    [q, allItems, activeItems, sortByOnSale]
   );
   const dropdown = useMemo(() => (q ? filtered.slice(0, MAX_DROPDOWN) : []), [q, filtered]);
 
@@ -77,6 +96,13 @@ export default function CatalogClient({ brandId }: { brandId: string }) {
         <h1>{config.name}</h1>
         <p className="sub">{config.subtitle}</p>
         <span className="tag">전체 {allItems.length}종 · 사진 {photoCount}종</span>
+        {config.weekly && config.weekly.available.length > 0 && (
+          <p className="y-week">
+            <span className="y-week-dot" aria-hidden="true" />
+            {config.weekly.weekLabel} 판매중 {config.weekly.available.length}종
+            <span className="y-week-date"> · {config.weekly.updatedAt} 기준</span>
+          </p>
+        )}
       </header>
 
       <p className="y-intro">
@@ -160,6 +186,7 @@ export default function CatalogClient({ brandId }: { brandId: string }) {
           >
             <div className="y-cat-thumb">
               <Thumb item={it} />
+              {onSale.has(it.name) && <span className="y-onsale-badge">판매중</span>}
               {selected.has(it.name) && <span className="y-incart-badge">담김 ✓</span>}
             </div>
             <div className="y-cat-name">{it.name}</div>
