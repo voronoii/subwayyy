@@ -32,7 +32,7 @@ const BRAND_OG: Record<string, BrandOg> = {
   },
   yundar: {
     emoji: "🥐",
-    title: "윤달베이커리 영양성분 도감",
+    title: "윤달베이커리 영양성분 한눈에",
     sub: "삼각이 통밀스콘 · 칼로리 · 식이섬유 · 당류",
     bg: "linear-gradient(135deg, #92400e 0%, #d97706 55%, #fcd34d 100%)",
   },
