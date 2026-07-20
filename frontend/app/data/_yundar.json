@@ -150,7 +150,7 @@
       "image": "y014.jpg"
     },
     {
-      "name": "완두박 콩코물 삼각이",
+      "name": "완두박 콩고물 삼각이",
       "weight": 75,
       "calories": 228,
       "protein": 7.4,
@@ -1536,6 +1536,42 @@
       "fiber": 7,
       "sodium": 200,
       "image": "y134.png"
+    },
+    {
+      "name": "곡물도감 21곡 첵스초코 삼각이",
+      "weight": 75,
+      "calories": 249,
+      "protein": 9,
+      "sugar": 5,
+      "fat": 8.8,
+      "netCarbs": 33,
+      "fiber": 7,
+      "image": "y144.png"
+    },
+    {
+      "name": "말차 DRZ 쑥 삼각이",
+      "weight": 100,
+      "calories": 324,
+      "protein": 9,
+      "sugar": 9,
+      "fat": 12,
+      "netCarbs": 38,
+      "fiber": 7
+    },
+    {
+      "name": "호지 초코칩 2배 삼각이",
+      "calories": 0,
+      "protein": 0,
+      "sugar": 0,
+      "noNutrition": true
+    },
+    {
+      "name": "(더블) 피넛 크런치 초코바 삼각이",
+      "calories": 0,
+      "protein": 0,
+      "sugar": 0,
+      "noNutrition": true,
+      "image": "y109.jpg"
     }
   ],
   "creambread": [
