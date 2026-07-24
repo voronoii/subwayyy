@@ -228,6 +228,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);-webkit-fo
 .site-footer-links a{font-size:12px;font-weight:600;color:var(--text-2);text-decoration:none}
 .site-footer-links a:active{color:var(--accent-dark)}
 .site-footer-copy{font-size:11px;color:var(--text-3)}
+.visitor-badge{font-size:11px;color:var(--text-3);margin-bottom:6px}
+.visitor-badge strong{font-weight:700;color:var(--text-2);font-variant-numeric:tabular-nums}
 
 /* -- Policy Page -- */
 .policy-page{padding:24px 20px 60px;line-height:1.7}
