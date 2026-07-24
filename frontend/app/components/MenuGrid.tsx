@@ -40,6 +40,7 @@ export default function MenuGrid({ category, selectedNames, onToggle, nutritionN
             className={`menu-card${selectedNames.has(item.name) ? " selected" : ""}`}
             onClick={() => onToggle(item)}
           >
+            {item.isNew && <span className="new-badge">NEW</span>}
             <div className="name">{item.name}</div>
             <div className="kcal">{item.calories} kcal</div>
             <div className="detail">단백질 {item.protein}g</div>

@@ -68,7 +68,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);-webkit-fo
 .sec-title{font-size:16px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:6px}
 .sec-title .icon{font-size:18px}
 .menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
-.menu-card{background:var(--card);border-radius:var(--r-sm);padding:14px;border:1.5px solid var(--border);cursor:pointer;transition:all .15s;user-select:none;-webkit-user-select:none}
+.menu-card{position:relative;background:var(--card);border-radius:var(--r-sm);padding:14px;border:1.5px solid var(--border);cursor:pointer;transition:all .15s;user-select:none;-webkit-user-select:none}
+.new-badge{position:absolute;top:8px;right:8px;font-size:9px;font-weight:800;letter-spacing:.5px;color:#fff;background:var(--accent);border-radius:5px;padding:2px 5px;line-height:1}
 .menu-card:active{transform:scale(.97)}
 .menu-card.selected{border-color:var(--accent);background:var(--accent-light)}
 .menu-card .name{font-size:14px;font-weight:600;line-height:1.35;margin-bottom:6px;color:var(--text-1)}

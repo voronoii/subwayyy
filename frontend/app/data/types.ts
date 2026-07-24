@@ -16,6 +16,8 @@ export interface MenuItem {
   noNutrition?: boolean;
   // shown in the product modal when nutrition is estimated from another item
   nutritionNote?: string;
+  /** 신제품 배지(NEW) 표시 */
+  isNew?: boolean;
 }
 
 export interface MenuCategory {
