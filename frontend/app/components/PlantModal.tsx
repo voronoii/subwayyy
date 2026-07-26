@@ -42,7 +42,11 @@ export default function PlantModal({ open, onClose, brandId, menuNames, totalCal
       nickname: nickname.trim() || generateNickname(menuNames),
       comment: comment.trim(),
     });
-    sessionStorage.setItem("grassJustPlanted", "true");
+    try {
+      sessionStorage.setItem("grassJustPlanted", "true");
+    } catch {
+      /* 스토리지 차단 — 무시 */
+    }
     router.push("/grass");
   }, [brandId, menuNames, totalCalories, nickname, comment, router]);
 

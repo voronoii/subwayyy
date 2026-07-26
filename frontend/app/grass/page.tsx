@@ -18,9 +18,13 @@ export default function GrassPage() {
   useEffect(() => {
     const all = getAllEntries();
     setEntries(all);
-    if (sessionStorage.getItem("grassJustPlanted")) {
-      setJustPlantedId(all[all.length - 1]?.id ?? null);
-      sessionStorage.removeItem("grassJustPlanted");
+    try {
+      if (sessionStorage.getItem("grassJustPlanted")) {
+        setJustPlantedId(all[all.length - 1]?.id ?? null);
+        sessionStorage.removeItem("grassJustPlanted");
+      }
+    } catch {
+      /* 스토리지 차단(iframe·시크릿 모드) — 무시 */
     }
   }, []);
 

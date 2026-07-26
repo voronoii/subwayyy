@@ -79,7 +79,11 @@ function getUserEntries(): GrassEntry[] {
 }
 
 function saveUserEntries(entries: GrassEntry[]) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+  } catch {
+    /* 스토리지 차단(iframe·시크릿 모드) — 저장 생략 */
+  }
 }
 
 export function getAllEntries(): GrassEntry[] {
