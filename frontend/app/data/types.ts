@@ -18,6 +18,8 @@ export interface MenuItem {
   nutritionNote?: string;
   /** 신제품 배지(NEW) 표시 */
   isNew?: boolean;
+  /** 제품 팝업에 표시할 원재료 목록 */
+  ingredients?: string;
 }
 
 export interface MenuCategory {

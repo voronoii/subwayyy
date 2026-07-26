@@ -244,7 +244,7 @@ export default function CatalogClient({ brandId }: { brandId: string }) {
           if (e.target === e.currentTarget) setDetail(null);
         }}
       >
-        <div className="sheet">
+        <div className="sheet y-prod-sheet">
           <div className="handle" />
           {detail && (
             <>
@@ -253,6 +253,9 @@ export default function CatalogClient({ brandId }: { brandId: string }) {
               </div>
               <h2>{detail.name}</h2>
               {detail.desc && <div className="sheet-sub">{detail.desc}</div>}
+              {detail.ingredients && (
+                <div className="y-prod-ingredients"><b>원재료</b> {detail.ingredients}</div>
+              )}
               {detail.noNutrition ? (
                 <div className="y-prod-none">영양정보 준비중이에요</div>
               ) : (
