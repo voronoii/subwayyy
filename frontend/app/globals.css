@@ -334,3 +334,11 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);-webkit-fo
 .y-faq-item summary::after{content:"+";position:absolute;right:14px;top:11px;font-size:16px;color:var(--text-2);font-weight:400}
 .y-faq-item[open] summary::after{content:"−"}
 .y-faq-item p{padding:0 14px 13px;font-size:13px;line-height:1.65;color:var(--text-2)}
+
+/* -- 데스크탑(≥900px): 가로 2배(430→860px) + 제품 한 줄에 4개 -- */
+@media (min-width: 900px) {
+  body { max-width: 860px; }
+  .bot-bar { max-width: 860px; }
+  .menu-grid { grid-template-columns: repeat(4, 1fr); }
+  .y-cat-grid { grid-template-columns: repeat(4, 1fr); }
+}
