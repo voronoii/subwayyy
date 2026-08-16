@@ -274,6 +274,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);-webkit-fo
 .y-cat-thumb{position:relative;aspect-ratio:1/1;background:var(--bg);display:flex;align-items:center;justify-content:center;overflow:hidden}
 .y-cat-thumb img{width:100%;height:100%;object-fit:contain}
 .y-incart-badge{position:absolute;top:6px;right:6px;background:var(--accent);color:#fff;font-size:10px;font-weight:700;padding:3px 7px;border-radius:20px}
+.y-cat-thumb .new-badge{top:auto;right:6px;bottom:6px}
 /* 판매중은 좌측 상단 — 우측 상단은 '담김 ✓'이 쓰므로 겹치지 않게 나눈다.
    초록(--accent)은 '내가 선택함', 주황(--sale)은 '이번 주 재고'로 의미를 구분. */
 .y-onsale-badge{position:absolute;top:6px;left:6px;background:var(--sale);color:#fff;font-size:10px;font-weight:700;padding:3px 7px;border-radius:20px}

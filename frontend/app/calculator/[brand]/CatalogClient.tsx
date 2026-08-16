@@ -187,6 +187,7 @@ export default function CatalogClient({ brandId }: { brandId: string }) {
             <div className="y-cat-thumb">
               <Thumb item={it} />
               {onSale.has(it.name) && <span className="y-onsale-badge">판매중</span>}
+              {it.isNew && <span className="new-badge">NEW</span>}
               {selected.has(it.name) && <span className="y-incart-badge">담김 ✓</span>}
             </div>
             <div className="y-cat-name">{it.name}</div>
