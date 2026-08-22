@@ -100,7 +100,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-1);-webkit-fo
 .n-row.hi .n-val{color:var(--accent);font-size:22px;font-weight:800}
 .n-row.hi .n-lbl{font-size:16px;color:var(--text-1);font-weight:600}
 .share-row{display:flex;gap:10px;margin-top:20px}
-.share-row button{flex:1;padding:14px;border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font)}
+.share-row button,.share-row a{display:flex;align-items:center;justify-content:center;box-sizing:border-box;flex:1;padding:14px;border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font);text-decoration:none}
 .share-row .btn-p{background:var(--text-1);color:#fff}
 .share-row .btn-s{background:var(--bg);color:var(--text-1)}
 

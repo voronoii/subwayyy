@@ -339,6 +339,14 @@ export default function CatalogClient({ brandId }: { brandId: string }) {
             <button className="btn-s" onClick={() => setCartOpen(false)}>
               닫기
             </button>
+            <a
+              className="btn-p"
+              href="https://smartstore.naver.com/yunder/products/9695126184"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              사러가기 ↗
+            </a>
           </div>
         </div>
       </div>
