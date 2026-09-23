@@ -80,7 +80,7 @@ export default function SavingsLayout({
           <a href={POLICY.sources.product} target="_blank" rel="noreferrer">
             서민금융진흥원 상품 안내 ↗
           </a>
-          <Link href="/calculator/subway">칼로리 계산기</Link>
+          
           <Link href="/privacy">개인정보처리방침</Link>
         </div>
       </footer>
