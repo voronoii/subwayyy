@@ -17,6 +17,7 @@ export default function SiteFooter() {
         <Link href="/calculator/poke">포케올데이</Link>
         <Link href="/calculator/yundar">윤달베이커리</Link>
         <Link href="/grass">고양이 놀이방</Link>
+        <Link href="/youth-savings">청년미래적금</Link>
         <Link href="/privacy">개인정보처리방침</Link>
         <FeedbackButton />
       </nav>

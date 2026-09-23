@@ -5,6 +5,12 @@ const BASE = "https://subwayyy.kr";
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
   return [
+    ...["/youth-savings", "/youth-savings/eligibility", "/youth-savings/calculator"].map((path) => ({
+      url: `${BASE}${path}`,
+      lastModified: new Date("2026-09-23T00:00:00+09:00"),
+      changeFrequency: "weekly" as const,
+      priority: path === "/youth-savings" ? 0.9 : 0.8,
+    })),
     {
       url: `${BASE}/calculator/subway`,
       lastModified,
