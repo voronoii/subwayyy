@@ -17,6 +17,7 @@ export const yundarConfig: BrandConfig = {
     { id: "creambread", label: "크림빵", icon: "🥯", items: data.creambread },
     { id: "banryeobbang", label: "반려빵", icon: "🍞", items: data.banryeobbang },
     { id: "samdu", label: "삼두과자", icon: "🍪", items: data.samdu },
+    { id: "chapssaring", label: "찹싸링", icon: "🍩", items: data.chapssaring },
     { id: "bongsiri", label: "봉시리", icon: "🍰", items: data.bongsiri },
   ],
   nutritionKeys: [
