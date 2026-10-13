@@ -1,6 +1,26 @@
 {
   "sandwiches": [
     {
+      "name": "램",
+      "weight": 148,
+      "calories": 157,
+      "protein": 14.3,
+      "saturatedFat": 3.1,
+      "sugar": 0.7,
+      "sodium": 443,
+      "isNew": true
+    },
+    {
+      "name": "램 & 후무스",
+      "weight": 163,
+      "calories": 214,
+      "protein": 12.6,
+      "saturatedFat": 3.2,
+      "sugar": 1.5,
+      "sodium": 423,
+      "isNew": true
+    },
+    {
       "name": "로스트 치킨",
       "weight": 159,
       "calories": 108,
