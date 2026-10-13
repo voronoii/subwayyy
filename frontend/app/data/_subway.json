@@ -117,8 +117,7 @@
       "protein": 13.6,
       "saturatedFat": 5.9,
       "sugar": 5.5,
-      "sodium": 771,
-      "isNew": true
+      "sodium": 771
     },
     {
       "name": "안창 비프",
@@ -172,8 +171,7 @@
       "protein": 19.7,
       "saturatedFat": 4.2,
       "sugar": 1,
-      "sodium": 364,
-      "isNew": true
+      "sodium": 364
     },
     {
       "name": "잠봉 플러스",
@@ -182,8 +180,7 @@
       "protein": 15.9,
       "saturatedFat": 6.8,
       "sugar": 1.4,
-      "sodium": 571,
-      "isNew": true
+      "sodium": 571
     },
     {
       "name": "참치",
@@ -237,8 +234,7 @@
       "protein": 14.5,
       "saturatedFat": 9,
       "sugar": 0.9,
-      "sodium": 926,
-      "isNew": true
+      "sodium": 926
     }
   ],
   "salads": [
