@@ -69,6 +69,59 @@ function WeeklyProductList({
   );
 }
 
+function WeeklyChanges({
+  config,
+  productsByName,
+}: {
+  config: BrandConfig;
+  productsByName: Map<string, WeeklyProduct>;
+}) {
+  const weekly = config.weekly;
+  const previous = weekly?.previous;
+  if (!weekly || !previous) return null;
+
+  const currentNames = new Set(weekly.available);
+  const previousNames = new Set(previous.available);
+  const added = [...currentNames].filter((name) => !previousNames.has(name));
+  const removed = [...previousNames].filter((name) => !currentNames.has(name));
+  const groups = [
+    { label: "판매목록에 추가", names: added },
+    { label: "판매목록에서 제외", names: removed },
+  ];
+
+  return (
+    <details className="nutrition-weekly-changes">
+      <summary>{previous.weekLabel} 대비 <span>+{added.length}종 / −{removed.length}종</span></summary>
+      <p className="nutrition-reference-description">
+        {previous.weekLabel} 판매목록(<time dateTime={previous.updatedAt}>{previous.updatedAt}</time> 기준)과 비교했습니다.
+      </p>
+      {added.length === 0 && removed.length === 0 ? (
+        <p className="nutrition-reference-description">비교한 회차와 판매목록이 같습니다.</p>
+      ) : groups.map(({ label, names }) => (
+        <div className="nutrition-weekly-change-group" key={label}>
+          <h3>{label} · {names.length}종</h3>
+          {names.length === 0 ? (
+            <p className="nutrition-reference-description">해당 제품이 없습니다.</p>
+          ) : (
+            <ul>
+              {names.map((name) => {
+                const product = productsByName.get(name);
+                return (
+                  <li key={name}>
+                    {product?.item && product.category ? (
+                      <a href={`#${nutritionItemId(config.id, product.category.id, name)}`}>{name}</a>
+                    ) : name}
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </div>
+      ))}
+    </details>
+  );
+}
+
 export function WeeklySelection({ config }: NutritionReferenceProps) {
   const weekly = config.weekly;
   if (!weekly || weekly.available.length === 0) return null;
@@ -92,6 +145,7 @@ export function WeeklySelection({ config }: NutritionReferenceProps) {
         <strong>{weekly.weekLabel} · {products.length}종</strong>
         <span><time dateTime={weekly.updatedAt}>{weekly.updatedAt}</time> 확인 기준</span>
       </p>
+      <WeeklyChanges config={config} productsByName={productsByName} />
       <p className="nutrition-reference-description">
         이번 회차의 제품명과 칼로리를 확인하세요. 제품명을 누르면 전체 영양성분 표로 이동합니다.
       </p>

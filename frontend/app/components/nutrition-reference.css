@@ -45,6 +45,16 @@
 .nutrition-weekly-more{border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .nutrition-weekly-more>summary{cursor:pointer;font-size:12px;font-weight:650;line-height:1.6;padding:12px 0;color:var(--text-1)}
 .nutrition-weekly-more>summary>span{font-size:11px;font-weight:500;color:var(--sale);margin-left:4px}
+.nutrition-weekly-changes{margin:10px 0;padding:0 10px;background:var(--bg);border-radius:var(--r-sm)}
+.nutrition-weekly-changes>summary{cursor:pointer;padding:10px 0;font-size:12px;font-weight:650;line-height:1.6}
+.nutrition-weekly-changes>summary>span{font-size:11px;font-weight:600;color:var(--sale);margin-left:4px}
+.nutrition-weekly-changes>summary:focus-visible{outline:2px solid var(--accent-dark);outline-offset:3px}
+.nutrition-weekly-changes[open]{padding-bottom:10px}
+.nutrition-weekly-change-group h3{font-size:12px;line-height:1.6;margin:12px 0 5px;font-weight:700}
+.nutrition-weekly-change-group ul{padding-left:17px;font-size:12px;line-height:1.8;color:#51515a}
+.nutrition-weekly-change-group li{word-break:keep-all;overflow-wrap:anywhere}
+.nutrition-weekly-change-group a{color:inherit;text-underline-offset:3px}
+.nutrition-weekly-change-group a:hover,.nutrition-weekly-change-group a:focus-visible{color:var(--accent-dark)}
 .nutrition-weekly-source{margin:12px 0 0;font-size:11px}
 .nutrition-sources p,.nutrition-sources ul{font-size:12px;line-height:1.7;color:#62626b;margin:8px 0}
 .nutrition-sources ul{padding-left:17px}

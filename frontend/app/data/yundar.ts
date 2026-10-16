@@ -1,9 +1,10 @@
 import type { BrandConfig, MenuItem, WeeklyAvailability } from "./types";
 import raw from "./_yundar.json";
 import weeklyRaw from "./_yundar-weekly.json";
+import previousWeeklyRaw from "./_yundar-weekly-previous.json";
 
 const data = raw as Record<string, MenuItem[]>;
-const weekly = weeklyRaw as WeeklyAvailability;
+const weekly = { ...weeklyRaw, previous: previousWeeklyRaw } as WeeklyAvailability;
 
 export const yundarConfig: BrandConfig = {
   id: "yundar",

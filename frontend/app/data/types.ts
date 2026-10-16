@@ -49,6 +49,7 @@ export interface WeeklyAvailability {
   weekLabel: string;
   updatedAt: string;
   available: string[];
+  previous?: Pick<WeeklyAvailability, "weekLabel" | "updatedAt" | "available">;
 }
 
 export interface BrandConfig {
