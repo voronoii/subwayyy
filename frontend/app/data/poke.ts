@@ -7,7 +7,7 @@ export const pokeConfig: BrandConfig = {
   id: "poke",
   name: "포케올데이",
   subtitle: "포케볼 · 토핑 · 소스 영양성분 계산",
-  tip: "포케볼은 베이스(밥)가 포함된 가격이에요. 베이스를 따로 선택하지 않아도 됩니다.",
+  tip: "메뉴별 제공량과 베이스 포함 여부를 확인한 뒤 토핑·소스를 더하세요. 가격과 영양성분의 구성 기준은 다를 수 있어요.",
   categories: [
     { id: "pokes", label: "포케", icon: "🐟", items: data.pokes },
     { id: "bases", label: "베이스", icon: "🍚", items: data.bases },

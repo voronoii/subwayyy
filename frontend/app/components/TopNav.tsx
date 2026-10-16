@@ -40,7 +40,7 @@ export default function TopNav({ activeBrand }: TopNavProps) {
         {BUILD_DATE_SHORT && (
           <span className="version-tag" title={`Build ${BUILD_ISO}`}>
             <span className="version-date">{BUILD_DATE_SHORT}</span>
-            <span className="version-sub">updated</span>
+            <span className="version-sub">배포일</span>
           </span>
         )}
       </div>

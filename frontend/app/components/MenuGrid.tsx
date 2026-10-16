@@ -20,7 +20,7 @@ export default function MenuGrid({ category, selectedNames, onToggle, nutritionN
 
   return (
     <div className="menu-section">
-      <div className="sec-title">
+      <h2 className="sec-title">
         <span className="icon">{category.icon}</span> {category.label}
         {hasNote && (
           <button
@@ -32,7 +32,7 @@ export default function MenuGrid({ category, selectedNames, onToggle, nutritionN
             ⓘ
           </button>
         )}
-      </div>
+      </h2>
       <div className="menu-grid">
         {category.items.map((item) => (
           <div

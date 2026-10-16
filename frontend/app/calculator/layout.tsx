@@ -4,7 +4,7 @@ const JSON_LD = {
   name: "서브웨이 · 샐러디 · 포케올데이 · 윤달베이커리 칼로리 계산기",
   url: "https://subwayyy.kr",
   description:
-    "서브웨이, 샐러디, 포케올데이 메뉴의 칼로리를 조합별로 계산하고, 윤달베이커리 삼각이 통밀스콘의 영양성분을 사진 도감으로 제공하는 무료 도구",
+    "서브웨이·샐러디·포케올데이 조합별 칼로리 계산과 윤달베이커리 주간 판매목록·제품별 영양성분을 제공하는 무료 도구",
   applicationCategory: "HealthApplication",
   operatingSystem: "All",
   inLanguage: "ko",

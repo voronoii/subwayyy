@@ -1,4 +1,6 @@
 import type { MetadataRoute } from "next";
+import { brands } from "./data/brands";
+import { calculatorContentUpdatedAt } from "./lib/calculatorSeo";
 
 const BASE = "https://subwayyy.kr";
 
@@ -11,26 +13,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: path === "/youth-savings" ? 0.9 : 0.8,
     })),
-    {
-      url: `${BASE}/calculator/subway`,
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: `${BASE}/calculator/salady`,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${BASE}/calculator/poke`,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${BASE}/calculator/yundar`,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
+    ...brands.map((brand) => ({
+      url: `${BASE}/calculator/${brand.id}`,
+      lastModified: new Date(`${calculatorContentUpdatedAt(brand)}T00:00:00+09:00`),
+      changeFrequency: "weekly" as const,
+      priority: brand.id === "subway" ? 1 : 0.9,
+    })),
     {
       url: `${BASE}/grass`,
       changeFrequency: "daily",

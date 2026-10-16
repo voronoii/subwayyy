@@ -1,0 +1,55 @@
+.nutrition-reference{margin:20px 20px 12px;padding:18px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);min-width:0}
+.page-header .y-week{max-width:100%;flex-wrap:wrap}
+.page-header h1{word-break:keep-all;line-height:1.35}
+.site-footer .fb-tip{left:auto;right:0;transform:none}
+.site-footer .fb-tip::after{left:auto;right:6px;transform:none}
+.nutrition-reference h2{font-size:17px;line-height:1.5;font-weight:800;letter-spacing:-.35px;margin:0 0 8px}
+.nutrition-reference-description{font-size:12px;line-height:1.7;color:#62626b;margin:8px 0}
+.nutrition-reference-description a{color:var(--accent-dark);text-underline-offset:3px}
+.nutrition-reference-tip{font-size:12px;line-height:1.65;padding:10px 12px;margin:10px 0;background:var(--accent-light);border-radius:var(--r-sm);color:var(--accent-dark)}
+.nutrition-reference-scroll-hint{font-size:11px;color:#62626b;margin:12px 0 8px}
+.nutrition-reference-categories{border-top:1px solid var(--border)}
+.nutrition-reference-category{border-bottom:1px solid var(--border)}
+.nutrition-reference-category>summary{display:flex;align-items:center;gap:8px;padding:13px 0;cursor:pointer;list-style:none}
+.nutrition-reference-category>summary::-webkit-details-marker{display:none}
+.nutrition-reference-category>summary::before{content:"+";color:var(--accent-dark);font-size:18px;line-height:1;width:13px;text-align:center;flex:none}
+.nutrition-reference-category[open]>summary::before{content:"−"}
+.nutrition-reference-category h3{font-size:14px;font-weight:700;line-height:1.5}
+.nutrition-reference-category>summary>span{font-size:12px;color:#62626b;margin-left:auto;white-space:nowrap}
+.nutrition-reference-table-wrap{overflow-x:auto;max-width:100%;margin-bottom:14px;scrollbar-width:thin;border:1px solid var(--border);border-radius:8px}
+.nutrition-reference-table-wrap:focus-visible,.nutrition-reference-category>summary:focus-visible,.nutrition-weekly-more>summary:focus-visible{outline:2px solid var(--accent-dark);outline-offset:3px}
+.nutrition-reference-table{border-collapse:collapse;font-size:12px;line-height:1.5;width:100%;font-variant-numeric:tabular-nums}
+.nutrition-reference-table caption{caption-side:bottom;text-align:left;font-size:11px;color:#62626b;padding:9px;background:var(--card)}
+.nutrition-reference-table th,.nutrition-reference-table td{padding:10px 9px;border-bottom:1px solid var(--border);white-space:nowrap;text-align:right}
+.nutrition-reference-table thead th{font-size:11px;font-weight:600;background:var(--bg);color:#51515a}
+.nutrition-reference-table thead th>span{display:block;font-weight:400}
+.nutrition-reference-table th:first-child{text-align:left;min-width:140px;max-width:190px;white-space:normal}
+.nutrition-reference-table tbody th{font-weight:600;background:var(--card)}
+.nutrition-reference-table tbody tr:last-child th,.nutrition-reference-table tbody tr:last-child td{border-bottom:0}
+.nutrition-reference-table tbody tr{scroll-margin-top:120px}
+.nutrition-reference-table tbody tr:target th,.nutrition-reference-table tbody tr:target td{background:var(--accent-light)}
+.nutrition-reference-product-note{display:block;font-size:11px;font-weight:400;line-height:1.6;color:#62626b;margin-top:5px;min-width:140px}
+.nutrition-reference-eyebrow{font-size:11px;font-weight:700;color:var(--sale);margin-bottom:5px}
+.nutrition-weekly-summary{display:flex;flex-wrap:wrap;align-items:center;gap:3px 10px;font-size:12px;line-height:1.7;margin:6px 0 8px}
+.nutrition-weekly-summary strong{color:var(--sale);font-weight:700}
+.nutrition-weekly-summary>span{color:#62626b;font-size:11px}
+.nutrition-weekly-list{display:grid;grid-template-columns:1fr 1fr;gap:8px;list-style:none;margin:12px 0;padding:0}
+.nutrition-weekly-product{display:flex;align-items:flex-start;gap:7px;padding:10px 8px;border:1px solid var(--border);border-radius:var(--r-sm);min-width:0}
+.nutrition-weekly-image{width:36px;height:36px;border-radius:7px;object-fit:cover;flex:none;background:var(--bg)}
+.nutrition-weekly-product-body{display:flex;flex-direction:column;gap:3px;min-width:0}
+.nutrition-weekly-category{font-size:10px;color:#62626b;line-height:1.4}
+.nutrition-weekly-product-body>a,.nutrition-weekly-name{font-size:12px;font-weight:650;line-height:1.5;color:var(--text-1);word-break:keep-all;overflow-wrap:anywhere;text-decoration:none}
+.nutrition-weekly-product-body>a:hover,.nutrition-weekly-product-body>a:focus-visible{text-decoration:underline;text-underline-offset:3px;color:var(--accent-dark)}
+.nutrition-weekly-calories{font-size:11px;font-weight:600;line-height:1.5;color:var(--accent-dark)}
+.nutrition-weekly-note{font-size:10px;line-height:1.5;color:#62626b}
+.nutrition-weekly-more{border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.nutrition-weekly-more>summary{cursor:pointer;font-size:12px;font-weight:650;line-height:1.6;padding:12px 0;color:var(--text-1)}
+.nutrition-weekly-more>summary>span{font-size:11px;font-weight:500;color:var(--sale);margin-left:4px}
+.nutrition-weekly-source{margin:12px 0 0;font-size:11px}
+.nutrition-sources p,.nutrition-sources ul{font-size:12px;line-height:1.7;color:#62626b;margin:8px 0}
+.nutrition-sources ul{padding-left:17px}
+.nutrition-sources li+li{margin-top:6px}
+.nutrition-sources a{color:var(--accent-dark);text-underline-offset:3px}
+.nutrition-sources strong{color:var(--text-1);font-weight:650}
+.nutrition-sources h3{font-size:14px;font-weight:700;margin:14px 0 6px;line-height:1.5}
+@media(max-width:359px){.nutrition-reference{margin-left:14px;margin-right:14px;padding:14px}.nutrition-weekly-list{grid-template-columns:1fr}.nutrition-weekly-image{width:44px;height:44px}}

@@ -8,7 +8,7 @@ const weekly = weeklyRaw as WeeklyAvailability;
 export const yundarConfig: BrandConfig = {
   id: "yundar",
   name: "윤달베이커리",
-  subtitle: "삼각이 통밀스콘 · 사진과 영양성분 도감",
+  subtitle: "매주 갱신하는 판매목록 · 제품별 칼로리와 영양성분",
   layout: "catalog",
   sourceUrl: "https://smartstore.naver.com/yunder",
   weekly,

@@ -7,9 +7,9 @@ export default function SiteFooter() {
     <footer className="site-footer">
       <p className="site-footer-desc">
         subwayyy.kr은 서브웨이·샐러디·포케올데이 메뉴의 영양성분을 조합별로
-        계산하고, 윤달베이커리 삼각이(통밀스콘)의 칼로리·영양성분을 사진
-        도감으로 제공하는 무료 도구입니다. 영양 정보는 각 브랜드 공식 자료를
-        바탕으로 하며, 실제 제품과 차이가 있을 수 있습니다.
+        계산하고, 윤달베이커리 주간 판매목록과 제품별 칼로리·영양성분을
+        사진과 함께 제공하는 비공식 무료 도구입니다. 자료 출처와 계산 기준은
+        각 페이지에서 확인할 수 있으며, 실제 제품과 차이가 있을 수 있습니다.
       </p>
       <nav className="site-footer-links">
         <Link href="/calculator/subway">서브웨이</Link>

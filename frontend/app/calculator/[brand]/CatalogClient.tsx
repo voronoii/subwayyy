@@ -32,7 +32,7 @@ function Thumb({ item }: { item: MenuItem }) {
   );
 }
 
-export default function CatalogClient({ brandId }: { brandId: string }) {
+export default function CatalogClient({ brandId, weeklyContent, referenceContent }: { brandId: string; weeklyContent?: React.ReactNode; referenceContent?: React.ReactNode }) {
   const config = getBrandConfig(brandId) ?? brands[0];
   const categories = config.categories;
 
@@ -93,23 +93,25 @@ export default function CatalogClient({ brandId }: { brandId: string }) {
       <TopNav activeBrand={config.id} />
 
       <header className="page-header">
-        <h1>{config.name}</h1>
+        <h1>{config.name} 주간 판매 메뉴·영양성분</h1>
         <p className="sub">{config.subtitle}</p>
         <span className="tag">전체 {allItems.length}종 · 사진 {photoCount}종</span>
         {config.weekly && config.weekly.available.length > 0 && (
           <p className="y-week">
             <span className="y-week-dot" aria-hidden="true" />
-            {config.weekly.weekLabel} 판매중 {config.weekly.available.length}종
+            {config.weekly.weekLabel} 판매목록 {config.weekly.available.length}종
             <span className="y-week-date"> · {config.weekly.updatedAt} 기준</span>
           </p>
         )}
       </header>
 
       <p className="y-intro">
-        {config.name} <b>삼각이</b>는 비정제 통밀·현미로 만든 저당·고식이섬유 비건 스콘입니다.
-        전체 {stats.count}종의 <b>칼로리·영양성분</b>(단백질·식이섬유·당류·지방)을 사진과 함께 확인하고,
-        맛을 검색해 장바구니에 담아보세요. 칼로리는 개당 약 {stats.kcalMin}~{stats.kcalMax}kcal입니다.
+        매주 갱신하는 {config.name} 판매목록과 제품별 <b>칼로리·영양성분</b>을 확인하세요.
+        삼각이·크림빵·찹싸링 등 전체 {allItems.length}종을 사진과 함께 살펴보고,
+        제품을 선택해 단백질·식이섬유·당류와 원재료를 확인할 수 있습니다.
       </p>
+
+      {weeklyContent}
 
       {/* -- Search with typeahead -- */}
       <div className="y-search-wrap">
@@ -186,7 +188,7 @@ export default function CatalogClient({ brandId }: { brandId: string }) {
           >
             <div className="y-cat-thumb">
               <Thumb item={it} />
-              {onSale.has(it.name) && <span className="y-onsale-badge">판매중</span>}
+              {onSale.has(it.name) && <span className="y-onsale-badge">판매목록</span>}
               {it.isNew && <span className="new-badge">NEW</span>}
               {selected.has(it.name) && <span className="y-incart-badge">담김 ✓</span>}
             </div>
@@ -223,6 +225,7 @@ export default function CatalogClient({ brandId }: { brandId: string }) {
         </div>
       </section>
 
+      {referenceContent}
       <SiteFooter />
 
       {/* -- Cart bar -- */}

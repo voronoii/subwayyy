@@ -7,7 +7,7 @@ export const saladyConfig: BrandConfig = {
   id: "salady",
   name: "샐러디",
   subtitle: "샐러드 · 포케볼 · 랩 영양성분 계산",
-  tip: "드레싱은 별도 선택이에요. 기본 메뉴에는 포함되지 않습니다.",
+  tip: "샐러드·포케볼의 드레싱은 별도로 선택하세요. 랩 등 고정 레시피 메뉴는 공식 구성 기준을 확인하세요.",
   categories: [
     { id: "salads", label: "샐러드", icon: "🥗", items: data.salads },
     { id: "warmbowls", label: "포케/누들볼", icon: "🍲", items: data.warmbowls },

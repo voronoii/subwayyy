@@ -12,7 +12,7 @@ import TipCard from "../../components/TipCard";
 import PlantModal from "../../components/PlantModal";
 import SiteFooter from "../../components/SiteFooter";
 
-export default function CalculatorClient({ brandId }: { brandId: string }) {
+export default function CalculatorClient({ brandId, referenceContent }: { brandId: string; referenceContent?: React.ReactNode }) {
   const config = getBrandConfig(brandId) ?? brands[0];
 
   const [activeCat, setActiveCat] = useState(config.categories[0]?.id ?? "");
@@ -34,7 +34,7 @@ export default function CalculatorClient({ brandId }: { brandId: string }) {
       <TopNav activeBrand={config.id} />
 
       <header className="page-header">
-        <h1>{config.name}</h1>
+        <h1>{config.name} 칼로리 계산기</h1>
         <p className="sub">{config.subtitle}</p>
       </header>
 
@@ -57,6 +57,7 @@ export default function CalculatorClient({ brandId }: { brandId: string }) {
         />
       )}
 
+      {referenceContent}
       <SiteFooter />
 
       <BottomBar
