@@ -3,49 +3,38 @@ import type { MetadataRoute } from "next";
 const BASE = "https://subwayyy.kr";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
   return [
     ...["/youth-savings", "/youth-savings/eligibility", "/youth-savings/calculator"].map((path) => ({
       url: `${BASE}${path}`,
-      lastModified: new Date("2026-09-23T00:00:00+09:00"),
+      // 페이지 본문·검색 정보 갱신일. 정책 자료 확인일과는 별개다.
+      lastModified: new Date("2026-10-16T00:00:00+09:00"),
       changeFrequency: "weekly" as const,
       priority: path === "/youth-savings" ? 0.9 : 0.8,
     })),
     {
       url: `${BASE}/calculator/subway`,
-      lastModified,
       changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${BASE}/calculator/salady`,
-      lastModified,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${BASE}/calculator/poke`,
-      lastModified,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${BASE}/calculator/yundar`,
-      lastModified,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${BASE}/grass`,
-      lastModified,
       changeFrequency: "daily",
       priority: 0.6,
-    },
-    {
-      url: `${BASE}/privacy`,
-      lastModified,
-      changeFrequency: "yearly",
-      priority: 0.1,
     },
   ];
 }

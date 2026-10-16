@@ -36,11 +36,11 @@ export default function Calculator({
           ‹ 신청 안내
         </Link>
         <h1>
-          매달의 저축이,
+          청년미래적금
           <br />
-          3년 뒤 얼마가 될까요?
+          만기 계산기
         </h1>
-        <p>납입액과 가입유형을 바꿔 나만의 저축 계획을 세워보세요.</p>
+        <p>월 납입액과 은행 금리로 일반형·우대형의 예상 수령액을 비교하세요.</p>
       </div>
       {fromCheck && (
         <div className="ys-notice">

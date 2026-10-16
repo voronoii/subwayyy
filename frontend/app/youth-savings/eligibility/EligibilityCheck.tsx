@@ -131,8 +131,8 @@ export default function EligibilityCheck() {
         <Link href="/youth-savings" className="ys-back">
           ‹ 신청 안내
         </Link>
-        <h1>나는 가입할 수 있을까요?</h1>
-        <p>네 단계로 확인하는 나의 예상 가입유형</p>
+        <h1>청년미래적금 가입조건 자가진단</h1>
+        <p>네 단계로 일반형·우대형 대상 여부와 예상 가입유형을 확인하세요.</p>
       </div>
       <p className="ys-privacy-note">
         <span aria-hidden="true">⌁</span> 입력값은 이 화면에서만 사용하며

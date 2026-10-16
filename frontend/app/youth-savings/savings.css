@@ -348,6 +348,31 @@ body:has(.youth-site) {
   color: var(--ys-blue);
   white-space: nowrap;
 }
+.ys-guide {
+  color: var(--ys-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+.ys-guide h2 {
+  color: var(--ys-ink);
+  margin-bottom: 20px;
+}
+.ys-guide p + p,
+.ys-guide ol {
+  margin-top: 16px;
+}
+.ys-guide ol {
+  padding-left: 24px;
+  margin-bottom: 16px;
+}
+.ys-guide li + li {
+  margin-top: 8px;
+}
+.ys-guide a {
+  color: var(--ys-blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 .ys-benefit-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

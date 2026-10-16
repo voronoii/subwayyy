@@ -5,9 +5,6 @@ import { POLICY } from "./lib/policy";
 import "./savings.css";
 
 export const metadata: Metadata = {
-  title: "청년미래적금 2차 신청 안내·대상자 확인·만기 계산기",
-  description:
-    "2026 청년미래적금 2차 신청은 10월 7~16일. 가입 조건을 확인하고 일반형 6%·우대형 12% 정부기여금과 만기 예상 수령액을 계산하세요.",
   keywords: [
     "청년미래적금",
     "청년미래적금 2차",
@@ -15,20 +12,6 @@ export const metadata: Metadata = {
     "청년미래적금 우대형",
     "청년미래적금 가입조건",
   ],
-  openGraph: {
-    title: "청년미래적금, 이번엔 놓치지 않게",
-    description: "2차 신청 일정부터 대상자 확인, 3년 뒤 예상 수령액까지.",
-    siteName: "subwayyy.kr",
-    type: "website",
-    locale: "ko_KR",
-    url: "/youth-savings",
-    images: [{ url: "/youth-savings/og.png", width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "청년미래적금 2차 안내와 계산기",
-    images: ["/youth-savings/og.png"],
-  },
 };
 
 export default function SavingsLayout({

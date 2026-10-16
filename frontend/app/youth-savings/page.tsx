@@ -1,11 +1,10 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import ApplicationStatus from "./components/ApplicationStatus";
+import SavingsPageSchema from "./components/SavingsPageSchema";
 import { POLICY } from "./lib/policy";
+import { savingsMetadata } from "./lib/seo";
 
-export const metadata: Metadata = {
-  alternates: { canonical: "/youth-savings" },
-};
+export const metadata = savingsMetadata("home");
 const faqs = [
   [
     "청년도약계좌가 있어도 신청할 수 있나요?",
@@ -32,18 +31,19 @@ const faqs = [
 export default function SavingsHome() {
   return (
     <>
+      <SavingsPageSchema page="home" />
       <section className="ys-hero">
         <div className="ys-hero-copy">
           <ApplicationStatus />
           <h1>
-            청년미래적금,
+            청년미래적금
             <br />
-            이번엔 놓치지 않게.
+            신청 안내와 계산기
           </h1>
           <p>
-            매달 모으는 돈에 정부의 지원을 더해요.
+            2026년 2차 신청기간과 가입조건을 확인하고,
             <br />
-            가입 조건부터 3년 뒤 받을 금액까지 확인해 보세요.
+            3년 뒤 만기 예상 수령액을 계산해 보세요.
           </p>
           <div className="ys-actions">
             <Link href="/youth-savings/eligibility" className="ys-button">
@@ -120,7 +120,7 @@ export default function SavingsHome() {
       </section>
       <section className="ys-section ys-how">
         <div className="ys-section-heading">
-          <h2>내 저축에 더해지는 혜택</h2>
+          <h2>청년미래적금 일반형·우대형 혜택</h2>
           <p>은행 이자와 정부기여금은 별개예요.</p>
         </div>
         <div className="ys-benefit-grid">
@@ -171,7 +171,7 @@ export default function SavingsHome() {
       </section>
       <section className="ys-section">
         <div className="ys-section-heading">
-          <h2>신청부터 계좌 개설까지</h2>
+          <h2>2026년 2차 신청기간과 계좌 개설 일정</h2>
           <p>신청 후 심사를 통과해야 적금을 시작할 수 있어요.</p>
         </div>
         <ol className="ys-timeline">
@@ -217,7 +217,7 @@ export default function SavingsHome() {
       </section>
       <section className="ys-section ys-faq">
         <div className="ys-section-heading">
-          <h2>신청 전에 궁금한 것들</h2>
+          <h2>청년미래적금 가입 전 자주 묻는 질문</h2>
           <a
             href={POLICY.sources.announcement}
             target="_blank"
