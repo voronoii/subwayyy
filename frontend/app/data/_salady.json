@@ -2,6 +2,7 @@
   "salads": [
     {
       "name": "탄단지 샐러디",
+      "weight": 225,
       "calories": 322.9,
       "carbs": 34.3,
       "sugar": 17.6,
@@ -11,17 +12,30 @@
       "sodium": 225.3
     },
     {
-      "name": "콥 샐러디",
-      "calories": 217.7,
+      "name": "단호박 노릇두부 샐러디",
+      "weight": 295,
+      "calories": 214.6,
+      "carbs": 28.1,
+      "sugar": 12.4,
+      "protein": 6.8,
+      "fat": 8.4,
+      "saturatedFat": 1.1,
+      "sodium": 214.9
+    },
+    {
+      "name": "치킨 콥 샐러디",
+      "weight": 240,
+      "calories": 209.1,
       "carbs": 7.6,
-      "sugar": 2.9,
-      "protein": 19.1,
-      "fat": 12.1,
-      "saturatedFat": 4.0,
-      "sodium": 420.3
+      "sugar": 2.1,
+      "protein": 23.9,
+      "fat": 8.7,
+      "saturatedFat": 3.5,
+      "sodium": 404.7
     },
     {
       "name": "로스트닭다리살 샐러디",
+      "weight": 290,
       "calories": 259.2,
       "carbs": 29.7,
       "sugar": 12.2,
@@ -31,99 +45,131 @@
       "sodium": 471.9
     },
     {
-      "name": "그라브락스 연어 샐러디",
-      "calories": 247.3,
-      "carbs": 7.8,
-      "sugar": 5.1,
-      "protein": 21.0,
-      "fat": 14.4,
-      "saturatedFat": 2.7,
-      "sodium": 505.0
+      "name": "타코 쉬림프 샐러디",
+      "weight": 230,
+      "calories": 192.1,
+      "carbs": 11.6,
+      "sugar": 2.9,
+      "protein": 15.7,
+      "fat": 9.2,
+      "saturatedFat": 3.0,
+      "sodium": 572.6
     },
     {
-      "name": "노릇두부단호박 샐러디",
-      "calories": 214.6,
-      "carbs": 28.1,
-      "sugar": 12.4,
-      "protein": 6.8,
-      "fat": 8.4,
-      "saturatedFat": 1.1,
-      "sodium": 214.9
+      "name": "그라브락스 연어 샐러디",
+      "weight": 235,
+      "calories": 290.3,
+      "carbs": 6.4,
+      "sugar": 3.7,
+      "protein": 20.8,
+      "fat": 19.8,
+      "saturatedFat": 3.5,
+      "sodium": 441.0
     }
   ],
   "warmbowls": [
     {
-      "name": "오코노미야끼st 곡물볼",
-      "calories": 835.5,
-      "carbs": 68.5,
-      "sugar": 11.2,
-      "protein": 27.4,
-      "fat": 50.5,
-      "saturatedFat": 11.3,
-      "sodium": 850.9
-    },
-    {
       "name": "칠리베이컨 포케볼",
-      "calories": 499.3,
-      "carbs": 62.9,
-      "sugar": 4.7,
-      "protein": 20.0,
-      "fat": 18.4,
-      "saturatedFat": 6.0,
-      "sodium": 268.1
-    },
-    {
-      "name": "그라브락스 연어 포케볼",
-      "calories": 475.4,
-      "carbs": 63.7,
-      "sugar": 4.6,
-      "protein": 23.3,
-      "fat": 14.5,
-      "saturatedFat": 3.2,
-      "sodium": 577.1
-    },
-    {
-      "name": "로스트삼겹 포케볼",
-      "calories": 577.5,
-      "carbs": 66.2,
-      "sugar": 4.8,
-      "protein": 20.0,
-      "fat": 26.6,
-      "saturatedFat": 7.7,
-      "sodium": 215.3
+      "weight": 297,
+      "calories": 470.0,
+      "carbs": 61.3,
+      "sugar": 4.3,
+      "protein": 18.5,
+      "fat": 16.4,
+      "saturatedFat": 5.0,
+      "sodium": 322.5
     },
     {
       "name": "우삼겹 포케볼",
-      "calories": 632.2,
-      "carbs": 69.2,
-      "sugar": 6.4,
-      "protein": 22.5,
-      "fat": 30.2,
-      "saturatedFat": 8.7,
-      "sodium": 226.0
+      "weight": 307,
+      "calories": 537.1,
+      "carbs": 64.9,
+      "sugar": 6.8,
+      "protein": 19.0,
+      "fat": 23.1,
+      "saturatedFat": 8.0,
+      "sodium": 264.7
     },
     {
-      "name": "노릇노릇두부 포케볼",
-      "calories": 517.4,
-      "carbs": 69.4,
-      "sugar": 5.0,
-      "protein": 17.0,
-      "fat": 19.8,
-      "saturatedFat": 2.5,
-      "sodium": 61.2
+      "name": "청양간장 두부 비빔밥",
+      "weight": 380,
+      "calories": 604.0,
+      "carbs": 71.7,
+      "sugar": 6.0,
+      "protein": 17.8,
+      "fat": 28.1,
+      "saturatedFat": 3.7,
+      "sodium": 923.2
+    },
+    {
+      "name": "그라브락스 연어 포케볼",
+      "weight": 297,
+      "calories": 535.6,
+      "carbs": 61.6,
+      "sugar": 4.4,
+      "protein": 21.8,
+      "fat": 22.6,
+      "saturatedFat": 4.4,
+      "sodium": 445.1
     },
     {
       "name": "바베큐닭다리살 포케볼",
-      "calories": 571.4,
-      "carbs": 73.7,
-      "sugar": 8.4,
-      "protein": 27.9,
-      "fat": 18.1,
-      "saturatedFat": 6.0,
+      "weight": 347,
+      "calories": 557.3,
+      "carbs": 72.5,
+      "sugar": 8.2,
+      "protein": 26.6,
+      "fat": 17.7,
+      "saturatedFat": 5.9,
       "sodium": 586.2
     },
     {
-      "name": "우삼겹메밀면 누들볼",
+      "name": "고추장제육 포케볼",
+      "weight": 327,
+      "calories": 468.8,
+      "carbs": 70.4,
+      "sugar": 9.3,
+      "protein": 20.2,
+      "fat": 12.6,
+      "saturatedFat": 3.6,
+      "sodium": 474.1
+    },
+    {
+      "name": "고추장제육 들기름파스타 누들볼",
+      "weight": 316,
+      "calories": 342.1,
+      "carbs": 47.5,
+      "sugar": 7.5,
+      "protein": 17.6,
+      "fat": 9.8,
+      "saturatedFat": 1.8,
+      "sodium": 645.7
+    },
+    {
+      "name": "그라브락스 연어 파스타 누들볼",
+      "weight": 289,
+      "calories": 436.2,
+      "carbs": 33.3,
+      "sugar": 3.6,
+      "protein": 20.0,
+      "fat": 24.4,
+      "saturatedFat": 3.6,
+      "sodium": 609.9
+    },
+    {
+      "name": "소고기 비빔메밀 누들볼",
+      "weight": 311,
+      "calories": 398.8,
+      "carbs": 32.0,
+      "sugar": 4.0,
+      "protein": 23.8,
+      "fat": 19.0,
+      "saturatedFat": 5.6,
+      "sodium": 354.7
+    },
+    {
+      "name": "우삼겹메밀 누들볼",
+      "weight": 259,
       "calories": 406.6,
       "carbs": 36.1,
       "sugar": 5.0,
@@ -133,91 +179,67 @@
       "sodium": 350.3
     },
     {
-      "name": "그라브락스 연어 파스타 누들볼",
-      "calories": 346.2,
-      "carbs": 33.3,
-      "sugar": 3.6,
-      "protein": 20.0,
-      "fat": 14.4,
-      "saturatedFat": 2.1,
-      "sodium": 609.9
-    },
-    {
-      "name": "고소삼겹 들기름파스타 누들볼",
-      "calories": 445.3,
-      "carbs": 42.8,
-      "sugar": 2.8,
-      "protein": 16.0,
-      "fat": 24.0,
-      "saturatedFat": 5.9,
-      "sodium": 369.0
-    },
-    {
-      "name": "비빔메밀면 누들볼",
-      "calories": 235.6,
-      "carbs": 30.0,
-      "sugar": 2.2,
-      "protein": 13.4,
-      "fat": 6.6,
-      "saturatedFat": 1.8,
-      "sodium": 294.3
+      "name": "고추장제육 간장메밀 누들볼",
+      "weight": 359,
+      "calories": 412.1,
+      "carbs": 49.2,
+      "sugar": 12.4,
+      "protein": 20.2,
+      "fat": 15.7,
+      "saturatedFat": 2.8,
+      "sodium": 1612.0
     }
   ],
   "proteinBoxes": [
     {
-      "name": "더블 닭다리살 박스",
-      "calories": 707.3,
-      "carbs": 77.8,
-      "sugar": 9.9,
-      "protein": 38.6,
-      "fat": 26.4,
-      "saturatedFat": 7.0,
-      "sodium": 974.0
+      "name": "닭다리살 MAX 프로틴 박스",
+      "weight": 449,
+      "calories": 758.7,
+      "carbs": 96.6,
+      "sugar": 7.7,
+      "protein": 43.2,
+      "fat": 22.3,
+      "saturatedFat": 7.4,
+      "sodium": 885.9
     },
     {
-      "name": "더블 치킨 파스타박스",
-      "calories": 601.9,
-      "carbs": 50.0,
-      "sugar": 4.9,
-      "protein": 44.7,
-      "fat": 23.3,
-      "saturatedFat": 5.8,
-      "sodium": 696.9
+      "name": "우삼겹 MAX 프로틴 박스",
+      "weight": 419,
+      "calories": 900.7,
+      "carbs": 87.6,
+      "sugar": 11.5,
+      "protein": 39.4,
+      "fat": 43.7,
+      "saturatedFat": 16.3,
+      "sodium": 565.4
     },
     {
-      "name": "더블 삼겹 박스",
-      "calories": 864.8,
-      "carbs": 69.0,
-      "sugar": 5.7,
-      "protein": 36.1,
-      "fat": 49.5,
-      "saturatedFat": 12.8,
-      "sodium": 549.5
-    },
-    {
-      "name": "더블 우삼겹 박스",
-      "calories": 797.2,
-      "carbs": 66.2,
-      "sugar": 8.7,
-      "protein": 36.2,
-      "fat": 43.2,
-      "saturatedFat": 13.4,
-      "sodium": 570.7
+      "name": "치킨 MAX 프로틴 파스타",
+      "weight": 464,
+      "calories": 692.6,
+      "carbs": 65.9,
+      "sugar": 5.9,
+      "protein": 54.9,
+      "fat": 22.2,
+      "saturatedFat": 5.1,
+      "sodium": 751.4
     }
   ],
   "sandWraps": [
     {
       "name": "에그마요 랩",
-      "calories": 661.6,
-      "carbs": 49.7,
+      "weight": 225,
+      "calories": 654.0,
+      "carbs": 49.5,
       "sugar": 5.3,
-      "protein": 19.4,
-      "fat": 42.8,
-      "saturatedFat": 9.8,
-      "sodium": 1054.3
+      "protein": 19.3,
+      "fat": 42.1,
+      "saturatedFat": 9.3,
+      "sodium": 1081.5
     },
     {
       "name": "멕시칸 랩",
+      "weight": 234,
       "calories": 607.4,
       "carbs": 52.5,
       "sugar": 10.9,
@@ -227,17 +249,30 @@
       "sodium": 931.2
     },
     {
-      "name": "시저치킨 랩",
-      "calories": 500.9,
-      "carbs": 46.2,
-      "sugar": 12.4,
-      "protein": 21.8,
-      "fat": 25.7,
-      "saturatedFat": 6.3,
-      "sodium": 877.4
+      "name": "타코 쉬림프 랩",
+      "weight": 289,
+      "calories": 501.1,
+      "carbs": 59.4,
+      "sugar": 15.5,
+      "protein": 15.4,
+      "fat": 22.4,
+      "saturatedFat": 6.0,
+      "sodium": 1123.1
+    },
+    {
+      "name": "그라브락스 연어 랩",
+      "weight": 244,
+      "calories": 475.4,
+      "carbs": 40.0,
+      "sugar": 8.9,
+      "protein": 17.6,
+      "fat": 27.6,
+      "saturatedFat": 6.1,
+      "sodium": 1014.2
     },
     {
       "name": "로스트닭다리살 랩",
+      "weight": 294,
       "calories": 549.6,
       "carbs": 46.3,
       "sugar": 10.3,
@@ -247,38 +282,64 @@
       "sodium": 1206.3
     },
     {
-      "name": "튜나샐러드 랩",
-      "calories": 680.8,
-      "carbs": 59.9,
-      "sugar": 20.6,
-      "protein": 21.4,
-      "fat": 40.0,
-      "saturatedFat": 7.9,
-      "sodium": 1240.4
+      "name": "시저치킨 랩",
+      "weight": 229,
+      "calories": 500.9,
+      "carbs": 46.2,
+      "sugar": 12.4,
+      "protein": 21.8,
+      "fat": 25.7,
+      "saturatedFat": 6.3,
+      "sodium": 877.4
+    },
+    {
+      "name": "바질치킨 랩",
+      "weight": 229,
+      "calories": 523.9,
+      "carbs": 44.7,
+      "sugar": 12.6,
+      "protein": 24.2,
+      "fat": 26.8,
+      "saturatedFat": 6.8,
+      "sodium": 932.4
+    },
+    {
+      "name": "바질크림 잠봉 랩",
+      "weight": 244,
+      "calories": 462.9,
+      "carbs": 41.8,
+      "sugar": 10.9,
+      "protein": 16.4,
+      "fat": 24.5,
+      "saturatedFat": 6.9,
+      "sodium": 1068.9
     },
     {
       "name": "칠리베이컨 곡물랩",
-      "calories": 730.4,
-      "carbs": 75.5,
-      "sugar": 12.9,
-      "protein": 21.5,
-      "fat": 37.6,
-      "saturatedFat": 10.9,
-      "sodium": 1067.1
+      "weight": 305,
+      "calories": 715.1,
+      "carbs": 75.2,
+      "sugar": 12.7,
+      "protein": 21.3,
+      "fat": 36.1,
+      "saturatedFat": 10.0,
+      "sodium": 1121.5
     },
     {
       "name": "고소우삼겹 곡물랩",
-      "calories": 713.1,
-      "carbs": 80.2,
-      "sugar": 6.6,
-      "protein": 24.3,
-      "fat": 32.8,
-      "saturatedFat": 9.3,
-      "sodium": 1135.8
+      "weight": 305,
+      "calories": 687.5,
+      "carbs": 77.6,
+      "sugar": 6.3,
+      "protein": 24.1,
+      "fat": 31.2,
+      "saturatedFat": 9.2,
+      "sodium": 1125.5
     },
     {
       "name": "바베큐닭다리살 곡물랩",
-      "calories": 713.1,
+      "weight": 340,
+      "calories": 717.3,
       "carbs": 76.8,
       "sugar": 13.5,
       "protein": 26.1,
@@ -287,27 +348,63 @@
       "sodium": 1288.1
     },
     {
-      "name": "치킨 치아바타",
-      "calories": 717.3,
-      "carbs": 60.8,
-      "sugar": 13.3,
-      "protein": 17.3,
+      "name": "클래식 치킨 샌드위치",
+      "weight": 230,
+      "calories": 471.1,
+      "carbs": 61.1,
+      "sugar": 13.4,
+      "protein": 17.5,
       "fat": 17.8,
       "saturatedFat": 3.4,
-      "sodium": 733.8
+      "sodium": 735.4
     },
     {
-      "name": "튜나 치아바타",
-      "calories": 625.1,
-      "carbs": 60.3,
-      "sugar": 12.9,
-      "protein": 28.9,
-      "fat": 29.1,
-      "saturatedFat": 6.5,
-      "sodium": 1212.2
+      "name": "[프로틴]바질 레몬연어 샌드위치",
+      "weight": 305,
+      "calories": 576.5,
+      "carbs": 71.0,
+      "sugar": 17.0,
+      "protein": 20.8,
+      "fat": 22.7,
+      "saturatedFat": 4.0,
+      "sodium": 1023.0
     },
     {
-      "name": "비프에그마요 치아바타",
+      "name": "[프로틴]바질크림 치킨 샌드위치",
+      "weight": 250,
+      "calories": 442.8,
+      "carbs": 53.6,
+      "sugar": 7.1,
+      "protein": 23.9,
+      "fat": 14.2,
+      "saturatedFat": 3.1,
+      "sodium": 774.2
+    },
+    {
+      "name": "[프로틴]치킨 반미 샌드위치",
+      "weight": 270,
+      "calories": 484.0,
+      "carbs": 60.5,
+      "sugar": 11.7,
+      "protein": 22.8,
+      "fat": 16.9,
+      "saturatedFat": 3.4,
+      "sodium": 853.8
+    },
+    {
+      "name": "불고기 반미 샌드위치",
+      "weight": 270,
+      "calories": 580.8,
+      "carbs": 61.6,
+      "sugar": 14.2,
+      "protein": 18.9,
+      "fat": 28.9,
+      "saturatedFat": 8.1,
+      "sodium": 900.6
+    },
+    {
+      "name": "[프로틴]비프에그마요 샌드위치",
+      "weight": 275,
       "calories": 712.6,
       "carbs": 64.9,
       "sugar": 15.1,
@@ -317,39 +414,54 @@
       "sodium": 1047.3
     },
     {
-      "name": "바질연어 치아바타",
-      "calories": 607.5,
-      "carbs": 71.1,
-      "sugar": 17.0,
-      "protein": 24.9,
-      "fat": 24.2,
-      "saturatedFat": 4.2,
-      "sodium": 1137.0
+      "name": "[프로틴]프레시 잠봉 샌드위치",
+      "weight": 257,
+      "calories": 493.3,
+      "carbs": 54.2,
+      "sugar": 8.5,
+      "protein": 20.0,
+      "fat": 21.7,
+      "saturatedFat": 5.2,
+      "sodium": 1135.5
     },
     {
-      "name": "야끼소바빵st 치아바타",
-      "calories": 587.5,
-      "carbs": 76.1,
-      "sugar": 15.5,
-      "protein": 23.2,
-      "fat": 21.2,
-      "saturatedFat": 6.9,
-      "sodium": 1355.5
+      "name": "스파이시 쉬림프 샌드위치",
+      "weight": 270,
+      "calories": 465.8,
+      "carbs": 55.7,
+      "sugar": 8.8,
+      "protein": 18.6,
+      "fat": 18.6,
+      "saturatedFat": 4.4,
+      "sodium": 1178.0
     },
     {
-      "name": "베이컨잠봉 치아바타",
-      "calories": 540.4,
-      "carbs": 53.5,
-      "sugar": 8.2,
-      "protein": 20.8,
-      "fat": 26.7,
-      "saturatedFat": 7.2,
-      "sodium": 1142.4
+      "name": "[그로밋] 오렌지 치즈 치킨 샌드위치",
+      "weight": 270,
+      "calories": 487.5,
+      "carbs": 59.6,
+      "sugar": 9.6,
+      "protein": 26.0,
+      "fat": 15.8,
+      "saturatedFat": 6.3,
+      "sodium": 928.0
+    },
+    {
+      "name": "[그로밋] 오렌지 치즈 연어 샌드위치",
+      "weight": 265,
+      "calories": 477.3,
+      "carbs": 58.5,
+      "sugar": 10.3,
+      "protein": 21.5,
+      "fat": 17.2,
+      "saturatedFat": 6.1,
+      "sodium": 908.6
     }
   ],
   "beverages": [
     {
       "name": "아메리카노",
+      "weight": 290,
       "calories": 22.5,
       "carbs": 2.4,
       "sugar": 0.0,
@@ -360,6 +472,7 @@
     },
     {
       "name": "그린밀싹",
+      "weight": 240,
       "calories": 120.0,
       "carbs": 28.0,
       "sugar": 22.0,
@@ -370,6 +483,7 @@
     },
     {
       "name": "오렌지당근",
+      "weight": 240,
       "calories": 113.0,
       "carbs": 27.0,
       "sugar": 23.0,
@@ -380,6 +494,7 @@
     },
     {
       "name": "레드클렌즈",
+      "weight": 240,
       "calories": 120.0,
       "carbs": 29.0,
       "sugar": 24.0,
@@ -387,103 +502,344 @@
       "fat": 0.0,
       "saturatedFat": 0.0,
       "sodium": 43.0
-    }
-  ],
-  "dressings": [
-    {
-      "name": "(저당) 레몬허브",
-      "calories": 4.1,
-      "carbs": 8.4,
-      "sugar": 0.5,
-      "protein": 0.2,
-      "fat": 0.1,
-      "saturatedFat": 0.1,
-      "sodium": 360.0
     },
     {
-      "name": "(저당) 참깨소이",
-      "calories": 110.0,
-      "carbs": 6.0,
-      "sugar": 0.1,
-      "protein": 1.0,
-      "fat": 11.0,
-      "saturatedFat": 1.8,
-      "sodium": 410.0
-    }
-  ],
-  "toppings": [
-    {
-      "name": "올리브",
-      "calories": 31.5,
-      "carbs": 1.8,
-      "sugar": 0.0,
-      "protein": 0.3,
-      "fat": 2.9,
-      "saturatedFat": 0.4,
-      "sodium": 264.0
-    },
-    {
-      "name": "할라피뇨",
-      "calories": 6.7,
-      "carbs": 1.3,
+      "name": "코크제로",
+      "weight": 355,
+      "calories": 0.0,
+      "carbs": 0.0,
       "sugar": 0.0,
       "protein": 0.0,
       "fat": 0.0,
       "saturatedFat": 0.0,
-      "sodium": 293.2
+      "sodium": 22.0
+    },
+    {
+      "name": "스프라이트제로",
+      "weight": 355,
+      "calories": 0.0,
+      "carbs": 0.0,
+      "sugar": 0.0,
+      "protein": 0.0,
+      "fat": 0.0,
+      "saturatedFat": 0.0,
+      "sodium": 11.0
+    },
+    {
+      "name": "애사비 사과 스파클링",
+      "weight": 350,
+      "calories": 8.0,
+      "carbs": 9.0,
+      "sugar": 0.0,
+      "protein": 0.0,
+      "fat": 0.0,
+      "saturatedFat": 0.0,
+      "sodium": 25.0
+    }
+  ],
+  "dressings": [
+    {
+      "name": "오리엔탈",
+      "weight": 50,
+      "calories": 160.0,
+      "carbs": 8.0,
+      "sugar": 7.0,
+      "protein": 1.0,
+      "fat": 14.0,
+      "saturatedFat": 2.2,
+      "sodium": 280.0
+    },
+    {
+      "name": "(저당) 발사믹",
+      "weight": 50,
+      "calories": 55.0,
+      "carbs": 10.0,
+      "sugar": 2.2,
+      "protein": 0.0,
+      "fat": 5.0,
+      "saturatedFat": 0.8,
+      "sodium": 250.0
+    },
+    {
+      "name": "(저당) 랜치",
+      "weight": 50,
+      "calories": 153.3,
+      "carbs": 6.3,
+      "sugar": 0.7,
+      "protein": 0.9,
+      "fat": 13.9,
+      "saturatedFat": 3.3,
+      "sodium": 305.4
+    },
+    {
+      "name": "고추장비빔",
+      "weight": 30,
+      "calories": 80.0,
+      "carbs": 17.0,
+      "sugar": 14.0,
+      "protein": 1.0,
+      "fat": 1.0,
+      "saturatedFat": 0.5,
+      "sodium": 480.0
+    },
+    {
+      "name": "크리미칠리",
+      "weight": 50,
+      "calories": 235.0,
+      "carbs": 14.0,
+      "sugar": 11.0,
+      "protein": 0.0,
+      "fat": 20.0,
+      "saturatedFat": 3.2,
+      "sodium": 410.0
+    },
+    {
+      "name": "크리미할라피뇨",
+      "weight": 50,
+      "calories": 235.0,
+      "carbs": 7.0,
+      "sugar": 7.0,
+      "protein": 1.0,
+      "fat": 23.0,
+      "saturatedFat": 3.6,
+      "sodium": 320.0
+    },
+    {
+      "name": "(저당) 레몬허브",
+      "weight": 50,
+      "calories": 23.0,
+      "carbs": 5.5,
+      "sugar": 0.1,
+      "protein": 0.2,
+      "fat": 0.0,
+      "saturatedFat": 0.0,
+      "sodium": 327.8
+    },
+    {
+      "name": "(저당) 참깨소이",
+      "weight": 50,
+      "calories": 133.0,
+      "carbs": 8.3,
+      "sugar": 0.2,
+      "protein": 1.0,
+      "fat": 10.7,
+      "saturatedFat": 1.9,
+      "sodium": 416.6
+    },
+    {
+      "name": "(저당) 스리라차소이",
+      "weight": 50,
+      "calories": 58.2,
+      "carbs": 13.6,
+      "sugar": 2.1,
+      "protein": 0.8,
+      "fat": 0.0,
+      "saturatedFat": 0.0,
+      "sodium": 562.5
+    }
+  ],
+  "toppings": [
+    {
+      "name": "닭가슴살",
+      "weight": 50,
+      "calories": 64.3,
+      "carbs": 2.0,
+      "sugar": 0.0,
+      "protein": 13.1,
+      "fat": 0.4,
+      "saturatedFat": 0.4,
+      "sodium": 118.8
+    },
+    {
+      "name": "그라브락스 연어",
+      "weight": 60,
+      "calories": 99.1,
+      "carbs": 1.4,
+      "sugar": 0.4,
+      "protein": 12.8,
+      "fat": 4.7,
+      "saturatedFat": 0.5,
+      "sodium": 346.6
+    },
+    {
+      "name": "로스트닭다리살",
+      "weight": 60,
+      "calories": 113.8,
+      "carbs": 6.0,
+      "sugar": 1.3,
+      "protein": 10.5,
+      "fat": 5.3,
+      "saturatedFat": 2.1,
+      "sodium": 272.5
+    },
+    {
+      "name": "그라운드비프",
+      "weight": 40,
+      "calories": 108.0,
+      "carbs": 0.0,
+      "sugar": 0.0,
+      "protein": 10.2,
+      "fat": 7.2,
+      "saturatedFat": 2.9,
+      "sodium": 38.4
+    },
+    {
+      "name": "우삼겹",
+      "weight": 50,
+      "calories": 161.1,
+      "carbs": 3.0,
+      "sugar": 2.5,
+      "protein": 9.3,
+      "fat": 12.4,
+      "saturatedFat": 5.1,
+      "sodium": 165.6
+    },
+    {
+      "name": "칩베이컨",
+      "weight": 20,
+      "calories": 51.0,
+      "carbs": 0.4,
+      "sugar": 0.2,
+      "protein": 2.8,
+      "fat": 4.2,
+      "saturatedFat": 1.2,
+      "sodium": 160.0
+    },
+    {
+      "name": "고추장제육",
+      "weight": 70,
+      "calories": 92.8,
+      "carbs": 8.5,
+      "sugar": 5.1,
+      "protein": 10.5,
+      "fat": 1.9,
+      "saturatedFat": 0.7,
+      "sodium": 375.0
+    },
+    {
+      "name": "에그",
+      "weight": 50,
+      "calories": 72.5,
+      "carbs": 0.7,
+      "sugar": 0.1,
+      "protein": 6.7,
+      "fat": 4.3,
+      "saturatedFat": 1.4,
+      "sodium": 64.0
+    },
+    {
+      "name": "두부",
+      "weight": 80,
+      "calories": 100.0,
+      "carbs": 8.0,
+      "sugar": 1.2,
+      "protein": 4.2,
+      "fat": 5.7,
+      "saturatedFat": 0.7,
+      "sodium": 12.8
+    },
+    {
+      "name": "잠봉 슬라이스",
+      "weight": 25,
+      "calories": 34.4,
+      "carbs": 0.6,
+      "sugar": 0.3,
+      "protein": 4.7,
+      "fat": 1.4,
+      "saturatedFat": 0.4,
+      "sodium": 250.0
+    },
+    {
+      "name": "케이준 쉬림프",
+      "weight": 60,
+      "calories": 36.9,
+      "carbs": 0.1,
+      "sugar": 0.1,
+      "protein": 8.3,
+      "fat": 0.6,
+      "saturatedFat": 0.0,
+      "sodium": 332.5
+    },
+    {
+      "name": "올리브",
+      "weight": 15,
+      "calories": 15.8,
+      "carbs": 0.9,
+      "sugar": 0.0,
+      "protein": 0.1,
+      "fat": 1.4,
+      "saturatedFat": 0.2,
+      "sodium": 132.0
+    },
+    {
+      "name": "할라피뇨",
+      "weight": 20,
+      "calories": 3.3,
+      "carbs": 0.7,
+      "sugar": 0.0,
+      "protein": 0.0,
+      "fat": 0.0,
+      "saturatedFat": 0.0,
+      "sodium": 146.6
     },
     {
       "name": "머쉬룸",
-      "calories": 59.1,
-      "carbs": 3.3,
-      "sugar": 0.4,
-      "protein": 1.5,
-      "fat": 5.6,
-      "saturatedFat": 0.9,
-      "sodium": 1.1
+      "weight": 30,
+      "calories": 29.5,
+      "carbs": 1.6,
+      "sugar": 0.2,
+      "protein": 0.7,
+      "fat": 2.8,
+      "saturatedFat": 0.5,
+      "sodium": 0.5
     },
     {
       "name": "옥수수",
-      "calories": 19.5,
-      "carbs": 3.6,
-      "sugar": 2.1,
-      "protein": 0.6,
-      "fat": 0.3,
+      "weight": 15,
+      "calories": 9.8,
+      "carbs": 1.8,
+      "sugar": 1.1,
+      "protein": 0.3,
+      "fat": 0.2,
       "saturatedFat": 0.0,
-      "sodium": 78.0
+      "sodium": 39.0
     },
     {
       "name": "양파",
-      "calories": 8.7,
-      "carbs": 2.0,
-      "sugar": 1.7,
-      "protein": 0.3,
+      "weight": 15,
+      "calories": 4.4,
+      "carbs": 1.0,
+      "sugar": 0.9,
+      "protein": 0.1,
       "fat": 0.0,
       "saturatedFat": 0.0,
-      "sodium": 0.9
+      "sodium": 0.5
     },
     {
       "name": "토마토",
-      "calories": 7.6,
-      "carbs": 1.7,
-      "sugar": 0.9,
-      "protein": 0.4,
-      "fat": 0.1,
+      "weight": 20,
+      "calories": 3.8,
+      "carbs": 0.9,
+      "sugar": 0.5,
+      "protein": 0.2,
+      "fat": 0.0,
       "saturatedFat": 0.0,
-      "sodium": 0.8
+      "sodium": 0.4
     },
     {
       "name": "당근라페",
-      "calories": 27.7,
-      "carbs": 4.1,
-      "sugar": 3.7,
-      "protein": 0.5,
-      "fat": 1.1,
-      "saturatedFat": 0.2,
-      "sodium": 44.1
+      "weight": 20,
+      "calories": 13.9,
+      "carbs": 2.0,
+      "sugar": 1.9,
+      "protein": 0.2,
+      "fat": 0.6,
+      "saturatedFat": 0.1,
+      "sodium": 22.0
     },
     {
       "name": "적채",
+      "weight": 15,
       "calories": 6.2,
       "carbs": 1.4,
       "sugar": 0.7,
@@ -493,19 +849,186 @@
       "sodium": 1.1
     },
     {
-      "name": "에다마메",
-      "calories": 14.1,
-      "carbs": 1.2,
-      "sugar": 0.2,
-      "protein": 1.3,
+      "name": "후리가케",
+      "weight": 3,
+      "calories": 12.5,
+      "carbs": 1.6,
+      "sugar": 0.1,
+      "protein": 0.5,
       "fat": 0.5,
       "saturatedFat": 0.1,
+      "sodium": 69.0
+    },
+    {
+      "name": "견과류",
+      "weight": 15,
+      "calories": 90.7,
+      "carbs": 4.9,
+      "sugar": 0.5,
+      "protein": 2.5,
+      "fat": 6.8,
+      "saturatedFat": 0.6,
+      "sodium": 0.3
+    },
+    {
+      "name": "나쵸칩",
+      "weight": 15,
+      "calories": 75.0,
+      "carbs": 9.2,
+      "sugar": 0.0,
+      "protein": 1.1,
+      "fat": 3.8,
+      "saturatedFat": 0.3,
+      "sodium": 34.5
+    },
+    {
+      "name": "양파플레이크",
+      "weight": 10,
+      "calories": 55.1,
+      "carbs": 5.5,
+      "sugar": 1.1,
+      "protein": 0.4,
+      "fat": 3.5,
+      "saturatedFat": 1.7,
+      "sodium": 5.0
+    },
+    {
+      "name": "크랜베리",
+      "weight": 10,
+      "calories": 31.4,
+      "carbs": 8.6,
+      "sugar": 7.4,
+      "protein": 0.0,
+      "fat": 0.1,
+      "saturatedFat": 0.0,
+      "sodium": 0.2
+    },
+    {
+      "name": "슈레드치즈",
+      "weight": 10,
+      "calories": 32.5,
+      "carbs": 0.0,
+      "sugar": 0.0,
+      "protein": 2.5,
+      "fat": 2.2,
+      "saturatedFat": 1.5,
+      "sodium": 42.5
+    },
+    {
+      "name": "에그마요",
+      "weight": 50,
+      "calories": 122.5,
+      "carbs": 2.5,
+      "sugar": 0.0,
+      "protein": 4.5,
+      "fat": 10.5,
+      "saturatedFat": 2.1,
+      "sodium": 140.0
+    },
+    {
+      "name": "스윗포테이토",
+      "weight": 70,
+      "calories": 126.0,
+      "carbs": 17.5,
+      "sugar": 9.1,
+      "protein": 1.4,
+      "fat": 5.6,
+      "saturatedFat": 1.0,
+      "sodium": 98.0
+    },
+    {
+      "name": "단호박",
+      "weight": 70,
+      "calories": 58.6,
+      "carbs": 12.5,
+      "sugar": 7.0,
+      "protein": 0.7,
+      "fat": 0.4,
+      "saturatedFat": 0.1,
+      "sodium": 0.1
+    },
+    {
+      "name": "사워크림",
+      "weight": 10,
+      "calories": 23.2,
+      "carbs": 0.5,
+      "sugar": 0.3,
+      "protein": 0.3,
+      "fat": 2.2,
+      "saturatedFat": 1.4,
+      "sodium": 4.0
+    },
+    {
+      "name": "바질페스토",
+      "weight": 20,
+      "calories": 119.0,
+      "carbs": 0.5,
+      "sugar": 1.8,
+      "protein": 2.8,
+      "fat": 10.7,
+      "saturatedFat": 2.0,
+      "sodium": 171.0
+    },
+    {
+      "name": "바베큐소스",
+      "weight": 10,
+      "calories": 24.6,
+      "carbs": 5.5,
+      "sugar": 2.8,
+      "protein": 0.3,
+      "fat": 0.2,
+      "saturatedFat": 0.0,
+      "sodium": 151.2
+    },
+    {
+      "name": "화이트치즈소스",
+      "weight": 20,
+      "calories": 72.0,
+      "carbs": 4.6,
+      "sugar": 3.6,
+      "protein": 0.4,
+      "fat": 5.8,
+      "saturatedFat": 1.6,
+      "sodium": 98.0
+    },
+    {
+      "name": "엑스트라버진 올리브오일",
+      "weight": 10,
+      "calories": 90.0,
+      "carbs": 0.0,
+      "sugar": 0.0,
+      "protein": 0.0,
+      "fat": 10.0,
+      "saturatedFat": 1.5,
       "sodium": 0.0
+    },
+    {
+      "name": "크림치즈무스",
+      "weight": 20,
+      "calories": 51.1,
+      "carbs": 2.8,
+      "sugar": 1.4,
+      "protein": 1.1,
+      "fat": 3.9,
+      "saturatedFat": 2.6,
+      "sodium": 86.1
+    },
+    {
+      "name": "오렌지리플잼",
+      "weight": 10,
+      "calories": 18.1,
+      "carbs": 4.5,
+      "sugar": 3.5,
+      "protein": 0.0,
+      "fat": 0.0,
+      "saturatedFat": 0.0,
+      "sodium": 0.6
     }
   ],
   "sidesSoups": [
     {
       "name": "양송이 크림스프",
+      "weight": 200,
       "calories": 150.0,
       "carbs": 12.0,
       "sugar": 4.0,
@@ -516,6 +1039,7 @@
     },
     {
       "name": "단호박 크림스프",
+      "weight": 200,
       "calories": 218.8,
       "carbs": 21.3,
       "sugar": 15.0,
@@ -526,6 +1050,7 @@
     },
     {
       "name": "포테이토 크림스프",
+      "weight": 200,
       "calories": 210.0,
       "carbs": 18.0,
       "sugar": 9.0,
@@ -536,6 +1061,7 @@
     },
     {
       "name": "치킨토마토 스튜",
+      "weight": 200,
       "calories": 124.0,
       "carbs": 12.6,
       "sugar": 9.6,
@@ -543,6 +1069,98 @@
       "fat": 1.8,
       "saturatedFat": 0.4,
       "sodium": 713.2
+    },
+    {
+      "name": "카사바칩",
+      "weight": 50,
+      "calories": 244.5,
+      "carbs": 35.5,
+      "sugar": 0.5,
+      "protein": 1.5,
+      "fat": 10.5,
+      "saturatedFat": 4.5,
+      "sodium": 71.5
+    },
+    {
+      "name": "[그로밋] 오렌지 크림치즈 브레드",
+      "weight": 100,
+      "calories": 303.4,
+      "carbs": 42.3,
+      "sugar": 12.8,
+      "protein": 7.7,
+      "fat": 11.8,
+      "saturatedFat": 3.2,
+      "sodium": 310.0
+    }
+  ],
+  "bases": [
+    {
+      "name": "채소볼",
+      "weight": 80,
+      "calories": 10.5,
+      "carbs": 1.4,
+      "sugar": 0.5,
+      "protein": 0.9,
+      "fat": 0.2,
+      "saturatedFat": 0.0,
+      "sodium": 7.9
+    },
+    {
+      "name": "포케볼",
+      "weight": 172,
+      "calories": 271.1,
+      "carbs": 50.6,
+      "sugar": 0.4,
+      "protein": 7.9,
+      "fat": 4.2,
+      "saturatedFat": 0.7,
+      "sodium": 53.0
+    },
+    {
+      "name": "메밀면볼",
+      "weight": 164,
+      "calories": 144.2,
+      "carbs": 25.8,
+      "sugar": 0.4,
+      "protein": 5.8,
+      "fat": 1.9,
+      "saturatedFat": 0.3,
+      "sodium": 182.8
+    },
+    {
+      "name": "파스타볼",
+      "weight": 164,
+      "calories": 157.7,
+      "carbs": 28.0,
+      "sugar": 0.4,
+      "protein": 5.2,
+      "fat": 2.8,
+      "saturatedFat": 0.3,
+      "sodium": 6.3
+    }
+  ],
+  "proteinBases": [
+    {
+      "name": "(베이스) 파스타면",
+      "weight": 200,
+      "calories": 298.6,
+      "carbs": 53.8,
+      "sugar": 0.0,
+      "protein": 9.0,
+      "fat": 5.3,
+      "saturatedFat": 0.7,
+      "sodium": 0.0
+    },
+    {
+      "name": "(베이스) 곡물밥",
+      "weight": 195,
+      "calories": 386.3,
+      "carbs": 73.2,
+      "sugar": 0.0,
+      "protein": 10.6,
+      "fat": 5.7,
+      "saturatedFat": 0.9,
+      "sodium": 4.6
     }
   ]
 }
