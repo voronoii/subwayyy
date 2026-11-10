@@ -9,6 +9,9 @@ import CatalogClient from "./CatalogClient";
 
 interface Props { params: Promise<{ brand: string }> }
 
+// generateStaticParams 밖의 brand는 렌더하지 않고 404로 끝낸다. 켜 두면 랜덤 slug마다 렌더 결과가 응답 캐시에 쌓인다.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return brands.map((brand) => ({ brand: brand.id }));
 }

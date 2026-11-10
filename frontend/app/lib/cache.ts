@@ -35,6 +35,7 @@ async function upstash(command: (string | number)[]): Promise<unknown> {
     },
     body: JSON.stringify(command),
     cache: "no-store",
+    signal: AbortSignal.timeout(5_000),
   });
   if (!res.ok) {
     throw new Error(`Upstash error ${res.status}: ${await res.text()}`);

@@ -38,6 +38,13 @@ const BRAND_OG: Record<string, BrandOg> = {
   },
 };
 
+// 빌드 때 만들어 런타임 렌더(satori·resvg)의 메모리 급증을 없앤다. 브랜드를 추가하면 BRAND_OG에도 넣어야 OG 이미지가 생긴다.
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return Object.keys(BRAND_OG).map((brand) => ({ brand }));
+}
+
 export default async function OgImage({
   params,
 }: {
